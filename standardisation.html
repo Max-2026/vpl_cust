@@ -1,0 +1,65 @@
+File standardization rules are essential for maintaining consistency and readability across the codebase of a project. Implementing these rules can significantly improve collaboration and code quality. Here are some widely accepted file standardization rules that must be followed for our development tasks:
+
+Naming Conventions:
+--------------------
+Use descriptive and meaningful names for files.
+Use camel case with a lower starting letter (e.g. myClass.java).
+
+
+File Organization:
+-------------------
+
+Maintain a clear and consistent folder structure.
+Group related files into logical directories.
+Avoid placing too many files in a single directory.
+
+
+Code Formatting:
+----------------
+Use consistent indentation (usually 2 or 4 spaces) for each level of code.
+Choose a consistent style for braces and parentheses placement (e.g., K&R or Allman).
+Limit line length (usually less than 80 or 120 characters) to improve readability.
+Use consistent naming conventions for variables, functions, and classes i.e. camelCase.
+
+  
+Documentation:
+--------------
+Include a header comment at the beginning of each file, describing its purpose, author, and creation date.
+Add inline comments to complex or hard-to-understand sections of code.
+Document any external dependencies, libraries, or APIs used.
+Update comments or remove deprecated code to keep documentation in sync with the actual implementation.
+
+1. Date of development along with developer's Name.  (e.g. 20231116 - Kamran Feroz : )
+2. A clear description of the content/functionality/purpose of the file.
+3. In case of updation/addition/changes in the existing file, follow the same pattern and mention "Date - Dev Name: Changes Details...". Mark the same line at the beginning and end of the changes done in the file.
+e.g.
+20231116 - Kamran Feroz: Update query to add LastName field in condition (THIS LINE WILL BE PLACE AT THE BEGINNING OF THE FILE)
+-------
+-------
+------- 
+20231116 - Kamran Feroz: Update query to add LastName field in condition... START
+<ACTUAL CODE WHERE CHANGES HAVE BEEN DONE>
+20231116 - Kamran Feroz: Update query to add LastName field in condition... END!
+
+
+Version Control:
+----------------
+Always use a version control system (e.g., Git) to manage code changes.
+Follow branching and merging best practices to handle feature development, bug fixes, and releases.
+Add proper commit messages that describe the changes made in each commit.
+
+
+File Permissions:
+-----------------
+Set appropriate file permissions to restrict access to sensitive files or directories.
+Avoid storing sensitive information (like API keys, and credentials) in source code files.
+
+  
+File Size and Complexity:
+-------------------------
+Keep files concise and modular.
+Avoid excessive file sizes and limit the number of lines within a single file.
+Split large files into smaller, more manageable components.
+
+
+Remember that consistency is key when implementing file standardization rules. 
