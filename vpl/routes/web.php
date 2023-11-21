@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/faxes', function () {
+    return view('customer_panel.my_number.my_fexes');
 });
+Route::get('/view', function () {
+    return view('customer_panel.my_number.view_all_my_number');
+});
+
+
+
