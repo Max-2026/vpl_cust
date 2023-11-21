@@ -8,5 +8,13 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+use AuthorizesRequests, ValidatesRequests;
+
+
+public function buynumber(){
+return view ('customer_panel.Buy_Numbers.buy_number');
+}
+public function goldennumber(){
+return view ('customer_panel.Buy_Numbers.golden_numbers');
+}
 }

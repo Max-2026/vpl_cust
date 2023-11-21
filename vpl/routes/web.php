@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+
+Route::group(['as' => 'Buy_Number.'], function () {
+Route::get('/buynumber', [Controller::class, 'buynumber'])->name('buynumber');
+Route::get('/goldennumber', [Controller::class, 'goldennumber'])->name('goldennumber');
+});
+
+
+Route::get('/voicemessages', function () {
+    return view('advance_feature.voicemessages');
+
+});
+
+Route::get('/voicemailsetting', function () {
+    return view('advance_feature.voicemailsetting');
+});
+
+Route::get('/callrecording', function () {
+    return view('advance_feature.callrecording');
+});
 
 
 Route::get('/faxes', function () {
