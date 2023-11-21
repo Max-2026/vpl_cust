@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('customer_panel.dashboard');
+});
+
+
+Route::get('/mainmenu', function () {
+    return view('customer_panel.advance_feature.IVR_manager');
 });
