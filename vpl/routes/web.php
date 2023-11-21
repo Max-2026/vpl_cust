@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/voicemessages', function () {
+    return view('advance_feature.voicemessages');
+});
+
+Route::get('/voicemailsetting', function () {
+    return view('advance_feature.voicemailsetting');
+});
+
+Route::get('/callrecording', function () {
+    return view('advance_feature.callrecording');
 });
