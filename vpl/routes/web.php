@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+return view('index');
+});
+
+
+Route::group(['as' => 'Buy_Number.'], function () {
+Route::get('/buynumber', [Controller::class, 'buynumber'])->name('buynumber');
+Route::get('/goldennumber', [Controller::class, 'goldennumber'])->name('goldennumber');
+
 });
