@@ -29,3 +29,8 @@ Route::get('/', function () {
 });
 
 
+Route::get('/ivr', function () {
+    return view('customer_panel.dashboard');
+});
+
+
