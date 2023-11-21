@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/voicemessages', function () {
     return view('advance_feature.voicemessages');
 });
@@ -24,3 +25,20 @@ Route::get('/voicemailsetting', function () {
 Route::get('/callrecording', function () {
     return view('advance_feature.callrecording');
 });
+
+
+Route::get('/faxes', function () {
+    return view('customer_panel.my_number.my_fexes');
+});
+Route::get('/view', function () {
+    return view('customer_panel.my_number.view_all_my_number');
+});
+
+
+
+
+Route::get('/', function () {
+    return view('customer_panel.dashboard');
+});
+
+
