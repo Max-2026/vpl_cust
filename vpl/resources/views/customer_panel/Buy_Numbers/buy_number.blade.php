@@ -13,19 +13,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Optional custom CSS -->
 <style>
-.btn-circle {
 
-
-display: flex; /* Enables flexbox */
-justify-content: center; /* Centers horizontally */
-align-items: center; /* Centers vertically */
-width: 10px;
-height: 80px;
-border-radius: 50%; /* Rounds the corners to make a circle */
-background-color: #007bff; /* Bootstrap's primary color */
-color: white; /* Text/icon color */  
-
-}
 
 .form-section {
 background-color: #ffffff; /* White background color */
@@ -60,18 +48,35 @@ align-items: center;
 <div class="container">
 <div class="row justify-content-center align-items-center">
 <!-- Video button now taking less space -->
-<div class="col-md-auto mb-2 mb-md-0">
+<!-- <div class="col-md-auto mb-2 mb-md-0">
 <button class="btn btn-primary btn-circle btn-lg">
 <i class="fa fa-play" aria-hidden="true"  class=""></i>
 </button>
-</div>
+</div> -->
+<div class="container-fluid">
+    <div class="row m-3">
+        <div class="col-md-12 mt-0 mx-auto equal-width">
+            <div class="card ">
+                <div class="card-body mt-2 mb-1 mx-auto">
+                    <div class="media mr-5">
+                        <img src="images/play.png" class="mr-5" alt="Image 1" height="100px">
+                        <div class="media-body mt-3">
+                            <p class="mt-0">Watch Video Tutorial</p>
+                            <h4><a class="a_tag" href="#">How to Buy a Number?</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
 <!-- Title and link now taking less space and closer to the video button -->
-<div class="col-md-auto text-center">
+<!-- <div class="col-md-auto text-center">
 <h2>How to Buy a Number?</h2>
 <a href="#" class="d-block">Watch Video Tutorial</a>
 </div>
-</div>
+</div> -->
 
 
 
@@ -95,7 +100,7 @@ align-items: center;
 </select>
 </div>
 <div class="text-center">
-<button type="submit" class="btn btn-primary">Search</button>
+<button type="submit" class="btn btn-primary" style = "background-color:#0088cc;color:white">Search</button>
 </div>
 
 </form>

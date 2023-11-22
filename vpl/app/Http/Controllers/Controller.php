@@ -17,4 +17,21 @@ return view ('customer_panel.Buy_Numbers.buy_number');
 public function goldennumber(){
 return view ('customer_panel.Buy_Numbers.golden_numbers');
 }
+
+public function Announcement(){
+    return view ('customer_panel.Inbox.Announcements');
+}
+
+public function Report_a_Problem(){
+    return view ('customer_panel.Inbox.Report_a_Problem');
+}
+public function archive(){
+    return view ('customer_panel.Inbox.archive');
+}
+public function makeawish(){
+    return view ('customer_panel.Inbox.make_a_wish');
+}
+public function messageinbox(){
+    return view ('customer_panel.Inbox.message_inbox');
+}
 }

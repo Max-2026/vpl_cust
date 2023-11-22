@@ -23,27 +23,62 @@ Route::get('/goldennumber', [Controller::class, 'goldennumber'])->name('goldennu
 });
 
 
+Route::group(['as' => 'Inbox.'], function () {
+    Route::get('/Announcement', [Controller::class, 'Announcement'])->name('Announcement');
+    Route::get('/Report_a_Problem', [Controller::class, 'Report_a_Problem'])->name('Report_a_Problem');
+    Route::get('/archive', [Controller::class, 'archive'])->name('archive');
+    Route::get('/makeawish', [Controller::class, 'makeawish'])->name('makeawish');
+    Route::get('/messageinbox', [Controller::class, 'messageinbox'])->name('messageinbox');
+    
+    });
+
+Route::group(['as' => 'advance_feature.'], function () {
 Route::get('/voicemessages', function () {
+<<<<<<< Updated upstream
     return view('customer_panel.advance_feature.voicemessages');
+=======
+return view('customer_panel.advance_feature.voicemessages');
+>>>>>>> Stashed changes
 
 });
 
 Route::get('/voicemailsetting', function () {
+<<<<<<< Updated upstream
     return view('customer_panel.advance_feature.voicemailsetting');
 });
 
 Route::get('/callrecording', function () {
     return view('customer_panel.advance_feature.callrecording');
+=======
+return view('customer_panel.advance_feature.voicemailsetting');
+});
+
+Route::get('/callrecording', function () {
+return view('customer_panel.advance_feature.callrecording');
+});
+
+>>>>>>> Stashed changes
 });
 
 
+Route::group(['as' => 'my_number.'], function () {
 Route::get('/faxes', function () {
-    return view('customer_panel.my_number.my_fexes');
+return view('customer_panel.my_number.my_fexes');
 });
-Route::get('/view', function () {
-    return view('customer_panel.my_number.view_all_my_number');
+Route::get('/view_all_my_number', function () {
+return view('customer_panel.my_number.view_all_my_number');
 });
 
+<<<<<<< Updated upstream
+=======
+
+});
+
+
+
+
+
+>>>>>>> Stashed changes
 Route::get('/', function () {
     return view('customer_panel.dashboard');
 });

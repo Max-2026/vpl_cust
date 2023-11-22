@@ -58,7 +58,7 @@ align-items: center;
 <input type="text" class="form-control" placeholder="Phone Number (e.g., 1567 or 4420123456789)">
 </div>
 <div class="col-auto">
-<button type="submit" class="btn btn-primary">Search1</button>
+<button type="submit" class="btn btn-primary" style = "background-color:#0088cc;color:white">Search1</button>
 </div>
 </div>
 <div class="or-divider d-flex align-items-center">
@@ -72,7 +72,7 @@ align-items: center;
 <!-- Add country options here -->
 </select>
 <div class="col-auto">
-<button type="submit" class="btn btn-primary">Search2</button>
+<button type="submit" class="btn btn-primary" style = "background-color:#0088cc;color:white">Search2</button>
 </div>
 </div>
 
