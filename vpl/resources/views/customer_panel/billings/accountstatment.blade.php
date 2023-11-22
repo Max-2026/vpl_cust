@@ -9,17 +9,27 @@
 <br>
 <br>
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 <div class="container shadow pt-4 pb-4">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <form>
         <fieldset>
+<<<<<<< Updated upstream
           <p class="text-center pb-2 pt-3">Order ID: 1005729</p>
         
           <div class="form-group row mb-0"> <!-- Added mb-0 class to remove vertical margin -->
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Transaction Type</label>
+=======
+          <p class="text-center pb-5 pt-3">Order ID: 1005729</p>
+        
+            <div class="form-group row">
+            <label for="selectPhone" class="col-md-4 col-form-label text-left">Transaction Type</label>
+>>>>>>> Stashed changes
             <div class="col-md-6">
               <select class="form-control" id="selectPhone">
                 <option selected>View All My Bills</option>
@@ -27,8 +37,13 @@
               </select>
             </div>
           </div>
+<<<<<<< Updated upstream
           <div class="form-group row mb-0"> <!-- Added mb-0 class to remove vertical margin -->
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Number</label>
+=======
+          <div class="form-group row">
+            <label for="selectPhone" class="col-md-4 col-form-label text-left">Number</label>
+>>>>>>> Stashed changes
             <div class="col-md-6">
               <select class="form-control" id="selectPhone">
                 <option selected>12025521553</option>
@@ -36,8 +51,13 @@
               </select>
             </div>
           </div>
+<<<<<<< Updated upstream
           <div class="form-group row mb-0"> <!-- Added mb-0 class to remove vertical margin -->
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Month</label>
+=======
+          <div class="form-group row">
+            <label for="selectPhone" class="col-md-4 col-form-label text-left">Month</label>
+>>>>>>> Stashed changes
             <div class="col-md-6">
               <select class="form-control" id="selectPhone">
                 <option selected>january</option>
@@ -45,8 +65,13 @@
               </select>
             </div>
           </div>
+<<<<<<< Updated upstream
           <div class="form-group row mb-0"> <!-- Added mb-0 class to remove vertical margin -->
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Year</label>
+=======
+          <div class="form-group row">
+            <label for="selectPhone" class="col-md-4 col-form-label text-left">Year</label>
+>>>>>>> Stashed changes
             <div class="col-md-6">
               <select class="form-control" id="selectPhone">
                 <option selected>2023</option>
@@ -57,18 +82,30 @@
           <div class="d-flex justify-content-center">
               <button class="btn btn-default" style="background-color: #0088cc;color:white">Show</button>
           </div>
+<<<<<<< Updated upstream
+=======
+
+              
+>>>>>>> Stashed changes
         </fieldset>
       </form>
     </div>
   </div>
 </div>
 
+<<<<<<< Updated upstream
 
 
 
 <br>
 <div class="container-fluid">
     <div class="row m-4">
+=======
+<br>
+
+<div class="container shadow pt-4 pb-4">
+  <div class="row">
+>>>>>>> Stashed changes
     <div class="col-md-12">
       <div class="card rounded pt-2 pb-2">
         <div class="card-body ">

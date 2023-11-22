@@ -16,7 +16,11 @@
         <fieldset>
           <legend>Voicemail Preferences</legend>
           <div class="form-group row">
+<<<<<<< Updated upstream
             <label for="userID" class="col-md-4 col-form-label">User ID</label>
+=======
+            <label for="userID" class="col-md-4 col-form-label text-left">User ID</label>
+>>>>>>> Stashed changes
             <div class="col-md-6">
               <p class="form-control-static mt-3">1005729</p>
             </div>
@@ -47,7 +51,10 @@
            <br>
           <fieldset class="form-group">
             <legend>Go to Voice Mail on</legend>
+<<<<<<< Updated upstream
             <div class="form-check" style="margin-left: 20px;">
+=======
+>>>>>>> Stashed changes
             <br>
             <div class="form-check mt-5" style="margin-left: 20px;">
               <input class="form-check-input" type="radio" name="voicemailOptions" id="noAnswer" value="noAnswer">
@@ -65,7 +72,10 @@
           </fieldset>
           <div class="text-center">
           <button class="btn btn-default" style="background-color: #0088cc;color:white">Update</button>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           </div>
         </fieldset>
       </form>

@@ -12,7 +12,11 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+<<<<<<< Updated upstream
         <div class="card rounded">
+=======
+        <div class="card">
+>>>>>>> Stashed changes
           <div class="card-body">
             <table class="table table-bordered">
               <thead>

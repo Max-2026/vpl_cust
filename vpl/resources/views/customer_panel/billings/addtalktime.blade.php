@@ -10,7 +10,11 @@
 <br>
 
 <div class="container-fluid">
+<<<<<<< Updated upstream
 <div class="row m-4">
+=======
+<div class="row m-3">
+>>>>>>> Stashed changes
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
                 <div class="card-body mt-2 mb-1 mx-auto">
@@ -28,6 +32,7 @@
 </div>
 
 
+<<<<<<< Updated upstream
 <div class="container shadow">
     <div class="row m-5">
         <div class="col-md-8 offset-md-2">
@@ -77,6 +82,8 @@
         </div>
     </div>
 </div>
+=======
+>>>>>>> Stashed changes
 
 
 

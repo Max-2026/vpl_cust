@@ -117,3 +117,9 @@ return view('customer_panel.advance_feature.PBXsetting');
 Route::get('/UploadPBXIVR', function () {
 return view('customer_panel.advance_feature.UploadPBXIVR');
 });
+
+
+Route::get('/mastertalk', function () {
+    return view('customer_panel.billings.mastertalktime');
+    });
+    
