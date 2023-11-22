@@ -35,14 +35,19 @@ Route::get('/messageinbox', [Controller::class, 'messageinbox'])->name('messagei
 Route::group(['as' => 'advance_feature.'], function () {
 Route::get('/voicemessages', function () {
 
-return view('customer_panel.advance_feature.voicemessages');
-
-
+return view('customer_panel.advance_feature.voicemessages');    
 });
 });
 Route::get('/voicemessages', function () {
 return view('customer_panel.advance_feature.voicemessages');
+});
 
+Route::get('/sendsms', function () {
+return view('customer_panel.advance_feature.sendsms');    
+});
+
+Route::get('/smsinbox', function () {
+return view('customer_panel.advance_feature.smsinbox');
 });
 
 Route::get('/voicemailsetting', function () {
@@ -53,6 +58,22 @@ Route::get('/callrecording', function () {
 return view('customer_panel.advance_feature.callrecording');
 });
 
+Route::get('/accountstatment', function () {
+return view('customer_panel.billings.accountstatment');
+});
+
+Route::get('/addtalktime', function () {
+return view('customer_panel.billings.addtalktime');
+});
+
+Route::get('/addfunds', function () {
+return view('customer_panel.billings.addfunds');
+});
+
+Route::get('/creditcardproccess', function () {
+return view('customer_panel.billings.creditcardproccess');
+});
+        
 
 Route::get('/faxes', function () {
 return view('customer_panel.my_number.my_fexes');
