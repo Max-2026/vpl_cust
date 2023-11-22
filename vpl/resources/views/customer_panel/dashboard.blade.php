@@ -106,7 +106,7 @@
                         <p class="card-text" id="ann">
                             <br>
                             <br>
-                        <span class="h6">- 25 March 2015</span>
+                        <span class="h6 text-muted">- 25 March 2015</span>
                                 <hr>  
                             </p>
                         </div>

@@ -20,6 +20,11 @@
     {
         color:#0088cc;
     }
+
+    input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
     
 
 </style>
@@ -33,9 +38,6 @@
     <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Main Menu</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">IVR Tree</button>
-  </li>
-  <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Voice File Management</button>
   </li>
   <li class="nav-item" role="presentation">
@@ -44,19 +46,121 @@
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    main
+  <table class="table table-bordered">
+  <thead style="background-color:#0088cc;color:white;">
+    <tr>
+      <th scope="col">Primary Main Menu</th>
+      <th scope="col">Select File Name </th>
+      <th scope="col">Expand IVR in Menu</th>
+      <th scope="col">Play No. Of Times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Sub Menu 1</th>
+      <td>
+      <select class="custom-select">
+          <option selected>Select Menu</option>
+          <option value="1">Return To Main Menu</option>
+          <option value="2">Accept VoiceMail From Caller</option>
+      </select>
+      </td>
+
+      <td><input style="" type="checkbox" aria-label="Checkbox for following text input"></td>
+      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+    </tr>
+   
+    <tr>
+      <th scope="row">Sub Menu 2</th>
+      <td>
+      <select class="custom-select">
+          <option selected>Select Menu</option>
+          <option value="1">Return To Main Menu</option>
+          <option value="2">Accept VoiceMail From Caller</option>
+      </select>
+      </td>
+
+      <td><input style="" type="checkbox" aria-label="Checkbox for following text input"></td>
+      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+    </tr>
+    
+  </tbody>
+</table>
   </div>
 
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    ivr
-</div>
 
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-    voice
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" style="background-color:#0088cc;color:white;">Upload</span>
+  </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01">
+    <label class="custom-file-label" for="inputGroupFile01">Voice Files</label>
+  </div>
+</div>
+<br>
+
+<table class="table table-bordered">
+  <thead style="background-color:#0088cc;color:white;">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">ID</th>
+      <th scope="col">File Name</th>
+      <th scope="col">Upload Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>1000232</td>
+      <td>lorem</td>
+      <td>24-Nov-2023</td>
+      <td>dontknow</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </div>     
 
   <div class="tab-pane fade" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
-    file
+  <table class="table table-bordered">
+  <thead style="background-color:#0088cc;color:white;">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Select File Name</th>
+      <th scope="col">Select Phone Number</th>
+      <th scope="col">Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <select class="custom-select">
+            <option selected>Select Menu</option>
+            <option value="1">Return To Main Menu</option>
+            <option value="2">Accept VoiceMail From Caller</option>
+        </select>
+      </td>
+      <td>
+           <select class="custom-select">
+                <option selected>Select Menu</option>
+                <option value="1">129947329875</option>
+                <option value="2">875287362837</option>
+                <option value="3">Global</option>
+           </select>
+      </td>
+      <td>
+      <button class="btn btn-success mr-2">Set IVR</button>
+      <button class="btn btn-danger">Delete IVR</button>
+      </td>
+     
+    </tr>
+  </tbody>
+</table>
 </div>
 
 </div>

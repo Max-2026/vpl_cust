@@ -24,16 +24,16 @@ Route::get('/goldennumber', [Controller::class, 'goldennumber'])->name('goldennu
 
 
 Route::get('/voicemessages', function () {
-    return view('advance_feature.voicemessages');
+    return view('customer_panel.advance_feature.voicemessages');
 
 });
 
 Route::get('/voicemailsetting', function () {
-    return view('advance_feature.voicemailsetting');
+    return view('customer_panel.advance_feature.voicemailsetting');
 });
 
 Route::get('/callrecording', function () {
-    return view('advance_feature.callrecording');
+    return view('customer_panel.advance_feature.callrecording');
 });
 
 
@@ -44,16 +44,27 @@ Route::get('/view', function () {
     return view('customer_panel.my_number.view_all_my_number');
 });
 
-
-
-
 Route::get('/', function () {
     return view('customer_panel.dashboard');
 });
 
 
 Route::get('/ivr', function () {
-    return view('customer_panel.dashboard');
+    return view('customer_panel.advance_feature.IVR_manager');
 });
 
 
+Route::get('/virtualpbx', function () {
+    return view('customer_panel.advance_feature.virtualpbx');
+});
+
+
+Route::get('/pbxsetting', function () {
+    return view('customer_panel.advance_feature.PBXsetting');
+});
+
+
+
+Route::get('/UploadPBXIVR', function () {
+    return view('customer_panel.advance_feature.UploadPBXIVR');
+});
