@@ -9,7 +9,11 @@
 <br>
 <br>
 
+<<<<<<< Updated upstream
 <div class="container rounded shadow">
+=======
+<div class="container shadow rounded">
+>>>>>>> Stashed changes
   <form class="form-horizontal">
     <div class="form-group row mt-4">
       <label class="col-md-4 col-form-label text-right align-self-center" style="padding-left: 30px;">Call Recording</label>
