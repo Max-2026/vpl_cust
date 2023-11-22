@@ -163,7 +163,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="menu-icon mdi mdi-check-circle"></i>
-        <span class="menu-title">88592753892</span>
+        <span class="menu-title">Add Number To Your Account</span>
       </a>
     </li>
     
