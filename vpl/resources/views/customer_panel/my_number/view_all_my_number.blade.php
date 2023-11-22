@@ -15,9 +15,7 @@
         color:#0088cc;
         text-decoration:underline;
     }
-    body{
-      background-color: rgba(245, 245, 245, 0.63);
-    }
+ 
     .a_tag{
 
       text-decoration: none;

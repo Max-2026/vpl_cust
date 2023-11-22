@@ -87,10 +87,10 @@ Route::get('/', function () {
 return view('customer_panel.dashboard');
 });
 
-Route::get('/call_for', function () {
+Route::get('/callfor', function () {
 return view('customer_panel.my_number.change_call_forwarding');
 });
-Route::get('/basic_info', function () {
+Route::get('/basicinfo', function () {
 return view('customer_panel.profile.basic_info');
 });
 

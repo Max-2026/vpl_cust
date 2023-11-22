@@ -2,9 +2,7 @@
 @section('change_call_forwarding')
 
 <style>
-    body{
-      background-color: rgba(245, 245, 245, 0.63);
-    }
+ 
     .a_tag{
 
       text-decoration: none;
