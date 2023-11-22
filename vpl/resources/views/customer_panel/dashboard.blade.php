@@ -29,8 +29,8 @@
 <br>
 <div class="container-fluid">
     <div class="row m-3">
-                        <div class="col-md-6">
-                        <div class="card">
+      <div class="col-md-6">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title">Amount Overpaid</h5>
           <p class="card-text">
