@@ -34,4 +34,15 @@ public function makeawish(){
 public function messageinbox(){
     return view ('customer_panel.Inbox.message_inbox');
 }
+public function inboxdetails(){
+    return view ('customer_panel.Inbox.Inbox_Details');
 }
+public function mycart(){
+    return view ('customer_panel.my_cart.my_cart');
+}
+public function numbers_in_my_account(){
+    return view ('customer_panel.numbers_in_my_account.numbers_in_my_account');
+}
+
+}
+

@@ -52,7 +52,7 @@
 </td>
 <td>Complain</td>
 
-<td>This complain is about 447537186551 demo testing ...</td>
+<td><a href="{{ route('Inbox.inboxdetails') }}">This complain is about 447537186551 demo testing ...<a></td>
 </tr>
 </tbody>
 </table>

@@ -29,12 +29,23 @@ Route::get('/Report_a_Problem', [Controller::class, 'Report_a_Problem'])->name('
 Route::get('/archive', [Controller::class, 'archive'])->name('archive');
 Route::get('/makeawish', [Controller::class, 'makeawish'])->name('makeawish');
 Route::get('/messageinbox', [Controller::class, 'messageinbox'])->name('messageinbox');
+Route::get('/inboxdetails', [Controller::class, 'inboxdetails'])->name('inboxdetails');
 
 });
+
+Route::group(['as' => 'numbers_in_my_account.'], function () {
+Route::get('/numbers_in_my_account', [Controller::class, 'numbers_in_my_account'])->name('numbers_in_my_account');
+});
+
+Route::group(['as' => 'cart.'], function () {
+Route::get('/mycart', [Controller::class, 'mycart'])->name('mycart');
+});
+
 
 Route::group(['as' => 'advance_feature.'], function () {
 Route::get('/voicemessages', function () {
 
+<<<<<<< Updated upstream
 return view('customer_panel.advance_feature.voicemessages');    
 });
 });
@@ -50,6 +61,10 @@ Route::get('/smsinbox', function () {
 return view('customer_panel.advance_feature.smsinbox');
 });
 
+=======
+return view('customer_panel.advance_feature.voicemessages');
+});
+>>>>>>> Stashed changes
 Route::get('/voicemailsetting', function () {
 return view('customer_panel.advance_feature.voicemailsetting');
 });
@@ -57,6 +72,16 @@ return view('customer_panel.advance_feature.voicemailsetting');
 Route::get('/callrecording', function () {
 return view('customer_panel.advance_feature.callrecording');
 });
+Route::get('/smsinbox', function () {
+return view('customer_panel.advance_feature.smsinbox');
+});
+Route::get('/sendsms', function () {
+return view('customer_panel.advance_feature.sendsms');
+});
+});
+
+
+
 
 Route::get('/accountstatment', function () {
 return view('customer_panel.billings.accountstatment');
@@ -78,7 +103,7 @@ return view('customer_panel.billings.creditcardproccess');
 Route::get('/faxes', function () {
 return view('customer_panel.my_number.my_fexes');
 });
-Route::get('/view', function () {
+Route::get('/view_all_my_number', function () {
 return view('customer_panel.my_number.view_all_my_number');
 });
 
