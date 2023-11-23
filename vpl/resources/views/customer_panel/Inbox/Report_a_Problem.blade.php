@@ -40,7 +40,7 @@
 <label for="message" class="form-label">Message</label>
 <textarea style=" resize: none;" class="form-control" id="message" name="message" rows="3"></textarea>
 </div>
-<button type="submit" style = "background-color:#0088cc;color:white" >Submit</button>
+<button type="submit" style = "background-color:#0088cc;color:white" class="btn btn-default" >Submit</button>
 </form>
 </div>
 </div>

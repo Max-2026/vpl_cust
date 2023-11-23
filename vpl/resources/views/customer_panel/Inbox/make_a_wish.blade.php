@@ -10,7 +10,7 @@
 <label for="message" class="form-label">Make A wish</label>
 <textarea style=" resize: none; width:50%;" class="form-control" id="message" name="message" rows="3"></textarea>
 </div>
-<button type="submit" style = "background-color:#0088cc;color:white" >Send</button>
+<button type="submit" class="btn btn-default" style = "background-color:#0088cc;color:white" >Send</button>
 </form>
 </div>
 </body>

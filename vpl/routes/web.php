@@ -45,13 +45,10 @@ Route::get('/mycart', [Controller::class, 'mycart'])->name('mycart');
 Route::group(['as' => 'advance_feature.'], function () {
 Route::get('/voicemessages', function () {
 
-<<<<<<< Updated upstream
 return view('customer_panel.advance_feature.voicemessages');    
 });
 });
-Route::get('/voicemessages', function () {
-return view('customer_panel.advance_feature.voicemessages');
-});
+
 
 Route::get('/sendsms', function () {
 return view('customer_panel.advance_feature.sendsms');    
@@ -61,10 +58,10 @@ Route::get('/smsinbox', function () {
 return view('customer_panel.advance_feature.smsinbox');
 });
 
-=======
-return view('customer_panel.advance_feature.voicemessages');
-});
->>>>>>> Stashed changes
+
+
+
+
 Route::get('/voicemailsetting', function () {
 return view('customer_panel.advance_feature.voicemailsetting');
 });
@@ -78,7 +75,7 @@ return view('customer_panel.advance_feature.smsinbox');
 Route::get('/sendsms', function () {
 return view('customer_panel.advance_feature.sendsms');
 });
-});
+
 
 
 
