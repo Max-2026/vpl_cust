@@ -23,14 +23,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 Route::group(['as' => 'dashboard.'], function () {
     Route::get('/', [Dashboard::class, 'dashboard'])->name('dashboard');
 
 });
-
-
 
 Route::group(['as' => 'Buy_Number.'], function () {
     Route::get('/buynumber', [Buynumber::class, 'buynumber'])->name('buynumber');
