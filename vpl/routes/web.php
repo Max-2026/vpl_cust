@@ -122,6 +122,10 @@ Route::get('/creditinfo', function () {
 return view('customer_panel.profile.credit_info');
 });
 
+Route::get('/smssetting', function () {
+return view('customer_panel.profile.smssetting');
+});
+    
 
 
 
