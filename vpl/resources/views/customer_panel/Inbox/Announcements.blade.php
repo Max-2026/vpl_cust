@@ -20,7 +20,7 @@
 
 <!-- Report A Problem Button Column -->
 <div class="col-md-2">
-<a href="{{ route('Inbox.Report_a_Problem') }}" style = "background-color:#0088cc;color:white" class="btn btn-outline-primary">
+<a href="{{ route('Inbox.reportproblem') }}" style = "background-color:#0088cc;color:white" class="btn btn-outline-primary">
 Report A Problem
 </a>
 </div>

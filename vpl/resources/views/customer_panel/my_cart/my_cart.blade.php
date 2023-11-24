@@ -46,7 +46,7 @@
         background-color: #ffffff;
     }
 
-    .table.invoice-items tbody tr:nth-child(even) {
+    .table.invoiceis-items tbody tr:nth-child(even) {
         background-color: #f5f5f5;
     }
 

@@ -41,11 +41,11 @@
           </button>
         </div>
         <div>
-          <a class="navbar-brand brand-logo " href="index.html">
+          <a class="navbar-brand brand-logo " href="{{ url('/')}}">
             <img  src="images/VPL_logo.png" alt="logo" />
           </a>
           <!-- for mobile responsive -->
-          <a class="navbar-brand brand-logo-mini" href="index.html">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/')}}">
             <img src="images/VPL_logomini.png" alt="logo" />
           </a>
         </div>
