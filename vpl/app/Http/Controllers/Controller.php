@@ -43,6 +43,9 @@ public function mycart(){
 public function numbers_in_my_account(){
     return view ('customer_panel.numbers_in_my_account.numbers_in_my_account');
 }
+public function general_setting(){
+    return view ('customer_panel.profile.general_setting');
+}
 
 }
 

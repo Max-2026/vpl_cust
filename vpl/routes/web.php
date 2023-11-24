@@ -36,6 +36,9 @@ Route::get('/inboxdetails', [Controller::class, 'inboxdetails'])->name('inboxdet
 Route::group(['as' => 'numbers_in_my_account.'], function () {
 Route::get('/numbers_in_my_account', [Controller::class, 'numbers_in_my_account'])->name('numbers_in_my_account');
 });
+Route::group(['as' => 'profile.'], function () {
+    Route::get('/general_setting', [Controller::class, 'general_setting'])->name('general_setting');
+    });
 
 Route::group(['as' => 'cart.'], function () {
 Route::get('/mycart', [Controller::class, 'mycart'])->name('mycart');

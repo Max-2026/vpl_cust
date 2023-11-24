@@ -41,61 +41,105 @@
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
         <div class="card-header text-center bg-white">
-          Basic Information
+        General Setting
         </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
          <form>
           <div class="form-group row">
             <!-- Right-align labels by adding text-end class -->
-            <label for="id" class="col-sm-3 col-form-label text-left">Id</label>
+            <label for="id" class="col-sm-3 col-form-label text-left">Missed Call Alerts on Email</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="1005729" readonly>
+              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="Yes" readonly>
             </div>
           </div>
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="firstName" class="col-sm-3  col-form-label text-left">First Name</label>
+            <label for="firstName" class="col-sm-3  col-form-label text-left">Missed Call Alerts on SMS</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" value="Ahmed">
+              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" value="Yes">
             </div>
           </div>
           
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="lastName" class="col-sm-3 col-form-label text-left">Last Name</label>
+            <label for="lastName" class="col-sm-3 col-form-label text-left">Talk Time Alerts</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Raza">
+              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Yes">
             </div>
           </div>
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="email" class="col-sm-3 col-form-label text-left">Email</label>
+            <label for="email" class="col-sm-3 col-form-label text-left">Low Talk Time Alerts</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="email" value="Smi">
+              <input class="form-control col-md-8 mx-auto" type="text" id="email" value="No">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="company" class="col-sm-3 col-form-label text-left">Company</label>
+            <label for="company" class="col-sm-3 col-form-label text-left">Pay Bills On</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="----">
+              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="On Purchase Date">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="password" class="col-sm-3 col-form-label text-left">Password</label>
+            <label for="password" class="col-sm-3 col-form-label text-left">SMS/Email for Missed Call Alerts</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="language" class="col-sm-3 col-form-label text-left">Language</label>
+            <label for="language" class="col-sm-3 col-form-label text-left">Low Talk Time Amount</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="English">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="$0">
             </div>
           </div>
+          
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Master Talk Time</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="Disabled">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Receive Call Recording on</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="On Email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Callers hear Ringing Tone As Soon As they Call</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="Yes">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Use Secure Site</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value=" No">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Monthly Invoices on Email</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="Yes">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">News Letters on Email</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="Yes">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Call Recording Format</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="MP3">
+            </div>
+          </div>
+          
           <div class="text-center">
             <input class="btn mt-2" type="submit" value="UPDATE">
           </div>
