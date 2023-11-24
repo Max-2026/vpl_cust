@@ -158,3 +158,8 @@ Route::get('/mastertalk', function () {
     return view('customer_panel.billings.mastertalktime');
     });
     
+
+
+    Route::get('/verified', function () {
+        return view('customer_panel.profile.verifiednumber');
+        });    
