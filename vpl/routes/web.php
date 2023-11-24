@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+<<<<<<< Updated upstream
 
 Route::group(['as' => 'dashboard.'], function () {
     Route::get('/', [Dashboard::class, 'dashboard'])->name('dashboard');
@@ -30,6 +31,8 @@ Route::group(['as' => 'dashboard.'], function () {
 });
 
 
+=======
+>>>>>>> Stashed changes
 Route::group(['as' => 'Buy_Number.'], function () {
     Route::get('/buynumber', [Buynumber::class, 'buynumber'])->name('buynumber');
     Route::get('/goldennumber', [Buynumber::class, 'goldennumber'])->name('goldennumber');

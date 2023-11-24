@@ -71,13 +71,16 @@
   border-radius: 10px !important;
   /* Or your preferred color */
 }
+.option_show{
+  color: red ;
+}
 
 
 </style>
 
 <br>
 <br>
-<div class="container mt-0"> <!-- Reduce top margin for the container -->
+<div class="container- mt-0"> <!-- Reduce top margin for the container -->
 
   <div class="row">
     <div class="col-md-11 mx-auto">
@@ -85,14 +88,14 @@
         <div class="card-header text-center bg-white">
         <div class=" d-flex justify-content-between">
                   <p class="card-text mr-5"></p>
-                  <h4 class="card-text ml-3 mt-2">Credit Card Info</h4>
-                  <h6 class="card-text ml-3 mt-2"><a class="a_tag" href="#" id="showForm2">Set Primary Credit Card</a></h6>
-                  <h6 class="card-text ml-3 mt-2"><a class="a_tag " href="#" id="showForm3">Add Credit Card</a></h6>
+                  <h4 class="card-text ml-3 mt-3">Credit Card Info</h4>
+                  <h6 class="card-text ml-3 mt-3"><a class="a_tag" href="#" id="showForm2">Set Primary Credit Card</a></h6>
+                  <h6 class="card-text ml-3 mt-3"><a class="a_tag " href="#" id="showForm3">Add Credit Card</a></h6>
                   <h3 class="card-text ml-3"></h3>
                 </div>
         </div>
-        <div class="card-body text-center">
-          <div class="col-md-8 mx-auto">
+      <div class="card-body text-center ">
+        <div class="col-md-8 mx-auto">
          <form id="form1">
           <div class="form-group row">
             <!-- Right-align labels by adding text-end class -->
@@ -145,8 +148,6 @@
                 <option value="ARGENTINA">ARGENTINA</option>
                 <option value="ARMENIA">ARMENIA</option>
                 <option value="AUSTRALIA">AUSTRALIA</option>
-
-
               </select>
             </div>
           </div>
@@ -180,71 +181,56 @@
           </div>
           </form>
           <form id="form2" style="display: none;">
-          <div class="form-group row container">
-                <div class="form-inline mb-4">
-                <label for="language" class="text-left">Select Card you wish to make Primary</label>
-                
-                <!-- <input class="form-control col-md-8 mx-auto" type="text" id="language" value="2"> -->
-                <select  class="form-select col-4 mx-auto ml-5 container" name="" id="">
-                    <option value="VISA-2131...3213">VISA-2131...3213</option>
-                </select>
-                </div>
-          </div>
+            <div class="form-group row ">
+                      <label for="id" class="col-sm-6 col-form-label text-left">Select Card you wish to make Primary</label>
+                      <div class="col-sm-6 mt-2">
+                        <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
+                        <select class="form-select col-md-8 mx-auto">
+                          <option selected value="visa">visa</option>
+                          <option  value="visa">visa</option>
+                          <option  value="visa">visa</option>
+                          <option  value="visa">visa</option>
+                          <option  value="visa">visa</option>
+                        </select>
+                      </div>
+                </div>  
+        
           </form>
           <form id="form3" style="display: none;">
-          <div class="form-group row mx-auto container">
-                <div class="form-inline mb-2">
-                <label for="language" class="text-left">Number</label>
-                <input class="form-control col-md-8 mx-auto" type="text" id="language" value="">
-                </div>
-                <div class="form-inline mb-2">
-                   <label for="language" class="text-left">Type</label>
-                  <p class="mr-3"></p>
-                  <!-- <input class="form-control col-md-8 mx-auto" type="text" id="language" value="2"> -->
-                    <select class="form-select col-md-8 mx-auto ml-5 mr-3 select-small" style="width:216px; height:35px;">
-                    <option value="">choose</option>
-                        <option value="VISA">VISA</option>
-                        <option value="Master">Master</option>
-                        <option value="American Express">American Express</option>
-                        <option value="Discovery">Discovery</option>
-                    </select>
-                </div>
-                <div class="form-inline mb-2 ">
-                    <label for="language" class="text-left mr-5">Credit Card Expiry	</label>
-
-                    <select class="form-select select-small" style="width:103px; height:35px;">
-                        <option value="">choose</option>
-                        <option value="january">january</option>
-                        <option value="Febuary">Febuary</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                    </select>
-                    <p>&nbsp;-&nbsp;</p>
-                    <select class="form-select select-small " style="width:103px; height:35px;">
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                    </select>
-                </div>
-                <div class="form-inline mb-2">
-                   <label for="language" class="text-left mr-1">Credit Card Verify Number</label>
-                   <input class="form-control ml-3" type="text" id="language" value="">
-                </div>
-                <div class="text-center mb-3">
-                   <input class="btn mt-2" type="submit" value="UPDATE">
-               </div>
+              <div class="form-group row">
+                    <label for="id" class="col-sm-3 col-form-label text-left">Number</label>
+                    <div class="col-sm-9 mt-2">
+                      <input class="form-control col-md-8 mx-auto" type="text" id="id" value="H#23" >
+                    </div>
+              </div>  
+              <div class="form-group row">
+                    <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
+                    <div class="col-sm-9 mt-2">
+                      <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
+                      <select class="form-select col-md-8 mx-auto" style="height:32px;">
+                        <option selected value="visa">visa</option>
+                        <option  value="visa">visa</option>
+                        <option  value="visa">visa</option>
+                        <option  value="visa">visa</option>
+                        <option  value="visa">visa</option>
+                      </select>
+                    </div>
+              </div>  
+              <div class="form-group row">
+                    <label for="id" class="col-sm-3 col-form-label text-left">Credit Card Expiry</label>
+                    <div class="col-sm-9 mt-2">
+                      <input class="form-control col-md-8 mx-auto" type="date" id="id" value="H#23" >
+                    </div>
+              </div>  
+              <div class="form-group row">
+                    <label for="id" class="col-sm-3 col-form-label text-left">Credit Card Verify</label>
+                    <div class="col-sm-9 mt-2">
+                      <input class="form-control col-md-8 mx-auto" type="text" id="id" value="" >
+                    </div>
+              </div>   
+              
+              <div class="text-center">
+            <input class="btn mt-2" type="submit" value="UPDATE">
           </div>
           </form>
           </div>

@@ -110,10 +110,17 @@
       </a>
       <div class="collapse" id="ui-basic5">
         <ul class="nav flex-column sub-menu">
+<<<<<<< Updated upstream
           <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.msginbox')}}">Message Inbox</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.announcemnets')}}">Announcements</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.reportproblem')}}">Report A Problem</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.makewish')}}">Make A Wish</a></li>
+=======
+          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Message Inbox</a></li>
+          <li class="nav-item"> <a class="nav-link" href="#">Announcements</a></li>
+          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Report A Problem</a></li>
+          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Make A Wish</a></li>
+>>>>>>> Stashed changes
         </ul>
       </div>
     </li>
