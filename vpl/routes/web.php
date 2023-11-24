@@ -115,6 +115,12 @@ return view('customer_panel.my_number.change_call_forwarding');
 Route::get('/basicinfo', function () {
 return view('customer_panel.profile.basic_info');
 });
+Route::get('/contactinfo', function () {
+return view('customer_panel.profile.contact_info');
+});
+Route::get('/creditinfo', function () {
+return view('customer_panel.profile.credit_info');
+});
 
 
 

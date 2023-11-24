@@ -1,10 +1,4 @@
 @extends('layout')
- 
-
-
-
-
-
 @section('content')
 <br>
 <br>

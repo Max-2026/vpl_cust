@@ -1,5 +1,5 @@
 @extends('layout')
-@section('basic_info')
+@section('contact_info')
 
 
 <style>
@@ -41,59 +41,90 @@
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
         <div class="card-header text-center bg-white">
-          Basic Information
+          Contact Information
         </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
          <form>
           <div class="form-group row">
             <!-- Right-align labels by adding text-end class -->
-            <label for="id" class="col-sm-3 col-form-label text-left">Id</label>
+            <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="1005729" readonly>
+              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " >
             </div>
           </div>
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="firstName" class="col-sm-3  col-form-label text-left">First Name</label>
+            <label for="firstName" class="col-sm-3  col-form-label text-left">Street</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" value="Ahmed">
+              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" value="5">
             </div>
           </div>
           
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="lastName" class="col-sm-3 col-form-label text-left">Last Name</label>
+            <label for="lastName" class="col-sm-3 col-form-label text-left">City</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Raza">
+              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Karachi">
             </div>
           </div>
           <div class="form-group row">
             <!-- Right-align labels by adding  class -->
-            <label for="email" class="col-sm-3 col-form-label text-left">Email</label>
+            <label for="email" class="col-sm-3 col-form-label text-left">State/Province	</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="email" value="Smi">
+              <input class="form-control col-md-8 mx-auto" type="text" id="email" value="abc">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="company" class="col-sm-3 col-form-label text-left">Company</label>
+            <label for="company" class="col-sm-3 col-form-label text-left">Zip/Postal Code</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="----">
+              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="123">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="password" class="col-sm-3 col-form-label text-left">Password</label>
+            <label for="password" class="col-sm-3 col-form-label text-left">Country</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********">
+              <!-- <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********"> -->
+              <select class="form-control col-md-8 mx-auto" name="" id="">
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="ALBANIA">ALBANIA</option>
+                <option value="ALGERIA">ALGERIA</option>
+                <option value="ANDORRA">ANDORRA</option>
+                <option value="ANGOLA">ANGOLA</option>
+                <option value="ANTIGUA & BARBUDA">ANTIGUA & BARBUDA</option>
+                <option value="ARGENTINA">ARGENTINA</option>
+                <option value="ARMENIA">ARMENIA</option>
+                <option value="AUSTRALIA">AUSTRALIA</option>
+
+
+              </select>
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row">
-            <label for="language" class="col-sm-3 col-form-label text-left">Language</label>
+            <label for="language" class="col-sm-3 col-form-label text-left">Business Tel</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="English">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="32423432">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Home Tel</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="324324324">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Mobile</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="number" id="language" value="0554224">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-sm-3 col-form-label text-left">Fax</label>
+            <div class="col-sm-9">
+              <input class="form-control col-md-8 mx-auto" type="text" id="language" value="2">
             </div>
           </div>
           <div class="text-center">
@@ -160,10 +191,10 @@
                 <hr class="my-1 mx-3">
                 <div class=" d-flex justify-content-between mt-0">
                      <p class="card-text ml-3">Facebook ID Management	</p>
-                   <div class="media mr-5 card-text mr-5 ">
+                   <div class="media mr-2 card-text mr-5 ">
                         <img src="images/icons/gmail_icon.png" class="mr-3" alt="Image 1" height="60px">
                         <div class="media-body mt-1">
-                        <p class="">Watch Video Tutorial <br> <a class="a_tag" href="#">How to change Ring to Number?</a> </p> 
+                        <p class="">Your profile is currently not linked with your Gmail ID <br> <a class="a_tag" href="#">Click here to login Gmail account</a> </p> 
                         <hr class="my-1 mx-3">
                      </div>
                  </div>
