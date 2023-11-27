@@ -68,7 +68,7 @@
       <div class="collapse" id="ui-basic4">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.accountstatment')}}">Account Statements</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.changecreditcard')}}">Change Credit Card Information</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('Profile.creditcardinfo')}}">Change Credit Card Information</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.addtalktime')}}">Add Talk Time</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.addfunds')}}">Add Funds</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.mastertalktime')}}">Master Talk Time Usage</a></li>

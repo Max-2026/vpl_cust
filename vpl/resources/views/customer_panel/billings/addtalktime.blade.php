@@ -25,11 +25,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 
 
-<div class="container shadow">
+<div class="container-fluid">
     <div class="row m-5">
+    <div class="card rounded">
+
         <div class="col-md-8 offset-md-2">
             <form>
                 <div class="form-group row mb-0">
@@ -68,7 +70,7 @@
                         <input type="text" class="form-control" id="addTalkTime">
                     </div>
                 </div>
-                <div class="form-group row mb-0">
+                <div class="form-group row mb-3">
                     <div class="col-sm-8 offset-sm-4">
                         <button type="submit" class="btn btn-default" style="background-color: #0088cc;color:white">Add</button>
                     </div>
@@ -77,7 +79,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 
 

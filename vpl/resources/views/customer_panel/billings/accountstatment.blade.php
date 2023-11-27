@@ -9,9 +9,9 @@
 <br>
 <br>
 
-
-<div class="container shadow pt-4 pb-4">
-  <div class="row">
+<div class="container-fluid">
+    <div class="row m-3">
+        <div class="card rounded">
     <div class="col-lg-8 offset-lg-2">
       <form>
         <fieldset>
@@ -54,7 +54,7 @@
               </select>
             </div>
           </div>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center mb-3">
               <button class="btn btn-default" style="background-color: #0088cc;color:white">Show</button>
           </div>        
         </fieldset>
@@ -62,15 +62,16 @@
     </div>
   </div>
 </div>
-
+</div>
 
 
 
 <br>
 <div class="container-fluid">
-    <div class="row m-4">
+    <div class="row m-3">
+        <div class="card rounded">
     <div class="col-md-12">
-      <div class="card rounded pt-2 pb-2">
+ 
         <div class="card-body ">
           <table class="table table-bordered">
             <h3 class="text-center pb-3">Account Summary</h3>
@@ -111,5 +112,4 @@
     </div>
   </div>
 </div>
-
 @endsection
