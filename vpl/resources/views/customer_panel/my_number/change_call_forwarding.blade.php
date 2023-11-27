@@ -1,6 +1,33 @@
 @extends('layout')
 @section('change_call_forwarding')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#showForm1").click(function(e) {
+                e.preventDefault();
+                $("#form1").show();
+                $("#form2").hide();
+                $("#form3").hide();
+            });
+
+            $("#showForm2").click(function(e) {
+                e.preventDefault();
+                $("#form1").hide();
+                $("#form2").show();
+                $("#form3").hide();
+            });
+
+            $("#showForm3").click(function(e) {
+                e.preventDefault();
+                $("#form1").hide();
+                $("#form2").hide();
+                $("#form3").show();
+            });
+        });
+    </script>
+
+
 <style>
  
     .a_tag{
@@ -15,7 +42,8 @@
     background-color:#0088cc;color:white
 }
 .i_b{
-    height: 25px;
+    height: 70px;
+    width: 80px !important;
     font-size: 10px;
     width:50px;
 
@@ -56,14 +84,17 @@
                             <hr class="border-light">
                             <p class="mt-0 ">Change forwarding to:</p>
                             <div class="form-inline">
-                            <p><img src="images/icons/icon1.png" alt=""height="40px" width="40px"></p>
-                            <button class="i_b">Sip</button>
-                            <button class="i_b ml-1">IAX</button>
-                            <button class="i_b ml-1">IVR</button>
-
+                            <p><img id="showForm1" src="http://virtualphoneline.com/admins/image.php?id=280"></p>
+                            <p><img id="showForm2" src="http://virtualphoneline.com/admins/image.php?id=281"></p>
+                            <p><img id="showForm3" src="http://virtualphoneline.com/admins/image.php?id=277"></p>
+                            <p><img src="http://virtualphoneline.com/admins/image.php?id=287"></p>
+                            <P><img src="http://virtualphoneline.com/admins/image.php?id=286"></P>
+                            <P><img src="http://virtualphoneline.com/admins/image.php?id=279"></P>
+                            <P><img src="http://virtualphoneline.com/admins/image.php?id=266"></P>
                             </div>
                             <hr class="border-light">
-                            <p class="mt-0 "> <b> Change forwarding to:</p>
+                            <p class="mt-0 "><b> Change forwarding to:</p>
+                            <form action="" id="form1">
                             <div class="form-inline">
                                <input class="mr-2" type="radio"><p class="mt-2">Number from phone <br> book</p>
                                <select class="ml-5" name="" id="">
@@ -88,6 +119,18 @@
                             <div class="text-end mt-3">
                             <a class="btn  ml-3" href="">Submit</a>
                             </div>
+                            </form>
+
+                            <form action="" id="form2" style="display: none;">
+                            <div class="form-inline ml-5">
+                                <input type="submit" value="SIP ">
+                                <p class="mt-2 ml-4">SIP</p>
+                            </div>
+                            </form>
+
+                            <form action="" id="form3" style="display: none;">
+                                <h2>form3</h2>
+                            </form>
                         </div>
                     </div>
                 </div>

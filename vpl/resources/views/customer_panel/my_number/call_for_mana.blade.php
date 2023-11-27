@@ -48,7 +48,7 @@ text-align: right;
 <form>
 
 <div class="form-group row div-line">
-<label for="fromInput" style="padding-left:5%;" class="col-sm-2 col-form-label">Telephone Number:</label>
+<label for="fromInput" style="padding-left:5%;" class="col-sm-2 col-form-label">call for Telephone Number:</label>
 <div class="col-sm-10">
 <a href="YOUR_LINK_URL" style="margin-left:40%;" >12025521553</a>
 </div>

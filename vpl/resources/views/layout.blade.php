@@ -14,6 +14,12 @@
 @yield('basic_info')
 @yield('contact_info')
 @yield('credit_info')
+@yield('call_log')
+@yield('pakage_plan')
+@yield('plan_detail')
+
+
+
 
 
 

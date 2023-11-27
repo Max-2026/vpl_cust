@@ -23,6 +23,10 @@
     .equal-width {
         width: 100%;
     }
+    .img-icon{
+        height: 50px !important;
+        width: 60px !important;
+    }
     
 
 </style>
@@ -67,14 +71,14 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td><a href="#">12025521553</a></td>
-                                <td><a href="#">View</a></td>
+                                <td><a href="{{ route('my_number.number_in_my_account')}}">12025521553</a></td>
+                                <td><a href="{{ route('my_number.call_log')}}">View</a></td>
                                 <td>USA - Washington; D.C.</td>
-                                <td><a href="#">03327951445</a></td>
-                                <td>icon</td>
+                                <td><a href="{{ route('my_number.callformanager')}}">03327951445</a></td>
+                                <td><img class="img-icon" src="images/icons/icon1.gif" alt=""></td>
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>
-                                <td><a href="#">Switch To Plan</a></td>
+                                <td><a href="{{ route('my_number.pakage_plan') }}">Switch To Plan</a></td>
                                 <td>Active Permanent</td>
                             </tr>
                             <tr>
