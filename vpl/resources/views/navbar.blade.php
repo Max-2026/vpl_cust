@@ -68,14 +68,12 @@
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
                 <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                <p class="mb-1 mt-3 font-weight-semibold">User</p>
+                <p class="fw-light text-muted mb-0">user@gmail.com</p>
               </div>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+              <a class="dropdown-item" href="{{ route('Profile.basicinfo')}}"><i class="dropdown-item-icon mdi mdi-account me-2" style="color:#0088cc;"></i> My Profile</a>
+              <a class="dropdown-item" href="{{ route('cart.mycart')}}"><i class="dropdown-item-icon mdi mdi-shopping  me-2" style="color:#0088cc;"></i> My Cart</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-logout me-2" style="color:#0088cc;"></i> Log Out</a>
             </div>
           </li>
         </ul>

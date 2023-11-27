@@ -21,9 +21,11 @@
     }
 </style>
 
-<div class="container m-3">
+<div class="container shadow rounded p-5">
  
-<h3 style="font-weight:900;">In Use My Number</h3>
+<h3 style="font-weight:900;">In Use My Number<r/h3>
+<br>
+<br>
 <table class="table table-bordered">
   <thead style="background-color:#0088cc;color:white;">
     <tr>
@@ -36,12 +38,12 @@
     <tr>
       <th scope="row">1</th>
       <td>12345678909</td>
-      <td><a type="button" href="#" class="btn btn-outline-info">Settings</a></td>
+      <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>
     <tr>
       <th scope="row">2</th>
       <td>12345678909</td>
-      <td><a type="button" href="#" class="btn btn-outline-info">Settings</a></td>
+      <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>
   </tbody>
 </table>

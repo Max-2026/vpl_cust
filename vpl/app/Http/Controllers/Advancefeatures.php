@@ -28,6 +28,14 @@ class Advancefeatures extends Controller
         return view('customer_panel.advance_feature.virtualpbx');
     }
 
+    public function pbxsetting(){
+        return view('customer_panel.advance_feature.PBXsetting');
+    }
+
+    public function uploadpbx(){
+        return view('customer_panel.advance_feature.UploadPBXIVR');
+    }
+
     public function smsinbox(){
         return view('customer_panel.advance_feature.smsinbox');
     }

@@ -7,7 +7,7 @@
 @section('content')
 <br>
 <br>
-<div class="container-fluid">
+<div class="container shadow rounded p-5">
     <h2 style="font-weight:800;">Configure Virtual PBX</h2>
     <hr>
     <form>
@@ -32,7 +32,7 @@
                 
 </form>
 
-<p class="text-right mr-3"><a  href="">IVR MANAGEMENT</a></p>
+<p class="text-right mr-3"><a  href="{{ route('advance_feature.uploadpbx')}}">IVR MANAGEMENT</a></p>
 <hr>
 <p>Please provide title and the PSTN (landline or mobile) number for the dialed digit 0-9. Selected IVR will be played as the number receives the call. Leaving the number box empty, will remove the entry autometically.
 </p>
@@ -49,18 +49,26 @@
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
-      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+      <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+      <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
     </tr>
 
     <tr>
       <th scope="row">2</th>
-      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
-      <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+      <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
+      <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
     </tr>
    
   </tbody>
+
 </table>
+<hr>
+<div style="display: flex; justify-content: flex-end;">
+    <button type="button" class="btn btn-default" style="color: white; background-color: #0088cc;">Save Settings</button>
+</div>
+
+
+<hr>
 
 
 </div>

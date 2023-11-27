@@ -86,18 +86,27 @@
     
   </tbody>
 </table>
+<hr>
+<button type="button" class="btn btn-default mx-auto" style="color:white;background-color:#0088cc;display:flex;">Set IVR</button>
+<hr>
+<hr>
+<p class="text-left"> <span class="text-danger font-weight-bolder">HELP:</span> Please Select Primary Menu File and then select the sub menus from the given menus voice files. By clicking the check box, you are telling the system that this is a menu.
+If you uncheck the box then it will simply play the voice file and will not ask for any input.
+You will be able to define sub menus by only clicking the options.</p>
+<hr>
   </div>
 
 
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
   <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" style="background-color:#0088cc;color:white;">Upload</span>
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01">
-    <label class="custom-file-label" for="inputGroupFile01">Voice Files</label>
-  </div>
+  <span class="input-group-text" style="background-color:#0088cc;color:white;">Upload</span>
+</div>
+<div class="custom-file">
+  <input type="file" class="custom-file-input" id="inputGroupFile01" accept="audio/mpeg, audio/wav">
+  <label class="custom-file-label w-50" for="inputGroupFile01">Voice Files</label>
+</div>
+
 </div>
 <br>
 

@@ -12,7 +12,7 @@
 <div class="container-fluid">
 <h2 style="font-weight:800;">Talk Time Usage Report</h2>
 <br>
-<div class="col-md-11 mx-auto">
+<div class="col-md-12 mx-auto">
 <div class="row shadow rounded p-4">
 
             <div class="col-md-6">
@@ -82,13 +82,14 @@
                 
     </div>
     <div class="d-flex justify-content-right">
-    <button type="Submit" class="btn btn-default" style="background-color:#0088cc;color:white;">Show</button>
+    <button type="Submit" class="btn btn-default mx-auto" style="background-color:#0088cc;color:white;">Show</button>
     </div>
    
 </div>
 </div>
 <br>
 <br>
+
 <h4 style="font-weight:900;text-align:center">Talk Time Usage</h3>
 <table class="table table-bordered table-responsive">
   <thead style="background-color:#0088cc;color:white;">

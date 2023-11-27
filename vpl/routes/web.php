@@ -48,7 +48,9 @@ Route::group(['as' => 'advance_feature.'], function () {
     Route::get('/voicemailsetting', [Advancefeatures::class, 'voicemail'])->name('voicemail');    
     Route::get('/callrecording', [Advancefeatures::class, 'callrecording'])->name('callrecording');    
     Route::get('/ivr', [Advancefeatures::class, 'ivrmanager'])->name('ivrmanager');    
-    Route::get('/virtualpbx', [Advancefeatures::class, 'virtualpbx'])->name('virtualpbx');       
+    Route::get('/virtualpbx', [Advancefeatures::class, 'virtualpbx'])->name('virtualpbx');  
+    Route::get('/pbxsetting', [Advancefeatures::class, 'pbxsetting'])->name('pbxsetting');      
+    Route::get('/uploadpbx', [Advancefeatures::class, 'uploadpbx'])->name('uploadpbx');    
 });
     
 
