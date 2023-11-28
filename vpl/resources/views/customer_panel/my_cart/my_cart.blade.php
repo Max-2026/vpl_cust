@@ -100,13 +100,13 @@
         </p>
     </div>
 
-<<<<<<< Updated upstream
+
     <div class="col-md-6 text-right">
         <h5 class="font-weight-bolder">$73</h5>
         <h5 class="font-weight-bolder">$136.34</h5>
         <h5 class="font-weight-bolder">$78</h5>
     </div>
-=======
+
                         </thead>
                         <tbody>
 
@@ -215,12 +215,12 @@
         </tbody></table>
         <table width="20%" border="0" align="right">
         <tbody><tr>
-<<<<<<< Updated upstream
+
           <td height="45" align="right"> 
         </td>
-=======
+
           <td height="45" align="right"></td> 
->>>>>>> Stashed changes
+
         </tr>
 </tbody>
 </table>
@@ -232,7 +232,7 @@
 <input type="submit" class="btn btn-primary" name="Submit" value="Checkout">
 </div>
 </form>
->>>>>>> Stashed changes
+
 
 </div>
 <a href="#" type="button" class="btn btn-default" style="color:white;background-color:#0088cc;display-flex;float:right;">Checkout</a>
@@ -240,9 +240,7 @@
 
 
 </div>
-<<<<<<< Updated upstream
+
 
                 @endsection
-=======
-@endsection
->>>>>>> Stashed changes
+

@@ -50,11 +50,11 @@ text-align: right;
 <div class="form-group row div-line">
 <label for="fromInput" style="padding-left:5%;" class="col-sm-2 col-form-label">Telephone Number:</label>
 <div class="col-sm-10">
-<<<<<<< Updated upstream
+
 <a href="YOUR_LINK_URL" style="margin-left:40%;" >12025521553</a>
-=======
+
 <a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}" style="margin-left:40%;" >12025521553</a>
->>>>>>> Stashed changes
+
 </div>
 </div>
 <!-- Sender Information -->
@@ -221,11 +221,11 @@ text-align: right;
 
 </form>
 
-<<<<<<< Updated upstream
-=======
+
+
 </div>
 
->>>>>>> Stashed changes
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
