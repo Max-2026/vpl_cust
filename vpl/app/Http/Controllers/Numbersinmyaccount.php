@@ -10,4 +10,9 @@ class Numbersinmyaccount extends Controller
     {
         return view ('customer_panel.numbers_in_my_account.numbers_in_my_account');
     }
+
+    public function call_forwading_manager()
+    {
+        return view ('customer_panel.numbers_in_my_account.call_forwading_manager');
+    }
 }

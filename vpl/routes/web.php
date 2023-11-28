@@ -98,6 +98,7 @@ Route::get('/mycart', [Mycart::class, 'mycart'])->name('mycart');
 
 Route::group(['as' => 'numbers_in_my_account.'], function () {
     Route::get('/numbers_in_my_account', [Numbersinmyaccount::class, 'numberacnt'])->name('numbers_in_my_account');
+    Route::get('/call_forwading_manager', [Numbersinmyaccount::class, 'call_forwading_manager'])->name('call_forwading_manager');
 });
     
 

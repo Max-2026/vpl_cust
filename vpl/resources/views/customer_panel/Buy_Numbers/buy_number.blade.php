@@ -117,6 +117,39 @@ align-items: center;
 <table class="table table-bordered">
 <thead>
 <tr>
+<th scope="col">Area Code</th>
+<th scope="col">City/Area</th>
+<th scope="col">AreaCode</th>
+<th scope="col">City/Area</th>
+
+</tr>
+</thead>
+<tbody>
+<td>43-1</td>
+<td>Vienna (Wien)</td>
+<td>43-67</td>
+<td>Mobile</td>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+<br>
+<br>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12">
+<div class="card">
+<div class="card-body">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th><input style="" type="checkbox" aria-label="Checkbox for following text input"></th>
 <th scope="col">Phone Number</th>
 <th scope="col">Country</th>
 <th scope="col">State</th>
@@ -129,6 +162,7 @@ align-items: center;
 </tr>
 </thead>
 <tbody>
+<td>**</td>
 <td>1-305-722-1333</td>
 <td>USA</td>
 <td>Florida FL</td>
@@ -136,18 +170,27 @@ align-items: center;
 <td>3000</td>
 <td>$7.99</td>
 <td>$0.02</td>
-<td>$7.99</td>
-<td>$95.88</td>
+<td><a href="">$7.99</a></td>
+<td><a href="YOUR_LINK_URL">$95.88</a></td>
+<tr style="bgcolor:;">
+          <td class="simple" style="align:left;" colspan="9">* Per Minute Receiving Charges After Free Minutes</td>
+         
+          <td class="simple" align="right">&nbsp;</td>
+        </tr>
+        <tr style="bgcolor:;">
+          <td class="simple" style="align:left;" colspan="9">** please provide us with proof of worldwide address along with Photo ID (cannot be purchased in batch)</td>
+         
+          <td class="simple" align="right">&nbsp;</td>
+        </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-
+</div>
 </div>
 
 </div>
-
 <!-- Bootstrap JS and its dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
