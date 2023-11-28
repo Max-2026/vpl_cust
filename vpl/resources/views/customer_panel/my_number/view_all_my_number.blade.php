@@ -77,7 +77,7 @@
                                 <td><a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}">03327951445</a></td>
                                 <td><a href="#">03327951445</a></td>
 
-                                <td><img class="img-icon" src="images/icons/icon1.gif" alt=""></td>
+                                <td><i class="fas fa-phone-square-alt"></i></td>
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="{{ route('my_number.pakage_plan') }}">Switch To Plan</a></td>
@@ -89,7 +89,7 @@
                                 <td><a href="#">View</a></td>
                                 <td>USA - Washington; D.C.</td>
                                 <td><a href="#">03327951445</a></td>
-                                <td>icon</td>
+                                <td><i class="fas fa-phone-square-alt"></i></td>
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="#">Switch To Plan</a></td>
