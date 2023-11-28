@@ -1,93 +1,6 @@
 @extends('layout')
 @section('change_call_forwarding')
-<<<<<<< Updated upstream
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-       $(document).ready(function() {
-        // Existing code for showing/hiding forms 1, 2, and 3
-        $("#showForm1").click(function(e) {
-            e.preventDefault();
-            $("#form1").show();
-            $("#form2").hide();
-            $("#form3").hide();
-            $("#form4").hide(); // Hide form4
-            $("#form5").hide(); // Hide form5
-            $("#form6").hide(); // Hide form6
-            $("#form7").hide(); // Hide form7
-        });
-
-        $("#showForm2").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").show();
-            $("#form3").hide();
-            $("#form4").hide(); // Hide form4
-            $("#form5").hide(); // Hide form5
-            $("#form6").hide(); // Hide form6
-            $("#form7").hide(); // Hide form7
-        });
-
-        $("#showForm3").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").hide();
-            $("#form3").show();
-            $("#form4").hide(); // Hide form4
-            $("#form5").hide(); // Hide form5
-            $("#form6").hide(); // Hide form6
-            $("#form7").hide(); // Hide form7
-        });
-
-        // New code for showing/hiding forms 4, 5, 6, and 7
-        $("#showForm4").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").hide();
-            $("#form3").hide();
-            $("#form4").show();
-            $("#form5").hide(); // Hide form5
-            $("#form6").hide(); // Hide form6
-            $("#form7").hide(); // Hide form7
-        });
-
-        $("#showForm5").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").hide();
-            $("#form3").hide();
-            $("#form4").hide(); // Hide form4
-            $("#form5").show();
-            $("#form6").hide(); // Hide form6
-            $("#form7").hide(); // Hide form7
-        });
-
-        $("#showForm6").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").hide();
-            $("#form3").hide();
-            $("#form4").hide(); // Hide form4
-            $("#form5").hide(); // Hide form5
-            $("#form6").show();
-            $("#form7").hide(); // Hide form7
-        });
-
-        $("#showForm7").click(function(e) {
-            e.preventDefault();
-            $("#form1").hide();
-            $("#form2").hide();
-            $("#form3").hide();
-            $("#form4").hide(); // Hide form4
-            $("#form5").hide(); // Hide form5
-            $("#form6").hide(); // Hide form6
-            $("#form7").show();
-        });
-    });
-</script>
-
-=======
->>>>>>> Stashed changes
 <style>
  
 .a_tag{
@@ -153,26 +66,16 @@
                             <p class="mt-0"><i class="fa-solid fa-tty"></i></p>
                             <hr class="border-light">
                             <p class="mt-0 ">Change forwarding to:</p>
-<<<<<<< Updated upstream
-                            <div class="form-inline">
-                            <p><img id="showForm1" src="http://virtualphoneline.com/admins/image.php?id=280"></p>
-                            <p><img id="showForm2" src="http://virtualphoneline.com/admins/image.php?id=281"></p>
-                            <p><img id="showForm3" src="http://virtualphoneline.com/admins/image.php?id=277"></p>
-                            <p><img id="showForm4" src="http://virtualphoneline.com/admins/image.php?id=287"></p>
-                            <P><img id="showForm5" src="http://virtualphoneline.com/admins/image.php?id=286"></P>
-                            <P><img id="showForm6" src="http://virtualphoneline.com/admins/image.php?id=279"></P>
-                            <P><img id="showForm7" src="http://virtualphoneline.com/admins/image.php?id=266"></P>
-=======
+
                             <div class="form-inline ml-3">
                             <p> <button id="showForm1" class="icon-button"><i class="fas fa-phone-square-alt"></i></button></p>
-                            <p> <button class="icon-button"><span class="i-t">SIP</span></button></p>
-                            <p> <button class="icon-button"><span class="i-t">IAX</span></button></p>
-                            <p> <button class="icon-button"><span class="i-t">IVR</span></button></p>
-                            <p> <button class="icon-button"><span class="i-t"><i class="fas fa-fax"></i> FAX</span></button></p>
-                            <p> <button class="icon-button"><span class="i-t">PBX</span></button></p>
-                            <p> <button class="icon-button"><i class="fas fa-envelope"></i></button></p>
-                          
->>>>>>> Stashed changes
+                            <p> <button id="showForm2" class="icon-button"><span class="i-t">SIP</span></button></p>
+                            <p> <button id="showForm3" class="icon-button"><span class="i-t">IAX</span></button></p>
+                            <p> <button id="showForm4" class="icon-button"><span class="i-t">IVR</span></button></p>
+                            <p> <button id="showForm5" class="icon-button"><span class="i-t"><i class="fas fa-fax"></i> FAX</span></button></p>
+                            <p> <button id="showForm6" class="icon-button"><span class="i-t">PBX</span></button></p>
+                            <p> <button id="showForm6" class="icon-button"><i class="fas fa-envelope"></i></button></p>
+
                             </div>
                             <hr class="border-light">
                             <p class="mt-0 "><b> Change forwarding to:</p>
