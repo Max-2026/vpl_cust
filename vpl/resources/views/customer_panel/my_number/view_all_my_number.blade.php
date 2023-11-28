@@ -74,7 +74,7 @@
                                 <td><a href="{{ route('my_number.number_in_my_account')}}">12025521553</a></td>
                                 <td><a href="{{ route('my_number.call_log')}}">View</a></td>
                                 <td>USA - Washington; D.C.</td>
-                                <td><a href="{{ route('my_number.callformanager')}}">03327951445</a></td>
+                                <td><a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}">03327951445</a></td>
                                 <td><img class="img-icon" src="images/icons/icon1.gif" alt=""></td>
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>

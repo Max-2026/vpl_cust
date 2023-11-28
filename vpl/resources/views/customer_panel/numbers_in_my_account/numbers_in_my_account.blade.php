@@ -51,7 +51,7 @@ text-align: right;
 <label for="fromInput" style="padding-left:5%;" class="col-sm-2 col-form-label">Telephone Number:</label>
 <div class="col-sm-10">
 
-<a href="YOUR_LINK_URL" style="margin-left:40%;" >12025521553</a>
+
 
 <a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}" style="margin-left:40%;" >12025521553</a>
 
@@ -94,7 +94,7 @@ text-align: right;
 <div class="form-group row div-line">
 <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Monthly Recurring Charges</label>
 <div class="col-sm-10">
-<a href="YOUR_LINK_URL" style="margin-left:40%;" >$5.99  Go Annual Billing   What's this?</a>
+<a href="{{route  ('numbers_in_my_account.monthly_recurring_charges') }}" style="margin-left:40%;" >$5.99  Go Annual Billing   What's this?</a>
 </div>
 </div>
 
@@ -116,7 +116,7 @@ text-align: right;
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Current Forwarding Settings: PSTN : 03327951445</label>
 <div class="col-sm-10">
-<a href="YOUR_LINK_URL" style="margin-left:40%;" >Change forwarding</a>
+<a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}" style="margin-left:40%;" >Change forwarding</a>
 </div>
 </div>
 
@@ -169,7 +169,7 @@ text-align: right;
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Calling Plan</label>
 <div class="col-sm-10">
-<a href="YOUR_LINK_URL" style="margin-left:40%;" >Pay As You Go   Move to Unlimited Plan</a>
+<a href="{{route  ('my_number.pakage_plan') }}" style="margin-left:40%;" >UK Land Line    Change Plan   Remove Plan</a>
 </div>
 </div>
 
@@ -190,7 +190,7 @@ text-align: right;
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Logs</label>
 <div class="col-sm-10">
-<a href="YOUR_LINK_URL" style="margin-left:40%;" >Call Logs</a>
+<a href="{{route  ('my_number.call_log') }}" style="margin-left:40%;" >Call Logs</a>
 </div>
 </div>
 

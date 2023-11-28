@@ -2,31 +2,88 @@
 @section('change_call_forwarding')
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#showForm1").click(function(e) {
-                e.preventDefault();
-                $("#form1").show();
-                $("#form2").hide();
-                $("#form3").hide();
-            });
-
-            $("#showForm2").click(function(e) {
-                e.preventDefault();
-                $("#form1").hide();
-                $("#form2").show();
-                $("#form3").hide();
-            });
-
-            $("#showForm3").click(function(e) {
-                e.preventDefault();
-                $("#form1").hide();
-                $("#form2").hide();
-                $("#form3").show();
-            });
+<script>
+       $(document).ready(function() {
+        // Existing code for showing/hiding forms 1, 2, and 3
+        $("#showForm1").click(function(e) {
+            e.preventDefault();
+            $("#form1").show();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").hide(); // Hide form4
+            $("#form5").hide(); // Hide form5
+            $("#form6").hide(); // Hide form6
+            $("#form7").hide(); // Hide form7
         });
-    </script>
 
+        $("#showForm2").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").show();
+            $("#form3").hide();
+            $("#form4").hide(); // Hide form4
+            $("#form5").hide(); // Hide form5
+            $("#form6").hide(); // Hide form6
+            $("#form7").hide(); // Hide form7
+        });
+
+        $("#showForm3").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").hide();
+            $("#form3").show();
+            $("#form4").hide(); // Hide form4
+            $("#form5").hide(); // Hide form5
+            $("#form6").hide(); // Hide form6
+            $("#form7").hide(); // Hide form7
+        });
+
+        // New code for showing/hiding forms 4, 5, 6, and 7
+        $("#showForm4").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").show();
+            $("#form5").hide(); // Hide form5
+            $("#form6").hide(); // Hide form6
+            $("#form7").hide(); // Hide form7
+        });
+
+        $("#showForm5").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").hide(); // Hide form4
+            $("#form5").show();
+            $("#form6").hide(); // Hide form6
+            $("#form7").hide(); // Hide form7
+        });
+
+        $("#showForm6").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").hide(); // Hide form4
+            $("#form5").hide(); // Hide form5
+            $("#form6").show();
+            $("#form7").hide(); // Hide form7
+        });
+
+        $("#showForm7").click(function(e) {
+            e.preventDefault();
+            $("#form1").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").hide(); // Hide form4
+            $("#form5").hide(); // Hide form5
+            $("#form6").hide(); // Hide form6
+            $("#form7").show();
+        });
+    });
+</script>
 
 <style>
  
@@ -87,10 +144,10 @@
                             <p><img id="showForm1" src="http://virtualphoneline.com/admins/image.php?id=280"></p>
                             <p><img id="showForm2" src="http://virtualphoneline.com/admins/image.php?id=281"></p>
                             <p><img id="showForm3" src="http://virtualphoneline.com/admins/image.php?id=277"></p>
-                            <p><img src="http://virtualphoneline.com/admins/image.php?id=287"></p>
-                            <P><img src="http://virtualphoneline.com/admins/image.php?id=286"></P>
-                            <P><img src="http://virtualphoneline.com/admins/image.php?id=279"></P>
-                            <P><img src="http://virtualphoneline.com/admins/image.php?id=266"></P>
+                            <p><img id="showForm4" src="http://virtualphoneline.com/admins/image.php?id=287"></p>
+                            <P><img id="showForm5" src="http://virtualphoneline.com/admins/image.php?id=286"></P>
+                            <P><img id="showForm6" src="http://virtualphoneline.com/admins/image.php?id=279"></P>
+                            <P><img id="showForm7" src="http://virtualphoneline.com/admins/image.php?id=266"></P>
                             </div>
                             <hr class="border-light">
                             <p class="mt-0 "><b> Change forwarding to:</p>
@@ -112,24 +169,103 @@
                                </select>
                                 <p class="mr-5"></p>
                                 <p class="mr-5"></p>
-                                <input class="ml-3" type="text">
-                                <input class="ml-1" type="text" placeholder=" (location)">
+                                <input class="ml-3 form-control" type="text">
+                                <input class="ml-1 form-control" type="text" placeholder=" (location)">
                                 <p><a class="a_tag ml-2" href="#">Tip</a></p>
                             </div>
                             <div class="text-end mt-3">
                             <a class="btn  ml-3" href="">Submit</a>
                             </div>
                             </form>
-
                             <form action="" id="form2" style="display: none;">
-                            <div class="form-inline ml-5">
-                                <input type="submit" value="SIP ">
-                                <p class="mt-2 ml-4">SIP</p>
-                            </div>
+                                <div class="mt-2">
+                                    <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                        <div class=" d-flex justify-content-between mt-3 ">
+                                            <div class="col-6">
+                                            <p class="card-text ml-4"><button>Sip</button><span class="ml-2">Sip</span></p>
+                                            </div>
+                                            <div class="col-6 form-inline">
+                                            <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
 
                             <form action="" id="form3" style="display: none;">
-                                <h2>form3</h2>
+                                <div class="mt-2">
+                                        <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                            <div class=" d-flex justify-content-between mt-3 ">
+                                                <div class="col-6">
+                                                <p class="card-text ml-4"><button>IAX</button><span class="ml-2">IAX</span></p>
+                                                </div>
+                                                <div class="col-6 form-inline">
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+
+                            </form>
+                            <form action="" id="form4" style="display: none;">
+                                <div class="mt-2">
+                                        <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                            <div class=" d-flex justify-content-between mt-3 ">
+                                                <div class="col-6">
+                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=287"><span class="ml-2">IAX</span></p>
+                                                </div>
+                                                <div class="col-6 form-inline">
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+
+                            </form>
+                            <form action="" id="form5" style="display: none;">
+                                <div class="mt-2">
+                                        <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                            <div class=" d-flex justify-content-between mt-3 ">
+                                                <div class="col-6">
+                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=286"><span class="ml-2">IAX</span></p>
+                                                </div>
+                                                <div class="col-6 form-inline">
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+
+                            </form>
+                            <form action="" id="form6" style="display: none;">
+                                <div class="mt-2">
+                                        <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                            <div class=" d-flex justify-content-between mt-3 ">
+                                                <div class="col-6">
+                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=279"><span class="ml-2">IAX</span></p>
+                                                </div>
+                                                <div class="col-6 form-inline">
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+
+                            </form>
+                            <form action="" id="form7" style="display: none;">
+                                <div class="mt-2">
+                                        <div class="row"> <!-- h-auto class added for automatic height adjustment -->
+                                            <div class=" d-flex justify-content-between mt-3 ">
+                                                <div class="col-6">
+                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=266"><span class="ml-2">IAX</span></p>
+                                                </div>
+                                                <div class="col-6 form-inline">
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+
                             </form>
                         </div>
                     </div>

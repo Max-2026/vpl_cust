@@ -15,4 +15,9 @@ class Numbersinmyaccount extends Controller
     {
         return view ('customer_panel.numbers_in_my_account.call_forwading_manager');
     }
+    public function monthly_recurring_charges()
+    {
+        return view ('customer_panel.numbers_in_my_account.monthly_recuring_charges');
+    }
+ 
 }
