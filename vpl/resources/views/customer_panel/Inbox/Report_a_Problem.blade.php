@@ -3,7 +3,7 @@
 @section('content')
 
 
-<body>
+
 <div class="container" style="margin-left:4%;margin-top:2%;">
 <div>
 <h1 class="fs-5 mb-5" style="display: inline-block;background-color:#0088cc;color:white">Inbox</h1>
@@ -47,6 +47,6 @@
 </div>
 
 
-</body>
+
 
 @endsection
