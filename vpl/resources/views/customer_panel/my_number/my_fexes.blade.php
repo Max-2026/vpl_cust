@@ -1,5 +1,10 @@
 @extends('layout')
 @section('my_faxes')
+<<<<<<< Updated upstream
+=======
+<br><br>
+
+>>>>>>> Stashed changes
 <div class="container mt-4">
     <form>
       <div class="form-group row">
