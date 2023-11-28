@@ -21,13 +21,13 @@
     }
 </style>
 
-<div class="container shadow rounded p-5">
+<div class="container shadow rounded p-3">
  
 <h3 style="font-weight:900;">In Use My Number<r/h3>
 <br>
 <br>
 <table class="table table-bordered">
-  <thead style="background-color:#0088cc;color:white;">
+  <thead >
     <tr>
       <th scope="col">S.No</th>
       <th scope="col">My Number</th>

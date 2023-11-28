@@ -92,7 +92,7 @@
 
 <h4 style="font-weight:900;text-align:center">Talk Time Usage</h3>
 <table class="table table-bordered table-responsive">
-  <thead style="background-color:#0088cc;color:white;">
+  <thead>
     <tr>
       <th scope="col">Phone No.</th>
       <th scope="col">Ring To</th>

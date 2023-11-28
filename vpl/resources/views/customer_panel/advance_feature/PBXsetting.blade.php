@@ -39,7 +39,7 @@
 <hr>
 
 <table class="table table-bordered container">
-  <thead  style="background-color:#0088cc;color:white;">
+  <thead>
     <tr>
       <th scope="col">Dial</th>
       <th scope="col">Title</th>

@@ -32,7 +32,7 @@
 <br>
 <br>
 <br>
-<div class="container">
+<div class="container-fluid p-2">
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Main Menu</button>
@@ -47,7 +47,7 @@
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
   <table class="table table-bordered">
-  <thead style="background-color:#0088cc;color:white;">
+  <thead>
     <tr>
       <th scope="col">Primary Main Menu</th>
       <th scope="col">Select File Name </th>
@@ -111,7 +111,7 @@ You will be able to define sub menus by only clicking the options.</p>
 <br>
 
 <table class="table table-bordered">
-  <thead style="background-color:#0088cc;color:white;">
+  <thead>
     <tr>
       <th scope="col">No</th>
       <th scope="col">ID</th>
@@ -136,7 +136,7 @@ You will be able to define sub menus by only clicking the options.</p>
 
   <div class="tab-pane fade" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
   <table class="table table-bordered">
-  <thead style="background-color:#0088cc;color:white;">
+  <thead>
     <tr>
       <th scope="col">No</th>
       <th scope="col">Select File Name</th>
