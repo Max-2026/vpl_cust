@@ -69,7 +69,7 @@
       <td><input style="" type="checkbox" aria-label="Checkbox for following text input"></td>
       <td><input type="number" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
     </tr>
-   
+    
     <tr>
       <th scope="row">Sub Menu 2</th>
       <td>

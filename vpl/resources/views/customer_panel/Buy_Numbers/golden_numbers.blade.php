@@ -61,11 +61,11 @@ align-items: center;
 <button type="submit" class="btn btn-primary" style = "background-color:#0088cc;color:white">Search1</button>
 </div>
 </div>
-<div class="or-divider d-flex align-items-center">
-<div></div>
-<span class="px-2">OR</span>
-<div></div>
-</div>
+        <div class="or-divider d-flex align-items-center">
+        <div></div>
+        <span class="px-2">OR</span>
+        <div></div> 
+        </div>
 <div class="form-group d-flex">
 <select class="form-control">
 <option selected>Select Country</option>

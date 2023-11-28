@@ -91,8 +91,13 @@
 <br>
 
 <h4 style="font-weight:900;text-align:center">Talk Time Usage</h3>
+<<<<<<< Updated upstream
 <table class="table table-bordered table-responsive">
   <thead>
+=======
+<table class="table table-responsive">
+  <thead style="background-color:#0088cc;color:white;">
+>>>>>>> Stashed changes
     <tr>
       <th scope="col">Phone No.</th>
       <th scope="col">Ring To</th>
@@ -115,6 +120,16 @@
       <td>0.08</td>
       <td>0.08</td>
 
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
