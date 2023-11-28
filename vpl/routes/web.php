@@ -39,7 +39,6 @@ Route::group(['as' => 'my_number.'], function () {
     Route::get('/viewallnumber', [Mynumbers::class, 'viewallmynumber'])->name('viewallmynumber');
     Route::get('/callforwarding', [Mynumbers::class, 'changeforwarding'])->name('changeforwarding');
     Route::get('/numbermyaccount', [Mynumbers::class, 'number_in_my_account'])->name('number_in_my_account');
-    Route::get('/call_for_manager', [Mynumbers::class, 'call_for_manager'])->name('callformanager');
     Route::get('/calllog', [Mynumbers::class, 'call_log'])->name('call_log');
     Route::get('/pakage_plan', [Mynumbers::class, 'pakage_plan'])->name('pakage_plan');
     Route::get('/palndetail', [Mynumbers::class, 'palndetail'])->name('palndetail');

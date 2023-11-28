@@ -21,9 +21,6 @@ class Mynumbers extends Controller
     public function number_in_my_account(){
         return view('customer_panel.numbers_in_my_account.numbers_in_my_account');
     }
-    public function call_for_manager(){
-        return view('customer_panel.my_number.call_for_mana');
-    }
     public function call_log(){
         return view('customer_panel.my_number.call_log');
     }

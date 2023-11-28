@@ -88,7 +88,8 @@
         <div class="card-header text-center bg-white">
         <div class=" d-flex justify-content-between">
                   <p class="card-text mr-5"></p>
-                  <h4 class="card-text ml-3 mt-3">Credit Card Info</h4>
+                  <!-- <h4 class="card-text ml-3 mt-3"></h4> -->
+                  <h6 class="card-text ml-3 mt-3"><a class="a_tag" href="#" id="showForm1">Credit Card Info</a></h6>
                   <h6 class="card-text ml-3 mt-3"><a class="a_tag" href="#" id="showForm2">Set Primary Credit Card</a></h6>
                   <h6 class="card-text ml-3 mt-3"><a class="a_tag " href="#" id="showForm3">Add Credit Card</a></h6>
                   <h3 class="card-text ml-3"></h3>

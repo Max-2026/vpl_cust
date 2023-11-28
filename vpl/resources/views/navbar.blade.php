@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('vendors/typicons/typicons.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/simple-line-icons/css/simple-line-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
+
   <!-- fontawsome cdn -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -24,6 +25,8 @@
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
   <link rel="stylesheet" href="{{ asset('js/select.dataTables.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('js/call_for.js') }}"> -->
+
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('css/vertical-layout-light/style.css') }}">
@@ -82,4 +85,5 @@
         </button>
       </div>
     </nav>
+
     

@@ -1,5 +1,6 @@
 @extends('layout')
 @section('change_call_forwarding')
+<<<<<<< Updated upstream
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -85,15 +86,15 @@
     });
 </script>
 
+=======
+>>>>>>> Stashed changes
 <style>
  
-    .a_tag{
+.a_tag{
 
       text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
+}
+
     
 .btn{
     background-color:#0088cc;color:white
@@ -105,6 +106,19 @@
     width:50px;
 
 }
+.fas{
+    font-size: 25px;
+}
+.icon-button{
+    background-color:white;
+    height: 30px;
+    width: 80px;
+}
+.i-t{
+    font-size: 15px;
+    margin-top: 3px;
+}
+
 </style>
 
 <br>
@@ -132,7 +146,6 @@
             <div class="card rounded">
                 <div class="card-body mt-2 mb-1 mx-auto">
                     <div class="media mr-5">
-                        
                         <div class="media-body mt-3">
                             <p class="mt-0 text-center">Your Order Number Is :  1005729</p>
                             <hr class="border-light">
@@ -140,6 +153,7 @@
                             <p class="mt-0"><i class="fa-solid fa-tty"></i></p>
                             <hr class="border-light">
                             <p class="mt-0 ">Change forwarding to:</p>
+<<<<<<< Updated upstream
                             <div class="form-inline">
                             <p><img id="showForm1" src="http://virtualphoneline.com/admins/image.php?id=280"></p>
                             <p><img id="showForm2" src="http://virtualphoneline.com/admins/image.php?id=281"></p>
@@ -148,6 +162,17 @@
                             <P><img id="showForm5" src="http://virtualphoneline.com/admins/image.php?id=286"></P>
                             <P><img id="showForm6" src="http://virtualphoneline.com/admins/image.php?id=279"></P>
                             <P><img id="showForm7" src="http://virtualphoneline.com/admins/image.php?id=266"></P>
+=======
+                            <div class="form-inline ml-3">
+                            <p> <button id="showForm1" class="icon-button"><i class="fas fa-phone-square-alt"></i></button></p>
+                            <p> <button class="icon-button"><span class="i-t">SIP</span></button></p>
+                            <p> <button class="icon-button"><span class="i-t">IAX</span></button></p>
+                            <p> <button class="icon-button"><span class="i-t">IVR</span></button></p>
+                            <p> <button class="icon-button"><span class="i-t"><i class="fas fa-fax"></i> FAX</span></button></p>
+                            <p> <button class="icon-button"><span class="i-t">PBX</span></button></p>
+                            <p> <button class="icon-button"><i class="fas fa-envelope"></i></button></p>
+                          
+>>>>>>> Stashed changes
                             </div>
                             <hr class="border-light">
                             <p class="mt-0 "><b> Change forwarding to:</p>
