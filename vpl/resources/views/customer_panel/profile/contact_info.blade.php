@@ -1,38 +1,6 @@
 @extends('layout')
 @section('contact_info')
-
-
-<style>
-    /* body{
-      background-color: rgba(245, 245, 245, 0.63);
-    } */
-    .a_tag{
-
-      text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
-    
-.btn{
-    font-size: x-small;
-    
-    background-color:#0088cc;color:white
-}
-.text-center
-{
-    font-size:30px;
-}
-.table > tbody > tr > td {
-  padding: 2px; /* Adjust the padding to suit your needs */
-}
-.form-group.row {
-    margin-bottom: -20px; /* You can adjust this value as needed */
-  }
-
-
-</style>
-
+@section('title', 'Contact Info')
 <br>
 <br>
 <div class="container mt-0"> <!-- Reduce top margin for the container -->
@@ -40,20 +8,20 @@
   <div class="row">
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
-        <div class="card-header text-center bg-white">
-          Contact Information
+        <div class="card-header text-center bg-white mt-2">
+          <h3>Contact Information</h3>
         </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
          <form>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding text-end class -->
             <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " >
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="firstName" class="col-sm-3  col-form-label text-left">Street</label>
             <div class="col-sm-9">
@@ -61,14 +29,14 @@
             </div>
           </div>
           
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="lastName" class="col-sm-3 col-form-label text-left">City</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Karachi">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="email" class="col-sm-3 col-form-label text-left">State/Province	</label>
             <div class="col-sm-9">
@@ -76,19 +44,19 @@
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="company" class="col-sm-3 col-form-label text-left">Zip/Postal Code</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="123">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="password" class="col-sm-3 col-form-label text-left">Country</label>
             <div class="col-sm-9">
               <!-- <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********"> -->
-              <select class="form-control col-md-8 mx-auto" name="" id="">
-                <option value="Afghanistan">Afghanistan</option>
+              <select class="form-select col-md-8 mx-auto" name="" id="">
+                <option value="Tajikstan">Tajikstan</option>
                 <option value="ALBANIA">ALBANIA</option>
                 <option value="ALGERIA">ALGERIA</option>
                 <option value="ANDORRA">ANDORRA</option>
@@ -103,32 +71,32 @@
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Business Tel</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="32423432">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Home Tel</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="324324324">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Mobile</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="number" id="language" value="0554224">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Fax</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="2">
             </div>
           </div>
-          <div class="text-center">
-            <input class="btn mt-2" type="submit" value="UPDATE">
+          <div class="text-center mb-0">
+            <input class="btn btn-primary mt-2" type="submit" value="UPDATE">
           </div>
           </form>
           </div>

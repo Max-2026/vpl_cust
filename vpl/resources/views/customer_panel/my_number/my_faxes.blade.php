@@ -1,14 +1,12 @@
 @extends('layout')
 @section('my_faxes')
-<<<<<<< Updated upstream
-=======
-<br><br>
-
->>>>>>> Stashed changes
+@section('title', 'My Faxes')
+<br>
 <div class="container mt-4">
+  <div class="card rounded p-5">
     <form>
       <div class="form-group row">
-        <label for="fromDate" class="col-sm-3 col-form-label"> <input type="radio">&nbsp; From Date</label>
+        <label for="fromDate" class="col-sm-3 col-form-label">&nbsp;&nbsp;From Date</label>
         <div class="col-sm-3">
           <input type="date" class="form-control" id="fromDate"> 
         </div>
@@ -20,26 +18,27 @@
       <hr class="border-light">
       <div class="form-group row">
         <label for="fromDate" class="col-sm-4 col-form-label"> &nbsp;&nbsp;Range</label>
-        <div class="col-sm-4">
-          <input type="radio" name="range">&nbsp; Today
-          <input type="radio" name="range">&nbsp;Last 7 Days
-          <input type="radio" name="range">&nbsp; This Month
+        <div class="col-sm-4 mt-2">
+          <input class="ml-2" type="radio" name="range"> Today
+          <input class="ml-2" type="radio" name="range"> Last 7 Days
+          <input class="ml-2" type="radio" name="range"> This Month
         </div>
       </div>
       <hr class="border-light">
-      <div class="form-group row">
-        <label for="fromDate" class="col-sm-4 col-form-label"> &nbsp;&nbsp;Number</label>
+      <div class="form-group row ">
+        <label for="fromDate" class="col-sm-4 col-form-label ml-2">Number</label>
         <div class="col-sm-5 d-flex align-items-start">
-          <p class="paragraph">Currently there are no numbers of yours forwarded to fax service.</p>
+          <p>Currently there are no numbers of yours forwarded to fax service.</p>
         </div>
       </div>
       <hr class="border-light">
       <div class="form-group row">
         <div class="col-sm-10 text-center">
-          <button type="submit" class="btn btn-primary ">Go >></button>
+          <button type="submit" class="btn btn-primary">Show</button>
         </div>
       </div>
     </form>
+  </div>
   </div>
   <div class="container mt-5">
   <!-- Table to display the fax details -->

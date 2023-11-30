@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Virtual Phone Line</title>
+  <title>Virtual Phone Line | @yield('title', 'Default Title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -57,7 +57,7 @@
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <!-- <h1 class="welcome-text"><span class="text-black fw-bold">Dashboard</span></h1> -->
-            <h1 class="welcome-text">Customer, <span class="text-black fw-bold">Panel</span></h1>
+            <h1 class="welcome-text">@yield('title', 'Default Title')</h1>
             
           </li>
         </ul>

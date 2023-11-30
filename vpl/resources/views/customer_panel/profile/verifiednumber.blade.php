@@ -1,43 +1,6 @@
 @extends('layout')
-
-
-
-
-
-@section('content')
-
-
-<style>
-    /* body{
-      background-color: rgba(245, 245, 245, 0.63);
-    } */
-    .a_tag{
-
-      text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
-    
-.btn{
-    font-size: x-small;
-    
-    background-color:#0088cc;color:white
-}
-.text-center
-{
-    font-size:30px;
-}
-.table > tbody > tr > td {
-  padding: 2px; /* Adjust the padding to suit your needs */
-}
-.form-group.row {
-    margin-bottom: -20px; /* You can adjust this value as needed */
-  }
-
-
-</style>
-
+@section('verified_number')
+@section('title', 'Verified Number')
 <br>
 <br>
 <div class="container mt-0"> <!-- Reduce top margin for the container -->
@@ -45,13 +8,13 @@
   <div class="row">
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
-        <div class="card-header text-center bg-white">
-          Add Mobile Number
-        </div>
+        <div class="card-header text-center bg-white mt-2">
+       <h3>Add Mobile Number</h3>
+      </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
          <form>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding text-end class -->
             <label for="id" class="col-sm-3 col-form-label text-left">Enter Mobile Number</label>
             <div class="col-sm-9">
@@ -60,7 +23,7 @@
           </div>
           <br>
           <div class="text-center">
-            <input class="btn mt-2" type="submit" value="Add Number">
+            <input class="btn btn-primary" type="submit" value="Add Number">
           </div>
           </form>
           </div>

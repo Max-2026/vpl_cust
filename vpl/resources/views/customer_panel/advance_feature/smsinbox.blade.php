@@ -1,20 +1,12 @@
-
 @extends('layout')
- 
-
-
-
-
-
-@section('content')
+@section('sms_inbox')
+@section('title', 'SMS Inbox')
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="card rounded">
-        <div class="card-body">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -41,21 +33,19 @@
           </table>
           <div class="container pt-4">
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <p>All the SMS charges are deducted from talk time.</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                     <p>Total This Page: $0.216</p>
-                    <hr style="width: 75%;">
-                    <p>TGrand Total: $0.216</p>
+                    <hr style="width: 50%;">
+                    <p>Grand Total: $0.216</p>
                     </div>
                 </div>
             </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 
 

@@ -1,15 +1,10 @@
 @extends('layout')
- 
-
-
-
-
-
-@section('content')
+@section('addfunds')
+@section('title', 'Add Funds')
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container">
 <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -23,7 +18,7 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="container">
 <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -31,8 +26,8 @@
                     <div class="media mr-5">
                         <img src="images/play.png" class="mr-5" alt="Image 1" height="100px">
                         <div class="media-body mt-3">
-                            <p class="mt-0 text-muted">Watch Video Tutorial</p>
-                            <h4><a href="#">How to Add Funds?</a></h4>
+                        <h3 class="mt-0">Watch Video Tutorial</h3>
+                            <h3 class="text-center"><a class="a_tag " href="#">How to Add Funds?</a></h3>
                         </div>
                     </div>
                 </div>
@@ -42,14 +37,14 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="container">
     <div class="row m-4">
         <div class="card rounded">
             <div class="col-md-8 offset-md-2">
                 <form>
                     <br>
                     <div class="form-group row mb-0">
-                        <label for="orderID" class="col-sm-4 col-form-label text-right">Order ID</label>
+                        <label for="orderID" class="col-sm-4 col-form-label text-right mt-2">Order ID</label>
                         <div class="col-md-6">
                         <p class="pt-3">1005729</p>
                         </div>
@@ -57,7 +52,7 @@
                     <div class="form-group row mb-0">
                         <label for="customerName" class="col-sm-4 col-form-label text-right">Customer Name</label>
                         <div class="col-md-6">
-                        <p class="pt-3">Ahmed raza</p>
+                        <p class="pt-2">Ahmed raza</p>
                         </div>
                     </div>
                     <div class="form-group row mb-0">

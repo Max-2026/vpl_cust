@@ -1,38 +1,6 @@
 @extends('layout')
-@section('content')
-
-
-<style>
-    /* body{
-      background-color: rgba(245, 245, 245, 0.63);
-    } */
-    .a_tag{
-
-      text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
-    
-.btn{
-    font-size: x-small;
-    
-    background-color:#0088cc;color:white
-}
-.text-center
-{
-    font-size:30px;
-}
-.table > tbody > tr > td {
-  padding: 2px; /* Adjust the padding to suit your needs */
-}
-.form-group.row {
-    margin-bottom: -20px; /* You can adjust this value as needed */
-  }
-
-
-</style>
-
+@section('sms_setting')
+@section('title', 'SMS Setting')
 <br>
 <br>
 <div class="container mt-0"> <!-- Reduce top margin for the container -->
@@ -40,20 +8,20 @@
   <div class="row">
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
-        <div class="card-header text-center bg-white">
-          Sms Setting
+        <div class="card-header text-center bg-white mt-2">
+          <h3>Sms Setting</h3>
         </div>
         <div class="card-body text-center">
           <div class="form-group row">
           <!-- Right-align labels by adding text-end class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="company" class="col-sm-3 col-form-label text-end">Send Me SMS on</label>
             <div class="col-sm-9">
               <input class="form-control col-md-6 mx-auto" type="number" id="company" placeholder="i.e. +923322950760">
             </div>
           </div>
           <!-- Right-align labels by adding text-end class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="password" class="col-sm-3 col-form-label text-end">Call URL</label>
             <div class="col-sm-9">
               <input class="form-control col-md-6 mx-auto" type="text" id="password" placeholder="i.e. www.yoursite.com">
@@ -62,7 +30,7 @@
           <!-- Right-align labels by adding text-end class -->
 
           <div class="text-center mb-4">
-            <input class="btn mt-2" type="submit" value="UPDATE">
+            <input class="btn btn-primary mt-2" type="submit" value="UPDATE">
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Mynumbers extends Controller
 {
     public function Myfaxes(){
-        return view('customer_panel.my_number.my_fexes');
+        return view('customer_panel.my_number.my_faxes');
     }
 
 

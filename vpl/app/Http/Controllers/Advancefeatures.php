@@ -36,14 +36,9 @@ class Advancefeatures extends Controller
         return view('customer_panel.advance_feature.UploadPBXIVR');
     }
 
-    public function smsinbox(){
-        return view('customer_panel.advance_feature.smsinbox');
-    }
 
 
-    public function sendsms(){
-        return view('customer_panel.advance_feature.sendsms');
-    }
+    
 
     
 }

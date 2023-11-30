@@ -1,19 +1,14 @@
 @extends('layout')
- 
-
-
-
-
-
-@section('content')
+@section('voicemessages')
+@section('title', 'Voice Messages')
 <br>
 <br>
-
-<div class="container-fluid">
+<br>
+<div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="card rounded">
-          <div class="card-body">
+        <div class="">
+          <div class="">
             <table class="table table-bordered">
               <thead>
                 <tr>

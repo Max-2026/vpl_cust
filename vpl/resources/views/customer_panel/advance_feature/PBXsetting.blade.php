@@ -1,10 +1,8 @@
 @extends('layout')
+@section('PBXsetting')
+@section('title', 'PBX Setting')
 
 
-
-
-
-@section('content')
 <br>
 <br>
 <div class="container shadow rounded p-5">
@@ -48,13 +46,13 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+      <td>1</td>
       <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
       <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
     </tr>
 
     <tr>
-      <th scope="row">2</th>
+      <td>2</td>
       <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
       <td><input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"></td>
     </tr>

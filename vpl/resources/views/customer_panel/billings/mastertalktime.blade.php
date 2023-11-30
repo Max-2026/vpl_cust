@@ -1,16 +1,10 @@
 @extends('layout')
-
-
-
-
-
-@section('content')
-
-
+@section('mastertalktime')
+@section('title', 'Master TalkTime')
 <br>
 <br>
-<div class="container-fluid">
-<h2 style="font-weight:800;">Talk Time Usage Report</h2>
+<div class="container p-5">
+<h3>Talk Time Usage Report</h2>
 <br>
 <div class="col-md-12 mx-auto">
 <div class="row shadow rounded p-4">
@@ -90,8 +84,8 @@
 <br>
 <br>
 
-<h4 style="font-weight:900;text-align:center">Talk Time Usage</h3>
-<table class="table table-bordered table-responsive">
+<h3 class="text-center mb-4 mt-2">Talk Time Usage</h3>
+<table class="table table-bordered ">
   <thead>
     <tr>
       <th scope="col">Phone No.</th>

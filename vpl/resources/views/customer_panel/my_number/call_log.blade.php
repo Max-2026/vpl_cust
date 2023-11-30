@@ -1,42 +1,11 @@
 @extends('layout')
 @section('call_log')
-
-
-<style>
-      .inline-flex {
-    display: inline-flex;
-  }
-  .btn-1{
-    height:30px;
-    margin-top:1px;
-    width: 38px;
-    margin-left:2px;
-  }
-  .form-control:focus, .form-select:focus  {
-  box-shadow: none !important;
-  border-color: #ced4da;
-  /* outline: 1px solid #0ea5f0 !important;  */
-  border-radius: 10px !important;
-  /* Or your preferred color */
-}
-.form-control, .form-select {
-  box-shadow: none !important;
-  border-color: #ced4da;
-  /* outline: 1px solid #0ea5f0 !important;  */
-  border-radius: 5px !important;
-  /* Or your preferred color */
-}
-.radio-m{
-    margin-top: -5px !important;
-}
-
-</style>
-
+@section('title', 'Call Logs')
 
 <div class="container mt-4">
     <form>
     <div class="col-md-12 mt-0 mx-auto equal-width">
-    <div class="card mt-4">
+    <div class="card rounded mt-4">
     <div class="card-body mt-2 mb-1 ">
       <div class="form-group row">
         <label for="fromDate" class="col-sm-3 col-form-label">&nbsp; From Date</label>

@@ -1,8 +1,7 @@
 @extends('layout')
+@section('virtualpbx')
+@section('title', 'Virtual PBX')
 
-
-
-@section('content')
 <br>
 <br>
 <br>
@@ -21,13 +20,13 @@
     }
 </style>
 
-<div class="container shadow rounded p-3">
+<div class="container shadow rounded p-5">
  
 <h3 style="font-weight:900;">In Use My Number<r/h3>
 <br>
 <br>
 <table class="table table-bordered">
-  <thead >
+  <thead>
     <tr>
       <th scope="col">S.No</th>
       <th scope="col">My Number</th>
@@ -36,12 +35,12 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+      <td>1</td>
       <td>12345678909</td>
       <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>
     <tr>
-      <th scope="row">2</th>
+      <td>2</td>
       <td>12345678909</td>
       <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>

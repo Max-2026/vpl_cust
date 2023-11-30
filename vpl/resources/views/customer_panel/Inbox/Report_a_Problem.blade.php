@@ -1,49 +1,87 @@
 @extends('layout')
+@section('report_problem')
+@section('title', 'Report A Problem')
+<br>
+<br>
 
-@section('content')
+<div class="container shadow rounded p-3">
+  <div class="card-body text-center">
+          <div class="col-md-8 mx-auto">
+         <form>
+          <div class="form-group row mb-0">
+            <!-- Right-align labels by adding text-end class -->
+            <label for="from" class="col-sm-3 col-form-label text-left">From</label>
+            <div class="col-sm-9 mt-2">
+              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="Ahmed Raza" readonly>
+            </div>
+          </div>
+          <div class="form-group row mb-0">
+            <!-- Right-align labels by adding  class -->
+            <label for="phoneno" class="col-sm-3  col-form-label text-left">Phone No</label>
+            <div class="col-sm-9 mt-2">
+                      <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
+                      <select class="form-select col-md-8 mx-auto" style="height:32px;">
+                        <option selected value="1">784213</option>
+                        <option  value="2">784213</option>
+                      </select>
+                    </div>
+          </div>
+          
+          <div class="form-group row mb-0">
+            <!-- Right-align labels by adding  class -->
+            <label for="relatedto" class="col-sm-3 col-form-label text-left">Related To</label>
+            <div class="col-sm-9 mt-2">
+                      <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
+                      <select class="form-select col-md-8 mx-auto" style="height:32px;">
+                        <option selected>Other</option>
+                        <option  value="1">General</option>
+                        <option  value="2">Website</option>
+                        <option  value="3">Billing</option>
+                      </select>
+                    </div>
+          </div>
+          <div class="form-group row mb-0">
+            <!-- Right-align labels by adding  class -->
+            <label for="msg" class="col-sm-3 col-form-label text-left">Message</label>
+            <div class="col-sm-9 mt-2">
+            <textarea class="form-control col-md-8 mx-auto" id="email"></textarea>
+            </div>
+          </div>
+          
+          <div class="text-center mb-0">
+            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+          </div>
+          </form>
+          </div>
+        </div>
 
+<br>
+  </div>
+<div class="container mt-5">
+<table class="table table-bordered">
+        <thead>
+            <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">Date Opened</th>
+            <th scope="col">Ticket No</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total Updates</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>26481476</td>
+            <td>Oct 24,2023 08:19</td>
+            <td>19302895</td>
+            <td>Resolved</td>
+            <td>1</td>
+            </tr>
+            
+        </tbody>
+        </table>
+</div>
+</div>
 
-
-<div class="container" style="margin-left:4%;margin-top:2%;">
-<div>
-<h1 class="fs-5 mb-5" style="display: inline-block;background-color:#0088cc;color:white">Inbox</h1>
-<h1 class="fs-5 mb-5" style="display: inline-block;margin-left:10%;">Create Ticket</h1>
-<h1 class="fs-5 mb-5" style="display: inline-block;margin-left:20%;">Archive</h1>
-</div>
-
-<div class="row">
-<div class="col-md-6">
-<form action="/create-ticket" method="post">
-<div class="mb-3">
-<label for="from" class="form-label">From</label>
-<input type="text" class="form-control" id="from" name="from">
-</div>
-<div class="mb-3">
-<label for="phone_number" class="form-label">Phone Number</label>
-<select class="form-select" id="related_to" name="related_to">
-<option value=""></option>
-<option value="1">1234567</option>
-<option value="2">12345</option>
-<option value="3">121412532</option>
-</select>
-</div>
-<div class="mb-3">
-<label for="related_to" class="form-label">Related to</label>
-<select class="form-select" id="related_to" name="related_to">
-<option value="">Please Select</option>
-<option value="1">Issue</option>
-<option value="2">Question</option>
-<option value="3">Other</option>
-</select>
-</div>
-<div class="mb-3">
-<label for="message" class="form-label">Message</label>
-<textarea style=" resize: none;" class="form-control" id="message" name="message" rows="3"></textarea>
-</div>
-<button type="submit" style = "background-color:#0088cc;color:white" class="btn btn-default" >Submit</button>
-</form>
-</div>
-</div>
 </div>
 
 

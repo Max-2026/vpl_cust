@@ -1,45 +1,6 @@
 @extends('layout')
-
-@section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Support Ticket</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-.ticket-container {
-max-width: 1200px;
-margin: auto;
-
-border: 1px solid #dee2e6;
-border-radius: 0.25rem;
-}
-
-.archive-btn {
-text-align: right;
-}
-/* Add a blue link style */
-.blue-link {
-  color: #007bff; /* Blue color */
-  text-decoration: underline; /* Underline the text */
-  cursor: pointer; /* Change cursor to a hand pointer on hover (optional) */
-}
-
-/* Change link color on hover (optional) */
-.blue-link:hover {
-  color: #0056b3; /* Darker blue on hover */
-}
-.div-line {
-  border-bottom: 1px solid #dee2e6;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-</style>
-</head>
-<body>
+@section('numbers_in_my_account')
+@section('title', 'Numbers In My Account')
 
 <div class="container ticket-container mt-5 table">
 <br>
@@ -53,7 +14,7 @@ text-align: right;
 
 
 
-<a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}" style="margin-left:40%;" >12025521553</a>
+<a href="{{route  ('numbersinmyaccount.callforwadingmanager') }}" style="margin-left:40%;" >12025521553</a>
 
 </div>
 </div>
@@ -92,10 +53,13 @@ text-align: right;
 <!-- Messages -->
 
 <div class="form-group row div-line">
-<label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Monthly Recurring Charges</label>
-<div class="col-sm-10">
-<a href="{{route  ('numbers_in_my_account.monthly_recurring_charges') }}" style="margin-left:40%;" >$5.99  Go Annual Billing   What's this?</a>
-</div>
+  <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Monthly Recurring Charges</label>
+  <div class="col-sm-10">
+    <span style="margin-left:40%;">
+      $5.99
+    </span>
+    <a href="{{route('numbersinmyaccount.monthlyrecurringcharges')}}" style="margin-left:5%;">Go Annual Billing What's this?</a>
+  </div>
 </div>
 
 <div class="form-group row div-line">
@@ -114,11 +78,13 @@ text-align: right;
 </div>
 
 <div class="form-group row div-line">
-<label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Current Forwarding Settings: PSTN : 03327951445</label>
+<label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Current Forwarding</label>
 <div class="col-sm-10">
-<a href="{{route  ('numbers_in_my_account.call_forwading_manager') }}" style="margin-left:40%;" >Change forwarding</a>
+<a href="{{route  ('numbersinmyaccount.callforwadingmanager') }}" style="margin-left:40%;" >Change forwarding</a>
 </div>
 </div>
+
+
 
 
 <div class="form-group row div-line">
@@ -166,24 +132,30 @@ text-align: right;
 </div>
 </div>
 
+
+
 <div class="form-group row div-line">
-<label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Calling Plan</label>
-<div class="col-sm-10">
-<a href="{{route  ('my_number.pakage_plan') }}" style="margin-left:40%;" >UK Land Line    Change Plan   Remove Plan</a>
-</div>
+  <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Calling Plan</label>
+  <div class="col-sm-10">
+    <span style="margin-left:40%; font-size:12px">
+    UK Land Line
+    </span>
+    <a href="{{route  ('my_number.packageplan') }}" style="margin-left:5%;">Change Plan</a>
+    <a href="{{route  ('my_number.packageplan') }}" style="margin-left:5%;">Remove Plan</a>
+  </div>
 </div>
 
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Total Plan Minutes</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="- min. ( - )">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="2500 min. (26-Nov-2023-26-Dec-2023)">
 </div>
 </div>
 
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Minutes Remaining</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="- min.">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="2500 min.">
 </div>
 </div>
 
@@ -225,11 +197,4 @@ text-align: right;
 
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 @endsection
-
-

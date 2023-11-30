@@ -1,5 +1,7 @@
 @extends('layout')
 @section('credit_info')
+@section('title', 'Credit Card Info')
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -28,59 +30,9 @@
     </script>
 
 
-<style>
-    /* body{
-      background-color: rgba(245, 245, 245, 0.63);
-    } */
-    .a_tag{
-
-      text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
-    
-.btn{
-    font-size: x-small;
-    
-    background-color:#0088cc;color:white
-}
-.text-center
-{
-    font-size:30px;
-}
-.table > tbody > tr > td {
-  padding: 2px; /* Adjust the padding to suit your needs */
-}
-.form-group.row {
-    margin-bottom: -20px; /* You can adjust this value as needed */
-  }
-  .select-small option {
-  font-size: 12px; /* Smaller font size for the options */
-}
-
-.form-control:focus, .form-select:focus  {
-  box-shadow: none !important;
-  border-color: #ced4da;
-  /* outline: 1px solid #0ea5f0 !important;  */
-  border-radius: 10px !important;
-  /* Or your preferred color */
-}
-.form-control, .form-select {
- 
-  border-radius: 10px !important;
-  /* Or your preferred color */
-}
-.option_show{
-  color: red ;
-}
-
-
-</style>
-
 <br>
 <br>
-<div class="container- mt-0"> <!-- Reduce top margin for the container -->
+<div class="container mt-0"> <!-- Reduce top margin for the container -->
 
   <div class="row">
     <div class="col-md-11 mx-auto">
@@ -98,14 +50,14 @@
       <div class="card-body text-center ">
         <div class="col-md-8 mx-auto">
          <form id="form1">
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding text-end class -->
             <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " >
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="firstName" class="col-sm-3  col-form-label text-left">Street</label>
             <div class="col-sm-9">
@@ -113,14 +65,14 @@
             </div>
           </div>
           
-          <div class="form-group row">
+          <div class="form-group row  mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="lastName" class="col-sm-3 col-form-label text-left">City</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Karachi">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row  mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="email" class="col-sm-3 col-form-label text-left">State/Province	</label>
             <div class="col-sm-9">
@@ -128,14 +80,14 @@
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row  mb-0">
             <label for="company" class="col-sm-3 col-form-label text-left">Zip/Postal Code</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="123">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="password" class="col-sm-3 col-form-label text-left">Country</label>
             <div class="col-sm-9">
               <!-- <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********"> -->
@@ -153,32 +105,32 @@
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row mt-1">
+          <div class="form-group row  mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Business Tel</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="32423432">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Home Tel</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="324324324">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Mobile</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="number" id="language" value="0554224">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Fax</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="2">
             </div>
           </div>
-          <div class="text-center">
-            <input class="btn mt-2" type="submit" value="UPDATE">
+          <div class="text-center mb-0 mt-2">
+            <input class="btn btn-primary" type="submit" value="UPDATE">
           </div>
           </form>
           <form id="form2" style="display: none;">
@@ -198,13 +150,13 @@
         
           </form>
           <form id="form3" style="display: none;">
-              <div class="form-group row">
+              <div class="form-group row  mb-0">
                     <label for="id" class="col-sm-3 col-form-label text-left">Number</label>
                     <div class="col-sm-9 mt-2">
                       <input class="form-control col-md-8 mx-auto" type="text" id="id" value="H#23" >
                     </div>
               </div>  
-              <div class="form-group row">
+              <div class="form-group row mb-0">
                     <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
                     <div class="col-sm-9 mt-2">
                       <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
@@ -217,21 +169,21 @@
                       </select>
                     </div>
               </div>  
-              <div class="form-group row">
+              <div class="form-group row mb-0">
                     <label for="id" class="col-sm-3 col-form-label text-left">Credit Card Expiry</label>
                     <div class="col-sm-9 mt-2">
                       <input class="form-control col-md-8 mx-auto" type="date" id="id" value="H#23" >
                     </div>
               </div>  
-              <div class="form-group row">
+              <div class="form-group row mb-0">
                     <label for="id" class="col-sm-3 col-form-label text-left">Credit Card Verify</label>
                     <div class="col-sm-9 mt-2">
                       <input class="form-control col-md-8 mx-auto" type="text" id="id" value="" >
                     </div>
               </div>   
               
-              <div class="text-center">
-            <input class="btn mt-2" type="submit" value="UPDATE">
+              <div class="text-center mb-0 mt-2">
+            <input class="btn btn btn-primary" type="submit" value="UPDATE">
           </div>
           </form>
           </div>
@@ -241,7 +193,7 @@
   </div>
 
 
-      <div class="row mt-4 ">
+      <div class="row mt-4 mb-0">
           <div class="col-md-11 mx-auto">
             <div class=" rounded mb-0">
               <div class="card-header">

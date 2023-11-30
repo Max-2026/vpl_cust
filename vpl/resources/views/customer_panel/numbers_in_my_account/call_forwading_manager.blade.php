@@ -1,110 +1,56 @@
-
-
-
 @extends('layout')
+@section('call_forwarding')
+@section('title', 'Call Forwarding Manager')
 
-@section('content')
-<style>
-
-.icon-link {
-display: inline-block;
-margin: 0 5px; /* Adjust the margin as needed */
-width: 24px; /* Set the desired width */
-height: 24px; /* Set the desired height */
-}
-
-.icon-link img {
-width: 100%;
-height: 100%;
-}
-
-
-.panel {
-margin-bottom: 30px;
-padding: 20px;
-}
-
-.form-horizontal .form-group {
-display: flex;
-align-items: center;
-margin-bottom: 15px;
-}
-
-@media (max-width: 768px) {
-.form-horizontal .form-group {
-flex-direction: column;
-align-items: stretch;
-}
-}
-
-.panel {
-box-shadow: none;
-border: none;
-}
-
-button {
-background-color: #007bff;
-color: white;
-border: none;
-padding: 10px 20px;
-border-radius: 5px;
-cursor: pointer;
-}
-button:hover {
-background-color: #0056b3;
-}
-
-
-
-</style>
+<div class="container">
 <section class="panel">
 <div class="panel-body">
 
 <form class="form-horizontal form-bordered card rounded">
 
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5 mt-5">
 <div class="col-lg-6 col-md-6"><label>Your Order ID / Number</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>1005729 </label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Changing Setting for  Number</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>12025521553</label> </p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Current Ring To Number / Address</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label><img src="http://www.virtualphoneline.com/admins/image.php?id=280">&nbsp;PSTN: 03327951445 </label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Your Talk Time Balance</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>$0.0 </label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Number Status</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>Active / Permanent Number</label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Billing Plan</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>Pay As You Go</label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-6 col-md-6"><label>Next Billing Date</label></div>
 <div class="col-lg-6 col-md-6">
 <p class="form-control-static"><label>08-December-2023</label></p>
 </div>
 </div>
-<div class="form-group pt-3">
+<div class="form-group pt-3 ml-5">
 <div class="col-lg-12 col-md-12" style="text-align:center; ">
 <div id="a" class="dg-post">
 <div id="a" class="bdy">
@@ -296,6 +242,7 @@ BORDER-RIGHT-COLOR: #B8C2DA; WIDTH:140px"  fdprocessedid="a096l8" disabled="disa
 
 
 
+</div>
 </div>
 
 </section>

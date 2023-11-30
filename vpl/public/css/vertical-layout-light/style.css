@@ -8712,11 +8712,35 @@ hr:not([size]) {
   height: 1px;
 }
 
+.dash_btn
+{
+    color:#0088cc;
+    text-decoration:none;
+
+}
+
+
+.dash_btn:hover
+{
+    color:#0088cc;
+    text-decoration:underline;
+}
+
+
+.equal-width {
+    width: 100%;
+}
+.img-icon{
+    height: 50px !important;
+    width: 60px !important;
+}
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: bold !important;
   line-height: 1.2;
+  font-size:12px bold !important
 }
 
 h1, .h1 {
@@ -8769,6 +8793,7 @@ h6, .h6 {
 
 p {
   margin-top: 0;
+  font-size: 12px !important;
   margin-bottom: 1rem;
 }
 
@@ -8848,12 +8873,15 @@ sup {
 }
 
 a {
-  color: #0d6efd;
-  text-decoration: underline;
+  color: #0088cc;
+  text-decoration: dotted;
+  font-size: 12px;
+
+  
 }
 
 a:hover {
-  color: #0a58ca;
+  color: #0088cc;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -8932,6 +8960,8 @@ caption {
 
 th {
   text-align: inherit;
+  font-size: 15px !important;
+  font-weight: bold !important;
   text-align: -webkit-match-parent;
 }
 
@@ -8946,8 +8976,11 @@ th {
   border-width: 0;
 }
 
+
 label {
   display: inline-block;
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 button {
@@ -8965,7 +8998,7 @@ optgroup,
 textarea {
   margin: 0;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 12px !important;
   line-height: inherit;
 }
 
@@ -10542,6 +10575,20 @@ progress {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+/* For webkit-based browsers (such as Chrome/Safari) */
+/* You can adjust the color values as needed */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dee2e6; /* Change scrollbar thumb color to red */
+  border-radius: 10px;
+}
 
 @media (max-width: 575.98px) {
   .table-responsive-sm {
@@ -10580,31 +10627,34 @@ progress {
 
 .form-label {
   margin-bottom: 0.5rem;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  
 }
 
 .col-form-label {
-  padding-top: calc(0.875rem + 1px);
-  padding-bottom: calc(0.875rem + 1px);
-  margin-bottom: 0;
-  font-size: inherit;
-  line-height: 1;
+  font-size: 12px !important;
+  font-weight: bold !important;
+
 }
 
 .col-form-label-lg {
   padding-top: calc(0.94rem + 1px);
   padding-bottom: calc(0.94rem + 1px);
-  font-size: 1.25rem;
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 .col-form-label-sm {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
-  font-size: 0.875rem;
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 .form-text {
   margin-top: 0.25rem;
-  font-size: 0.875em;
+  font-size: 12px !important;
   color: #6c757d;
 }
 
@@ -11543,14 +11593,15 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .btn-primary {
   color: #fff;
-  background-color: #1F3BB3;
-  border-color: #1F3BB3;
+  background-color: #0088cc !important;
+  border-color: #0088cc !important;
+  font-size:12px !important;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #1a3298;
-  border-color: #192f8f;
+  background-color: #006699 !important;
+  border-color:  #006699 !important ;
 }
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
@@ -22292,8 +22343,9 @@ code {
   color: #010101;
   margin-bottom: 1.2rem;
   text-transform: capitalize;
-  font-size: 1.125rem;
+  font-size: 25px;
   font-weight: 600;
+  font-weight: bold;
 }
 
 .card .card-title.card-title-dash {
@@ -23283,10 +23335,11 @@ select.border-dark.tt-hint:focus {
 }
 
 .form-group label {
-  font-size: 0.812rem;
+  font-size: 15px;
   line-height: 1.4rem;
   vertical-align: top;
   margin-bottom: .5rem;
+  font-weight: bold;
 }
 
 .form-group.has-danger .form-control, .form-group.has-danger .asColorPicker-input, .form-group.has-danger .dataTables_wrapper select, .dataTables_wrapper .form-group.has-danger select, .form-group.has-danger .select2-container--default .select2-selection--single, .select2-container--default .form-group.has-danger .select2-selection--single, .form-group.has-danger .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-group.has-danger .select2-search__field, .form-group.has-danger .typeahead,
@@ -24286,7 +24339,7 @@ dl li {
 
 .modal .modal-dialog .modal-content .modal-header .close span {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 900;
   color: #6a6a6a;
 }
 
@@ -25032,7 +25085,8 @@ dl li {
   border-top: 0;
   border-bottom-width: 1px;
   font-weight: 600;
-  font-size: .875rem;
+  font-size: 12px !important;
+  background-color: #E3E8F0;
 }
 
 .table thead th i {
@@ -25045,10 +25099,13 @@ dl li {
   line-height: 1;
   white-space: nowrap;
   padding: 1.125rem 1.375rem;
+  font-size: 12px !important;
+  
 }
 
 .table td {
-  font-size: 0.812rem;
+  font-size: 12px !important;
+  font-weight:400 !important; 
 }
 
 .table td img {
@@ -27257,7 +27314,8 @@ table.dataTable tbody td.select-checkbox:after {
 .icheck-flat label,
 .icheck-square label,
 .icheck-line label {
-  font-size: .8125rem;
+  font-size: 12px !important;
+  font-weight: bold !important;
   line-height: 1.5;
   margin-left: 5px;
   margin-bottom: 0;
@@ -28326,7 +28384,8 @@ div.tagsinput span.tag a {
 }
 
 .auth form .form-group label {
-  font-size: .8125rem;
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 .auth form .form-group .form-control, .auth form .form-group .asColorPicker-input, .auth form .form-group .dataTables_wrapper select, .dataTables_wrapper .auth form .form-group select, .auth form .form-group .select2-container--default .select2-selection--single, .select2-container--default .auth form .form-group .select2-selection--single, .auth form .form-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth form .form-group .select2-search__field, .auth form .form-group .typeahead,
@@ -28334,7 +28393,7 @@ div.tagsinput span.tag a {
 .auth form .form-group .tt-hint {
   background: transparent;
   border-radius: 0;
-  font-size: .9375rem;
+  font-size: 12px !important;
 }
 
 .auth form .auth-form-btn {
@@ -28414,6 +28473,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav {
+  
   overflow: hidden;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -28421,6 +28481,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav .nav-item {
+  
   -webkit-transition-duration: 0.25s;
   -moz-transition-duration: 0.25s;
   -o-transition-duration: 0.25s;
@@ -29196,7 +29257,7 @@ div.tagsinput span.tag a {
   font-weight: normal;
   font-size: 28px;
   line-height: 38px;
-  color: #8D8D8D;
+  color: #484848;
   margin-bottom: 10px;
 }
 
@@ -30773,3 +30834,187 @@ div.tagsinput span.tag a {
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+
+
+
+
+
+
+/* buy number */
+
+.form-section {
+  background-color: #ffffff; /* White background color */
+  padding: 20px;
+  border-radius: 5px;
+  }
+  .or-divider {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  }
+  .or-divider:before,
+  .or-divider:after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dee2e6;
+  }
+  .or-divider:before {
+  margin-right: .25em;
+  }
+  .or-divider:after {
+  margin-left: .25em;
+  }
+  
+/* Chnage call forwarding */
+/* 
+.fontaw{
+  font-size: 25px;
+}
+.icon-button_f{
+  background-color:white;
+  height: 30px;
+  width: 80px;
+}
+.i-tt{
+  font-size: 15px;
+  margin-top: 3px;
+}
+
+ */
+
+/* call forwarding manager */
+.icon-link {
+  display: inline-block;
+  margin: 0 5px; /* Adjust the margin as needed */
+  width: 24px; /* Set the desired width */
+  height: 24px; /* Set the desired height */
+  }
+  
+  .icon-link img {
+  width: 100%;
+  height: 100%;
+  }
+  
+  
+  .panel {
+  margin-bottom: 30px;
+  padding: 20px;
+  }
+  
+  .form-horizontal .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  }
+  
+  @media (max-width: 768px) {
+  .form-horizontal .form-group {
+  flex-direction: column;
+  align-items: stretch;
+  }
+  }
+  
+  .panel {
+  box-shadow: none;
+  border: none;
+  }
+  
+  button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  button:hover {
+  background-color: #0056b3;
+  }
+
+  /* number in my account */
+  .ticket-container {
+    max-width: 1200px;
+    margin: auto;
+    
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    }
+    
+    .archive-btn {
+    text-align: right;
+    }
+    /* Add a blue link style */
+    .blue-link {
+      color: #007bff; /* Blue color */
+      text-decoration: underline; /* Underline the text */
+      cursor: pointer; /* Change cursor to a hand pointer on hover (optional) */
+    }
+    
+    /* Change link color on hover (optional) */
+    .blue-link:hover {
+      color: #0056b3; /* Darker blue on hover */
+    }
+    .div-line {
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+
+  /* pkg_plan */
+
+  .ticket-container {
+    max-width: 1200px;
+    margin: auto;
+    
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    }
+    
+    .archive-btn {
+    text-align: right;
+    }
+    /* Add a blue link style */
+    .blue-link {
+      color: #007bff; /* Blue color */
+      text-decoration: underline; /* Underline the text */
+      cursor: pointer; /* Change cursor to a hand pointer on hover (optional) */
+    }
+    
+    /* Change link color on hover (optional) */
+    .blue-link:hover {
+      color: #0056b3; /* Darker blue on hover */
+    }
+    .div-line {
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    
+    /* call logs */
+    .inline-flex {
+      display: inline-flex;
+    }
+    .btn-1{
+      height:30px;
+      margin-top:1px;
+      width: 38px;
+      margin-left:2px;
+    }
+    .form-control:focus, .form-select:focus  {
+    box-shadow: none !important;
+    border-color: #ced4da;
+    /* outline: 1px solid #0ea5f0 !important;  */
+    border-radius: 10px !important;
+    /* Or your preferred color */
+  }
+  .form-control, .form-select {
+    box-shadow: none !important;
+    border-color: #ced4da;
+    /* outline: 1px solid #0ea5f0 !important;  */
+    border-radius: 5px !important;
+    /* Or your preferred color */
+  }
+  .radio-m{
+      margin-top: -5px !important;
+  }
+  

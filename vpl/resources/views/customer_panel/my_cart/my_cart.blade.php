@@ -1,6 +1,6 @@
 @extends('layout')
-
-@section('content')
+@section('my_cart')
+@section('title', 'My Cart')
 <style>
  .table thead th
  {
@@ -13,10 +13,10 @@
 <br>
 <br>
 <br>
-<div class="container-fluid shadow rounded p-5 ">
+<div class="container shadow rounded p-5 ">
 <h2 style="font-weight:500;">My Cart</h2>
     <hr>
-    <table class="table">
+    <table class="table table-responsive">
   <thead style="color:black;background-color:#F8F8F8;" class="text-capitalize">
     <tr>
       <th scope="col">Phone No </th>

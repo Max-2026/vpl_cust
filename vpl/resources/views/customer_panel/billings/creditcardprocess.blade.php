@@ -1,11 +1,6 @@
 @extends('layout')
- 
-
-
-
-
-
-@section('content')
+@section('creditcardprocess')
+@section('title', 'Credit Card Process')
 <br>
 
 <br>    

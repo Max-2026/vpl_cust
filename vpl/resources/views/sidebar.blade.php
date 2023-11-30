@@ -51,8 +51,6 @@
           <li class="nav-item"> <a class="nav-link" href="{{ route('advance_feature.callrecording')}}">Call Recording</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('advance_feature.ivrmanager')}}">IVR Manager</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('advance_feature.virtualpbx')}}">Virtual PBX</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('advance_feature.smsinbox')}}">SMS Inbox</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('advance_feature.sendsms')}}">Send SMS</a></li>
         </ul>
       </div>
     </li>
@@ -68,7 +66,6 @@
       <div class="collapse" id="ui-basic4">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.accountstatment')}}">Account Statements</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Profile.creditcardinfo')}}">Change Credit Card Information</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.addtalktime')}}">Add Talk Time</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.addfunds')}}">Add Funds</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('Billings.mastertalktime')}}">Master Talk Time Usage</a></li>
@@ -98,27 +95,29 @@
 
 
 
-    
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('sendsms.sendsms')}}">
+        <i class="menu-icon mdi mdi-message"></i>
+        <span class="menu-title">Send SMS</span>
+      </a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('smsinbox.smsinbox')}}">
+        <i class="menu-icon mdi mdi-inbox"></i>
+        <span class="menu-title">Inbox</span>
+      </a>
+    </li>
 
 
 
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
-        <i class="menu-icon mdi mdi-inbox"></i>
-        <span class="menu-title">Inbox</span>
-        <i class="menu-arrow"></i> 
+      <a class="nav-link" href="{{ route('reportproblem.reportproblem')}}">
+        <i class="menu-icon fas fa-exclamation-circle"></i>
+        <span class="menu-title">Report A Problem</span>
       </a>
-      <div class="collapse" id="ui-basic5">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.msginbox')}}">Message Inbox</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.announcemnets')}}">Announcements</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.reportproblem')}}">Report A Problem</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('Inbox.makewish')}}">Make A Wish</a></li>
-        </ul>
-      </div>
     </li>
-
-
 
     <li class="nav-item">
       <a class="nav-link" href="{{ route('cart.mycart')}}">
@@ -139,7 +138,7 @@
     
     <li class="nav-item nav-category">Golden Number</li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{{ route('Buy_Number.goldennumber')}}">
         <i class="menu-icon mdi mdi-star"></i>
         <span class="menu-title">Golden Number Available</span>
       </a>
@@ -153,7 +152,7 @@
     
     <li class="nav-item nav-category">Numbers In My Account:</li>
     <li class="nav-item">
-      <a class="nav-link" href="{{route ('numbers_in_my_account.numbers_in_my_account')}}">
+      <a class="nav-link" href="{{route ('numbersinmyaccount.numbersinmyaccount')}}">
         <i class="menu-icon mdi mdi-check-circle"></i>
         <span class="menu-title">88592753892</span>
       </a>

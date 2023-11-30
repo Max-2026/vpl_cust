@@ -5,10 +5,13 @@ use App\Http\Controllers\Mynumbers;
 use App\Http\Controllers\Advancefeatures;
 use App\Http\Controllers\Billings;
 use App\Http\Controllers\Profile;
-use App\Http\Controllers\Inbox;
+use App\Http\Controllers\Reportproblem;
 use App\Http\Controllers\Mycart;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Numbersinmyaccount;
+use App\Http\Controllers\Sendsms;
+use App\Http\Controllers\Smsinbox;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -40,7 +43,7 @@ Route::group(['as' => 'my_number.'], function () {
     Route::get('/callforwarding', [Mynumbers::class, 'changeforwarding'])->name('changeforwarding');
     Route::get('/numbermyaccount', [Mynumbers::class, 'number_in_my_account'])->name('number_in_my_account');
     Route::get('/calllog', [Mynumbers::class, 'call_log'])->name('call_log');
-    Route::get('/pakage_plan', [Mynumbers::class, 'pakage_plan'])->name('pakage_plan');
+    Route::get('/packageplan', [Mynumbers::class, 'pakage_plan'])->name('packageplan');
     Route::get('/palndetail', [Mynumbers::class, 'palndetail'])->name('palndetail');
 
     
@@ -74,20 +77,26 @@ Route::group(['as' => 'Profile.'], function () {
     Route::get('/contactinfo', [Profile::class, 'contactinfo'])->name('contactinfo');
     Route::get('/creditinfo', [Profile::class, 'creditcardinfo'])->name('creditcardinfo');
     Route::get('/smssetting', [Profile::class, 'smssetting'])->name('smssetting');
-    Route::get('/generalseeting', [Profile::class, 'generalsetting'])->name('generalsetting');
+    Route::get('/generalsetting', [Profile::class, 'generalsetting'])->name('generalsetting');
     Route::get('/verifiednumber', [Profile::class, 'verified_number'])->name('verified_number');
 });
 
 
-Route::group(['as' => 'Inbox.'], function () {
-Route::get('/announcemnets', [Inbox::class, 'announcemnets'])->name('announcemnets');
-Route::get('/reportproblem', [Inbox::class, 'reportproblem'])->name('reportproblem');
-Route::get('/archive', [Inbox::class, 'archive'])->name('archive');
-Route::get('/makewish', [Inbox::class, 'makewish'])->name('makewish');
-Route::get('/msginbox', [Inbox::class, 'msginbox'])->name('msginbox');
-Route::get('/inboxdetails', [Inbox::class, 'inboxdetails'])->name('inboxdetails');
 
-});
+Route::group(['as' => 'reportproblem.'], function () {
+    Route::get('/reportproblem', [Reportproblem::class, 'reportproblem'])->name('reportproblem');
+    });
+    
+
+Route::group(['as' => 'sendsms.'], function () {
+Route::get('/sendsms', [Sendsms::class, 'sendsms'])->name('sendsms');
+}); 
+
+
+Route::group(['as' => 'smsinbox.'], function () {
+    Route::get('/inbox', [Smsinbox::class, 'smsinbox'])->name('smsinbox');
+    });   
+
 
 
 Route::group(['as' => 'cart.'], function () {
@@ -95,10 +104,13 @@ Route::get('/mycart', [Mycart::class, 'mycart'])->name('mycart');
 });
 
 
-Route::group(['as' => 'numbers_in_my_account.'], function () {
-    Route::get('/numbers_in_my_account', [Numbersinmyaccount::class, 'numberacnt'])->name('numbers_in_my_account');
-    Route::get('/call_forwading_manager', [Numbersinmyaccount::class, 'call_forwading_manager'])->name('call_forwading_manager');
-    Route::get('/monthly_recurring_charges', [Numbersinmyaccount::class, 'monthly_recurring_charges'])->name('monthly_recurring_charges');
+
+
+
+Route::group(['as' => 'numbersinmyaccount.'], function () {
+    Route::get('/numbersinmyaccount', [Numbersinmyaccount::class, 'numberacnt'])->name('numbersinmyaccount');
+    Route::get('/callforwadingmanager', [Numbersinmyaccount::class, 'call_forwading_manager'])->name('callforwadingmanager');
+    Route::get('/monthlyrecurringcharges', [Numbersinmyaccount::class, 'monthly_recurring_charges'])->name('monthlyrecurringcharges');
     
 });
     

@@ -1,5 +1,6 @@
 @extends('layout')
-@section('content')
+@section('voicemailsetting')
+@section('title', 'Voice Mail Setting')
 <br>
 <br>
 

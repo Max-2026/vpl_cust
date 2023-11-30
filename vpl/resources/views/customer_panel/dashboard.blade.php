@@ -1,30 +1,6 @@
 @extends('layout')
-
-
-
-@section('content')
-
-
-
-<style>
-    .dash_btn
-    {
-        color:#0088cc;
-        text-decoration:none;
-
-    }
-
-
-    .dash_btn:hover
-    {
-        color:#0088cc;
-        text-decoration:underline;
-    }
-
-    
-
-</style>
-
+@section('dashboard')
+@section('title', 'Dashboard')
 <br>
 <br>
 <div class="container-fluid">
@@ -34,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title">Amount Overpaid</h5>
           <p class="card-text">
-            <span class="h2">$144.33</span>
+            <span class="h3">$144.33</span>
             <hr>
           </p>
           <a class="dash_btn" href="{{ route('Billings.addfunds')}}">ADD FUNDS</a>
@@ -49,10 +25,10 @@
         <div class="card-body">
           <h5 class="card-title">Master Talk Time</h5>
           <p class="card-text">
-            <span class="h2">9.79</span>
+            <span class="h3">$9.79</span>
             <hr>
           </p>
-          <a href="{{ route('Billings.mastertalktime')}}" class="dash_btn">ADD TALK TIME</a>
+          <a href="{{ route('Billings.addtalktime')}}" class="dash_btn">ADD TALK TIME</a>
         </div>
       </div>
                         </div>
@@ -68,10 +44,10 @@
                         <div class="card-body">
                         <h5 class="card-title">Individual Talk Time</h5>
                         <p class="card-text">
-                            <span class="h2">9.56</span>
+                            <span class="h3">$9.56</span>
                             <hr>
                         </p>
-                        <a href="{{ route('Billings.mastertalktime')}}" class="dash_btn">ADD TALK TIME</a>
+                        <a href="{{ route('Billings.addtalktime')}}" class="dash_btn">ADD TALK TIME</a>
                         </div>
                     </div>
                     </div>
@@ -82,7 +58,7 @@
         <div class="card-body">
           <h5 class="card-title">Voice Mail</h5>
           <p class="card-text">
-            <span class="h2">187.33</span>
+            <span class="h3">$187.33</span>
             <hr>  
         </p>
           <a href="{{ route('advance_feature.voicemessages')}}" class="dash_btn">GO TO VOICE MAILS</a>

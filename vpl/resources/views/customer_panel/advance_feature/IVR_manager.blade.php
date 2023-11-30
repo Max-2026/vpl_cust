@@ -1,8 +1,7 @@
 @extends('layout')
+@section('IVR_manager')
+@section('title', 'IVR Manager')
 
-
-
-@section('content')
 
 
 <style>
@@ -32,7 +31,7 @@
 <br>
 <br>
 <br>
-<div class="container-fluid p-2">
+<div class="container">
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Main Menu</button>
@@ -57,7 +56,7 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Sub Menu 1</th>
+      <td scope="row">Sub Menu 1</td>
       <td>
       <select class="custom-select">
           <option selected>Select Menu</option>
@@ -71,7 +70,7 @@
     </tr>
     
     <tr>
-      <th scope="row">Sub Menu 2</th>
+      <td scope="row">Sub Menu 2</td>
       <td>
       <select class="custom-select">
           <option selected>Select Menu</option>
@@ -122,7 +121,7 @@ You will be able to define sub menus by only clicking the options.</p>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+      <td scope="row">1</td>
       <td>1000232</td>
       <td>lorem</td>
       <td>24-Nov-2023</td>

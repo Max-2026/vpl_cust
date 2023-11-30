@@ -1,59 +1,20 @@
 @extends('layout')
-
-@section('content')
+@section('buy_number')
+@section('title', 'Buy Number')
 <br>
 <br>
-<style>
-
-
-.form-section {
-background-color: #ffffff; /* White background color */
-padding: 20px;
-border-radius: 5px;
-}
-.or-divider {
-margin-top: 15px;
-margin-bottom: 15px;
-}
-.or-divider:before,
-.or-divider:after {
-content: "";
-flex: 1;
-border-bottom: 1px solid #dee2e6;
-}
-.or-divider:before {
-margin-right: .25em;
-}
-.or-divider:after {
-margin-left: .25em;
-}
-.video-link {
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-</style>
-</head>
-<body>
-
 <div class="container">
 <div class="row justify-content-center align-items-center">
-<!-- Video button now taking less space -->
-<!-- <div class="col-md-auto mb-2 mb-md-0">
-<button class="btn btn-primary btn-circle btn-lg">
-<i class="fa fa-play" aria-hidden="true"  class=""></i>
-</button>
-</div> -->
 <div class="container-fluid">
     <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
-            <div class="card ">
+            <div class="card rounded">
                 <div class="card-body mt-2 mb-1 mx-auto">
                     <div class="media mr-5">
                         <img src="images/play.png" class="mr-5" alt="Image 1" height="100px">
                         <div class="media-body mt-3">
-                            <p class="mt-0">Watch Video Tutorial</p>
-                            <h4><a class="a_tag" href="#">How to Buy a Number?</a></h4>
+                            <h3 class="mt-0">Watch Video Tutorial</h3>
+                            <h3 class="text-center"><a class="a_tag " href="#">How to Buy a Number?</a></h3>
                         </div>
                     </div>
                 </div>
@@ -61,16 +22,6 @@ align-items: center;
         </div>
     </div>
     </div>
-
-<!-- Title and link now taking less space and closer to the video button -->
-<!-- <div class="col-md-auto text-center">
-<h2>How to Buy a Number?</h2>
-<a href="#" class="d-block">Watch Video Tutorial</a>
-</div>
-</div> -->
-
-
-
 
 <div class="row">
 <div class="col-md-8 col-lg-6 mx-auto">
@@ -85,13 +36,13 @@ align-items: center;
 <div></div>
 </div>
 <div class="form-group">
-<select class="form-control">
+<select class="form-select">
 <option selected>Select Country</option>
 <!-- Add country options here -->
 </select>
 </div>
 <div class="text-center">
-<button type="submit" class="btn btn-primary" style = "background-color:#0088cc;color:white">Search</button>
+<button type="submit" class="btn btn-primary">Search</button>
 </div>
 
 </form>
@@ -100,11 +51,9 @@ align-items: center;
 </div>
 </div>
 </div>
-<div class="container-fluid">
+<div class="container pt-3">
 <div class="row">
 <div class="col-md-12">
-<div class="card">
-<div class="card-body">
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -116,15 +65,13 @@ align-items: center;
 </tr>
 </thead>
 <tbody>
-<td>43-1</td>
-<td>Vienna (Wien)</td>
-<td>43-67</td>
-<td>Mobile</td>
+<td><a href="">43-1</a></td>
+<td> <a href="">Vienna (Wien)</a></td>
+<td><a href="">43-67</a></td>
+<td><a href="">Mobile</a></td>
 </tbody>
 </table>
 </div>
-</div>
-</div>
 
 </div>
 
@@ -132,11 +79,9 @@ align-items: center;
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container">
 <div class="row">
 <div class="col-md-12">
-<div class="card">
-<div class="card-body">
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -162,24 +107,28 @@ align-items: center;
 <td>$7.99</td>
 <td>$0.02</td>
 <td><a href="">$7.99</a></td>
-<td><a href="YOUR_LINK_URL">$95.88</a></td>
+<td><a href="#">$95.88</a></td>
+<tr>
+    <td colspan="12" class="text-center">
+      <div class="d-flex justify-content-right align-items-center">
+        <input name="mm"type="radio"> &nbsp;&nbsp;Monthly
+        <input  name="mm" class="ml-2" type="radio"> &nbsp;&nbsp;Annually
+        <button class="btn btn-primary ml-4">Add Selected to Shopping Cart</button>
+      </div>
+    </td>
+  </tr>
 <tr style="bgcolor:;">
-          <td class="simple" style="align:left;" colspan="9">* Per Minute Receiving Charges After Free Minutes</td>
-         
-          <td class="simple" align="right">&nbsp;</td>
+          <td class="simple" style="align:left;" colspan="12">* Per Minute Receiving Charges After Free Minutes</td>
         </tr>
         <tr style="bgcolor:;">
-          <td class="simple" style="align:left;" colspan="9">** please provide us with proof of worldwide address along with Photo ID (cannot be purchased in batch)</td>
-         
-          <td class="simple" align="right">&nbsp;</td>
+          <td class="simple" style="align:left;" colspan="12">** (cannot be purchased in batch)</td>
         </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</div>
-</div>
+
 
 </div>
 

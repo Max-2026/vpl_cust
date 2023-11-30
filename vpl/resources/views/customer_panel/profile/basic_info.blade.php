@@ -1,38 +1,6 @@
 @extends('layout')
 @section('basic_info')
-
-
-<style>
-    /* body{
-      background-color: rgba(245, 245, 245, 0.63);
-    } */
-    .a_tag{
-
-      text-decoration: none;
-    }
-    .equal-width {
-        width: 100%;
-    }
-    
-.btn{
-    font-size: x-small;
-    
-    background-color:#0088cc;color:white
-}
-.text-center
-{
-    font-size:30px;
-}
-.table > tbody > tr > td {
-  padding: 2px; /* Adjust the padding to suit your needs */
-}
-.form-group.row {
-    margin-bottom: -20px; /* You can adjust this value as needed */
-  }
-
-
-</style>
-
+@section('title', 'Basic Info')
 <br>
 <br>
 <div class="container mt-0"> <!-- Reduce top margin for the container -->
@@ -40,20 +8,20 @@
   <div class="row">
     <div class="col-md-11 mx-auto">
       <div class="card rounded">
-        <div class="card-header text-center bg-white">
-          Basic Information
+        <div class="card-header text-center bg-white mt-2">
+         <h3>Basic Information</h3> 
         </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
          <form>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding text-end class -->
             <label for="id" class="col-sm-3 col-form-label text-left">Id</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="id" value="1005729" readonly>
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="firstName" class="col-sm-3  col-form-label text-left">First Name</label>
             <div class="col-sm-9">
@@ -61,14 +29,14 @@
             </div>
           </div>
           
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="lastName" class="col-sm-3 col-form-label text-left">Last Name</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Raza">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="email" class="col-sm-3 col-form-label text-left">Email</label>
             <div class="col-sm-9">
@@ -76,28 +44,28 @@
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="company" class="col-sm-3 col-form-label text-left">Company</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="----">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="password" class="col-sm-3 col-form-label text-left">Password</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
-          <div class="form-group row">
+          <div class="form-group row mb-0">
             <label for="language" class="col-sm-3 col-form-label text-left">Language</label>
             <div class="col-sm-9">
               <input class="form-control col-md-8 mx-auto" type="text" id="language" value="English">
             </div>
           </div>
-          <div class="text-center">
-            <input class="btn mt-2" type="submit" value="UPDATE">
+          <div class="text-center mb-0">
+            <input class="btn btn-primary mt-2" type="submit" value="UPDATE">
           </div>
           </form>
           </div>

@@ -1,15 +1,11 @@
 @extends('layout')
- 
+@section('addtalktime')
+@section('title', 'Add TalkTime')
 
-
-
-
-
-@section('content')
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container">
 <div class="row m-4">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -17,8 +13,8 @@
                     <div class="media mr-5">
                         <img src="images/play.png" class="mr-5" alt="Image 1" height="100px">
                         <div class="media-body mt-3">
-                            <p class="mt-0 text-muted">Watch Video Tutorial</p>
-                            <h4><a href="#">How to Add Talk Time?</a></h4>
+                        <h3 class="mt-0">Watch Video Tutorial</h3>
+                            <h3 class="text-center"><a class="a_tag " href="#">How to Add Talk Time?</a></h3>
                         </div>
                     </div>
                 </div>
@@ -28,14 +24,14 @@
 </div> 
 
 
-<div class="container-fluid">
+<div class="container">
     <div class="row m-5">
     <div class="card rounded">
 
         <div class="col-md-8 offset-md-2">
             <form>
                 <div class="form-group row mb-0">
-                    <label for="orderID" class="col-sm-4 col-form-label text-right">Order ID</label>
+                    <label for="orderID" class="col-sm-4 col-form-label text-right mt-2">Order ID</label>
                     <div class="col-sm-8">
                         <p class="pt-3">1005729</p>
                     </div>
@@ -43,13 +39,13 @@
                 <div class="form-group row mb-0">
                     <label for="balance" class="col-sm-4 col-form-label text-right">Available Balance</label>
                     <div class="col-sm-8">
-                        <p class="pt-3">138.34</p>
+                        <p class="pt-2">138.34</p>
                     </div>
                 </div>
                 <div class="form-group row mb-0">
                     <label for="talkTimeType" class="col-sm-4 col-form-label text-right">Talk Time Type</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="talkTimeType">
+                        <select class="form-select" id="talkTimeType">
                             <option>TalkTime Individual Number</option>
                             <!-- Add more options here if needed -->
                         </select>
@@ -58,7 +54,7 @@
                 <div class="form-group row mb-0">
                     <label for="talkTimeType" class="col-sm-4 col-form-label text-right">Virtal Phone Number</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="talkTimeType">
+                        <select class="form-select" id="talkTimeType">
                             <option>12025521527</option>
                             <!-- Add more options here if needed -->
                         </select>
