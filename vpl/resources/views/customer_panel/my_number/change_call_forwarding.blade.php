@@ -1,51 +1,10 @@
 @extends('layout')
 @section('change_call_forwarding')
-@section('title', 'Call Forwarding')
-<style>
- 
-.a_tag{
 
-      text-decoration: none;
-}
-
-    
-.btn{
-    background-color:#0088cc;color:white;
-}
-.i_b{
-    height: 70px !important;
-    width: 80px !important;
-    font-size: 10px !important;
-    width:50px !important;
-}
-.fas{
-    font-size: 25px !important;
-}
-.icon-button {
-
-    background-color: white !important;
-    height: 30px !important;
-    width: 90px !important;
-   
-}
-
-.i-t{
-    font-size: 15px !important;
-    margin: 3px !important;
-    color:black !important;
-    
-}
-
-.form-outline {
-            outline: 1px solid black; /* Change the color and width as needed */
-            padding: 10px; /* Optional: Add padding for visual clarity */
-        }
-
-</style>
 
 <br>
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -55,14 +14,13 @@
                         <div class="media-body mt-3">
                             <p class="mt-0">.'. If user does not have any number in his/her account.</p>
                             <p class="mt-3 ml-5"><b>You have not purchased any numbers yet.</b></p>
-                            <h6 class="mt-3 ml-5"><a class="a_tag " href="{{ route('Buy_Number.buynumber') }}">Click here to Buy Phone Numbers.</a></h6>
+                            <h6 class="mt-3 ml-5"><a class="a_tag " href="#">Click here to Buy Phone Numbers.</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -76,16 +34,15 @@
                             <hr class="border-light">
                             <p class="mt-0 ">Change forwarding to:</p>
 
-                            <div class="form-inline ml-3 form-outline">
-                            <p> <button id="showForm1" class="icon-button"><span class="i-t">PH</span></button></p>
-                            <p> <button id="showForm2" class="icon-button"><span class="i-t">SIP</span></button></p>
-                            <p> <button id="showForm3" class="icon-button"><span class="i-t">IAX</span></button></p>
-                            <p> <button id="showForm4" class="icon-button"><span class="i-t">IVR</span></button></p>
-                            <p> <button id="showForm5" class="icon-button"><span class="i-t">FAX</span></button></p>
-                            <p> <button id="showForm6" class="icon-button"><span class="i-t">PBX</span></button></p>
-                            <p> <button id="showForm6" class="icon-button"><span class="i-t">PBX</span></button></p>
+                            <div class="form-inline ml-3 icon_div">
+                           <p><button id="showForm1" class="icon-button"><i class="fas fa-phone-square-alt fa-icon"></i></button></p>
+                           <p><button id="showForm2" class="icon-button"><span class="i-tt">SIP</span></button></p>
+                           <p><button id="showForm3" class="icon-button"><span class="i-tt">IAX</span></button></p>
+                           <p><button id="showForm4" class="icon-button"><span class="i-tt">IVR</span></button></p>
+                           <p> <button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i> FAX</span></button></p>
+                           <p><button id="showForm6" class="icon-button"><span class="i-tt">PBX</span></button></p>
+                           <p><button id="showForm7" class="icon-button"><i class="fas fa-envelope fa-icon"></i></button></p>
                             </div>
-
                             <hr class="border-light">
                             <p class="mt-0 "><b> Change forwarding to:</p>
                             <form action="" id="form1">
@@ -111,7 +68,7 @@
                                 <p><a class="a_tag ml-2" href="#">Tip</a></p>
                             </div>
                             <div class="text-end mt-3">
-                            <a class="btn  ml-3" href="">Submit</a>
+                            <a class="btn btn-primary  ml-3" href="">Submit</a>
                             </div>
                             </form>
                             <form action="" id="form2" style="display: none;">
@@ -119,7 +76,7 @@
                                     <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                         <div class=" d-flex justify-content-between mt-3 ">
                                             <div class="col-6">
-                                            <p class="card-text ml-4"><button>Sip</button><span class="ml-2">Sip</span></p>
+                                            <p class="card-text ml-4 form-inline"><button id="showForm2" class="icon-button"><span class="i-tt ">SIP</span></button></p>
                                             </div>
                                             <div class="col-6 form-inline">
                                             <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
@@ -134,7 +91,7 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4"><button>IAX</button><span class="ml-2">IAX</span></p>
+                                                <p class="card-text ml-4 form-inline"><button id="showForm3" class="icon-button"><span class="i-tt">IAX</span></button></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
                                                 <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
@@ -149,7 +106,7 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=287"><span class="ml-2">IAX</span></p>
+                                                <p class="card-text ml-4 form-inline"><p class="card-text ml-4"><button id="showForm3" class="icon-button"><span class="i-tt">IVR</span></button></p></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
                                                 <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
@@ -164,7 +121,7 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=286"><span class="ml-2">IAX</span></p>
+                                                <p class="card-text ml-4 form-inline"><button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i> FAX</span></button></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
                                                 <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
@@ -179,7 +136,7 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=279"><span class="ml-2">IAX</span></p>
+                                                <p class="card-text ml-4 form-inline"><button id="showForm6" class="icon-button"><span class="i-tt">PBX</span></button><span class="ml-2">Virtual PBX</span></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
                                                 <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
@@ -194,10 +151,10 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4"><img src="http://virtualphoneline.com/admins/image.php?id=266"><span class="ml-2">IAX</span></p>
+                                                <p class="card-text ml-4 form-inline"><button id="showForm7" class="icon-button"><i class="fas fa-envelope fa-icon"></i></button><span class="ml-2">Voicemail Management</span></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
-                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>
+                                                <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2 " type="submit" value="Submit"></p>
                                                 </div>
                                             </div>
                                         </div>

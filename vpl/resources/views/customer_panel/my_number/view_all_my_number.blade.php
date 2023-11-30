@@ -38,7 +38,7 @@
                                 <th>Talk Time Balance</th>
                                 <th>Calling Plan</th>
                                 <th>Number Status</th>
-                                <th>Action</th>
+                                <th>Paid Till Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +54,7 @@
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="{{ route('my_number.packageplan') }}">Switch To Plan</a></td>
-                                <td>Active Permanent</td>
+                                <td>08-Nov-2020</td>
                             </tr>
                             <tr>
                                 <td>1</td>

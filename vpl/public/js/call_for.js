@@ -80,3 +80,96 @@
             $("#form7").show();
         });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function() {
+        // Existing code for showing/hiding forms 1, 2, and 3
+        $("#showForm8").click(function(e) {
+            e.preventDefault();
+            $("#form8").show();
+            $("#form9").hide();
+            $("#form10").hide();
+            $("#form11").hide(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        $("#showForm9").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").show();
+            $("#form10").hide();
+            $("#form11").hide(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        $("#showForm10").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").hide();
+            $("#form10").show();
+            $("#form11").hide(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        // New code for showing/hiding forms 4, 5, 6, and 7
+        $("#showForm11").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").hide();
+            $("#form10").hide();
+            $("#form11").show(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        $("#showForm12").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").hide();
+            $("#form10").hide();
+            $("#form11").hide(); // Hide form4
+            $("#form12").show(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        $("#showForm13").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").hide();
+            $("#form10").hide();
+            $("#form11").hide(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").show(); // Hide form6
+            $("#form14").hide(); // Hide form7
+        });
+
+        $("#showForm14").click(function(e) {
+            e.preventDefault();
+            $("#form8").hide();
+            $("#form9").hide();
+            $("#form10").hide();
+            $("#form11").hide(); // Hide form4
+            $("#form12").hide(); // Hide form5
+            $("#form13").hide(); // Hide form6
+            $("#form14").show(); // Hide form7
+        });
+    });

@@ -19676,8 +19676,7 @@ code {
 
 /* Footer */
 .footer {
-  background: #F4F5F7;
-  color: color(dark);
+  color: #484848;
   padding: 30px 2.45rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
@@ -19685,9 +19684,7 @@ code {
   -ms-transition: all 0.25s ease;
   font-size: calc(0.812rem - 0.05rem);
   font-family: "Manrope", sans-serif;
-  font-weight: 400;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  margin-top: 30%;
+  margin-top: 5%;
   display: flex;
   justify-content: center; /* Horizontally centers flex items */
   align-items: center; /* Vertically centers flex items */
@@ -30865,21 +30862,43 @@ div.tagsinput span.tag a {
   }
   
 /* Chnage call forwarding */
-/* 
-.fontaw{
-  font-size: 25px;
+.icon_div{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  /* height: 100vh; */
+  margin: 0;
 }
-.icon-button_f{
-  background-color:white;
+.icon-button {
   height: 30px;
-  width: 80px;
+  width: 100px;
+  border: 2px solid black; /* Outline ki color aur width ko yahaan set karein */
+  background-color: white;
+  color: white;
+  font-size: 16px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-button:hover
+{
+background-color:white !important;
+}
+
+.fa-icon {
+  color:black;
+  font-size: 20px;
+  margin-right: 5px;
 }
 .i-tt{
+  color:black;
   font-size: 15px;
   margin-top: 3px;
 }
 
- */
+
 
 /* call forwarding manager */
 .icon-link {

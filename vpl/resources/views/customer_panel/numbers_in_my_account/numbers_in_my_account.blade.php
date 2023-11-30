@@ -1,6 +1,6 @@
 @extends('layout')
 @section('numbers_in_my_account')
-@section('title', 'Numbers In My Account')
+@section('title', 'This Page give you information about your Number')
 
 <div class="container ticket-container mt-5 table">
 <br>
