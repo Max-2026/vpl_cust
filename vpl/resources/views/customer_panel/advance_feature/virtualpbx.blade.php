@@ -4,21 +4,7 @@
 
 <br>
 <br>
-<br>
-<style>
-    .btn-outline-info
-    {
-        border: 1px solid #0088cc;
-    color:#0088cc;
-    }
 
-    .btn-outline-info:hover
-    {
-        border: 1px solid #0088cc;
-    color:white;
-    background:#0088cc;
-    }
-</style>
 
 <div class="container shadow rounded p-5">
  

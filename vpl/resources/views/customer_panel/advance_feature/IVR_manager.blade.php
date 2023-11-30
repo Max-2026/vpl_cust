@@ -98,14 +98,9 @@ You will be able to define sub menus by only clicking the options.</p>
 
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
   <div class="input-group mb-3">
-  <div class="input-group-prepend">
-  <span class="input-group-text" style="background-color:#0088cc;color:white;">Upload</span>
-</div>
-<div class="custom-file">
-  <input type="file" class="custom-file-input" id="inputGroupFile01" accept="audio/mpeg, audio/wav">
-  <label class="custom-file-label w-50" for="inputGroupFile01">Voice Files</label>
-</div>
-
+  <div class="form-group">
+    <input  type="file" class="form-control-file" id="exampleFormControlFile1" accept="audio/*">
+  </div>
 </div>
 <br>
 
