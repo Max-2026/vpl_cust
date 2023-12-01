@@ -28461,7 +28461,7 @@ div.tagsinput span.tag a {
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   padding: 0;
-  width: 250px;
+  width: 270px;
   z-index: 11;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
@@ -28507,7 +28507,6 @@ div.tagsinput span.tag a {
   -webkit-transition-property: color;
   font-weight: 400;
 }
-
 @media (max-width: 991px) {
   .sidebar .nav .nav-item .nav-link {
     border-radius: 0;

@@ -1,10 +1,11 @@
 @extends('layout')
 @section('change_call_forwarding')
+@section('title', 'Call Forwarding')
 
 
 <br>
 <br>
-<div class="container-fluid">
+<div class="container">
     <div class="row m-3">
         <div class="col-md-12 mt-0 mx-auto equal-width">
             <div class="card rounded">
@@ -14,7 +15,7 @@
                         <div class="media-body mt-3">
                             <p class="mt-0">.'. If user does not have any number in his/her account.</p>
                             <p class="mt-3 ml-5"><b>You have not purchased any numbers yet.</b></p>
-                            <h6 class="mt-3 ml-5"><a class="a_tag " href="#">Click here to Buy Phone Numbers.</a></h6>
+                            <h6 class="mt-3 ml-5"><a class="a_tag " href="{{ route('Buy_Number.buynumber') }}">Click here to Buy Phone Numbers.</a></h6>
                         </div>
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                            <p><button id="showForm2" class="icon-button"><span class="i-tt">SIP</span></button></p>
                            <p><button id="showForm3" class="icon-button"><span class="i-tt">IAX</span></button></p>
                            <p><button id="showForm4" class="icon-button"><span class="i-tt">IVR</span></button></p>
-                           <p> <button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i> FAX</span></button></p>
+                           <p> <button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i></span></button></p>
                            <p><button id="showForm6" class="icon-button"><span class="i-tt">PBX</span></button></p>
                            <p><button id="showForm7" class="icon-button"><i class="fas fa-envelope fa-icon"></i></button></p>
                             </div>
@@ -121,7 +122,7 @@
                                         <div class="row"> <!-- h-auto class added for automatic height adjustment -->
                                             <div class=" d-flex justify-content-between mt-3 ">
                                                 <div class="col-6">
-                                                <p class="card-text ml-4 form-inline"><button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i> FAX</span></button></p>
+                                                <p class="card-text ml-4 form-inline"><button id="showForm5" class="icon-button"><span class="i-tt"><i class="fas fa-fax fa-icon"></i></span></button></p>
                                                 </div>
                                                 <div class="col-6 form-inline">
                                                 <p class="card-text mr-4"><input class="form-control" type="text"> <input class="ml-2" type="submit" value="Submit"></p>

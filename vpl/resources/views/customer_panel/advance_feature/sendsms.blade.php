@@ -30,7 +30,7 @@
                         <div class="col-md-5">
                         <div style="margin-left:300px; margin-top: 30px;">
                             <p>Error/Response Here</p>
-                            <hr style="width: 50%;">
+                            <hr style="width: 70%;">
                             <p>Talk Time Balance: $9.79</p>
                             <p>See SMS Rates <a href="#">Click Here</a></p>
                         </div>
