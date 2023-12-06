@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['as' => 'dashboard.'], function () {
     Route::get('/', [Dashboard::class, 'dashboard'])->name('dashboard');
-
 });
 
 Route::group(['as' => 'Buy_Number.'], function () {
