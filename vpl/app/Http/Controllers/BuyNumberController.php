@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Buynumber extends Controller
+class BuyNumberController extends Controller
 {
-    public function buynumber()
+    public function buy_number()
     {
         return view('customer_panel.Buy_Numbers.buy_number');
     }
 
-    public function goldennumber()
+    public function buy_golden_number()
     {
         return view('customer_panel.Buy_Numbers.golden_numbers');
     }

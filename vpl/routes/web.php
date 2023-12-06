@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Buynumber;
-use App\Http\Controllers\Mynumbers;
-use App\Http\Controllers\Advancefeatures;
-use App\Http\Controllers\Billings;
-use App\Http\Controllers\Profile;
-use App\Http\Controllers\Reportproblem;
-use App\Http\Controllers\Mycart;
-use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BuyNumberController;
+use App\Http\Controllers\NumbersController;
+use App\Http\Controllers\AdvanceFeaturesController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportProblemController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Numbersinmyaccount;
-use App\Http\Controllers\Sendsms;
-use App\Http\Controllers\Smsinbox;
+use App\Http\Controllers\SendSmsController;
+use App\Http\Controllers\SmsInboxController;
+use App\Http\Controllers\LoginController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -24,191 +25,193 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(['as' => 'dashboard.'], function () {
-    Route::get('/', [Dashboard::class, 'dashboard'])->name('dashboard');
-});
 
-Route::group(['as' => 'Buy_Number.'], function () {
-    Route::get(
-        '/buynumber',
-        [Buynumber::class, 'buynumber']
-    )->name('buynumber');
-    
-    Route::get(
-        '/goldennumber',
-        [Buynumber::class, 'goldennumber']
-    )->name('goldennumber');
-});    
+/**
+ * Authentication Routes
+ */
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post(
+    '/login',
+    [LoginController::class, 'login_post']
+)->name('login_post');
 
-Route::group(['as' => 'my_number.'], function () {
-    Route::get('/faxes', [Mynumbers::class, 'Myfaxes'])->name('Myfaxes');
+Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
+Route::post(
+    '/signup',
+    [LoginController::class, 'signup_post']
+)->name('signup_post');
+
+Route::get(
+    '/login/redirect/{provider_name}',
+    [LoginController::class, 'redirect']
+)->name('third_party_login');
+Route::get('/login/callback', [LoginController::class, 'callback']);
+
+/**
+ * Unprotected Routes
+ */
+Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+/**
+ * Protected Routes
+ */
+Route::middleware('auth')->group(function () {
+    Route::get(
+        '/buy_number',
+        [BuyNumberController::class, 'buy_number']
+    )->name('buy_number');
 
     Route::get(
-        '/viewallnumber',
-        [Mynumbers::class, 'viewallmynumber']
-    )->name('viewallmynumber');
-    
-    Route::get(
-        '/callforwarding',
-        [Mynumbers::class, 'changeforwarding']
-    )->name('changeforwarding');
-    
-    Route::get(
-        '/numbermyaccount',
-        [Mynumbers::class, 'number_in_my_account']
-    )->name('number_in_my_account');
-    
-    Route::get(
-        '/calllog',
-        [Mynumbers::class, 'call_log']
-    )->name('call_log');
-    
-    Route::get(
-        '/packageplan',
-        [Mynumbers::class, 'pakage_plan']
-    )->name('packageplan');
-    
-    Route::get(
-        '/palndetail',
-        [Mynumbers::class, 'palndetail']
-    )->name('palndetail');
- });
+        '/buy_golden_number',
+        [BuyNumberController::class, 'buy_golden_number']
+    )->name('buy_golden_number');
 
-Route::group(['as' => 'advance_feature.'], function () {
-    Route::get(
-        '/voicemessages',
-        [Advancefeatures::class, 'voicemessages']
-    )->name('voicemessages');
-    
-    Route::get(
-        '/sendsms',
-        [Advancefeatures::class, 'sendsms']
-    )->name('sendsms');    
-    
-    Route::get(
-        '/smsinbox',
-        [Advancefeatures::class, 'smsinbox']
-    )->name('smsinbox');    
-    
-    Route::get(
-        '/voicemailsetting',
-        [Advancefeatures::class, 'voicemail']
-    )->name('voicemail');    
-    
-    Route::get(
-        '/callrecording',
-        [Advancefeatures::class, 'callrecording']
-    )->name('callrecording');    
-    
-    Route::get(
-        '/ivr',
-        [Advancefeatures::class, 'ivrmanager']
-    )->name('ivrmanager');    
-    
-    Route::get(
-        '/virtualpbx',
-        [Advancefeatures::class, 'virtualpbx']
-    )->name('virtualpbx');  
-    
-    Route::get(
-        '/pbxsetting',
-        [Advancefeatures::class, 'pbxsetting']
-    )->name('pbxsetting');      
-    
-    Route::get(
-        '/uploadpbx',
-        [Advancefeatures::class, 'uploadpbx']
-    )->name('uploadpbx');    
-});
+    Route::get('/faxes', [NumbersController::class, 'faxes'])->name('faxes');
 
-Route::group(['as' => 'Billings.'], function () {
     Route::get(
-        '/accountstatment',
-        [Billings::class, 'accountstatment']
-    )->name('accountstatment');
-    
-    Route::get(
-        '/addtalktime',
-        [Billings::class, 'addtalktime']
-    )->name('addtalktime');
-    
-    Route::get(
-        '/addfunds',
-        [Billings::class, 'addfunds']
-    )->name('addfunds');
-    
-    Route::get(
-        '/creditcardproccess',
-        [Billings::class, 'changecreditcard']
-    )->name('changecreditcard');
-    
-    Route::get(
-        '/mastertalk',
-        [Billings::class, 'mastertalktime']
-    )->name('mastertalktime');
-});
+        '/view_all_numbers',
+        [NumbersController::class, 'view_all_numbers']
+    )->name('view_all_numbers');
 
-Route::group(['as' => 'Profile.'], function () {
-    Route::get('/basicinfo', [Profile::class, 'basicinfo'])->name('basicinfo');
-    
     Route::get(
-        '/contactinfo',
-        [Profile::class, 'contactinfo']
-    )->name('contactinfo');
-    
+        '/call_forwarding',
+        [NumbersController::class, 'call_forwarding']
+    )->name('call_forwarding');
+
     Route::get(
-        '/creditinfo',
-        [Profile::class, 'creditcardinfo']
-    )->name('creditcardinfo');
-    
+        '/my_numbers',
+        [NumbersController::class, 'my_numbers']
+    )->name('my_numbers');
+
     Route::get(
-        '/smssetting',
-        [Profile::class, 'smssetting']
-    )->name('smssetting');
-    
+        '/call_logs',
+        [NumbersController::class, 'call_logs']
+    )->name('call_logs');
+
     Route::get(
-        '/generalsetting',
-        [Profile::class, 'generalsetting']
-    )->name('generalsetting');
-    
+        '/package',
+        [NumbersController::class, 'package']
+    )->name('package');
+
     Route::get(
-        '/verifiednumber',
-        [Profile::class, 'verified_number']
+        '/plan_details',
+        [NumbersController::class, 'plan_details']
+    )->name('plan_details');
+
+    Route::get(
+        '/voice_messages',
+        [AdvanceFeaturesController::class, 'voice_messages']
+    )->name('voice_messages');
+
+    Route::get(
+        '/voice_mail_setting',
+        [AdvanceFeaturesController::class, 'voice_mail_setting']
+    )->name('voice_mail_setting');    
+
+    Route::get(
+        '/call_recordings',
+        [AdvanceFeaturesController::class, 'call_recordings']
+    )->name('call_recordings');    
+
+    Route::get(
+        '/ivr_setting',
+        [AdvanceFeaturesController::class, 'ivr_setting']
+    )->name('ivr_setting');    
+
+    Route::get(
+        '/virtual_pbx_setting',
+        [AdvanceFeaturesController::class, 'virtual_pbx_setting']
+    )->name('virtual_pbx_setting');  
+
+    Route::get(
+        '/pbx_setting',
+        [AdvanceFeaturesController::class, 'pbx_setting']
+    )->name('pbx_setting');      
+
+    Route::get(
+        '/upload_pbx',
+        [AdvanceFeaturesController::class, 'upload_pbx']
+    )->name('upload_pbx');    
+
+    Route::get(
+        '/account_statement',
+        [BillingController::class, 'account_statement']
+    )->name('account_statement');
+
+    Route::get(
+        '/add_talktime',
+        [BillingController::class, 'add_talktime']
+    )->name('add_talktime');
+
+    Route::get(
+        '/add_funds',
+        [BillingController::class, 'add_funds']
+    )->name('add_funds');
+
+    Route::get(
+        '/credit_card',
+        [BillingController::class, 'credit_card']
+    )->name('credit_card');
+
+    Route::get(
+        '/talktime',
+        [BillingController::class, 'talktime']
+    )->name('talktime');
+
+    Route::get(
+        '/basic_info',
+        [ProfileController::class, 'basic_info']
+    )->name('basic_info');
+
+    Route::get(
+        '/contact_info',
+        [ProfileController::class, 'contact_info']
+    )->name('contact_info');
+
+    Route::get(
+        '/credit_card_details',
+        [ProfileController::class, 'credit_card_details']
+    )->name('credit_card_details');
+
+    Route::get(
+        '/sms_setting',
+        [ProfileController::class, 'sms_setting']
+    )->name('sms_setting');
+
+    Route::get(
+        '/general_setting',
+        [ProfileController::class, 'general_setting']
+    )->name('general_setting');
+
+    Route::get(
+        '/verified_number',
+        [ProfileController::class, 'verified_number']
     )->name('verified_number');
-});
 
-Route::group(['as' => 'reportproblem.'], function () {
     Route::get(
-        '/reportproblem',
-        [Reportproblem::class, 'reportproblem']
-    )->name('reportproblem');
-});
+        '/report_problem',
+        [ReportProblemController::class, 'report_problem']
+    )->name('report_problem');
 
-Route::group(['as' => 'sendsms.'], function () {
-    Route::get('/sendsms', [Sendsms::class, 'sendsms'])->name('sendsms');
-}); 
-
-Route::group(['as' => 'smsinbox.'], function () {
-    Route::get('/inbox', [Smsinbox::class, 'smsinbox'])->name('smsinbox');
-});   
-
-Route::group(['as' => 'cart.'], function () {
-    Route::get('/mycart', [Mycart::class, 'mycart'])->name('mycart');
-});
-
-Route::group(['as' => 'numbersinmyaccount.'], function () {
     Route::get(
-        '/numbersinmyaccount',
-        [Numbersinmyaccount::class, 'numberacnt']
-    )->name('numbersinmyaccount');
-    
+        '/send_sms',
+        [SendSmsController::class, 'send_sms']
+    )->name('send_sms');
+
     Route::get(
-        '/callforwadingmanager',
-        [Numbersinmyaccount::class, 'call_forwading_manager']
-    )->name('callforwadingmanager');
-    
+        '/sms_inbox',
+        [SmsInboxController::class, 'sms_inbox']
+    )->name('sms_inbox');
+
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+
     Route::get(
-        '/monthlyrecurringcharges',
-        [Numbersinmyaccount::class, 'monthly_recurring_charges']
-    )->name('monthlyrecurringcharges');
+        '/call_forwading_setting',
+        [NumbersController::class, 'call_forwading_setting']
+    )->name('call_forwading_setting');
+
+    Route::get(
+        '/monthly_recurring_charges',
+        [NumbersController::class, 'monthly_recurring_charges']
+    )->name('monthly_recurring_charges');
 });

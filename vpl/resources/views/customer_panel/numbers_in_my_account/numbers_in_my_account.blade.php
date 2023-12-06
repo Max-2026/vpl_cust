@@ -14,7 +14,7 @@
 
 
 
-<a href="{{route  ('numbersinmyaccount.callforwadingmanager') }}" style="margin-left:40%;" >12025521553</a>
+<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >12025521553</a>
 
 </div>
 </div>
@@ -58,7 +58,7 @@
     <span style="margin-left:40%;">
       $5.99
     </span>
-    <a href="{{route('numbersinmyaccount.monthlyrecurringcharges')}}" style="margin-left:5%;">Go Annual Billing What's this?</a>
+    <a href="{{ route('monthly_recurring_charges') }}" style="margin-left:5%;">Go Annual Billing What's this?</a>
   </div>
 </div>
 
@@ -80,7 +80,7 @@
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Current Forwarding</label>
 <div class="col-sm-10">
-<a href="{{route  ('numbersinmyaccount.callforwadingmanager') }}" style="margin-left:40%;" >Change forwarding</a>
+<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >Change forwarding</a>
 </div>
 </div>
 
@@ -140,8 +140,8 @@
     <span style="margin-left:40%; font-size:12px">
     UK Land Line
     </span>
-    <a href="{{route  ('my_number.packageplan') }}" style="margin-left:5%;">Change Plan</a>
-    <a href="{{route  ('my_number.packageplan') }}" style="margin-left:5%;">Remove Plan</a>
+    <a href="{{ route('package') }}" style="margin-left:5%;">Change Plan</a>
+    <a href="{{ route('package') }}" style="margin-left:5%;">Remove Plan</a>
   </div>
 </div>
 
@@ -162,7 +162,7 @@
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Logs</label>
 <div class="col-sm-10">
-<a href="{{route  ('my_number.call_log') }}" style="margin-left:40%;" >Call Logs</a>
+<a href="{{ route('call_logs') }}" style="margin-left:40%;" >Call Logs</a>
 </div>
 </div>
 

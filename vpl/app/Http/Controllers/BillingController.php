@@ -4,29 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Billings extends Controller
+class BillingController extends Controller
 {
-    public function accountstatment()
+    public function account_statement()
     {
         return view('customer_panel.billings.accountstatment');
     }
 
-    public function changecreditcard()
+    public function credit_card()
     {
         return view('customer_panel.billings.creditcardproccess');
     }
 
-    public function addtalktime()
+    public function add_talktime()
     {
         return view('customer_panel.billings.addtalktime');
     }
 
-    public function addfunds()
+    public function add_funds()
     {
         return view('customer_panel.billings.addfunds');
     }
 
-    public function mastertalktime()
+    public function talktime()
     {
         return view('customer_panel.billings.mastertalktime');
     }

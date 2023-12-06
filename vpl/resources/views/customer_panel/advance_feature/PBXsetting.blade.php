@@ -30,7 +30,7 @@
                 
 </form>
 
-<p class="text-right mr-3"><a  href="{{ route('advance_feature.uploadpbx')}}">IVR MANAGEMENT</a></p>
+<p class="text-right mr-3"><a  href="{{ route('upload_pbx')}}">IVR MANAGEMENT</a></p>
 <hr>
 <p>Please provide title and the PSTN (landline or mobile) number for the dialed digit 0-9. Selected IVR will be played as the number receives the call. Leaving the number box empty, will remove the entry autometically.
 </p>

@@ -13,7 +13,7 @@
             <span class="h3">$144.33</span>
             <hr>
           </p>
-          <a class="dash_btn" style="float:right;" href="{{ route('Billings.addfunds')}}">ADD FUNDS</a>
+          <a class="dash_btn" style="float:right;" href="{{ route('add_funds')}}">ADD FUNDS</a>
         </div>
       </div>
                         </div>
@@ -28,7 +28,7 @@
             <span class="h3">$9.79</span>
             <hr>
           </p>
-          <a href="{{ route('Billings.addtalktime')}}" class="dash_btn" style="float:right;">ADD TALK TIME</a>
+          <a href="{{ route('add_talktime')}}" class="dash_btn" style="float:right;">ADD TALK TIME</a>
         </div>
       </div>
                         </div>
@@ -47,7 +47,7 @@
                             <span class="h3">$9.56</span>
                             <hr>
                         </p>
-                        <a href="{{ route('Billings.addtalktime')}}" class="dash_btn" style="float:right;">ADD TALK TIME</a>
+                        <a href="{{ route('add_talktime')}}" class="dash_btn" style="float:right;">ADD TALK TIME</a>
                         </div>
                     </div>
                     </div>
@@ -61,7 +61,7 @@
             <span class="h3">$187.33</span>
             <hr>  
         </p>
-          <a href="{{ route('advance_feature.voicemessages')}}" class="dash_btn" style="float:right;">GO TO VOICE MAILS</a>
+          <a href="{{ route('voice_messages')}}" class="dash_btn" style="float:right;">GO TO VOICE MAILS</a>
         </div>
       </div>
         </div>
