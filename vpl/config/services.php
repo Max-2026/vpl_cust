@@ -31,4 +31,28 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_AUTH_ID'),
+        'client_secret' => env('TWITTER_AUTH_KEY'),
+        'redirect' => '/login/callback',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_AUTH_ID'),
+        'client_secret' => env('FACEBOOK_AUTH_KEY'),
+        'redirect' => '/login/callback',
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_AUTH_ID'),
+        'client_secret' => env('GOOGLE_AUTH_KEY'),
+        'redirect' => '/login/callback',
+    ],
+
+    'linkedin' => [
+        'client_id' => env('LINKEDIN_AUTH_ID'),
+        'client_secret' => env('LINKEDIN_AUTH_KEY'),
+        'redirect' => '/login/callback',
+    ],
+
 ];
