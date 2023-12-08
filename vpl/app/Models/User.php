@@ -15,6 +15,7 @@ use App\Models\UserPreference;
 use App\Models\UserCreditCard;
 use App\Models\UserDocument;
 use App\Models\NumberHistory;
+use App\Models\Invoice;
 
 class User extends Authenticatable
 {
@@ -35,6 +36,7 @@ class User extends Authenticatable
         'company_phone',
         'avatar',
         'password',
+        'provider_id',
         'balance',
         'talktime'
     ];
@@ -89,5 +91,10 @@ class User extends Authenticatable
     public function numbers(): HasMany
     {
         return $this->hasMany(Number::class);
+    }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

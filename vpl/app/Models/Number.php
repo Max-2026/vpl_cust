@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-use \App\Models\Country;
 use \App\Models\User;
+use \App\Models\Area;
+use \App\Models\Country;
+use \App\Models\NumberHistory;
 
 class Number extends Model
 {
@@ -19,14 +22,13 @@ class Number extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'country_id',
+        'area_id',
         'user_id',
         'vendor_id',
-        'area_name',
-        'area_code',
         'rate_center',
         'number',
         'is_active',
+        'is_reserved',
         'setup_charges',
         'monthly_charges',
         'per_mintue_charges',
@@ -43,9 +45,9 @@ class Number extends Model
         'sms_outgoing_capablity'
     ];
 
-    public function country(): BelongsTo
+    public function area(): BelongsTo
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Area::class);
     }
 
     public function user(): BelongsTo
@@ -58,18 +60,18 @@ class Number extends Model
         return $this->belongsTo(User::class, 'vendor_id');
     }
 
-    protected function getCountryNameAttribute()
+    public function history(): HasMany
     {
-        return $this->country->name;
+        return $this->hasMany(NumberHistory::class);
     }
 
-    protected function getCountryCodeAttribute()
+    protected function getCountryAttribute()
     {
-        return $this->country->code;
+        return $this->area->country;
     }
 
-    protected function getCountryCodeA2Attribute()
+    protected function getFullNumberAttribute()
     {
-        return $this->country->code_a2;
+        return "{$this->area->country->code}-{$this->area->code}-{$this->number}";
     }
 }

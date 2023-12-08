@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('per_mintue_charges');
             $table->integer('per_sms_charges');
             $table->integer('minutes_consumed')->default(0);
-            $table->boolean('prorated_billing')->default(1);
+            $table->boolean('prorated_billing')->default(true);
             $table->unique(['number_id', 'user_id', 'created_at']);
             $table->timestamps();
             $table->softDeletes();

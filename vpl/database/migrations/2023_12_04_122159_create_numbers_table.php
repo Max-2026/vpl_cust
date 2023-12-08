@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_id')->constrained();
+            $table->foreignId('area_id')->constrained();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('vendor_id')->nullable()->references('id')->on('users');
-            $table->string('area_name');
-            $table->integer('area_code');
+            $table->foreignId('vendor_id')
+                ->nullable()
+                ->references('id')
+                ->on('users');
             $table->string('rate_center')->nullable();
             $table->string('number', 20)->unique();
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_reserved')->default(false);
             $table->integer('setup_charges');
             $table->integer('monthly_charges');
             $table->integer('per_mintue_charges');
@@ -31,10 +33,10 @@ return new class extends Migration
             $table->integer('minutes_consumed')->default(0);
             $table->integer('free_incoming_minutes')->default(0);
             $table->integer('free_incoming_sms')->default(0);
-            $table->boolean('legal_requirement')->default(1);
-            $table->boolean('voice_capablity')->default(1);
-            $table->boolean('sms_inbound_capablity')->default(0);
-            $table->boolean('sms_outgoing_capablity')->default(0);
+            $table->text('legal_requirements')->nullable();
+            $table->boolean('voice_capablity')->default(true);
+            $table->boolean('sms_inbound_capablity')->default(false);
+            $table->boolean('sms_outgoing_capablity')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use \App\Models\Number;
-use \App\Models\Area;
+use App\Models\User;
+use App\Models\Country;
 
-class Country extends Model
+class Area extends Model
 {
     use HasFactory;
 
@@ -19,9 +20,9 @@ class Country extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'country_id',
         'name',
-        'code',
-        'code_a2'
+        'code'
     ];
 
     public function numbers(): HasMany
@@ -29,8 +30,8 @@ class Country extends Model
         return $this->hasMany(Number::class);
     }
 
-    public function areas(): HasMany
+    public function country(): BelongsTo
     {
-        return $this->hasMany(Area::class);
+        return $this->belongsTo(Country::class);
     }
 }
