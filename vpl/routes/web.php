@@ -12,6 +12,7 @@ use App\Http\Controllers\Numbersinmyaccount;
 use App\Http\Controllers\SendSmsController;
 use App\Http\Controllers\SmsInboxController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EmailVerificationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/**
- * Authentication Routes
- */
+// Authentication Routes
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post(
     '/login',
@@ -41,21 +40,32 @@ Route::post(
     [LoginController::class, 'signup_post']
 )->name('signup_post');
 
+// Social Media Auth Provider Route
 Route::get(
     '/login/redirect/{provider_name}',
     [LoginController::class, 'redirect']
 )->name('third_party_login');
 Route::get('/login/callback', [LoginController::class, 'callback']);
 
-/**
- * Unprotected Routes
- */
-Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+// Email Verification Route
+Route::get(
+    '/email/verify',
+    [EmailVerificationController::class, 'notice']
+)->middleware('auth')->name('verification.notice');
+Route::get(
+    '/email/verify/{id}/{hash}',
+    [EmailVerificationController::class, 'verify']
+)->middleware(['auth', 'signed'])->name('verification.verify');
 
 /**
  * Protected Routes
  */
 Route::middleware('auth')->group(function () {
+    Route::get(
+        '/',
+        [DashboardController::class, 'dashboard']
+    )->name('dashboard');
+    
     Route::get(
         '/buy_number',
         [BuyNumberController::class, 'buy_number']
