@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Reportproblem extends Controller
+class ReportProblemController extends Controller
 {
- 
-
-    public function reportproblem(){
+    public function report_problem()
+    {
         return view('customer_panel.Inbox.Report_a_Problem');
     }
-
 }

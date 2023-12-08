@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Virtual Phone Line | @yield('title', 'Default Title')</title>
+  <title>@yield('title', 'Default Title') | Virtual Phone Line</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -44,11 +44,11 @@
           </button>
         </div>
         <div>
-          <a class="navbar-brand brand-logo " href="{{ url('/')}}">
+          <a class="navbar-brand brand-logo " href="{{ route('dashboard') }}">
             <img  src="images/VPL_logo.png" alt="logo" />
           </a>
           <!-- for mobile responsive -->
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/')}}">
+          <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
             <img src="images/VPL_logomini.png" alt="logo" />
           </a>
         </div>
@@ -74,8 +74,8 @@
                 <p class="mb-1 mt-3 font-weight-semibold">User</p>
                 <p class="fw-light text-muted mb-0">user@gmail.com</p>
               </div>
-              <a class="dropdown-item" href="{{ route('Profile.basicinfo')}}"><i class="dropdown-item-icon mdi mdi-account me-2" style="color:#0088cc;"></i> My Profile</a>
-              <a class="dropdown-item" href="{{ route('cart.mycart')}}"><i class="dropdown-item-icon mdi mdi-shopping  me-2" style="color:#0088cc;"></i> My Cart</a>
+              <a class="dropdown-item" href="{{ route('basic_info')}}"><i class="dropdown-item-icon mdi mdi-account me-2" style="color:#0088cc;"></i> My Profile</a>
+              <a class="dropdown-item" href="{{ route('cart')}}"><i class="dropdown-item-icon mdi mdi-shopping  me-2" style="color:#0088cc;"></i> My Cart</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-logout me-2" style="color:#0088cc;"></i> Log Out</a>
             </div>
           </li>

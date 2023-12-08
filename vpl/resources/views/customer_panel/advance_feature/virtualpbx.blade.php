@@ -23,12 +23,12 @@
     <tr>
       <td>1</td>
       <td>12345678909</td>
-      <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
+      <td><a type="button" href="{{ route('pbx_setting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>
     <tr>
       <td>2</td>
       <td>12345678909</td>
-      <td><a type="button" href="{{ route('advance_feature.pbxsetting')}}" class="btn btn-outline-info">Settings</a></td>
+      <td><a type="button" href="{{ route('pbx_setting')}}" class="btn btn-outline-info">Settings</a></td>
     </tr>
   </tbody>
 </table>

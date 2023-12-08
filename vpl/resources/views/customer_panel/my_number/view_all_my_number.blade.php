@@ -44,16 +44,16 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td><a href="{{ route('my_number.number_in_my_account')}}">12025521553</a></td>
-                                <td><a href="{{ route('my_number.call_log')}}">View</a></td>
+                                <td><a href="{{ route('my_numbers')}}">12025521553</a></td>
+                                <td><a href="{{ route('call_logs')}}">View</a></td>
                                 <td>USA - Washington; D.C.</td>
-                                <td><a href="{{route  ('numbersinmyaccount.callforwadingmanager') }}">03327951445</a></td>
+                                <td><a href="{{ route('call_forwading_setting') }}">03327951445</a></td>
                                 <td><a href="#">03327951445</a></td>
 
                                 <td><i class="fas fa-phone-square-alt"></i></td>
                                 <td>$0.01</td>
                                 <td>$0 $9 Master TalkTime</td>
-                                <td><a href="{{ route('my_number.packageplan') }}">Switch To Plan</a></td>
+                                <td><a href="{{ route('package') }}">Switch To Plan</a></td>
                                 <td>08-Nov-2020</td>
                             </tr>
                             <tr>

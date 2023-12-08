@@ -8,16 +8,21 @@ class Numbersinmyaccount extends Controller
 {
     public function numberacnt()
     {
-        return view ('customer_panel.numbers_in_my_account.numbers_in_my_account');
+        return view(
+            'customer_panel.numbers_in_my_account.numbers_in_my_account'
+        );
     }
 
     public function call_forwading_manager()
     {
-        return view ('customer_panel.numbers_in_my_account.call_forwading_manager');
+        return view(
+            'customer_panel.numbers_in_my_account.call_forwading_manager'
+        );
     }
     public function monthly_recurring_charges()
     {
-        return view ('customer_panel.numbers_in_my_account.monthly_recuring_charges');
+        return view(
+            'customer_panel.numbers_in_my_account.monthly_recuring_charges'
+        );
     }
- 
 }

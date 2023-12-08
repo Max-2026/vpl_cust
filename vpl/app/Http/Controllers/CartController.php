@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Mycart extends Controller
+class CartController extends Controller
 {
-    public function mycart(){
+    public function cart()
+    {
         return view('customer_panel.my_cart.my_cart');
     }
 }

@@ -57,55 +57,55 @@
     </thead>
     <tbody>
       <tr>
-        <td> <input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> Unlimited US & Canada</a></td>
+        <td> <input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> Unlimited US & Canada</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$19.95</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""><a href="{{ route('my_number.palndetail') }}"> China Unlimited</a></td>
+        <td><input type="radio" name="radio" id=""><a href="{{ route('plan_details') }}"> China Unlimited</a></td>
         <td></td>
         <td>$10.00</td>
         <td>$25.00</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> UK Land Line</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> UK Land Line</a></td>
         <td></td>
         <td>$10.00</td>
         <td>$20.00</td>
       </tr> 
         <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> Pakistan 50 Incoming Minutes</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> Pakistan 50 Incoming Minutes</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$10.00</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> Unlimited Minutes</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> Unlimited Minutes</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$25.00</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> India Unlimited</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> India Unlimited</a></td>
         <td></td>
         <td>$5.00</td>
         <td>$25.00</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> India Unlimited Calling</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> India Unlimited Calling</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$20.00</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> India</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> India</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$5.20</td>
       </tr>
       <tr>
-        <td><input type="radio" name="radio" id=""> <a href="{{ route('my_number.palndetail') }}"> India Plan</a></td>
+        <td><input type="radio" name="radio" id=""> <a href="{{ route('plan_details') }}"> India Plan</a></td>
         <td></td>
         <td>$0.00</td>
         <td>$10.00</td>

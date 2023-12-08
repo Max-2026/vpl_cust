@@ -15,7 +15,7 @@
                         <div class="media-body mt-3">
                             <p class="mt-0">.'. If user does not have any number in his/her account.</p>
                             <p class="mt-3 ml-5"><b>You have not purchased any numbers yet.</b></p>
-                            <h6 class="mt-3 ml-5"><a class="a_tag " href="{{ route('Buy_Number.buynumber') }}">Click here to Buy Phone Numbers.</a></h6>
+                            <h6 class="mt-3 ml-5"><a class="a_tag " href="{{ route('buy_number') }}">Click here to Buy Phone Numbers.</a></h6>
                         </div>
                     </div>
                 </div>

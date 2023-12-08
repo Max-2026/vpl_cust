@@ -1,0 +1,170 @@
+body {
+  background: whitesmoke !important;
+  font-size: 1rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: initial;
+  line-height: normal;
+}
+
+.login-form{
+  background-color: white !important;
+  border: 10px solid white !important;
+  border-radius: 10px !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.login-form h1 {
+  font-size: 36px;
+  text-align: center;
+  color: #0088cc;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+
+.login-form .social-icon {
+  width: 100%;
+  font-size: 20px;
+  padding-top: 20px;
+  color: #fff;
+  text-align: center;
+  float: left;
+}
+
+.login-form {
+  background:white;
+  width: 35%;
+  border-radius: 10px !important;
+  margin: 0 auto;
+  display: table;
+  padding: 15px 30px 30px;
+  box-sizing: border-box;
+}
+
+
+.form-group {
+  float: left;
+  width: 100%;
+  margin: 0 0 15px;
+  position: relative;
+}
+.login-form input {
+  width: 100%;
+  padding: 5px;
+  height: 56px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  padding-left: 4rem;
+}
+
+.login-form .form-group .input-icon {
+  font-size: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  height: 100%;
+  padding-left: 1.4rem;
+  color: #666;
+  font-size: 1.4rem;
+}
+
+.login-form .login-btn {
+  background: #0088cc;
+  padding: 11px 50px;
+  border-color: #45aba6;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+  border: 1px solid #45aba6;
+  border-radius: 5px;
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+}
+
+.login-form .reset-psw {
+  float: left;
+  width: 100%;
+  text-decoration: none;
+  color: #0088cc;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.login-form .social-icon button {
+  font-size: 20px;
+  color: white;
+  height: 50px;
+  width: 50px;
+  background: #0088cc;
+  border-radius: 60%;
+  margin: 0px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.login-form button:hover{
+  opacity: 0.9;
+}
+
+.login-form .seperator {
+  float: left;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  margin: 50px 0 0;
+}
+
+.login-form .seperator b {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  background: #fff;
+  display: inline-block;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  position: relative;
+  top: -22px;
+  z-index: 1;
+}
+
+.login-form p {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+.btn-primary {
+  background: #0088cc;
+  color: #ffffff;
+}
+@media screen and (max-width:767px) {
+  .login-form {
+    width: 90%;
+    padding: 15px 15px 30px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .login-form {
+    width: 60%;
+    padding: 15px 15px 30px;
+  }
+}
