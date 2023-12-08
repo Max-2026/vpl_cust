@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\UserAddress;
@@ -21,7 +22,8 @@ class UserSeeder extends Seeder
         $user = User::create([
             'first_name' => 'Erdum',
             'last_name' => 'Adnan',
-            'email' => 'erdumadnan@gmail.com'
+            'email' => 'erdumadnan@gmail.com',
+            'password' => Hash::make('erdum123')
         ]);
 
         $address = new UserAddress([

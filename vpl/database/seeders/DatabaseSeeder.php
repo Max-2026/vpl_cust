@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CountrySeeder::class,
+            AreaSeeder::class,
             NumberSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            InvoiceTypeSeeder::class
         ]);
     }
 }

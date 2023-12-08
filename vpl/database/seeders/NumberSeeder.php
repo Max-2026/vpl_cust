@@ -13,10 +13,8 @@ class NumberSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Number::create([
-            'country_id' => 181,
-            'area_name' => 'Moscow',
-            'area_code' => 495,
-            'number' => '7-495-145-2140',
+            'area_id' => 23,
+            'number' => '1452140',
             'setup_charges' => 1,
             'monthly_charges' => 6,
             'per_mintue_charges' => 0.01,

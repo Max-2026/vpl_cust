@@ -15,1722 +15,1722 @@ class CountrySeeder extends Seeder
         \App\Models\Country::insert([
             [
                 'code_a2' => 'AF',
-                'name' => 'Afghanistan',
+                'name' => 'afghanistan',
                 'code' => 93,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AL',
-                'name' => 'Albania',
+                'name' => 'albania',
                 'code' => 355,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DZ',
-                'name' => 'Algeria',
+                'name' => 'algeria',
                 'code' => 213,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AS',
-                'name' => 'American Samoa',
+                'name' => 'american samoa',
                 'code' => 1684,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AD',
-                'name' => 'Andorra',
+                'name' => 'andorra',
                 'code' => 376,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AO',
-                'name' => 'Angola',
+                'name' => 'angola',
                 'code' => 244,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AI',
-                'name' => 'Anguilla',
+                'name' => 'anguilla',
                 'code' => 1264,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AQ',
-                'name' => 'Antarctica',
+                'name' => 'antarctica',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AG',
-                'name' => 'Antigua And Barbuda',
+                'name' => 'antigua and barbuda',
                 'code' => 1268,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AR',
-                'name' => 'Argentina',
+                'name' => 'argentina',
                 'code' => 54,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AM',
-                'name' => 'Armenia',
+                'name' => 'armenia',
                 'code' => 374,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AW',
-                'name' => 'Aruba',
+                'name' => 'aruba',
                 'code' => 297,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AU',
-                'name' => 'Australia',
+                'name' => 'australia',
                 'code' => 61,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AT',
-                'name' => 'Austria',
+                'name' => 'austria',
                 'code' => 43,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AZ',
-                'name' => 'Azerbaijan',
+                'name' => 'azerbaijan',
                 'code' => 994,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BS',
-                'name' => 'Bahamas The',
+                'name' => 'bahamas the',
                 'code' => 1242,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BH',
-                'name' => 'Bahrain',
+                'name' => 'bahrain',
                 'code' => 973,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BD',
-                'name' => 'Bangladesh',
+                'name' => 'bangladesh',
                 'code' => 880,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BB',
-                'name' => 'Barbados',
+                'name' => 'barbados',
                 'code' => 1246,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BY',
-                'name' => 'Belarus',
+                'name' => 'belarus',
                 'code' => 375,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BE',
-                'name' => 'Belgium',
+                'name' => 'belgium',
                 'code' => 32,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BZ',
-                'name' => 'Belize',
+                'name' => 'belize',
                 'code' => 501,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BJ',
-                'name' => 'Benin',
+                'name' => 'benin',
                 'code' => 229,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BM',
-                'name' => 'Bermuda',
+                'name' => 'bermuda',
                 'code' => 1441,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BT',
-                'name' => 'Bhutan',
+                'name' => 'bhutan',
                 'code' => 975,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BO',
-                'name' => 'Bolivia',
+                'name' => 'bolivia',
                 'code' => 591,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BA',
-                'name' => 'Bosnia and Herzegovina',
+                'name' => 'bosnia and herzegovina',
                 'code' => 387,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BW',
-                'name' => 'Botswana',
+                'name' => 'botswana',
                 'code' => 267,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BV',
-                'name' => 'Bouvet Island',
+                'name' => 'bouvet island',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BR',
-                'name' => 'Brazil',
+                'name' => 'brazil',
                 'code' => 55,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IO',
-                'name' => 'British Indian Ocean Territory',
+                'name' => 'british indian ocean territory',
                 'code' => 246,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BN',
-                'name' => 'Brunei',
+                'name' => 'brunei',
                 'code' => 673,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BG',
-                'name' => 'Bulgaria',
+                'name' => 'bulgaria',
                 'code' => 359,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BF',
-                'name' => 'Burkina Faso',
+                'name' => 'burkina faso',
                 'code' => 226,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'BI',
-                'name' => 'Burundi',
+                'name' => 'burundi',
                 'code' => 257,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KH',
-                'name' => 'Cambodia',
+                'name' => 'cambodia',
                 'code' => 855,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CM',
-                'name' => 'Cameroon',
+                'name' => 'cameroon',
                 'code' => 237,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CA',
-                'name' => 'Canada',
+                'name' => 'canada',
                 'code' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CV',
-                'name' => 'Cape Verde',
+                'name' => 'cape verde',
                 'code' => 238,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KY',
-                'name' => 'Cayman Islands',
+                'name' => 'cayman islands',
                 'code' => 1345,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CF',
-                'name' => 'Central African Republic',
+                'name' => 'central african republic',
                 'code' => 236,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TD',
-                'name' => 'Chad',
+                'name' => 'chad',
                 'code' => 235,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CL',
-                'name' => 'Chile',
+                'name' => 'chile',
                 'code' => 56,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CN',
-                'name' => 'China',
+                'name' => 'china',
                 'code' => 86,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CX',
-                'name' => 'Christmas Island',
+                'name' => 'christmas island',
                 'code' => 61,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CC',
-                'name' => 'Cocos (Keeling) Islands',
+                'name' => 'cocos (keeling) islands',
                 'code' => 672,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CO',
-                'name' => 'Colombia',
+                'name' => 'colombia',
                 'code' => 57,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KM',
-                'name' => 'Comoros',
+                'name' => 'comoros',
                 'code' => 269,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CG',
-                'name' => 'Republic Of The Congo',
+                'name' => 'republic of the congo',
                 'code' => 242,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CD',
-                'name' => 'Democratic Republic Of The Congo',
+                'name' => 'democratic republic of the congo',
                 'code' => 242,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CK',
-                'name' => 'Cook Islands',
+                'name' => 'cook islands',
                 'code' => 682,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CR',
-                'name' => 'Costa Rica',
+                'name' => 'costa rica',
                 'code' => 506,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CI',
-                'name' => 'Cote D Ivoire (Ivory Coast)',
+                'name' => 'cote d ivoire (ivory coast)',
                 'code' => 225,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HR',
-                'name' => 'Croatia (Hrvatska)',
+                'name' => 'croatia (hrvatska)',
                 'code' => 385,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CU',
-                'name' => 'Cuba',
+                'name' => 'cuba',
                 'code' => 53,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CY',
-                'name' => 'Cyprus',
+                'name' => 'cyprus',
                 'code' => 357,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CZ',
-                'name' => 'Czech Republic',
+                'name' => 'czech republic',
                 'code' => 420,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DK',
-                'name' => 'Denmark',
+                'name' => 'denmark',
                 'code' => 45,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DJ',
-                'name' => 'Djibouti',
+                'name' => 'djibouti',
                 'code' => 253,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DM',
-                'name' => 'Dominica',
+                'name' => 'dominica',
                 'code' => 1767,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DO',
-                'name' => 'Dominican Republic',
+                'name' => 'dominican republic',
                 'code' => 1809,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TP',
-                'name' => 'East Timor',
+                'name' => 'east timor',
                 'code' => 670,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'EC',
-                'name' => 'Ecuador',
+                'name' => 'ecuador',
                 'code' => 593,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'EG',
-                'name' => 'Egypt',
+                'name' => 'egypt',
                 'code' => 20,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SV',
-                'name' => 'El Salvador',
+                'name' => 'el salvador',
                 'code' => 503,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GQ',
-                'name' => 'Equatorial Guinea',
+                'name' => 'equatorial guinea',
                 'code' => 240,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ER',
-                'name' => 'Eritrea',
+                'name' => 'eritrea',
                 'code' => 291,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'EE',
-                'name' => 'Estonia',
+                'name' => 'estonia',
                 'code' => 372,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ET',
-                'name' => 'Ethiopia',
+                'name' => 'ethiopia',
                 'code' => 251,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'XA',
-                'name' => 'External Territories of Australia',
+                'name' => 'external territories of australia',
                 'code' => 61,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FK',
-                'name' => 'Falkland Islands',
+                'name' => 'falkland islands',
                 'code' => 500,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FO',
-                'name' => 'Faroe Islands',
+                'name' => 'faroe islands',
                 'code' => 298,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FJ',
-                'name' => 'Fiji Islands',
+                'name' => 'fiji islands',
                 'code' => 679,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FI',
-                'name' => 'Finland',
+                'name' => 'finland',
                 'code' => 358,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FR',
-                'name' => 'France',
+                'name' => 'france',
                 'code' => 33,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GF',
-                'name' => 'French Guiana',
+                'name' => 'french guiana',
                 'code' => 594,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PF',
-                'name' => 'French Polynesia',
+                'name' => 'french polynesia',
                 'code' => 689,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TF',
-                'name' => 'French Southern Territories',
+                'name' => 'french southern territories',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GA',
-                'name' => 'Gabon',
+                'name' => 'gabon',
                 'code' => 241,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GM',
-                'name' => 'Gambia The',
+                'name' => 'gambia the',
                 'code' => 220,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GE',
-                'name' => 'Georgia',
+                'name' => 'georgia',
                 'code' => 995,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'DE',
-                'name' => 'Germany',
+                'name' => 'germany',
                 'code' => 49,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GH',
-                'name' => 'Ghana',
+                'name' => 'ghana',
                 'code' => 233,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GI',
-                'name' => 'Gibraltar',
+                'name' => 'gibraltar',
                 'code' => 350,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GR',
-                'name' => 'Greece',
+                'name' => 'greece',
                 'code' => 30,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GL',
-                'name' => 'Greenland',
+                'name' => 'greenland',
                 'code' => 299,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GD',
-                'name' => 'Grenada',
+                'name' => 'grenada',
                 'code' => 1473,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GP',
-                'name' => 'Guadeloupe',
+                'name' => 'guadeloupe',
                 'code' => 590,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GU',
-                'name' => 'Guam',
+                'name' => 'guam',
                 'code' => 1671,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GT',
-                'name' => 'Guatemala',
+                'name' => 'guatemala',
                 'code' => 502,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'XU',
-                'name' => 'Guernsey and Alderney',
+                'name' => 'guernsey and alderney',
                 'code' => 44,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GN',
-                'name' => 'Guinea',
+                'name' => 'guinea',
                 'code' => 224,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GW',
-                'name' => 'Guinea-Bissau',
+                'name' => 'guinea-bissau',
                 'code' => 245,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GY',
-                'name' => 'Guyana',
+                'name' => 'guyana',
                 'code' => 592,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HT',
-                'name' => 'Haiti',
+                'name' => 'haiti',
                 'code' => 509,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HM',
-                'name' => 'Heard and McDonald Islands',
+                'name' => 'heard and mcdonald islands',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HN',
-                'name' => 'Honduras',
+                'name' => 'honduras',
                 'code' => 504,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HK',
-                'name' => 'Hong Kong S.A.R.',
+                'name' => 'hong kong s.a.r.',
                 'code' => 852,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'HU',
-                'name' => 'Hungary',
+                'name' => 'hungary',
                 'code' => 36,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IS',
-                'name' => 'Iceland',
+                'name' => 'iceland',
                 'code' => 354,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IN',
-                'name' => 'India',
+                'name' => 'india',
                 'code' => 91,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ID',
-                'name' => 'Indonesia',
+                'name' => 'indonesia',
                 'code' => 62,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IR',
-                'name' => 'Iran',
+                'name' => 'iran',
                 'code' => 98,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IQ',
-                'name' => 'Iraq',
+                'name' => 'iraq',
                 'code' => 964,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IE',
-                'name' => 'Ireland',
+                'name' => 'ireland',
                 'code' => 353,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IL',
-                'name' => 'Israel',
+                'name' => 'israel',
                 'code' => 972,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'IT',
-                'name' => 'Italy',
+                'name' => 'italy',
                 'code' => 39,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'JM',
-                'name' => 'Jamaica',
+                'name' => 'jamaica',
                 'code' => 1876,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'JP',
-                'name' => 'Japan',
+                'name' => 'japan',
                 'code' => 81,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'XJ',
-                'name' => 'Jersey',
+                'name' => 'jersey',
                 'code' => 44,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'JO',
-                'name' => 'Jordan',
+                'name' => 'jordan',
                 'code' => 962,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KZ',
-                'name' => 'Kazakhstan',
+                'name' => 'kazakhstan',
                 'code' => 7,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KE',
-                'name' => 'Kenya',
+                'name' => 'kenya',
                 'code' => 254,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KI',
-                'name' => 'Kiribati',
+                'name' => 'kiribati',
                 'code' => 686,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KP',
-                'name' => 'Korea North',
+                'name' => 'korea north',
                 'code' => 850,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KR',
-                'name' => 'Korea South',
+                'name' => 'korea south',
                 'code' => 82,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KW',
-                'name' => 'Kuwait',
+                'name' => 'kuwait',
                 'code' => 965,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KG',
-                'name' => 'Kyrgyzstan',
+                'name' => 'kyrgyzstan',
                 'code' => 996,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LA',
-                'name' => 'Laos',
+                'name' => 'laos',
                 'code' => 856,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LV',
-                'name' => 'Latvia',
+                'name' => 'latvia',
                 'code' => 371,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LB',
-                'name' => 'Lebanon',
+                'name' => 'lebanon',
                 'code' => 961,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LS',
-                'name' => 'Lesotho',
+                'name' => 'lesotho',
                 'code' => 266,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LR',
-                'name' => 'Liberia',
+                'name' => 'liberia',
                 'code' => 231,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LY',
-                'name' => 'Libya',
+                'name' => 'libya',
                 'code' => 218,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LI',
-                'name' => 'Liechtenstein',
+                'name' => 'liechtenstein',
                 'code' => 423,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LT',
-                'name' => 'Lithuania',
+                'name' => 'lithuania',
                 'code' => 370,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LU',
-                'name' => 'Luxembourg',
+                'name' => 'luxembourg',
                 'code' => 352,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MO',
-                'name' => 'Macau S.A.R.',
+                'name' => 'macau s.a.r.',
                 'code' => 853,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MK',
-                'name' => 'Macedonia',
+                'name' => 'macedonia',
                 'code' => 389,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MG',
-                'name' => 'Madagascar',
+                'name' => 'madagascar',
                 'code' => 261,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MW',
-                'name' => 'Malawi',
+                'name' => 'malawi',
                 'code' => 265,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MY',
-                'name' => 'Malaysia',
+                'name' => 'malaysia',
                 'code' => 60,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MV',
-                'name' => 'Maldives',
+                'name' => 'maldives',
                 'code' => 960,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ML',
-                'name' => 'Mali',
+                'name' => 'mali',
                 'code' => 223,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MT',
-                'name' => 'Malta',
+                'name' => 'malta',
                 'code' => 356,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'XM',
-                'name' => 'Man (Isle of)',
+                'name' => 'man (isle of)',
                 'code' => 44,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MH',
-                'name' => 'Marshall Islands',
+                'name' => 'marshall islands',
                 'code' => 692,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MQ',
-                'name' => 'Martinique',
+                'name' => 'martinique',
                 'code' => 596,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MR',
-                'name' => 'Mauritania',
+                'name' => 'mauritania',
                 'code' => 222,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MU',
-                'name' => 'Mauritius',
+                'name' => 'mauritius',
                 'code' => 230,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'YT',
-                'name' => 'Mayotte',
+                'name' => 'mayotte',
                 'code' => 269,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MX',
-                'name' => 'Mexico',
+                'name' => 'mexico',
                 'code' => 52,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'FM',
-                'name' => 'Micronesia',
+                'name' => 'micronesia',
                 'code' => 691,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MD',
-                'name' => 'Moldova',
+                'name' => 'moldova',
                 'code' => 373,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MC',
-                'name' => 'Monaco',
+                'name' => 'monaco',
                 'code' => 377,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MN',
-                'name' => 'Mongolia',
+                'name' => 'mongolia',
                 'code' => 976,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MS',
-                'name' => 'Montserrat',
+                'name' => 'montserrat',
                 'code' => 1664,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MA',
-                'name' => 'Morocco',
+                'name' => 'morocco',
                 'code' => 212,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MZ',
-                'name' => 'Mozambique',
+                'name' => 'mozambique',
                 'code' => 258,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MM',
-                'name' => 'Myanmar',
+                'name' => 'myanmar',
                 'code' => 95,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NA',
-                'name' => 'Namibia',
+                'name' => 'namibia',
                 'code' => 264,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NR',
-                'name' => 'Nauru',
+                'name' => 'nauru',
                 'code' => 674,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NP',
-                'name' => 'Nepal',
+                'name' => 'nepal',
                 'code' => 977,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AN',
-                'name' => 'Netherlands Antilles',
+                'name' => 'netherlands antilles',
                 'code' => 599,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NL',
-                'name' => 'Netherlands The',
+                'name' => 'netherlands the',
                 'code' => 31,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NC',
-                'name' => 'New Caledonia',
+                'name' => 'new caledonia',
                 'code' => 687,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NZ',
-                'name' => 'New Zealand',
+                'name' => 'new zealand',
                 'code' => 64,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NI',
-                'name' => 'Nicaragua',
+                'name' => 'nicaragua',
                 'code' => 505,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NE',
-                'name' => 'Niger',
+                'name' => 'niger',
                 'code' => 227,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NG',
-                'name' => 'Nigeria',
+                'name' => 'nigeria',
                 'code' => 234,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NU',
-                'name' => 'Niue',
+                'name' => 'niue',
                 'code' => 683,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NF',
-                'name' => 'Norfolk Island',
+                'name' => 'norfolk island',
                 'code' => 672,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'MP',
-                'name' => 'Northern Mariana Islands',
+                'name' => 'northern mariana islands',
                 'code' => 1670,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'NO',
-                'name' => 'Norway',
+                'name' => 'norway',
                 'code' => 47,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'OM',
-                'name' => 'Oman',
+                'name' => 'oman',
                 'code' => 968,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PK',
-                'name' => 'Pakistan',
+                'name' => 'pakistan',
                 'code' => 92,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PW',
-                'name' => 'Palau',
+                'name' => 'palau',
                 'code' => 680,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PS',
-                'name' => 'Palestinian Territory Occupied',
+                'name' => 'palestinian territory occupied',
                 'code' => 970,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PA',
-                'name' => 'Panama',
+                'name' => 'panama',
                 'code' => 507,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PG',
-                'name' => 'Papua new Guinea',
+                'name' => 'papua new guinea',
                 'code' => 675,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PY',
-                'name' => 'Paraguay',
+                'name' => 'paraguay',
                 'code' => 595,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PE',
-                'name' => 'Peru',
+                'name' => 'peru',
                 'code' => 51,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PH',
-                'name' => 'Philippines',
+                'name' => 'philippines',
                 'code' => 63,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PN',
-                'name' => 'Pitcairn Island',
+                'name' => 'pitcairn island',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PL',
-                'name' => 'Poland',
+                'name' => 'poland',
                 'code' => 48,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PT',
-                'name' => 'Portugal',
+                'name' => 'portugal',
                 'code' => 351,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PR',
-                'name' => 'Puerto Rico',
+                'name' => 'puerto rico',
                 'code' => 1787,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'QA',
-                'name' => 'Qatar',
+                'name' => 'qatar',
                 'code' => 974,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'RE',
-                'name' => 'Reunion',
+                'name' => 'reunion',
                 'code' => 262,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'RO',
-                'name' => 'Romania',
+                'name' => 'romania',
                 'code' => 40,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'RU',
-                'name' => 'Russia',
+                'name' => 'russia',
                 'code' => 7,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'RW',
-                'name' => 'Rwanda',
+                'name' => 'rwanda',
                 'code' => 250,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SH',
-                'name' => 'Saint Helena',
+                'name' => 'saint helena',
                 'code' => 290,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'KN',
-                'name' => 'Saint Kitts And Nevis',
+                'name' => 'saint kitts and nevis',
                 'code' => 1869,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LC',
-                'name' => 'Saint Lucia',
+                'name' => 'saint lucia',
                 'code' => 1758,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'PM',
-                'name' => 'Saint Pierre and Miquelon',
+                'name' => 'saint pierre and miquelon',
                 'code' => 508,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VC',
-                'name' => 'Saint Vincent And The Grenadines',
+                'name' => 'saint vincent and the grenadines',
                 'code' => 1784,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'WS',
-                'name' => 'Samoa',
+                'name' => 'samoa',
                 'code' => 684,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SM',
-                'name' => 'San Marino',
+                'name' => 'san marino',
                 'code' => 378,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ST',
-                'name' => 'Sao Tome and Principe',
+                'name' => 'sao tome and principe',
                 'code' => 239,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SA',
-                'name' => 'Saudi Arabia',
+                'name' => 'saudi arabia',
                 'code' => 966,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SN',
-                'name' => 'Senegal',
+                'name' => 'senegal',
                 'code' => 221,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'RS',
-                'name' => 'Serbia',
+                'name' => 'serbia',
                 'code' => 381,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SC',
-                'name' => 'Seychelles',
+                'name' => 'seychelles',
                 'code' => 248,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SL',
-                'name' => 'Sierra Leone',
+                'name' => 'sierra leone',
                 'code' => 232,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SG',
-                'name' => 'Singapore',
+                'name' => 'singapore',
                 'code' => 65,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SK',
-                'name' => 'Slovakia',
+                'name' => 'slovakia',
                 'code' => 421,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SI',
-                'name' => 'Slovenia',
+                'name' => 'slovenia',
                 'code' => 386,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'XG',
-                'name' => 'Smaller Territories of the UK',
+                'name' => 'smaller territories of the uk',
                 'code' => 44,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SB',
-                'name' => 'Solomon Islands',
+                'name' => 'solomon islands',
                 'code' => 677,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SO',
-                'name' => 'Somalia',
+                'name' => 'somalia',
                 'code' => 252,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ZA',
-                'name' => 'South Africa',
+                'name' => 'south africa',
                 'code' => 27,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GS',
-                'name' => 'South Georgia',
+                'name' => 'south georgia',
                 'code' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SS',
-                'name' => 'South Sudan',
+                'name' => 'south sudan',
                 'code' => 211,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ES',
-                'name' => 'Spain',
+                'name' => 'spain',
                 'code' => 34,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'LK',
-                'name' => 'Sri Lanka',
+                'name' => 'sri lanka',
                 'code' => 94,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SD',
-                'name' => 'Sudan',
+                'name' => 'sudan',
                 'code' => 249,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SR',
-                'name' => 'Suricountry_name',
+                'name' => 'suricountry_name',
                 'code' => 597,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SJ',
-                'name' => 'Svalbard And Jan Mayen Islands',
+                'name' => 'svalbard and jan mayen islands',
                 'code' => 47,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SZ',
-                'name' => 'Swaziland',
+                'name' => 'swaziland',
                 'code' => 268,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SE',
-                'name' => 'Sweden',
+                'name' => 'sweden',
                 'code' => 46,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'CH',
-                'name' => 'Switzerland',
+                'name' => 'switzerland',
                 'code' => 41,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'SY',
-                'name' => 'Syria',
+                'name' => 'syria',
                 'code' => 963,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TW',
-                'name' => 'Taiwan',
+                'name' => 'taiwan',
                 'code' => 886,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TJ',
-                'name' => 'Tajikistan',
+                'name' => 'tajikistan',
                 'code' => 992,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TZ',
-                'name' => 'Tanzania',
+                'name' => 'tanzania',
                 'code' => 255,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TH',
-                'name' => 'Thailand',
+                'name' => 'thailand',
                 'code' => 66,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TG',
-                'name' => 'Togo',
+                'name' => 'togo',
                 'code' => 228,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TK',
-                'name' => 'Tokelau',
+                'name' => 'tokelau',
                 'code' => 690,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TO',
-                'name' => 'Tonga',
+                'name' => 'tonga',
                 'code' => 676,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TT',
-                'name' => 'Trincountry_idad And Tobago',
+                'name' => 'trincountry_idad and tobago',
                 'code' => 1868,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TN',
-                'name' => 'Tunisia',
+                'name' => 'tunisia',
                 'code' => 216,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TR',
-                'name' => 'Turkey',
+                'name' => 'turkey',
                 'code' => 90,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TM',
-                'name' => 'Turkmenistan',
+                'name' => 'turkmenistan',
                 'code' => 7370,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TC',
-                'name' => 'Turks And Caicos Islands',
+                'name' => 'turks and caicos islands',
                 'code' => 1649,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'TV',
-                'name' => 'Tuvalu',
+                'name' => 'tuvalu',
                 'code' => 688,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'UG',
-                'name' => 'Uganda',
+                'name' => 'uganda',
                 'code' => 256,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'UA',
-                'name' => 'Ukraine',
+                'name' => 'ukraine',
                 'code' => 380,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'AE',
-                'name' => 'United Arab Emirates',
+                'name' => 'united arab emirates',
                 'code' => 971,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'GB',
-                'name' => 'United Kingdom',
+                'name' => 'united kingdom',
                 'code' => 44,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'US',
-                'name' => 'United States',
+                'name' => 'united states',
                 'code' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'UM',
-                'name' => 'United States Minor Outlying Islands',
+                'name' => 'united states minor outlying islands',
                 'code' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'UY',
-                'name' => 'Uruguay',
+                'name' => 'uruguay',
                 'code' => 598,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'UZ',
-                'name' => 'Uzbekistan',
+                'name' => 'uzbekistan',
                 'code' => 998,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VU',
-                'name' => 'Vanuatu',
+                'name' => 'vanuatu',
                 'code' => 678,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VA',
-                'name' => 'Vatican City State (Holy See)',
+                'name' => 'vatican city state (holy see)',
                 'code' => 39,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VE',
-                'name' => 'Venezuela',
+                'name' => 'venezuela',
                 'code' => 58,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VN',
-                'name' => 'Vietnam',
+                'name' => 'vietnam',
                 'code' => 84,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VG',
-                'name' => 'Virgin Islands (British)',
+                'name' => 'virgin islands (british)',
                 'code' => 1284,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'VI',
-                'name' => 'Virgin Islands (US)',
+                'name' => 'virgin islands (us)',
                 'code' => 1340,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'WF',
-                'name' => 'Wallis And Futuna Islands',
+                'name' => 'wallis and futuna islands',
                 'code' => 681,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'EH',
-                'name' => 'Western Sahara',
+                'name' => 'western sahara',
                 'code' => 212,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'YE',
-                'name' => 'Yemen',
+                'name' => 'yemen',
                 'code' => 967,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'YU',
-                'name' => 'Yugoslavia',
+                'name' => 'yugoslavia',
                 'code' => 38,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ZM',
-                'name' => 'Zambia',
+                'name' => 'zambia',
                 'code' => 260,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'code_a2' => 'ZW',
-                'name' => 'Zimbabwe',
+                'name' => 'zimbabwe',
                 'code' => 26,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
