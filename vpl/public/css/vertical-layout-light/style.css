@@ -31041,4 +31041,29 @@ background-color:white !important;
   .radio-m{
       margin-top: -5px !important;
   }
+
+
+  /* buy number input option dropdown start */
+
+    #dynamicOptionsContainer {
+      display: none;
+      position: absolute;
+      max-height: 200px; /* Set a maximum height for the options */
+      overflow-y: auto; /* Add a scrollbar when needed */
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensure it appears on top of other elements */
+  }
+
+  #dynamicOptionsContainer div {
+      padding: 8px;
+      cursor: pointer;
+  }
+
+  #dynamicOptionsContainer div:hover {
+      background-color: #f0f0f0;
+  }
+
+  /* buy number input option dropdown end */
   

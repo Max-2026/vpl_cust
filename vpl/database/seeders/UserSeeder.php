@@ -61,21 +61,24 @@ class UserSeeder extends Seeder
         ]);
         $user->documents()->save($document);
 
-        $number = \App\Models\Number::first();
-        $purchase_history = new \App\Models\NumberHistory([
-            'number_id' => $number->id,
-            'user_id' => $user->id,
-            'is_purchased' => true,
-            'is_released' => false,
-            'is_reserved' => false,
-            'setup_charges' => $number->setup_charges,
-            'monthly_charges' => $number->monthly_charges,
-            'per_mintue_charges' => $number->per_mintue_charges,
-            'per_sms_charges' => $number->per_sms_charges,
-            'prorated_billing' => true
-        ]);
-        $user->numbers_history()->save($purchase_history);
-        $number->user_id = $user->id;
-        $number->save();
+        $numbers = \App\Models\Number::all();
+
+        foreach ($numbers as $number) {
+            $purchase_history = new \App\Models\NumberHistory([
+                'number_id' => $number->id,
+                'user_id' => $user->id,
+                'is_purchased' => true,
+                'is_released' => false,
+                'is_reserved' => false,
+                'setup_charges' => $number->setup_charges,
+                'monthly_charges' => $number->monthly_charges,
+                'per_mintue_charges' => $number->per_mintue_charges,
+                'per_sms_charges' => $number->per_sms_charges,
+                'prorated_billing' => true
+            ]);
+            $user->numbers_history()->save($purchase_history);
+            $number->user_id = $user->id;
+            $number->save();
+        }
     }
 }

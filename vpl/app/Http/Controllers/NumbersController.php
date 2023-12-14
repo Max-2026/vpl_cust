@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth; 
 use Illuminate\Http\Request;
+
+use \App\Models\Number;
+
 
 class NumbersController extends Controller
 {
@@ -13,7 +16,13 @@ class NumbersController extends Controller
 
     public function view_all_numbers()
     {
-        return view('customer_panel.my_number.view_all_my_number');
+        $user = Auth::user();
+        $numbers = Number::where('user_id', $user->id)->get();
+        // dd($numbers);
+
+        return view('customer_panel.my_number.view_all_my_number',[
+            'numbers' => $numbers
+        ]);
     }
 
     public function call_forwarding()
@@ -21,10 +30,14 @@ class NumbersController extends Controller
         return view('customer_panel.my_number.change_call_forwarding');
     }
     
-    public function my_numbers()
+    public function my_numbers($id)
     {
+        $number_details = Number::where('id' , $id)->first();
         return view(
-            'customer_panel.numbers_in_my_account.numbers_in_my_account'
+            'customer_panel.numbers_in_my_account.numbers_in_my_account',
+            [
+                'number_details' => $number_details
+            ]
         );
     }
 

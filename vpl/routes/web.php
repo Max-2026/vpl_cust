@@ -89,9 +89,9 @@ Route::middleware('auth')->group(function () {
     )->name('call_forwarding');
 
     Route::get(
-        '/my_numbers',
+        '/my_number/{id}',
         [NumbersController::class, 'my_numbers']
-    )->name('my_numbers');
+    )->name('my_number');
 
     Route::get(
         '/call_logs',

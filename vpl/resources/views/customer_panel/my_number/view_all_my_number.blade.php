@@ -42,21 +42,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($numbers as $number)
                             <tr>
-                                <td>1</td>
-                                <td><a href="{{ route('my_numbers')}}">12025521553</a></td>
+                                <td>{{ $number->id }}</td>           
+                                <td><a href="{{ route('my_number',['id' => $number->id]) }}">{{ $number->number }}</a></td>
                                 <td><a href="{{ route('call_logs')}}">View</a></td>
-                                <td>USA - Washington; D.C.</td>
-                                <td><a href="{{ route('call_forwading_setting') }}">03327951445</a></td>
-                                <td><a href="#">03327951445</a></td>
+                                <td>{{$number->area->name}}</td>
+                                <td><a href="{{ route('call_forwading_setting') }}">-</a></td>
 
                                 <td><i class="fas fa-phone-square-alt"></i></td>
-                                <td>$0.01</td>
+                                <td><a href="#">0332795144</a></td>
+
+                                <td>{{$number->talktime}}</td>
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="{{ route('package') }}">Switch To Plan</a></td>
                                 <td>08-Nov-2020</td>
                             </tr>
-                            <tr>
+                            @endforeach
+                            <!-- <tr>
                                 <td>1</td>
                                 <td><a href="#">12025521553</a></td>
                                 <td><a href="#">View</a></td>
@@ -67,7 +70,7 @@
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="#">Switch To Plan</a></td>
                                 <td>Active Permanent</td>
-                            </tr>
+                            </tr> -->
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -80,6 +83,7 @@
 
 
 @endsection
+
 
 
 

@@ -1,7 +1,7 @@
 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
+        <footer class="footer card">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-center text-sm-left d-block d-sm-inline-block">Virtual Phone Line.   Copyright © 2023. All rights reserved.</span>
           </div>
@@ -26,6 +26,10 @@
   <!-- inject:js -->
   <script src="{{ asset('js/off-canvas.js') }}"></script>
   <script src="{{ asset('js/call_for.js') }}"></script>
+  <script src="{{ asset('js/buy_number.js') }}"></script>
+  <script src="{{ asset('js/buy_number1.js') }}"></script>
+
+
 
   <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
   <script src="{{ asset('js/template.js') }}"></script>

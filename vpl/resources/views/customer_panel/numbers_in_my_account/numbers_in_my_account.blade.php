@@ -14,7 +14,7 @@
 
 
 
-<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >12025521553</a>
+<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >{{ $number_details->number ?? 'N/A' }}</a>
 
 </div>
 </div>
@@ -191,7 +191,6 @@
 
 </form>
 
-</form>
 
 
 

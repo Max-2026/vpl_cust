@@ -144,19 +144,8 @@
       </a>
     </li>
 
-
-
-    
-    
-    
-    
     <li class="nav-item nav-category">Numbers In My Account:</li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{route ('my_numbers')}}">
-        <i class="menu-icon mdi mdi-check-circle"></i>
-        <span class="menu-title">88592753892</span>
-      </a>
-    </li>
+
     <li class="nav-item">
       <a class="nav-link" href="{{route ('buy_number')}}">
         <i class="menu-icon mdi mdi-check-circle"></i>

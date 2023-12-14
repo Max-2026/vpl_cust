@@ -20,6 +20,15 @@ class NumberSeeder extends Seeder
             'per_mintue_charges' => 0.01,
             'per_sms_charges' => 0,
             'forwarding_url' => ''
+        ],
+        [
+            'area_id' => 23,
+            'number' => '286436743',
+            'setup_charges' => 2,
+            'monthly_charges' => 7,
+            'per_mintue_charges' => 0.01,
+            'per_sms_charges' => 0,
+            'forwarding_url' => ''
         ]);
     }
 }
