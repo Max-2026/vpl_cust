@@ -48,7 +48,7 @@
                             <p class="mt-0 "><b> Change forwarding to:</p>
                             <form action="" id="form1">
                             <div class="form-inline">
-                               <input class="mr-2" type="radio"><p class="mt-2">Number from phone <br> book</p>
+                               <input class="mr-2" name="forwards_type" type="radio"><p class="mt-2">Number from phone <br> book</p>
                                <select class="ml-5" name="" id="">
                                 <option selected value="">03132132223 -0- &nbsp;</option>
                                 <option value="">434341134334</option>
@@ -56,11 +56,13 @@
                                </select>
                             </div>
                             <div class="form-inline">
-                               <input class="mr-2 " type="radio"><p class="mt-2 mr-1">Phone Forwarding :</p>
+                               <input class="mr-2 " name="forwards_type" type="radio"><p class="mt-2 mr-1">Phone Forwarding :</p>
                                 <select class="ml-5" name="" id="">
-                                <option selected value="">1 - USA </option>
-                                <option value="">1- Burmuda</option>
-                                <option value="">1- Canada</option>
+                                @foreach ($countries as $country)
+                                <option value="{{ $country->id }}" data-show-form="{{ $country->id }}">
+                                    {{ $country->code }} - {{ $country->name }}
+                                </option>
+                                @endforeach
                                </select>
                                 <p class="mr-5"></p>
                                 <p class="mr-5"></p>

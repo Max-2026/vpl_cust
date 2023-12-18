@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use \App\Models\Number;
+use App\Models\Country;
+use App\Models\User;
+
 
 
 class NumbersController extends Controller
@@ -27,7 +30,12 @@ class NumbersController extends Controller
 
     public function call_forwarding()
     {
-        return view('customer_panel.my_number.change_call_forwarding');
+
+        $countries = Country::all();
+        return view('customer_panel.my_number.change_call_forwarding',[
+        'countries' => $countries
+    ]);
+
     }
     
     public function my_numbers($id)
@@ -56,11 +64,16 @@ class NumbersController extends Controller
         return view('customer_panel.my_number.plan_detail');
     }
 
-    public function call_forwading_setting()
+    public function call_forwading_setting($id)
     {
+        $number_details = Number::where('id' , $id)->first();
         return view(
-            'customer_panel.numbers_in_my_account.call_forwading_manager'
+            'customer_panel.numbers_in_my_account.call_forwading_manager',
+            [
+                'number_details' => $number_details
+            ]
         );
+        
     }
     public function monthly_recurring_charges()
     {

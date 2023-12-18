@@ -44,11 +44,11 @@
                         <tbody>
                         @foreach ($numbers as $number)
                             <tr>
-                                <td>{{ $number->id }}</td>           
+                                <td>{{ $number->id ?? 'N/A' }}</td>           
                                 <td><a href="{{ route('my_number',['id' => $number->id]) }}">{{ $number->number }}</a></td>
                                 <td><a href="{{ route('call_logs')}}">View</a></td>
                                 <td>{{$number->area->name}}</td>
-                                <td><a href="{{ route('call_forwading_setting') }}">-</a></td>
+                                <td><a href="#">-</a></td>
 
                                 <td><i class="fas fa-phone-square-alt"></i></td>
                                 <td><a href="#">0332795144</a></td>

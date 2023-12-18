@@ -216,7 +216,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
     Route::get(
-        '/call_forwading_setting',
+        '/call_forwading_setting/{id}',
         [NumbersController::class, 'call_forwading_setting']
     )->name('call_forwading_setting');
 

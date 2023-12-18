@@ -14,7 +14,7 @@
 
 
 
-<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >{{ $number_details->number ?? 'N/A' }}</a>
+<a href="{{ route('call_forwading_setting',['id' => $number_details->id ]) }}" style="margin-left:40%;" >{{ $number_details->number ?? 'N/A' }}</a>
 
 </div>
 </div>
@@ -40,7 +40,7 @@
 <div class="form-group row div-line">
 <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Number is from Country:</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="USA">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="{{ $number_details->area->name ?? 'N/A' }}">
 </div>
 </div>
 
@@ -56,7 +56,7 @@
   <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Monthly Recurring Charges</label>
   <div class="col-sm-10">
     <span style="margin-left:40%;">
-      $5.99
+      ${{ $number_details->monthly_charges ?? 'N/A' }}
     </span>
     <a href="{{ route('monthly_recurring_charges') }}" style="margin-left:5%;">Go Annual Billing What's this?</a>
   </div>
@@ -80,7 +80,7 @@
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Current Forwarding</label>
 <div class="col-sm-10">
-<a href="{{ route('call_forwading_setting') }}" style="margin-left:40%;" >Change forwarding</a>
+<a href="{{ route('call_forwading_setting',['id' => $number_details->id])}}" style="margin-left:40%;" >Change forwarding</a>
 </div>
 </div>
 
@@ -114,7 +114,7 @@
 <div class="form-group row div-line">
 <label class="col-sm-2 col-form-label" style="padding-left:5%;" for="statusSelect">Per Min Charges After Free Minutes</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="$0.0100 /min /min">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="${{ $number_details->per_mintue_charges ?? 'N/A' }}">
 </div>
 </div>
 

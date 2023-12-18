@@ -10,13 +10,17 @@
             <div class="form-group pt-3 ml-5 mt-5">
             <div class="col-lg-6 col-md-6"><label>Your Order ID / Number</label></div>
             <div class="col-lg-6 col-md-6">
-            <p class="form-control-static"><label>1005729 </label></p>
+            <p class="form-control-static"><label>
+                  {{ $number_details->user->id ?? 'N/A' }}
+            </label></p>
             </div>
             </div>
             <div class="form-group pt-3 ml-5">
             <div class="col-lg-6 col-md-6"><label>Changing Setting for  Number</label></div>
             <div class="col-lg-6 col-md-6">
-            <p class="form-control-static"><label>12025521553</label> </p>
+            <p class="form-control-static"><label>
+                  {{ $number_details->number ?? 'N/A' }}
+            </label> </p>
             </div>
             </div>
             <div class="form-group pt-3 ml-5">
@@ -28,13 +32,17 @@
             <div class="form-group pt-3 ml-5">
             <div class="col-lg-6 col-md-6"><label>Your Talk Time Balance</label></div>
             <div class="col-lg-6 col-md-6">
-            <p class="form-control-static"><label>$0.0 </label></p>
+            <p class="form-control-static"><label>
+                  {{ $number_details->talktime ?? 'N/A' }}
+                   </label></p>
             </div>
             </div>
             <div class="form-group pt-3 ml-5">
             <div class="col-lg-6 col-md-6"><label>Number Status</label></div>
             <div class="col-lg-6 col-md-6">
-            <p class="form-control-static"><label>Active / Permanent Number</label></p>
+            <p class="form-control-static"><label>
+                  {{ $number_details->is_active ?? 'N/A' }}
+            </label></p>
             </div>
             </div>
             <div class="form-group pt-3 ml-5">

@@ -26,7 +26,7 @@ class NumberSeeder extends Seeder
             'number' => '286436743',
             'setup_charges' => 2,
             'monthly_charges' => 7,
-            'per_mintue_charges' => 0.01,
+            'per_minute_charges' => 0.01,
             'per_sms_charges' => 0,
             'forwarding_url' => ''
         ]);
