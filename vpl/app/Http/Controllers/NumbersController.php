@@ -66,11 +66,16 @@ class NumbersController extends Controller
 
     public function call_forwading_setting($id)
     {
+        $user = Auth::user();
+        $countries = Country::all();
         $number_details = Number::where('id' , $id)->first();
         return view(
             'customer_panel.numbers_in_my_account.call_forwading_manager',
             [
+                'user' => $user,
+                'countries' => $countries,
                 'number_details' => $number_details
+               
             ]
         );
         

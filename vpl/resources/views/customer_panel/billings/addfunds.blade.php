@@ -46,19 +46,21 @@
                     <div class="form-group row mb-0">
                         <label for="orderID" class="col-sm-4 col-form-label text-right mt-2">Order ID</label>
                         <div class="col-md-6">
-                        <p class="pt-3">1005729</p>
+                        <p class="pt-3">{{ $user->id}}</p>
                         </div>
                     </div>
                     <div class="form-group row mb-0">
                         <label for="customerName" class="col-sm-4 col-form-label text-right">Customer Name</label>
                         <div class="col-md-6">
-                        <p class="pt-2">Ahmed raza</p>
+                        <p class="pt-2">
+                        {{ $user->first_name}} {{ $user->last_name}}
+                        </p>
                         </div>
                     </div>
                     <div class="form-group row mb-0">
                         <label for="amount" class="col-sm-4 col-form-label text-right">Amount ($)</label>
                         <div class="col-md-6">
-                            <input type="number" class="form-control" id="amount" placeholder="10">
+                            <input type="number" class="form-control" id="amount" placeholder="10" required>
                         </div>
                     </div>
                     <div class="text-center">

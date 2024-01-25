@@ -71,10 +71,17 @@ Route::middleware('auth')->group(function () {
         [BuyNumberController::class, 'buy_number']
     )->name('buy_number');
 
+    Route::get('/search',[BuyNumberController::class, 'search'])->name('search');
+
+    Route::get('/city/{city}',[BuyNumberController::class, 'search_city_number'])->name('city');
+
+
     Route::get(
         '/buy_golden_number',
         [BuyNumberController::class, 'buy_golden_number']
     )->name('buy_golden_number');
+
+
 
     Route::get('/faxes', [NumbersController::class, 'faxes'])->name('faxes');
 

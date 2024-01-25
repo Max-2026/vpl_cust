@@ -790,13 +790,7 @@ class CountrySeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
-            [
-                'code_a2' => 'KZ',
-                'name' => 'kazakhstan',
-                'code' => 7,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
+
             [
                 'code_a2' => 'KE',
                 'name' => 'kenya',
@@ -1585,6 +1579,13 @@ class CountrySeeder extends Seeder
                 'code_a2' => 'TC',
                 'name' => 'turks and caicos islands',
                 'code' => 1649,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'code_a2' => 'KZ',
+                'name' => 'kazakhstan',
+                'code' => 7,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],

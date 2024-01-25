@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Number;
+use App\Models\User;
 
 class AdvanceFeaturesController extends Controller
 {
@@ -13,7 +16,13 @@ class AdvanceFeaturesController extends Controller
 
     public function voice_mail_setting()
     {
-        return view('customer_panel.advance_feature.voicemailsetting');
+        $user = Auth::user();
+        $numbers = Number::where('user_id', $user->id)->get();
+        return view('customer_panel.advance_feature.voicemailsetting'
+        ,[
+            'user' => $user,
+            'numbers' => $numbers
+        ]);
     }
 
     public function call_recordings()

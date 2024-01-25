@@ -11,7 +11,7 @@
             <div class="col-lg-6 col-md-6"><label>Your Order ID / Number</label></div>
             <div class="col-lg-6 col-md-6">
             <p class="form-control-static"><label>
-                  {{ $number_details->user->id ?? 'N/A' }}
+                  {{ $user->id ?? 'N/A' }}
             </label></p>
             </div>
             </div>
@@ -92,9 +92,12 @@
                                                       <div class="form-inline">
                                                             <input class="mr-2 " type="radio"><p class="mt-2 mr-1">Phone Forwarding :</p>
                                                             <select class="ml-5" name="" id="">
-                                                            <option selected value="">1 - USA </option>
-                                                            <option value="">1- Burmuda</option>
-                                                            <option value="">1- Canada</option>
+                                                                  @foreach ($countries as $country)
+                                                            <option selected value="">
+                                                            {{ $country->code }} - {{$country->name }}
+                                                            </option>
+                                                            @endforeach
+                                                           
                                                             </select>
                                                             <p class="mr-5"></p>
                                                             <p class="mr-5"></p>

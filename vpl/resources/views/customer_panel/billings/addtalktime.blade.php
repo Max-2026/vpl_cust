@@ -33,13 +33,13 @@
                 <div class="form-group row mb-0">
                     <label for="orderID" class="col-sm-4 col-form-label text-right mt-2">Order ID</label>
                     <div class="col-sm-8">
-                        <p class="pt-3">1005729</p>
+                        <p class="pt-3">{{ $user->id}}</p>
                     </div>
                 </div>
                 <div class="form-group row mb-0">
                     <label for="balance" class="col-sm-4 col-form-label text-right">Available Balance</label>
                     <div class="col-sm-8">
-                        <p class="pt-2">138.34</p>
+                        <p class="pt-2">$ {{ $user->balance ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="form-group row mb-0">
@@ -47,6 +47,8 @@
                     <div class="col-sm-8">
                         <select class="form-select" id="talkTimeType">
                             <option>TalkTime Individual Number</option>
+                            <option>Master Talk Time</option>
+
                             <!-- Add more options here if needed -->
                         </select>
                     </div>
@@ -55,15 +57,18 @@
                     <label for="talkTimeType" class="col-sm-4 col-form-label text-right">Virtal Phone Number</label>
                     <div class="col-sm-8">
                         <select class="form-select" id="talkTimeType">
-                            <option>12025521527</option>
-                            <!-- Add more options here if needed -->
+                        @foreach ($numbers as $number)
+                            <option value="{{ $number->id }}">
+                                {{ $number->number }}
+                            </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="form-group row mb-0">
                     <label for="addTalkTime" class="col-sm-4 col-form-label text-right">Add Talk Time ($)</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addTalkTime">
+                        <input type="text" class="form-control" id="addTalkTime" required>
                     </div>
                 </div>
                 <div class="form-group row mb-3">

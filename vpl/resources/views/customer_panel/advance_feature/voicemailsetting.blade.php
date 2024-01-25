@@ -13,14 +13,20 @@
           <div class="form-group row mb-0">
             <label for="userID" class="col-md-4 col-form-label mt-3">User ID</label>
             <div class="col-md-6">
-              <p class="form-control-static mt-3">1005729</p>
+              <p class="form-control-static mt-3">
+                {{ $user->id?? 'N/A'}}
+              </p>
             </div>
             </div>
             <div class="form-group row mb-0">
             <label for="selectPhone" class="col-md-4 col-form-label text-left">Select Phone Number</label>
             <div class="col-md-6">
               <select class="form-select" id="selectPhone">
-                <option selected>12025521553</option>
+                @foreach($numbers as $number)
+                <option >
+                  {{ $number->number ?? 'N/A'}}
+                </option>
+                @endforeach
                 <!-- Other options -->
               </select>
             </div>
@@ -28,7 +34,7 @@
           <div class="form-group row mb-0">
             <label for="password" class="col-md-4 col-form-label text-left">Voice Mailbox Password</label>
             <div class="col-md-6">
-                <input type="password" class="form-control" id="password" placeholder="*****">
+            <input type="text" class="form-control" id="password" value="{{substr($numbers[0]->number,-4) }}">
             </div>
             </div>
 
@@ -65,6 +71,20 @@
   </div>
 </div>
 
+<script>
+  // Add a script section to handle option changes
+  document.addEventListener('DOMContentLoaded', function() {
+    var selectPhone = document.getElementById('selectPhone');
+    var passwordInput = document.getElementById('password');
 
+    // Initial value
+    passwordInput.value = selectPhone.value.slice(-4);
+
+    // Handle changes in the select box
+    selectPhone.addEventListener('change', function() {
+      passwordInput.value = selectPhone.value.slice(-4);
+    });
+  });
+</script>
 
 @endsection

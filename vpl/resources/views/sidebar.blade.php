@@ -47,7 +47,7 @@
       <div class="collapse" id="ui-basic3">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{ route('voice_messages')}}">Voice Messages</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('general_setting')}}">Voice Mail Settings</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('voice_mail_setting')}}">Voice Mail Settings</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('call_recordings')}}">Call Recording</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('ivr_setting')}}">IVR Settings</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('virtual_pbx_setting')}}">Virtual PBX Settings</a></li>

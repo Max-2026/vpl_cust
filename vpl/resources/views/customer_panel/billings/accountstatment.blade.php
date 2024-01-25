@@ -4,13 +4,14 @@
 <br>
 <br>
 
+
 <div class="container">
     <div class="row m-3">
         <div class="card rounded">
     <div class="col-lg-8 offset-lg-2">
       <form>
         <fieldset>
-          <h6 class="text-center pb-2 pt-3">Order ID: 1005729</h6 >
+          <h6 class="text-center pb-2 pt-3">ORDER ID:  {{  $user->id }}</h6 >
         
           <div class="form-group row mb-0"> <!-- Added mb-0 class to remove vertical margin -->
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Transaction Type</label>
@@ -18,8 +19,9 @@
             <div class="col-md-6">
               <select class="form-select" id="selectPhone">
                 <option selected>View All My Bills</option>
+                <option selected>View All My Bills of My Number</option>
+                <option selected>View All My Bills</option>
                 <option>hello</option>
-                <!-- Other options -->
               </select>
             </div>
           </div>
@@ -27,10 +29,9 @@
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Number</label>
             <div class="col-md-6">
               <select class="form-select" id="selectPhone">
-                <option selected>12025521553</option>
-                <option>hello</option>
-
-                <!-- Other options -->
+                @foreach ($numbers as $number)
+                <option selected>{{ $number->number }}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -38,10 +39,18 @@
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Month</label>
             <div class="col-md-6">
               <select class="form-select" id="selectPhone">
-                <option selected>january</option>
-                <option>hello</option>
-
-                <!-- Other options -->
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
               </select>
             </div>
           </div>
@@ -49,10 +58,10 @@
             <label for="selectPhone" class="col-md-4 col-form-label text-right">Year</label>
                <div class="col-md-6">
               <select class="form-select" id="selectPhone">
-                <option selected>2023</option>
-                <option>hello</option>
-
-                <!-- Other options -->
+                 @php $currentYear = date('Y');   @endphp
+                 @for ($year = 2000; $year <= $currentYear; $year++)
+                  <option {{ $year == $currentYear ? 'selected' : '' }}>{{ $year }}</option>
+                 @endfor      
               </select>
             </div>
           </div>

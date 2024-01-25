@@ -15,11 +15,11 @@
                                 <label for="phponeno" class="col-sm-2 col-form-label font-weight-bold text-flex">My Number</label>
                                 <div class="col-sm-10">
                                             <select class="custom-select w-50">
-                                                    <option selected>Select Number</option>
-                                                    <option value="1">-All</option>
-                                                    <option value="2">12908397248873</option>
-                                                    <option value="3">12908397248873</option>
-                                                    <option value="4">12908397248873</option>
+                                                    <option selected>All</option>
+                                                    @foreach($numbers as $number)
+                                                    <option value="{{ $number->number }}">{{ $number->number }}</option>
+                                                  
+                                                    @endforeach
                                             </select>     
                                 </div>
                             </div>  
@@ -57,11 +57,10 @@
                                 <div class="col-sm-10 ">
                                             <select class="custom-select  w-50">
                                             <option selected>Select Year</option>
-                                               <?php
-                                                        for ($i = 2000; $i <= 2023; $i++) {
-                                                                echo '<option value="' . $i . '">' . $i . '</option>';
-                                                        }
-                                                        ?>
+                                              @php $currentYear = date('Y');   @endphp
+                                                @for ($year = 2000; $year <= $currentYear; $year++)
+                                                  <option {{ $year == $currentYear ? 'selected' : '' }}>{{ $year }}</option>
+                                                @endfor    
                                             </select>     
                                 </div>
                             </div>  
