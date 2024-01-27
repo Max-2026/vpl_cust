@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 
 use App\Models\Country;
 use App\Models\Area;
@@ -31,42 +33,70 @@ class ApiController extends Controller
         return $country->areas;
     }
 
-    public function search_numbers_by_area($area_name)
-    {
-        $numbers = Number::whereHas(
-            'area',
-            function ($sub_query) use ($area_name) {
-                $sub_query->where('areas.name', lcfirst(trim($area_name)));
-            }
-        )->get();
 
-        if ($numbers->count() === 0) {
-            return response()->json([
-                'message' => 
-                    "No numbers found for the area: `$area_name`"
-            ], 404);
-        }
-        return $numbers;
+
+    public function getDIDAreaCodes(Request $request)
+    {
+        $countryId = $request->input('countrySelect');
+
+        $userId = '700290';
+        $password = 'ACJqm6Ndv123xx';
+        $countryCode = $request->input('CountryCode', $countryId);
+    
+        $response = Http::get("https://newapi.didx.net/DidxApis/api/getDIDArea.php", [
+            'UserID' => $userId,
+            'Password' => $password,
+            'CountryCode' => $countryCode,
+        ]);
+    
+        $AreaCode = $response->json();
+        $apiData = '';
+
+        $countries = Country::all();
+        // return view('', ['apiData' => $data]);
+        return view('customer_panel.Buy_Numbers.buy_number',[
+            'AreaCode' => $AreaCode,
+            'countries' => $countries,
+            'apiData' => $apiData,
+
+        ]);
     }
 
-    public function search_numbers_by_country($country_name)
-    {
-        $numbers = Number::whereHas(
-            'area.country',
-            function ($sub_query) use ($country_name) {
-                $sub_query->where(
-                    'countries.name',
-                    lcfirst(trim($country_name))
-                );
-            }
-        )->get();
 
-        if ($numbers->count() === 0) {
-            return response()->json([
-                'message' => 
-                    "No numbers found for the country: `$country_name`"
-            ], 404);
-        }
-        return $numbers;
+
+    public function getAvailableNumbers(Request $request)
+    {
+        $country_code = intval($request->input('areaValue1'));
+        $area_code = intval($request->input('areaValue2'));
+
+    
+        $userId = '700290';
+        $password = 'ACJqm6Ndv123xx';
+        $countryCode = $request->input('CountryCode', $country_code); 
+        $areaCode = $request->input('AreaCode', $area_code); 
+    
+        $response = Http::get("https://newapi.didx.net/DidxApis/api/getAvailableDIDS.php", [
+            'UserID' => $userId,
+            'Password' => $password,
+            'CountryCode' => $countryCode,
+            'AreaCode' => $areaCode,
+        ]);
+    
+        $apiData = $response->json();
+        $countries = Country::all();
+    
+        $AreaCode = '';
+    
+        return view('customer_panel.Buy_Numbers.buy_number', [
+            'countries' => $countries,
+            'apiData' => $apiData,
+            'AreaCode' => $AreaCode,
+        ]);
     }
+    
+
+
+
+    
+    
 }

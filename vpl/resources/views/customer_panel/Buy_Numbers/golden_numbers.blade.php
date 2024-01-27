@@ -84,15 +84,7 @@
 <td>$0.02</td>
 <td><a href="">$7.99</a></td>
 <td><a href="#">$95.88</a></td>
-<tr>
-    <td colspan="12" class="text-center">
-      <div class="d-flex justify-content-right align-items-center">
-        <input name="mm"type="radio"> &nbsp;&nbsp;Monthly
-        <input  name="mm" class="ml-2" type="radio"> &nbsp;&nbsp;Annually
-        <button class="btn btn-primary ml-4">Add Selected to Shopping Cart</button>
-      </div>
-    </td>
-  </tr>
+
 <tr style="bgcolor:;">
           <td class="simple" style="align:left;" colspan="12">* Per Minute Receiving Charges After Free Minutes</td>
         </tr>

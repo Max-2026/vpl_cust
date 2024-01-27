@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-8 col-lg-6 mx-auto">
                 <div class="form-section">
-                    <form id="searchForm" action="{{ url('/search')}}" method="GET">
+                    <form id="searchForm" action="{{ url('api/get-did-area-data')}}" method="GET">
                         @csrf
                         <div class="form-group custom-dropdown">
                             <input type="text" class="form-control" id="dynamicOptionsInput" name="dynamicOptionsInput"
@@ -40,7 +40,7 @@
                             <div></div>
                         </div>
                         <div class="form-group">
-                            <select class="form-select" id="countrySelect" name="countrySelect">
+                            <select class="form-select" id="countrySelect" name="countrySelect" required>
                                 <option value="" selected>Select Country</option>
                                 @foreach ($countries as $country)
                                 <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
@@ -62,89 +62,156 @@
     <div class="container pt-3 " id="secondFormContainer" style="display:;">
         <div class="row">
             <div class="col-md-12">
+
             <table class="table table-bordered originalTable" id="originalTable">
     <thead>
         <tr>
             <th scope="col">Area Code</th>
             <th scope="col">City/Area</th>
-            <th scope="col">AreaCode</th>
-
         </tr>
     </thead>
     <tbody>
-    @foreach($result1 as $records)
 
-    <tr>
-        <td>{{$records->country->code}}-{{$records->code}}</td>
-        <td><a href="{{url('city',['city'=>$records->name ])}}">{{$records->name}}</a></td>
-        <td>{{$records->code}}</td>
-    </tr>
+    @php
+    $countryId = $_GET['countrySelect'] ?? '';
+    @endphp
 
-        @endforeach
+        @if(is_array($AreaCode))
+            @foreach($AreaCode as $key => $value)
+                @if($key != 0 && is_array($value))
+                <tr>
+                    <td><a href="javascript:void(0);" onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{$countryId }}-{{$value[0]}}</a></td>
+                    <td><a href="javascript:void(0);" onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{$value[1] ?? 'No City Found'}}</a></td>
+                </tr>
+                @endif
+            @endforeach
+        @endif
     </tbody>
 </table>
 <br>
 <br>
 
-<table class="table table-bordered originalTable" >
+<!-- Your existing HTML table structure -->
+<table class="table table-bordered originalTable">
     <thead>
         <tr>
-            <th scope="col"><input type="checkbox" name="" id=""></th>
-            <th scope="col">Phone Number</th>
+            <th><input type="checkbox" name="" id="selectAll"></th>
+            <th scope="col">Number</th>
+            <th scope="col">Area</th>
             <th scope="col">Country</th>
-            <th scope="col">City Area</th>
-            <th scope="col">SMS Support</th>
-            <th scope="col">Free Incoming Minutes</th>
-            <th scope="col">Setup</th>
-            <th scope="col">Rate Per Minute*</th>
             <th scope="col">Monthly Charges</th>
-            <th scope="col">Annual Charges</th>
+            <th scope="col">Setup Cost</th>
+            <th scope="col">Per Minute Charges</th>
+            <th scope="col">Rating</th>
         </tr>
     </thead>
     <tbody>
-    @foreach($search_query as $check)
-    <tr>
-        <td><input type="checkbox" name="" id=""></td>
-      <td>{{$check->number ?? ''}}</td>
-      <td>{{$check->country->name ?? ''}}</td>
-      <td>{{$check->area->name ?? ''}}</td>
-      <td>{{$check->sms_support ?? 'No'}}</td>
-      <td>{{$check->free_incoming_minutes ?? 'No'}}</td>
-      <td>$ {{$check->setup_charges ?? ''}}</td>
-      <td>$ {{$check->per_mintue_charges ?? 'No'}}</td>
-      <td>$ {{$check->monthly_charges ?? 'No'}}.00</td>
-      <td>$ {{$check->annual_charges ?? 'No'}}.00</td>
-    </tr>
-    @endforeach
+
+    @if(is_array($apiData))
+            @foreach($apiData as $key => $value)
+                @if($key != 0 && is_array($value))
+                <tr>
+                    <td><input type="checkbox" class="checkbox"></td>
+                    <td>{{$value[0]}}</td>
+                    <td>{{$value[6]}}</td>
+                    <td>{{$value[5]}}</td>
+                    <td>{{$value[2]}}</td>
+                    <td>{{$value[1]}}</td>
+                    <td>{{$value[3]}}</td>
+                    <td>{{$value[4]}}</td>
+                </tr>
+                @endif
+            @endforeach
+        @endif
+        <tr>
+    <td colspan="12" class="text-center">
+      <div class="d-flex justify-content-right align-items-center">
+        <input name="mm"type="radio"> &nbsp;&nbsp;Monthly
+        <input  name="mm" class="ml-2" type="radio"> &nbsp;&nbsp;Annually
+        <button class="btn btn-primary ml-4">Add Selected to Shopping Cart</button>
+      </div>
+    </td>
+  </tr>
+  <tr style="bgcolor:;">
+          <td class="simple" style="align:left;" colspan="12">* Per Minute Receiving Charges After Free Minutes</td>
+        </tr>
+        <tr style="bgcolor:;">
+          <td class="simple" style="align:left;" colspan="12">** (cannot be purchased in batch)</td>
+        </tr>
+           
     </tbody>
 </table>
+
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    // dynamic api options of input
-    var dynamicOptions = [
-        @foreach ($countries as $country)
-        "{{ $country->code }} - {{ $country->name }}",
-        @endforeach
-    ];
-    // dynamic api options of input end
 
-    // Function to handle search button click
-    function searchClicked() {
-        // Sample logic: Check if the input field has a value
-        var inputVal = $("#dynamicOptionsInput").val();
-        
-        if (inputVal) {
-            // Show the secondFormContainer
-            $("#secondFormContainer").show();
-        } else {
-            // Hide the secondFormContainer
-            $("#secondFormContainer").hide();
-        }
+
+<script>
+    function submitAreaRequest(areaValue1, areaValue2) {
+        // Create a dynamic form
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '{{ url('/api/get-available-numbers') }}'; // Replace with your desired URL
+
+        // Create a hidden input field for the first area value
+        var areaInput1 = document.createElement('input');
+        areaInput1.type = 'hidden';
+        areaInput1.name = 'areaValue1';
+        areaInput1.value = areaValue1;
+
+        // Create a hidden input field for the second area value
+        var areaInput2 = document.createElement('input');
+        areaInput2.type = 'hidden';
+        areaInput2.name = 'areaValue2';
+        areaInput2.value = areaValue2;
+
+        // Append the hidden inputs to the form
+        form.appendChild(areaInput1);
+        form.appendChild(areaInput2);
+
+        // Append the form to the document body
+        document.body.appendChild(form);
+
+        // Submit the form
+        form.submit();
     }
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all checkbox
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const checkboxes = document.querySelectorAll('.checkbox');
+
+        // Function to toggle all checkboxes
+        function toggleCheckboxes() {
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        }
+
+        // Event listener for select all checkbox
+        selectAllCheckbox.addEventListener('change', function() {
+            toggleCheckboxes();
+        });
+
+        // Event listener for individual checkboxes
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                // Check if all checkboxes are checked
+                const allChecked = [...checkboxes].every(function(cb) {
+                    return cb.checked;
+                });
+
+                // Update select all checkbox state
+                selectAllCheckbox.checked = allChecked;
+            });
+        });
+    });
 </script>
 
 @endsection
