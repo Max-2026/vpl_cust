@@ -220,7 +220,7 @@ Route::middleware('auth')->group(function () {
         [SmsInboxController::class, 'sms_inbox']
     )->name('sms_inbox');
 
-    Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+    Route::post('/cart', [CartController::class, 'cart'])->name('cart');
 
     Route::get(
         '/call_forwading_setting/{id}',

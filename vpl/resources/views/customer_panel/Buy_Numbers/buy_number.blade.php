@@ -2,7 +2,7 @@
 @section('title', 'Buy Number')
 
 @section('buy_number')
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <br>
     <br>
     <div class="container">
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary" onclick="searchClicsked()">Search</button>
+                                <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </form>
                     </div>
@@ -96,7 +96,6 @@
                     <br>
                     <br>
 
-                    <!-- Your existing HTML table structure -->
                     <table class="table table-bordered originalTable">
                         <thead>
                             <tr>
@@ -131,9 +130,10 @@
                             <tr>
                                 <td colspan="12" class="text-center">
                                     <div class="d-flex justify-content-right align-items-center">
-                                        <input name="mm"type="radio"> &nbsp;&nbsp;Monthly
+                                        <input name="mm" type="radio"> &nbsp;&nbsp;Monthly
                                         <input name="mm" class="ml-2" type="radio"> &nbsp;&nbsp;Annually
-                                        <button class="btn btn-primary ml-4">Add Selected to Shopping Cart</button>
+                                        <button class="btn btn-primary ml-4" onclick="addToCart()">Add Selected to Shopping
+                                            Cart</button>
                                     </div>
                                 </td>
                             </tr>
@@ -152,8 +152,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script>
         function submitAreaRequest(areaValue1, areaValue2) {
@@ -184,10 +182,70 @@
             // Submit the form
             form.submit();
         }
-    </script>
 
+        // Function to handle adding selected numbers to the shopping cart
+        function addToCart() {
+            // Get all checkboxes
+            const checkboxes = document.querySelectorAll('.checkbox');
+            // Initialize an array to store selected numbers
+            const selectedNumbers = [];
 
-    <script>
+            // Loop through checkboxes to find selected ones
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    // Extract the number and other relevant data from the table row
+                    const row = checkbox.parentNode.parentNode;
+                    const number = row.cells[1].textContent.trim(); // Number
+                    const area = row.cells[2].textContent.trim(); // Area
+                    const country = row.cells[3].textContent.trim(); // Country
+                    const monthlyCharges = row.cells[4].textContent.trim(); // Monthly Charges
+                    const setupCost = row.cells[5].textContent.trim(); // Setup Cost
+                    const perMinuteCharges = row.cells[6].textContent.trim(); // Per Minute Charges
+                    const rating = row.cells[7].textContent.trim(); // Rating
+
+                    // Push the selected number and its data to the array
+                    selectedNumbers.push({
+                        number: number,
+                        area: area,
+                        country: country,
+                        monthlyCharges: monthlyCharges,
+                        setupCost: setupCost,
+                        perMinuteCharges: perMinuteCharges,
+                        rating: rating
+                    });
+                }
+            });
+
+            // Check if any number is selected
+            if (selectedNumbers.length > 0) {
+                // Construct the URL for the cart page
+                const cartURL = '{{ route('cart') }}';
+
+                // Create a form element
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = cartURL;
+
+                // Create an input element to hold the selected numbers data
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'selectedNumbers';
+                input.value = JSON.stringify(selectedNumbers);
+
+                // Append the input element to the form
+                form.appendChild(input);
+
+                // Append the form to the document body
+                document.body.appendChild(form);
+
+                // Submit the form
+                form.submit();
+            } else {
+                // Alert the user if no number is selected
+                alert('Please select at least one number to add to the cart.');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Select all checkbox
             const selectAllCheckbox = document.getElementById('selectAll');
@@ -225,7 +283,6 @@
                 "{{ $country->code }} - {{ $country->name }}",
             @endforeach
         ];
-        // dynamic api options of input end
     </script>
 
 @endsection
