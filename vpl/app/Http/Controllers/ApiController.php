@@ -93,6 +93,12 @@ class ApiController extends Controller
             'AreaCode' => $AreaCode,
         ]);
     }
+
+    public function number_reserved($number){
+
+
+    dd($number);
+    }
     
 
 

@@ -65,6 +65,7 @@ class Number extends Model
         return $this->hasMany(NumberHistory::class);
     }
 
+
     protected function getCountryAttribute()
     {
         return $this->area->country;

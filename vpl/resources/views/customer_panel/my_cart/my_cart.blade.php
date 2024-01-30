@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'My Cart')
 
-@section('content')
+@section('my_cart')
 
     <style>
         .table thead th {
@@ -25,7 +25,7 @@
                     <th scope="col">Area</th>
                     <th scope="col">Country</th>
                     <th scope="col">Billing Type</th>
-                    <th scope="col">1 Type Setup Charge</th>
+                    <th scope="col">Setup Charge</th>
                     <th scope="col">Monthly Charge</th>
                     <th scope="col">Annual Charge</th>
                     <th scope="col">Talk Time</th>
@@ -37,28 +37,28 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($selectedNumbers && count($selectedNumbers) > 0)
-                    @foreach ($selectedNumbers as $number)
-                        <tr>
-                            <td>{{ $number->number }}</td>
-                            <td>{{ $number->area }}</td>
-                            <td>{{ $number->country }}</td>
-                            <td>{{ $number->billing_type }}</td>
-                            <td>{{ $number->setup_charge }}</td>
-                            <td>{{ $number->monthly_charge }}</td>
-                            <td>{{ $number->annual_charge }}</td>
-                            <td>{{ $number->talk_time }}</td>
-                            <td>{{ $number->plan_monthly }}</td>
-                            <td>{{ $number->plan_setup }}</td>
-                            <td>{{ $number->total_charges }}</td>
-                            <td><a href="#" style="color:red;">Remove</a></td>
-                        </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="13">No numbers selected</td>
-                    </tr>
-                @endif
+
+            @foreach($data as $data)
+            <tr>
+                <td>{{ $data->number }}</td>
+                <td>{{ $data->area }}</td>
+                <td>{{ $data->country }}</td>
+                <td>{{ $data->billing_type }}</td>
+                <td>{{ $data->setup_cost }}</td>
+                <td>{{ $data->monthly_charges }}</td>
+                <td>{{ $data->annual_charges }}</td>
+                <td>{{ $data->talk_time }}</td>
+                <td>{{ $data->monthly_plan }}</td>
+                <td>{{ $data->plan_setup }}</td>
+                <td>{{ 0}}</td>
+                <td>Pending</td>
+                <td>
+                    <a href="#" type="button" class="btn btn-default"
+                        style="color:white;background-color:#0088cc;">Remove</a>
+                </td>
+
+            </tr>
+            @endforeach
             </tbody>
         </table>
 

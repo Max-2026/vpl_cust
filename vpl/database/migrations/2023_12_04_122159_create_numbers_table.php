@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('area_id')->constrained();
+            $table->foreignId('area_id')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('vendor_id')
                 ->nullable()

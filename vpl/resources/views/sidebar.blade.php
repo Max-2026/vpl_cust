@@ -120,7 +120,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('cart')}}">
+      <a class="nav-link" href="{{ route('my_cart')}}">
         <i class="menu-icon mdi mdi-shopping"></i>
         <span class="menu-title">My Cart</span>
       </a>

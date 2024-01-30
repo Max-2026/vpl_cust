@@ -222,6 +222,7 @@ Route::middleware('auth')->group(function () {
     )->name('sms_inbox');
 
     Route::post('/cart', [CartController::class, 'cart'])->name('cart');
+    Route::get('/my_cart', [CartController::class, 'index'])->name('my_cart');
 
     Route::get(
         '/call_forwading_setting/{id}',
@@ -236,4 +237,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
 
     Route::get('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
+    Route::get('/number_reserved_api/{number}', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
+
+    
 });
