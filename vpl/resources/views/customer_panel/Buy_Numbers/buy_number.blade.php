@@ -28,8 +28,8 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 mx-auto">
                     <div class="form-section">
-                        <form id="searchForm" action="{{ url('api/get-did-area-data') }}" method="GET">
-                            @csrf
+                        <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="GET">
+                            @csrf <!-- CSRF token -->
                             <div class="form-group custom-dropdown">
                                 <input type="text" class="form-control" id="dynamicOptionsInput"
                                     name="dynamicOptionsInput" placeholder="Phone number">
@@ -74,7 +74,7 @@
                         <tbody>
 
                             @php
-                                $countryId = $_GET['countrySelect'] ?? '';
+                                $countryId = request()->input('countrySelect', '');
                             @endphp
 
                             @if (is_array($AreaCode))
@@ -157,8 +157,8 @@
         function submitAreaRequest(areaValue1, areaValue2) {
             // Create a dynamic form
             var form = document.createElement('form');
-            form.method = 'post';
-            form.action = '{{ url('/api/get-available-numbers') }}'; // Replace with your desired URL
+            form.method = 'get';
+            form.action = '{{ url('/get-available-numbers') }}'; // Replace with your desired URL
 
             // Create a hidden input field for the first area value
             var areaInput1 = document.createElement('input');
@@ -219,7 +219,7 @@
             // Check if any number is selected
             if (selectedNumbers.length > 0) {
                 // Construct the URL for the cart page
-                const cartURL = '{{ route('cart') }}';
+                const cartURL = '{{ url('/cart') }}';
 
                 // Create a form element
                 const form = document.createElement('form');
@@ -232,8 +232,15 @@
                 input.name = 'selectedNumbers';
                 input.value = JSON.stringify(selectedNumbers);
 
+                // Append the CSRF token
+                const csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = '_token';
+                csrfToken.value = '{{ csrf_token() }}';
+
                 // Append the input element to the form
                 form.appendChild(input);
+                form.appendChild(csrfToken);
 
                 // Append the form to the document body
                 document.body.appendChild(form);

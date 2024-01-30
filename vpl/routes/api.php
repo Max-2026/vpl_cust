@@ -33,9 +33,6 @@ Route::get(
     [ApiController::class, 'search_areas_by_country']
 );
 
-Route::post('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
-
-Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
 
 
 

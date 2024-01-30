@@ -13,6 +13,7 @@ use App\Http\Controllers\SendSmsController;
 use App\Http\Controllers\SmsInboxController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\ApiController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -231,4 +232,8 @@ Route::middleware('auth')->group(function () {
         '/monthly_recurring_charges',
         [NumbersController::class, 'monthly_recurring_charges']
     )->name('monthly_recurring_charges');
+
+    Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
+
+    Route::get('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
 });
