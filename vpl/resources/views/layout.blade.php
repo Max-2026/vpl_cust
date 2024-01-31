@@ -70,6 +70,8 @@
 @yield('sms_inbox')
 <!-- end -->
 
+@yield('content')
+
 
 <!-- Report problem -->
 @yield('report_problem')
