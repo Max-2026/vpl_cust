@@ -223,7 +223,7 @@
     // Check if any number is selected
     if (selectedNumbers.length > 0) {
         // Construct the URL for the cart page
-        const cartURL = '{{ url('/cart') }}';
+        const cartURL = '{{ url('/number_reserved_api') }}';
 
         // Create a form element
         const form = document.createElement('form');

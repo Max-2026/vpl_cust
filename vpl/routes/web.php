@@ -234,10 +234,13 @@ Route::middleware('auth')->group(function () {
         [NumbersController::class, 'monthly_recurring_charges']
     )->name('monthly_recurring_charges');
 
-    Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
 
+    
+    Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
     Route::get('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
-    Route::get('/number_reserved_api/{number}', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
+    Route::post('/number_reserved_api', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
+    Route::get('/unreserve_number/{number}', [ApiController::class, 'unreserve_number'])->name('number_reserved_api');
+
 
     
 });

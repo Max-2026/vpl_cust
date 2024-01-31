@@ -53,7 +53,7 @@
                 <td>{{ 0}}</td>
                 <td>Pending</td>
                 <td>
-                    <a href="#" type="button" class="btn btn-default"
+                    <a href="{{ url('/unreserve_number',['number' => $data->number]) }}" type="button" class="btn btn-default"
                         style="color:white;background-color:#0088cc;">Remove</a>
                 </td>
 
