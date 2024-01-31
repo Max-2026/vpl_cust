@@ -38,29 +38,53 @@
             </thead>
             <tbody>
 
-            @foreach($data as $data)
-            <tr>
-                <td>{{ $data->number }}</td>
-                <td>{{ $data->area }}</td>
-                <td>{{ $data->country }}</td>
-                <td>{{ $data->billing_type }}</td>
-                <td>{{ $data->setup_cost }}</td>
-                <td>{{ $data->monthly_charges }}</td>
-                <td>{{ $data->annual_charges }}</td>
-                <td>{{ $data->talk_time }}</td>
-                <td>{{ $data->monthly_plan }}</td>
-                <td>{{ $data->plan_setup }}</td>
-                <td>{{ 0}}</td>
-                <td>Pending</td>
-                <td>
-                    <a href="{{ url('/unreserve_number',['number' => $data->number]) }}" type="button" class="btn btn-default"
-                        style="color:white;background-color:#0088cc;">Remove</a>
-                </td>
 
-            </tr>
-            @endforeach
+                @foreach ($data as $data)
+                    <tr class="text-center">
+                        <td>{{ $data->number }}</td>
+                        <td>{{ $data->area }}</td>
+                        <td>{{ $data->country }}</td>
+                        <td>{{ $data->billing_type }}</td>
+                        <td>{{ $data->setup_cost }}</td>
+                        <td>{{ $data->monthly_charges }}</td>
+                        <td>{{ $data->annual_charges }}</td>
+                        <td>{{ $data->talk_time }}</td>
+                        <td>{{ $data->monthly_plan }}</td>
+                        <td>{{ $data->plan_setup }}</td>
+                        <td>{{ $data->setup_cost + $data->monthly_charges + $data->annual_charges + $data->talk_time + $data->monthly_plan + $data->plan_setup }}
+                        </td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="{{ url('/unreserve_number', ['number' => $data->number]) }}" type="button"
+                                class="btn btn-default" style="color:white;background-color:#0088cc;">Remove</a>
+                        </td>
+
+                    </tr>
+                @endforeach
+
+                <tr class="text-center">
+                    <td><strong>Total</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td>{{ $data->sum('setup_cost') }}</td>
+                    <td>{{ $data->sum('monthly_charges') }}</td>
+                    <td>{{ $data->sum('annual_charges') }}</td>
+                    <td>{{ $data->sum('talk_time') }}</td>
+                    <td>{{ $data->sum('monthly_plan') }}</td>
+                    <td>{{ $data->sum('plan_setup') }}</td>
+                    <td><strong>{{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}</strong>    
+                    </td>
+
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
             </tbody>
         </table>
+
 
         <hr>
 
@@ -78,9 +102,14 @@
                     </p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <h5 class="font-weight-bolder">$73</h5>
+                    <h5 class="font-weight-bolder">$ <td>
+                            {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
+                        </td>
+                    </h5>
                     <h5 class="font-weight-bolder">$136.34</h5>
-                    <h5 class="font-weight-bolder">$78</h5>
+                    <h5 class="font-weight-bolder">$
+                        {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
+                    </h5>
                 </div>
             </div>
 

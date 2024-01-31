@@ -117,7 +117,7 @@ class ApiController extends Controller
                 $cart->country = $value['country'];
                 $cart->billing_type = $value['billing_type'];
                 $cart->setup_cost = $value['setupCost'];
-                $cart->monthly_charges = 0; // Assuming default value
+                $cart->monthly_charges = $value['monthlyCharges']; // Assuming default value
                 $cart->annual_charges = 0; // Assuming default value
                 $cart->monthly_plan = 0; // Assuming default value
                 $cart->plan_setup = 0; // Assuming default value
