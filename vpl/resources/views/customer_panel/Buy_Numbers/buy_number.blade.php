@@ -65,19 +65,18 @@
                 <div class="col-md-12">
 
                     <table class="table table-bordered originalTable" id="originalTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Area Code</th>
-                                <th scope="col">City/Area</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        @php
+                            $countryId = request()->input('countrySelect', '');
+                        @endphp
 
-                            @php
-                                $countryId = request()->input('countrySelect', '');
-                            @endphp
-
-                            @if (is_array($AreaCode))
+                        @if (is_array($AreaCode))
+                            <thead>
+                                <tr>
+                                    <th scope="col">Area Code</th>
+                                    <th scope="col">City/Area</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach ($AreaCode as $key => $value)
                                     @if ($key != 0 && is_array($value))
                                         <tr>
@@ -90,28 +89,24 @@
                                         </tr>
                                     @endif
                                 @endforeach
-                            @endif
+                        @endif
                         </tbody>
                     </table>
-                    <br>
-                    <br>
-
                     <table class="table table-bordered originalTable">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" name="" id="selectAll"></th>
-                                <th scope="col">Number</th>
-                                <th scope="col">Area</th>
-                                <th scope="col">Country</th>
-                                <th scope="col">Monthly Charges</th>
-                                <th scope="col">Setup Cost</th>
-                                <th scope="col">Per Minute Charges</th>
-                                <th scope="col">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @if (is_array($apiData))
+                        @if (is_array($apiData))
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="" id="selectAll"></th>
+                                    <th scope="col">Number</th>
+                                    <th scope="col">Area</th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">Monthly Charges</th>
+                                    <th scope="col">Setup Cost</th>
+                                    <th scope="col">Per Minute Charges</th>
+                                    <th scope="col">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach ($apiData as $key => $value)
                                     @if ($key != 0 && is_array($value))
                                         <tr>
@@ -126,27 +121,32 @@
                                         </tr>
                                     @endif
                                 @endforeach
-                            @endif
-                            <tr>
-                                <td colspan="12" class="text-center">
-                                    <div class="d-flex justify-content-right align-items-center">
-                                    <input name="mm" type="radio" value="Monthly" checked    {{ old('mm') == 'Monthly' ? 'checked' : '' }}> &nbsp;&nbsp;Monthly
-                                    <input name="mm" class="ml-2" type="radio" value="Annually" {{ old('mm') == 'Annually' ? 'checked' : '' }}> &nbsp;&nbsp;Annually
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div class="d-flex justify-content-right align-items-center">
+                                            <input name="mm" type="radio" value="Monthly" checked
+                                                {{ old('mm') == 'Monthly' ? 'checked' : '' }}> &nbsp;&nbsp;Monthly
+                                            <input name="mm" class="ml-2" type="radio" value="Annually"
+                                                {{ old('mm') == 'Annually' ? 'checked' : '' }}> &nbsp;&nbsp;Annually
 
-                                        <button class="btn btn-primary ml-4" onclick="addToCart()">Add Selected to Shopping
-                                            Cart</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="bgcolor:;">
-                                <td class="simple" style="align:left;" colspan="12">* Per Minute Receiving Charges After
-                                    Free Minutes</td>
-                            </tr>
-                            <tr style="bgcolor:;">
-                                <td class="simple" style="align:left;" colspan="12">** (cannot be purchased in batch)</td>
-                            </tr>
+                                            <button class="btn btn-primary ml-4" onclick="addToCart()">Add Selected to
+                                                Shopping
+                                                Cart</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="bgcolor:;">
+                                    <td class="simple" style="align:left;" colspan="12">* Per Minute Receiving Charges
+                                        After
+                                        Free Minutes</td>
+                                </tr>
+                                <tr style="bgcolor:;">
+                                    <td class="simple" style="align:left;" colspan="12">** (cannot be purchased in batch)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        @endif
 
-                        </tbody>
                     </table>
 
                 </div>
@@ -186,76 +186,76 @@
 
         // Function to handle adding selected numbers to the shopping cart
         function addToCart() {
-    // Get all checkboxes
-    const checkboxes = document.querySelectorAll('.checkbox');
-    // Initialize an array to store selected numbers
-    const selectedNumbers = [];
-    // Get the selected billing type
-    const billingType = document.querySelector('input[name="mm"]:checked').value;
+            // Get all checkboxes
+            const checkboxes = document.querySelectorAll('.checkbox');
+            // Initialize an array to store selected numbers
+            const selectedNumbers = [];
+            // Get the selected billing type
+            const billingType = document.querySelector('input[name="mm"]:checked').value;
 
-    // Loop through checkboxes to find selected ones
-    checkboxes.forEach(function(checkbox) {
-        if (checkbox.checked) {
-            // Extract the number and other relevant data from the table row
-            const row = checkbox.parentNode.parentNode;
-            const number = row.cells[1].textContent.trim(); // Number
-            const area = row.cells[2].textContent.trim(); // Area
-            const country = row.cells[3].textContent.trim(); // Country
-            const monthlyCharges = row.cells[4].textContent.trim(); // Monthly Charges
-            const setupCost = row.cells[5].textContent.trim(); // Setup Cost
-            const perMinuteCharges = row.cells[6].textContent.trim(); // Per Minute Charges
-            const rating = row.cells[7].textContent.trim(); // Rating
+            // Loop through checkboxes to find selected ones
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    // Extract the number and other relevant data from the table row
+                    const row = checkbox.parentNode.parentNode;
+                    const number = row.cells[1].textContent.trim(); // Number
+                    const area = row.cells[2].textContent.trim(); // Area
+                    const country = row.cells[3].textContent.trim(); // Country
+                    const monthlyCharges = row.cells[4].textContent.trim(); // Monthly Charges
+                    const setupCost = row.cells[5].textContent.trim(); // Setup Cost
+                    const perMinuteCharges = row.cells[6].textContent.trim(); // Per Minute Charges
+                    const rating = row.cells[7].textContent.trim(); // Rating
 
-            // Push the selected number and its data to the array
-            selectedNumbers.push({
-                number: number,
-                area: area,
-                country: country,
-                monthlyCharges: monthlyCharges,
-                setupCost: setupCost,
-                perMinuteCharges: perMinuteCharges,
-                rating: rating,
-                billing_type: billingType // Add the selected billing type to the object
+                    // Push the selected number and its data to the array
+                    selectedNumbers.push({
+                        number: number,
+                        area: area,
+                        country: country,
+                        monthlyCharges: monthlyCharges,
+                        setupCost: setupCost,
+                        perMinuteCharges: perMinuteCharges,
+                        rating: rating,
+                        billing_type: billingType // Add the selected billing type to the object
+                    });
+                }
             });
+
+            // Check if any number is selected
+            if (selectedNumbers.length > 0) {
+                // Construct the URL for the cart page
+                const cartURL = '{{ url('/number_reserved_api') }}';
+
+                // Create a form element
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = cartURL;
+
+                // Create an input element to hold the selected numbers data
+                const inputNumbers = document.createElement('input');
+                inputNumbers.type = 'hidden';
+                inputNumbers.name = 'selectedNumbers';
+                inputNumbers.value = JSON.stringify(selectedNumbers);
+
+                // Append the CSRF token
+                const csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = '_token';
+                csrfToken.value = '{{ csrf_token() }}';
+
+                // Append the input elements to the form
+                form.appendChild(inputNumbers);
+                form.appendChild(csrfToken);
+
+                // Append the form to the document body
+                document.body.appendChild(form);
+
+                // Submit the form
+                form.submit();
+            } else {
+                // Alert the user if no number is selected
+                alert('Please select at least one number to add to the cart.');
+            }
         }
-    });
-
-    // Check if any number is selected
-    if (selectedNumbers.length > 0) {
-        // Construct the URL for the cart page
-        const cartURL = '{{ url('/number_reserved_api') }}';
-
-        // Create a form element
-        const form = document.createElement('form');
-        form.method = 'post';
-        form.action = cartURL;
-
-        // Create an input element to hold the selected numbers data
-        const inputNumbers = document.createElement('input');
-        inputNumbers.type = 'hidden';
-        inputNumbers.name = 'selectedNumbers';
-        inputNumbers.value = JSON.stringify(selectedNumbers);
-
-        // Append the CSRF token
-        const csrfToken = document.createElement('input');
-        csrfToken.type = 'hidden';
-        csrfToken.name = '_token';
-        csrfToken.value = '{{ csrf_token() }}';
-
-        // Append the input elements to the form
-        form.appendChild(inputNumbers);
-        form.appendChild(csrfToken);
-
-        // Append the form to the document body
-        document.body.appendChild(form);
-
-        // Submit the form
-        form.submit();
-    } else {
-        // Alert the user if no number is selected
-        alert('Please select at least one number to add to the cart.');
-    }
-}
 
 
         document.addEventListener('DOMContentLoaded', function() {

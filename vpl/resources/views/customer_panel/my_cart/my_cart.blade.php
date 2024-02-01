@@ -9,18 +9,13 @@
             font-weight: 900;
         }
     </style>
-
-    <br>
-    <br>
-    <br>
-
-    <div class="container shadow rounded p-5">
+    <div class="container shadow rounded p-5 mt-5">
         <h2 style="font-weight: 500;">My Cart</h2>
         <hr>
 
-        <table class="table table-responsive">
+        <table class="table">
             <thead style="color:black;background-color:#F8F8F8;" class="text-capitalize">
-                <tr>
+                <tr class="text-center">
                     <th scope="col">Phone No</th>
                     <th scope="col">Area</th>
                     <th scope="col">Country</th>
@@ -29,16 +24,11 @@
                     <th scope="col">Monthly Charge</th>
                     <th scope="col">Annual Charge</th>
                     <th scope="col">Talk Time</th>
-                    <th scope="col">Plan Monthly</th>
-                    <th scope="col">Plan Setup</th>
-                    <th scope="col">Total Charges</th>
                     <th scope="col">User Documents</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-
-
                 @foreach ($data as $data)
                     <tr class="text-center">
                         <td>{{ $data->number }}</td>
@@ -46,19 +36,26 @@
                         <td>{{ $data->country }}</td>
                         <td>{{ $data->billing_type }}</td>
                         <td>{{ $data->setup_cost }}</td>
-                        <td>{{ $data->monthly_charges }}</td>
-                        <td>{{ $data->annual_charges }}</td>
-                        <td>{{ $data->talk_time }}</td>
-                        <td>{{ $data->monthly_plan }}</td>
-                        <td>{{ $data->plan_setup }}</td>
-                        <td>{{ $data->setup_cost + $data->monthly_charges + $data->annual_charges + $data->talk_time + $data->monthly_plan + $data->plan_setup }}
+                        <td>
+                            @if ($data->billing_type == 'Monthly')
+                                {{ $data->monthly_charges }}
+                            @else
+                                0
+                            @endif
                         </td>
+                        <td>
+                            @if ($data->billing_type == 'Monthly')
+                                0
+                            @else
+                                {{ $data->monthly_charges * 12 }}
+                            @endif
+                        </td>
+                        <td>{{ $data->talk_time }}</td>
                         <td>Pending</td>
                         <td>
                             <a href="{{ url('/unreserve_number', ['number' => $data->number]) }}" type="button"
                                 class="btn btn-default" style="color:white;background-color:#0088cc;">Remove</a>
                         </td>
-
                     </tr>
                 @endforeach
 
@@ -67,28 +64,20 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                     <td>{{ $data->sum('setup_cost') }}</td>
-                    <td>{{ $data->sum('monthly_charges') }}</td>
-                    <td>{{ $data->sum('annual_charges') }}</td>
+                    <td>{{ $data->where('billing_type', 'Monthly')->sum('monthly_charges') }}</td>
+                    <td>{{ $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 }}</td>
                     <td>{{ $data->sum('talk_time') }}</td>
-                    <td>{{ $data->sum('monthly_plan') }}</td>
-                    <td>{{ $data->sum('plan_setup') }}</td>
-                    <td><strong>{{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}</strong>    
-                    </td>
-
                     <td></td>
                     <td></td>
                 </tr>
-
-
             </tbody>
         </table>
 
 
         <hr>
 
-        <div class="container-fluid p-3">
+        <div class="container p-3">
             <div class="row">
                 <div class="col-md-6 text-left">
                     <h5 class="font-weight-bolder">Grand Total</h5>
@@ -102,13 +91,12 @@
                     </p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <h5 class="font-weight-bolder">$ <td>
-                            {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
-                        </td>
+                    <h5 class="font-weight-bolder">$
+                        {{ $data->sum('setup_cost') + $data->where('billing_type', 'Monthly')->sum('monthly_charges') + $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 + $data->sum('talk_time') }}
                     </h5>
                     <h5 class="font-weight-bolder">$136.34</h5>
                     <h5 class="font-weight-bolder">$
-                        {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
+                        {{ $data->sum('setup_cost') + $data->where('billing_type', 'Monthly')->sum('monthly_charges') + $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 + $data->sum('talk_time') }}
                     </h5>
                 </div>
             </div>
@@ -116,6 +104,7 @@
             <a href="#" type="button" class="btn btn-default"
                 style="color:white;background-color:#0088cc;display:flex;float:right;">Checkout</a>
         </div>
+
     </div>
 
 @endsection
