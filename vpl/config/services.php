@@ -55,4 +55,11 @@ return [
         'redirect' => '/login/callback',
     ],
 
+    'stripe' => [
+        'model' => App\Models\User::class,
+        'key' => env('stripe_key'),
+        'secret' => env('stripe_secret'),
+    ],
+    
+
 ];

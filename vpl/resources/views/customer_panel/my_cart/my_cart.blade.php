@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            <a href="#" type="button" class="btn btn-default"
+            <a href="{{ url('/subscribe') }}" type="button" class="btn btn-default"
                 style="color:white;background-color:#0088cc;display:flex;float:right;">Checkout</a>
         </div>
 
