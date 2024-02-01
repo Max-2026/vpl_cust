@@ -92,6 +92,9 @@
                         @endif
                         </tbody>
                     </table>
+                    <br>
+                    <br>
+
                     <table class="table table-bordered originalTable">
                         @if (is_array($apiData))
                             <thead>
@@ -107,6 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($apiData as $key => $value)
                                     @if ($key != 0 && is_array($value))
                                         <tr>
@@ -144,6 +148,7 @@
                                     <td class="simple" style="align:left;" colspan="12">** (cannot be purchased in batch)
                                     </td>
                                 </tr>
+
                             </tbody>
                         @endif
 
