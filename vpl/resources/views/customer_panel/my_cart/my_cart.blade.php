@@ -1,39 +1,36 @@
 @extends('layout')
 @section('title', 'My Cart')
 
-@section('my_cart')
+@section('content')
 
-    <style>
-        .table thead th {
-            font-size: 10px;
-            font-weight: 900;
-        }
-    </style>
     <div class="container shadow rounded p-5 mt-5">
         <h2 style="font-weight: 500;">My Cart</h2>
         <hr>
 
-        <form action="{{ route('checkout') }}" method="POST"> <!-- Form for checkout -->
+        <form action="{{ route('checkout') }}" method="POST">
             @csrf
-
             <table class="table">
-                <thead style="color:black;background-color:#F8F8F8;" class="text-capitalize">
-                    <tr class="text-center">
-                        <th scope="col">Phone No</th>
-                        <th scope="col">Area</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Billing Type</th>
-                        <th scope="col">Setup Charge</th>
-                        <th scope="col">Monthly Charge</th>
-                        <th scope="col">Annual Charge</th>
-                        <th scope="col">Talk Time</th>
-                        <th scope="col">User Documents</th>
-                        <th scope="col">Action</th>
+                <thead>
+                    <tr>
+                        <th>Phone No</th>
+                        <th>Area</th>
+                        <th>Country</th>
+                        <th>Billing Type</th>
+                        <th>Setup Charge</th>
+                        <th>Monthly Charge</th>
+                        <th>Annual Charge</th>
+                        <th>Talk Time</th>
+                        <th>User Documents</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+                <input type="hidden" name="total"
+                    value="{{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}">
+                <input type="hidden" name="phone_numbers" value="{{ $data }}">
+
                 <tbody>
                     @foreach ($data as $item)
-                        <tr class="text-center">
+                        <tr>
                             <td>{{ $item->number }}</td>
                             <td>{{ $item->area }}</td>
                             <td>{{ $item->country }}</td>
@@ -56,13 +53,13 @@
                             <td>{{ $item->talk_time }}</td>
                             <td>Pending</td>
                             <td>
-                                <a href="{{ url('/unreserve_number', ['number' => $item->number]) }}" type="button"
+                                <a href="{{ url('/unreserve_number', ['number' => $item->number]) }}"
                                     class="btn btn-default" style="color:white;background-color:#0088cc;">Remove</a>
                             </td>
                         </tr>
                     @endforeach
 
-                    <tr class="text-center">
+                    <tr>
                         <td><strong>Total</strong></td>
                         <td></td>
                         <td></td>
@@ -76,8 +73,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <hr>
 
             <div class="container p-3">
                 <div class="row">
@@ -95,23 +90,24 @@
                         </p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <h5 class="font-weight-bolder">$ <td>
-                                {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
-                            </td>
+                        <h5 class="font-weight-bolder">
+                            ${{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
                         </h5>
-                        <h5 class="font-weight-bolder">$136.34</h5>
-                        <h5 class="font-weight-bolder">$
-                            {{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
+                        <h5 class="font-weight-bolder">
+                            ${{ $user->balance }}
+                        </h5>
+                        <h5 class="font-weight-bolder">
+                            ${{ $user->balance - ($data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup')) }}
                         </h5>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-default"
                     style="color:white;background-color:#0088cc;display:flex;float:right;">Checkout</button>
-                <!-- Checkout button -->
-            </div>
-        </form> <!-- End of form -->
 
+            </div>
+
+        </form>
     </div>
 
 @endsection
