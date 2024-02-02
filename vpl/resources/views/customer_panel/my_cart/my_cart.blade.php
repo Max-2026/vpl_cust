@@ -77,9 +77,9 @@
             <div class="container p-3">
                 <div class="row">
                     <div class="col-md-6 text-left">
-                        <h5 class="font-weight-bolder">Grand Total</h5>
+                        <h5 class="font-weight-bolder">Total</h5>
                         <h5 class="font-weight-bolder">Available funds in your account</h5>
-                        <h5 class="font-weight-bolder">Total Amount To Pay</h5>
+                        <h5 class="font-weight-bolder">Cart Amount To Pay</h5>
                         <p class="text-muted">You will not be able to buy any number that requires documents approval. <br>
                             The Number will be added to your account automatically once your provided documents are
                             approved.
@@ -90,16 +90,24 @@
                         </p>
                     </div>
                     <div class="col-md-6 text-right">
+                        @php
+                            $grandTotal = $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup');
+                            $amountToPay = $grandTotal - $user->balance;
+                            $amountToPay = $amountToPay > 0 ? $amountToPay : 0;
+                        @endphp
+
                         <h5 class="font-weight-bolder">
-                            ${{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}
+                            ${{ $grandTotal }}
                         </h5>
                         <h5 class="font-weight-bolder">
                             ${{ $user->balance }}
                         </h5>
                         <h5 class="font-weight-bolder">
-                            ${{ $user->balance - ($data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup')) }}
+                            ${{ $amountToPay }}
                         </h5>
                     </div>
+
+
                 </div>
 
                 <button type="submit" class="btn btn-default"

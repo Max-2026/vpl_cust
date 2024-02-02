@@ -66,7 +66,7 @@ class CartController extends Controller
             }
         } else {
             // If available funds are insufficient, redirect back with an error message
-            return redirect()->route('my_cart')->with('error', 'Insufficient funds for checkout.');
+            return redirect()->route('add_funds')->with('error', 'Insufficient funds for checkout.');
         }
     }
 }
