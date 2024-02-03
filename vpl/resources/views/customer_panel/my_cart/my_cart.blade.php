@@ -24,10 +24,6 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <input type="hidden" name="total"
-                    value="{{ $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup') }}">
-                <input type="hidden" name="phone_numbers" value="{{ $data }}">
-
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
@@ -53,8 +49,8 @@
                             <td>{{ $item->talk_time }}</td>
                             <td>Pending</td>
                             <td>
-                                <a href="{{ url('/unreserve_number', ['number' => $item->number]) }}"
-                                    class="btn btn-default" style="color:white;background-color:#0088cc;">Remove</a>
+                                <a href="{{ url('/unreserve_number', ['number' => $item->number]) }}" class="btn btn-default"
+                                    style="color:white;background-color:#0088cc;">Remove</a>
                             </td>
                         </tr>
                     @endforeach
@@ -91,7 +87,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @php
-                            $grandTotal = $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time') + $data->sum('monthly_plan') + $data->sum('plan_setup');
+                            $grandTotal = $data->sum('setup_cost') + $data->where('billing_type', 'Monthly')->sum('monthly_charges') + $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 + $data->sum('talk_time');
                             $amountToPay = $grandTotal - $user->balance;
                             $amountToPay = $amountToPay > 0 ? $amountToPay : 0;
                         @endphp
