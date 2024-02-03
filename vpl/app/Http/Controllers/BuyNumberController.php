@@ -16,9 +16,18 @@ class BuyNumberController extends Controller
 {
         public function buy_number()
         {
+<<<<<<< Updated upstream
          $countries = Country::all();
          $apiData = '';
          $AreaCode = '';
+=======
+                $countries = Country::all();
+
+            
+
+        $apiData = '';
+        $AreaCode = '';
+>>>>>>> Stashed changes
         return view('customer_panel.Buy_Numbers.buy_number', [
             'countries' => $countries,
             'AreaCode' => $AreaCode,
