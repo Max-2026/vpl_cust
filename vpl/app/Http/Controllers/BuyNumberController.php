@@ -16,18 +16,7 @@ class BuyNumberController extends Controller
 {
         public function buy_number()
         {
-                // $countries = Country::all();
-                $userId = '700290';
-                $password = 'ACJqm6Ndv123xx';
-                $response = Http::get("https://newapi.didx.net/DidxApis/api/getDIDCountry.php", [
-                    'UserID' => $userId,
-                    'Password' => $password,
-                ]);
-
-                $countries = $response->json();
-                
-
-                // dd($countries[2]);
+                $countries = Country::all();
 
             
 

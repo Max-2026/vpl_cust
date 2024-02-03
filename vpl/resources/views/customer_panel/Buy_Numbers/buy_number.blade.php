@@ -44,8 +44,8 @@
                                 <select class="form-select" id="countrySelect" name="countrySelect" required>
                                     <option value="" selected>Select Country</option>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country[0] }}" data-show-form="">
-                                             {{ $country[0] }} - {{ $country[1] }}
+                                        <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
+                                             {{ $country->code }} - {{ $country->name}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -294,7 +294,14 @@
             });
         });
 
-        // dynamic api options of input
+
+        var dynamicOptions = [
+            @foreach ($countries as $country)
+                "{{ $country->code }} - {{ $country->name }}",
+            @endforeach
+        ];
+
+
 
     </script>
 
