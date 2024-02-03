@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 mx-auto">
                     <div class="form-section">
-                        <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="GET">
+                        <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="post">
                             @csrf <!-- CSRF token -->
                             <div class="form-group custom-dropdown">
                                 <input type="text" class="form-control" id="dynamicOptionsInput"
@@ -160,11 +160,17 @@
     </div>
 
     <script>
-        function submitAreaRequest(areaValue1, areaValue2) {
+function submitAreaRequest(areaValue1, areaValue2) {
             // Create a dynamic form
             var form = document.createElement('form');
-            form.method = 'get';
+            form.method = 'post';
             form.action = '{{ url('/get-available-numbers') }}'; // Replace with your desired URL
+
+            // Create a hidden input field for the CSRF token
+            var csrfTokenInput = document.createElement('input');
+            csrfTokenInput.type = 'hidden';
+            csrfTokenInput.name = '_token';
+            csrfTokenInput.value = '{{ csrf_token() }}';
 
             // Create a hidden input field for the first area value
             var areaInput1 = document.createElement('input');
@@ -179,6 +185,7 @@
             areaInput2.value = areaValue2;
 
             // Append the hidden inputs to the form
+            form.appendChild(csrfTokenInput);
             form.appendChild(areaInput1);
             form.appendChild(areaInput2);
 

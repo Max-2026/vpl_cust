@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
-
 
 use App\Models\Country;
 use App\Models\Area;
@@ -14,29 +12,6 @@ use App\Models\Cart;
 
 class ApiController extends Controller
 {
-    public function search_areas_by_country($country_name)
-    {
-        $country = Country::where('name', lcfirst(trim($country_name)))
-            ->first();
-        
-        if (empty($country)) {
-            return response()->json([
-                'message' => 
-                    "No country found with the name: `$country_name`"
-            ], 404);
-        }
-
-        if ($country->areas->count() === 0) {
-            return response()->json([
-                'message' => 
-                    "No areas found for the country: `$country->name`"
-            ], 404);
-        }
-        return $country->areas;
-    }
-
-
-
     public function getDIDAreaCodes(Request $request)
     {
         $countryId = $request->input('countrySelect');

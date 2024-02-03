@@ -243,12 +243,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-    Route::get('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
-    Route::get('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
+    Route::post('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
+    Route::post('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
     Route::post('/number_reserved_api', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
     Route::get('/unreserve_number/{number}', [ApiController::class, 'unreserve_number'])->name('number_reserved_api');
-    Route::get('/get-did-country', [BuyNumberController::class, 'buy_number'])->name('number_reserved_api');
 
 
     
