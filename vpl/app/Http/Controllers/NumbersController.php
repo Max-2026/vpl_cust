@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use \App\Models\Number;
+use \App\Models\NumberHistory;
 use App\Models\Country;
 use App\Models\User;
 
@@ -20,7 +21,7 @@ class NumbersController extends Controller
     public function view_all_numbers()
     {
         $user = Auth::user();
-        $numbers = Number::where('user_id', $user->id)->get();
+        $numbers = NumberHistory::where('user_id', $user->id)->get();
         // dd($numbers);
 
         return view('customer_panel.my_number.view_all_my_number',[

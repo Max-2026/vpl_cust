@@ -232,13 +232,15 @@ Route::middleware('auth')->group(function () {
         '/call_forwading_setting/{id}',
         [NumbersController::class, 'call_forwading_setting']
     )->name('call_forwading_setting');
-
+        
     Route::get(
         '/monthly_recurring_charges',
         [NumbersController::class, 'monthly_recurring_charges']
     )->name('monthly_recurring_charges');
 
     Route::get('/subscribe' , [subscribeController::class, 'index'])->name('subscribe');
+    Route::post('/single_charge' , [subscribeController::class, 'single_charge'])->name('single_charge');
+
 
 
 
@@ -246,6 +248,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
     Route::post('/number_reserved_api', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
     Route::get('/unreserve_number/{number}', [ApiController::class, 'unreserve_number'])->name('number_reserved_api');
+    Route::get('/get-did-country', [BuyNumberController::class, 'buy_number'])->name('number_reserved_api');
 
 
     

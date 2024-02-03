@@ -42,24 +42,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($numbers as $number)
+                        
                             <tr>
-                                <td>{{ $number->id ?? 'N/A' }}</td>           
-                                <td><a href="{{ route('my_number',['id' => $number->id]) }}">{{ $number->number }}</a></td>
-                                <td><a href="{{ route('call_logs')}}">View</a></td>
-                                <td>{{$number->area->name}}</td>
-                                <td><a href="#">-</a></td>
-
-                                <td><i class="fas fa-phone-square-alt"></i></td>
-                                <td><a href="#">0332795144</a></td>
-
-                                <td>{{$number->talktime}}</td>
-                                <td>$0 $9 Master TalkTime</td>
-                                <td><a href="{{ route('package') }}">Switch To Plan</a></td>
-                                <td>08-Nov-2020</td>
-                            </tr>
-                            @endforeach
-                            <!-- <tr>
                                 <td>1</td>
                                 <td><a href="#">12025521553</a></td>
                                 <td><a href="#">View</a></td>
@@ -70,8 +54,7 @@
                                 <td>$0 $9 Master TalkTime</td>
                                 <td><a href="#">Switch To Plan</a></td>
                                 <td>Active Permanent</td>
-                            </tr> -->
-                            <!-- Add more rows as needed -->
+                            </tr> 
                         </tbody>
                     </table>
 </div>

@@ -26,8 +26,11 @@
 </style>
 
 <div class="container mt-5">
-<form action="/seller/subscribe" method="POST" id="subscribe-form">
-<label for="card-holder-name">Card Holder Name</label>
+<form action="{{ route('single_charge')}}" method="POST" id="subscribe-form">
+    <label for="amount">Amount</label>
+    <input type="number" name="amount" id="amount" class="form-control">
+    
+<label for="card-holder-name form-control">Card Holder Name</label>
     <input id="card-holder-name" class="form-control"  type="text">
     @csrf
     <div class="form-row">
@@ -87,6 +90,7 @@
     const cardButton = document.getElementById('card-button');
     const clientSecret = cardButton.dataset.secret;
     cardButton.addEventListener('click', async (e) => {
+        e.preventDefault();
         console.log("attempting");
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {

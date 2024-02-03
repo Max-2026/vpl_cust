@@ -163,5 +163,20 @@ class ApiController extends Controller
         return redirect('/my_cart');
 
     }
+
+    public function did_country(Request $request)
+    {
+        $userId = '700290';
+        $password = 'ACJqm6Ndv123xx';
+        $response = Http::get("https://newapi.didx.net/DidxApis/api/getDIDCountry.php", [
+            'UserID' => $userId,
+            'Password' => $password,
+        ]);
+
+        $apiData = $response->json();
+
+        dd($apiData);
+
+    }
     
 }
