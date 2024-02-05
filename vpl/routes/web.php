@@ -243,11 +243,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::post('/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
-    Route::post('/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
+    //did apis Rotes start
+    Route::match(['get', 'post'], '/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
+    Route::match(['get', 'post'], '/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
     Route::post('/number_reserved_api', [ApiController::class, 'number_reserved'])->name('number_reserved_api');
     Route::get('/unreserve_number/{number}', [ApiController::class, 'unreserve_number'])->name('number_reserved_api');
-
-
-    
+    //did apis Rotes end
 });

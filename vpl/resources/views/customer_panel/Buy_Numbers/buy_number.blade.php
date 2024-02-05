@@ -28,32 +28,32 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 mx-auto">
                     <div class="form-section">
-                        <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="post">
-                            @csrf <!-- CSRF token -->
-                            <div class="form-group custom-dropdown">
-                                <input type="text" class="form-control" id="dynamicOptionsInput"
-                                    name="dynamicOptionsInput" placeholder="Phone number">
-                                <div id="dynamicOptionsContainer"></div>
-                            </div>
-                            <div class="or-divider d-flex align-items-center">
-                                <div></div>
-                                <span class="px-2">OR</span>
-                                <div></div>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-select" id="countrySelect" name="countrySelect" required>
-                                    <option value="" selected>Select Country</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
-                                             {{ $country->code }} - {{ $country->name}}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </div>
-                        </form>
+                    <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="post" onsubmit="return validateForm()">
+                        @csrf
+                        <div class="form-group custom-dropdown">
+                            <input type="text" class="form-control" id="dynamicOptionsInput" name="dynamicOptionsInput" placeholder="Phone number">
+                            <div id="dynamicOptionsContainer"></div>
+                        </div>
+                        <div class="or-divider d-flex align-items-center">
+                            <div></div>
+                            <span class="px-2">OR</span>
+                            <div></div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-select" id="countrySelect" name="countrySelect" >
+                                <option value="" selected>Select Country</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
+                                        {{ $country->code }} - {{ $country->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+
                     </div>
                 </div>
             </div>
@@ -66,8 +66,10 @@
 
                     <table class="table table-bordered originalTable" id="originalTable">
                         @php
-                            $countryId = request()->input('countrySelect', '');
+                            $countryId = request()->input('countrySelect');
+                            $dynamicOptionsInput = request()->input('dynamicOptionsInput');
                         @endphp
+
 
                         @if (is_array($AreaCode))
                             <thead>
@@ -81,7 +83,7 @@
                                     @if ($key != 0 && is_array($value))
                                         <tr>
                                             <td><a href="javascript:void(0);"
-                                                    onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{ $countryId }}-{{ $value[0] }}</a>
+                                                    onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{ $countryId ?? $dynamicOptionsInput }}-{{ $value[0] }}</a>
                                             </td>
                                             <td><a href="javascript:void(0);"
                                                     onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{ $value[1] ?? 'No City Found' }}</a>
@@ -158,6 +160,25 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please select one option.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <script>
 function submitAreaRequest(areaValue1, areaValue2) {
@@ -307,9 +328,19 @@ function submitAreaRequest(areaValue1, areaValue2) {
                 "{{ $country->code }} - {{ $country->name }}",
             @endforeach
         ];
-
-
-
     </script>
+
+<script>
+function validateForm() {
+    var dynamicOptionsInput = document.getElementById("dynamicOptionsInput").value;
+    var countrySelect = document.getElementById("countrySelect").value;
+    
+    if (dynamicOptionsInput.trim() === "" && countrySelect === "") {
+        $('#myModal').modal('show');
+        return false;
+    }
+    return true;
+}
+</script>
 
 @endsection

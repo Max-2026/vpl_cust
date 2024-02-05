@@ -22,6 +22,7 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+        dd($request->all());
         $user = Auth::user(); // Get the authenticated user
         $availableFunds = $user->balance; // Assuming the user has a field named available_funds
 

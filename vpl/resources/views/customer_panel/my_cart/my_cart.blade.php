@@ -9,6 +9,7 @@
 
         <form action="{{ route('checkout') }}" method="POST">
             @csrf
+
             <table class="table">
                 <thead>
                     <tr>
@@ -52,6 +53,7 @@
                                 <a href="{{ url('/unreserve_number', ['number' => $item->number]) }}" class="btn btn-default"
                                     style="color:white;background-color:#0088cc;">Remove</a>
                             </td>
+
                         </tr>
                     @endforeach
 
@@ -66,6 +68,7 @@
                         <td>{{ $data->sum('talk_time') }}</td>
                         <td></td>
                         <td></td>
+    <input type="hidden" name="phone_numbers" value="{{ json_encode($data) }}">
                     </tr>
                 </tbody>
             </table>
@@ -103,6 +106,7 @@
                         </h5>
                     </div>
 
+                    <input type="hidden" name="total" value="{{ $grandTotal }}">
 
                 </div>
 
