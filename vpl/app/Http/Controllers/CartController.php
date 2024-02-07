@@ -56,11 +56,11 @@ class CartController extends Controller
                 }
 
                 $user_id = Auth::user()->id;
-                $numbers = Number::where('user_id', $user_id)->get(); // Retrieve numbers associated with the user
+                $numbers = Number::where('user_id', $user_id)->get(); 
                 
                 foreach ($numbers as $number) {
                     $numberHistory = new NumberHistory();
-                    $numberHistory->number_id = $number->id; // Insert the ID as an integer
+                    $numberHistory->number_id = $number->id;
                     $numberHistory->user_id = $phone_number['user_id'];
                     $numberHistory->is_purchased = 0;
                     $numberHistory->is_released = 0;
@@ -73,8 +73,6 @@ class CartController extends Controller
                     $numberHistory->prorated_billing = 0;
                     $numberHistory->save();
                 }
-
-                // Deduct the amount from the user's available funds
                 $user->balance -= $grandTotal;
                 $user->save();
                 // Clear the user's cart after checkout
