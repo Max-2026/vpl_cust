@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 use App\Models\Cart;
 use App\Models\NumberHistory;
-use App\Models\User; // Add User model namespace
+use App\Models\Number;
+use App\Models\User;
+use App\Models\Country;
+use App\Models\Area;
+
 
 class CartController extends Controller
 {
@@ -22,25 +27,39 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
-        dd($request->all());
-        $user = Auth::user(); // Get the authenticated user
-        $availableFunds = $user->balance; // Assuming the user has a field named available_funds
-
-        // Calculate the grand total
+        // dd($request->all());
+        $user = Auth::user(); 
+        $availableFunds = $user->balance; 
         $grandTotal = $request->input('total');
 
-        // Check if the available funds are sufficient
         if ($availableFunds >= $grandTotal) {
-            // Proceed with checkout
-            // Decode the JSON string to access the phone numbers array
+
             $phone_numbers = json_decode($request->phone_numbers, true);
 
-            // Check if $phone_numbers is not null and an array
             if ($phone_numbers && is_array($phone_numbers)) {
-                // Loop through the phone numbers and print their IDs
                 foreach ($phone_numbers as $phone_number) {
+                    $area_name = $phone_number['area'];
+                    $area_match = Area::where('name', $area_name)->first();
+                    // dd($area_match[0]->name);
+                    $number = new Number();
+                    $number->area_id = $area_match->id;
+                    $number->user_id = $user->id;
+                    $number->number = $phone_number['number'];
+                    $number->setup_charges = $phone_number['setup_cost'];
+                    $number->monthly_charges = $phone_number['monthly_charges'];
+                    $number->per_mintue_charges = 0;
+                    $number->per_sms_charges = 0;
+                    $number->forwarding_url = '';
+                    $number->save();
+
+                }
+
+                $user_id = Auth::user()->id;
+                $numbers = Number::where('user_id', $user_id)->get(); // Retrieve numbers associated with the user
+                
+                foreach ($numbers as $number) {
                     $numberHistory = new NumberHistory();
-                    $numberHistory->number_id = $phone_number['id'];
+                    $numberHistory->number_id = $number->id; // Insert the ID as an integer
                     $numberHistory->user_id = $phone_number['user_id'];
                     $numberHistory->is_purchased = 0;
                     $numberHistory->is_released = 0;

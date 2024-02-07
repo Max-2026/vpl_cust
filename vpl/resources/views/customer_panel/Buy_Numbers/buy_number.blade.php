@@ -83,10 +83,10 @@
                                     @if ($key != 0 && is_array($value))
                                         <tr>
                                             <td><a href="javascript:void(0);"
-                                                    onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{ $countryId ?? $dynamicOptionsInput }}-{{ $value[0] }}</a>
+                                                    onclick="submitAreaRequest('{{ $countryId ?? $dynamicOptionsInput }}', '{{ $value[0] }}')">{{ $countryId ?? $dynamicOptionsInput }}-{{ $value[0] }}</a>
                                             </td>
                                             <td><a href="javascript:void(0);"
-                                                    onclick="submitAreaRequest('{{ $countryId }}', '{{ $value[0] }}')">{{ $value[1] ?? 'No City Found' }}</a>
+                                                    onclick="submitAreaRequest('{{ $countryId ?? $dynamicOptionsInput }}', '{{ $value[0] }}')">{{ $value[1] ?? 'No City Found' }}</a>
                                             </td>
                                         </tr>
                                     @endif

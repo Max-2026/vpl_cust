@@ -68,7 +68,7 @@
                         <td>{{ $data->sum('talk_time') }}</td>
                         <td></td>
                         <td></td>
-    <input type="hidden" name="phone_numbers" value="{{ json_encode($data) }}">
+                 <input type="hidden" name="phone_numbers" value="{{ json_encode($data) }}">
                     </tr>
                 </tbody>
             </table>

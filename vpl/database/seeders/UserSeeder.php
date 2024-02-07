@@ -23,7 +23,8 @@ class UserSeeder extends Seeder
             'first_name' => 'Erdum',
             'last_name' => 'Adnan',
             'email' => 'erdumadnan@gmail.com',
-            'password' => Hash::make('erdum123')
+            'password' => Hash::make('erdum123'),
+            'balance' => 500,
         ]);
 
         $address = new UserAddress([

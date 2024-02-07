@@ -243,6 +243,7 @@ Route::middleware('auth')->group(function () {
 
 
 
+
     //did apis Rotes start
     Route::match(['get', 'post'], '/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
     Route::match(['get', 'post'], '/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);

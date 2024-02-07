@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('per_sms_charges');
             $table->integer('minutes_consumed')->default(0);
             $table->boolean('prorated_billing')->default(true);
-            $table->unique(['number_id', 'user_id', 'created_at']);
+            $table->unique(['number_id');
             $table->timestamps();
             $table->softDeletes();
         });
