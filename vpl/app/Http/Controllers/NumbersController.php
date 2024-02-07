@@ -21,7 +21,7 @@ class NumbersController extends Controller
     public function view_all_numbers()
     {
         $user = Auth::user();
-        $numbers = NumberHistory::where('user_id', $user->id)->get();
+        $numbers = Number::where('user_id', $user->id)->get();
         // dd($numbers);
 
         return view('customer_panel.my_number.view_all_my_number',[

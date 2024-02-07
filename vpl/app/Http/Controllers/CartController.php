@@ -30,6 +30,7 @@ class CartController extends Controller
         // dd($request->all());
         $user = Auth::user(); 
         $availableFunds = $user->balance; 
+
         $grandTotal = $request->input('total');
 
         if ($availableFunds >= $grandTotal) {

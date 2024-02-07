@@ -28,31 +28,33 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 mx-auto">
                     <div class="form-section">
-                    <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="post" onsubmit="return validateForm()">
-                        @csrf
-                        <div class="form-group custom-dropdown">
-                            <input type="text" class="form-control" id="dynamicOptionsInput" name="dynamicOptionsInput" placeholder="Phone number">
-                            <div id="dynamicOptionsContainer"></div>
-                        </div>
-                        <div class="or-divider d-flex align-items-center">
-                            <div></div>
-                            <span class="px-2">OR</span>
-                            <div></div>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-select" id="countrySelect" name="countrySelect" >
-                                <option value="" selected>Select Country</option>
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
-                                        {{ $country->code }} - {{ $country->name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
-                    </form>
+                        <form id="searchForm" action="{{ url('/get-did-area-data') }}" method="post"
+                            onsubmit="return validateForm()">
+                            @csrf
+                            <div class="form-group custom-dropdown">
+                                <input type="text" class="form-control" id="dynamicOptionsInput"
+                                    name="dynamicOptionsInput" placeholder="Phone number">
+                                <div id="dynamicOptionsContainer"></div>
+                            </div>
+                            <div class="or-divider d-flex align-items-center">
+                                <div></div>
+                                <span class="px-2">OR</span>
+                                <div></div>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" id="countrySelect" name="countrySelect">
+                                    <option value="" selected>Select Country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
+                                            {{ $country->code }} - {{ $country->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -160,28 +162,8 @@
             </div>
         </div>
     </div>
-
-
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Please select one option.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
     <script>
-function submitAreaRequest(areaValue1, areaValue2) {
+        function submitAreaRequest(areaValue1, areaValue2) {
             // Create a dynamic form
             var form = document.createElement('form');
             form.method = 'post';
@@ -285,8 +267,14 @@ function submitAreaRequest(areaValue1, areaValue2) {
                 // Submit the form
                 form.submit();
             } else {
-                // Alert the user if no number is selected
-                alert('Please select at least one number to add to the cart.');
+                // Use SweetAlert instead of standard alert
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Selection',
+                    text: 'Please select at least one number to add to the cart.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
             }
         }
 
@@ -330,17 +318,26 @@ function submitAreaRequest(areaValue1, areaValue2) {
         ];
     </script>
 
-<script>
-function validateForm() {
-    var dynamicOptionsInput = document.getElementById("dynamicOptionsInput").value;
-    var countrySelect = document.getElementById("countrySelect").value;
-    
-    if (dynamicOptionsInput.trim() === "" && countrySelect === "") {
-        $('#myModal').modal('show');
-        return false;
-    }
-    return true;
-}
-</script>
+
+    <script>
+        function validateForm() {
+            var dynamicOptionsInput = document.getElementById("dynamicOptionsInput").value;
+            var countrySelect = document.getElementById("countrySelect").value;
+
+            if (dynamicOptionsInput.trim() === "" && countrySelect === "") {
+                // Use SweetAlert instead of Bootstrap modal
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Please select one option.',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Close'
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+
 
 @endsection

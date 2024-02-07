@@ -18,6 +18,7 @@ use App\Models\UserCreditCard;
 use App\Models\UserDocument;
 use App\Models\NumberHistory;
 use App\Models\Invoice;
+use App\Models\Subscription;
 
 class User extends Authenticatable
 {
@@ -104,4 +105,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
+
+  public function subscription(): HasMany
+  {
+      return $this->hasMany(Subscription::class);
+  }
 }

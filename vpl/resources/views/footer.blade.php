@@ -30,6 +30,8 @@
 <script src="{{ asset('js/buy_number1.js') }}"></script>
 
 
+<!-- Sweet alert cdn -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
 <script src="{{ asset('js/template.js') }}"></script>
