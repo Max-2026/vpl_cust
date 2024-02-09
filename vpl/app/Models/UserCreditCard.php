@@ -22,7 +22,8 @@ class UserCreditCard extends Model
         'card_number',
         'name_on_card',
         'card_expiry',
-        'cvv'
+        'cvv',
+        'is_primary'
     ];
 
     public function user(): BelongsTo

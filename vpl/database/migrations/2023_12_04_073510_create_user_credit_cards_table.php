@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name_on_card', 30);
             $table->string('card_expiry', 30);
             $table->string('cvv', 10);
+            $table->boolean('is_primary')->default(0); 
             $table->timestamps();
         });
     }

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function basic_info()
+
+
+
+    public function index()
     {
         return view('customer_panel.profile.basic_info');
     }
@@ -35,4 +38,10 @@ class ProfileController extends Controller
     {
         return view('customer_panel.profile.verifiednumber');
     }
+
+    public function card_detail_submitted()
+    {
+        return redirect('/credit_card_details');
+    }
+
 }

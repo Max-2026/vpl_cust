@@ -15,6 +15,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\UserCreditCardController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -167,10 +169,6 @@ Route::middleware('auth')->group(function () {
         [BillingController::class, 'add_funds']
     )->name('add_funds');
 
-    Route::get(
-        '/credit_card',
-        [BillingController::class, 'credit_card']
-    )->name('credit_card');
 
     Route::get(
         '/talktime',
@@ -191,6 +189,11 @@ Route::middleware('auth')->group(function () {
         '/credit_card_details',
         [ProfileController::class, 'credit_card_details']
     )->name('credit_card_details');
+
+    Route::post(
+        '/card_detail_submitted',
+        [UserCreditCardController::class, 'store']
+    )->name('card_detail_submitted');
 
     Route::get(
         '/sms_setting',
@@ -240,7 +243,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/subscribe' , [subscribeController::class, 'index'])->name('subscribe');
     Route::post('/single_charge' , [subscribeController::class, 'single_charge'])->name('single_charge');
-
+ 
 
 
 

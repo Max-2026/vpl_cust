@@ -43,10 +43,12 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @php
+                            $serial = 1;
+                        @endphp
                         @foreach ($numbers as $number)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $serial++ }}</td>
                                 <td><a href="#">{{ $number->number ?? 'no Number' }}</a></td>
                                 <td><a href="#">View</a></td>
                                 <td>{{ $number->country->name }} - {{ $number->area->name ?? 'no' }}</td>
@@ -72,6 +74,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+
                 </table>
             </div>
         </div>
