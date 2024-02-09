@@ -37,6 +37,8 @@ Route::post(
     '/login',
     [LoginController::class, 'login_post']
 )->name('login_post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
 Route::post(

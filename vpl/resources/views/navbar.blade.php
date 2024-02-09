@@ -80,11 +80,17 @@
                             <a class="dropdown-item" href="{{ route('basic_info') }}"><i
                                     class="dropdown-item-icon mdi mdi-account me-2" style="color:#0088cc;"></i> My
                                 Profile</a>
-                            <a class="dropdown-item" href="{{ route('cart') }}"><i
+                            <a class="dropdown-item" href="{{ route('my_cart') }}"><i
                                     class="dropdown-item-icon mdi mdi-shopping  me-2" style="color:#0088cc;"></i> My
                                 Cart</a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-logout me-2"
-                                    style="color:#0088cc;"></i> Log Out</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="dropdown-item-icon mdi mdi-logout me-2" style="color:#0088cc;"></i> Log Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                                </form>
+
                         </div>
                     </li>
                 </ul>

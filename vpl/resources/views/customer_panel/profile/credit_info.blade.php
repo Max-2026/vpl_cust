@@ -55,24 +55,24 @@
                         <form id="form1">
                             <div class="form-group row mb-0">
                                 <!-- Right-align labels by adding text-end class -->
-                                <label for="id" class="col-sm-3 col-form-label text-left">House/Apartment</label>
+                                <label for="id" class="col-sm-3 col-form-label text-left">Name</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="id"
-                                        value="	H#23 ">
+                                        value="{{ $user->first_name }} {{$user->last_name}}">
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
                                 <!-- Right-align labels by adding  class -->
-                                <label for="firstName" class="col-sm-3  col-form-label text-left">Street</label>
+                                <label for="firstName" class="col-sm-3  col-form-label text-left">Number</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="firstName"
-                                        value="5">
+                                        value="{{ $credit_cards->card_number }}">
                                 </div>
                             </div>
 
                             <div class="form-group row  mb-0">
                                 <!-- Right-align labels by adding  class -->
-                                <label for="lastName" class="col-sm-3 col-form-label text-left">City</label>
+                                <label for="lastName" class="col-sm-3 col-form-label text-left">Type</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="lastName"
                                         value="Karachi">
@@ -80,68 +80,29 @@
                             </div>
                             <div class="form-group row  mb-0">
                                 <!-- Right-align labels by adding  class -->
-                                <label for="email" class="col-sm-3 col-form-label text-left">State/Province </label>
+                                <label for="email" class="col-sm-3 col-form-label text-left">Credit Card Verification</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="email"
-                                        value="abc">
+                                        value="{{ $credit_cards->cvv }}">
                                 </div>
                             </div>
                             <!-- Right-align labels by adding  class -->
                             <div class="form-group row  mb-0">
-                                <label for="company" class="col-sm-3 col-form-label text-left">Zip/Postal Code</label>
+                                <label for="company" class="col-sm-3 col-form-label text-left">Expiry Month</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto text-left" type="text" id="company"
-                                        value="123">
+                                        value="{{ $credit_cards->card_expiry }}">
                                 </div>
                             </div>
-                            <!-- Right-align labels by adding  class -->
-                            <div class="form-group row mb-0">
-                                <label for="password" class="col-sm-3 col-form-label text-left">Country</label>
-                                <div class="col-sm-9">
-                                    <!-- <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********"> -->
-                                    <select class="form-select select-small col-md-8 mx-auto" name=""
-                                        id="">
-                                        <option value="Afghanistan">Afghanistan</option>
-                                        <option value="ALBANIA">ALBANIA</option>
-                                        <option value="ALGERIA">ALGERIA</option>
-                                        <option value="ANDORRA">ANDORRA</option>
-                                        <option value="ANGOLA">ANGOLA</option>
-                                        <option value="ANTIGUA & BARBUDA">ANTIGUA & BARBUDA</option>
-                                        <option value="ARGENTINA">ARGENTINA</option>
-                                        <option value="ARMENIA">ARMENIA</option>
-                                        <option value="AUSTRALIA">AUSTRALIA</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Right-align labels by adding  class -->
+
                             <div class="form-group row  mb-0">
-                                <label for="language" class="col-sm-3 col-form-label text-left">Business Tel</label>
+                                <label for="language" class="col-sm-3 col-form-label text-left">Expiry Year</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="language"
                                         value="32423432">
                                 </div>
                             </div>
-                            <div class="form-group row mb-0">
-                                <label for="language" class="col-sm-3 col-form-label text-left">Home Tel</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="language"
-                                        value="324324324">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <label for="language" class="col-sm-3 col-form-label text-left">Mobile</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control col-md-8 mx-auto" type="number" id="language"
-                                        value="0554224">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <label for="language" class="col-sm-3 col-form-label text-left">Fax</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="language"
-                                        value="2">
-                                </div>
-                            </div>
+                           
                             <div class="text-center mb-0 mt-2">
                                 <input class="btn btn-primary" type="submit" value="UPDATE">
                             </div>
@@ -154,16 +115,13 @@
                                     <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
                                     <select class="form-select col-md-8 mx-auto">
                                         <option selected value="visa">visa</option>
-                                        <option value="visa">visa</option>
-                                        <option value="visa">visa</option>
-                                        <option value="visa">visa</option>
-                                        <option value="visa">visa</option>
+                                        <option value="visa">Master</option>
                                     </select>
                                 </div>
                             </div>
 
                         </form>
-                        <form id="form3" method="POST" action="{{ route('card_detail_submitted') }}">
+                        <form id="form3" method="POST" action="{{ route('card_detail_submitted') }}" style="display: none;">
                             @csrf
                             <div class="form-group row mb-0">
                                 <label for="card_number" class="col-sm-3 col-form-label text-left">Number</label>
