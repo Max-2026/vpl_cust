@@ -111,9 +111,9 @@ class User extends Authenticatable
       return $this->hasMany(Subscription::class);
   }
 
-  public function credit_cards(): HasMany
+  public function userCreditCards(): HasMany
   {
-      return $this->hasMany(UserCreditCard::class);
+      return $this->hasMany(UserCreditCard::class , 'user_id' , 'id');
   }
 
 }

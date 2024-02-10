@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('card_number', 30)->unique();
+            $table->string('card_type', 30)->nullable();
             $table->string('name_on_card', 30);
             $table->string('card_expiry', 30);
-            $table->string('cvv', 10);
-            $table->boolean('is_primary')->default(0); 
+            $table->string('cvv', 10)->nullable();
+            $table->boolean('is_primary')->default(1); 
             $table->timestamps();
         });
     }

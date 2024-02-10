@@ -65,8 +65,8 @@
                                 <!-- Right-align labels by adding  class -->
                                 <label for="firstName" class="col-sm-3  col-form-label text-left">Number</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="firstName"
-                                        value="{{ $credit_cards->card_number }}">
+                                    <input class="form-control col-md-8 mx-auto" type="number" id="firstName"
+                                        value="{{ $credit_cards->card_number ?? '-'}}">
                                 </div>
                             </div>
 
@@ -75,7 +75,7 @@
                                 <label for="lastName" class="col-sm-3 col-form-label text-left">Type</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="lastName"
-                                        value="Karachi">
+                                        value="{{ $credit_cards->card_type ?? '-'}}">
                                 </div>
                             </div>
                             <div class="form-group row  mb-0">
@@ -83,7 +83,7 @@
                                 <label for="email" class="col-sm-3 col-form-label text-left">Credit Card Verification</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="email"
-                                        value="{{ $credit_cards->cvv }}">
+                                        value="{{ $credit_cards->cvv ?? '-' }}">
                                 </div>
                             </div>
                             <!-- Right-align labels by adding  class -->
@@ -91,7 +91,7 @@
                                 <label for="company" class="col-sm-3 col-form-label text-left">Expiry Month</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto text-left" type="text" id="company"
-                                        value="{{ $credit_cards->card_expiry }}">
+                                        value="{{ $credit_cards->card_expiry ?? '-'}}">
                                 </div>
                             </div>
 
@@ -106,20 +106,20 @@
                             <div class="text-center mb-0 mt-2">
                                 <input class="btn btn-primary" type="submit" value="UPDATE">
                             </div>
-                        </form>
-                        <form id="form2" style="display: none;">
-                            <div class="form-group row ">
-                                <label for="id" class="col-sm-6 col-form-label text-left">Select Card you wish
-                                    to make Primary</label>
-                                <div class="col-sm-6 mt-2">
-                                    <!-- <input class="form-control col-md-8 mx-auto" type="text" id="id" value="	H#23 " > -->
-                                    <select class="form-select col-md-8 mx-auto">
-                                        <option selected value="visa">visa</option>
-                                        <option value="visa">Master</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                        </form  >
+                        <form id="form2" style="display: none;" action="{{ route('set_primary') }}" method="POST">
+                            @csrf
+                            <label class="mb-3" for="selected_card">Select Primary Credit Card</label>
+                            <select class="form-select col-md-8 mx-auto" name="selected_card">
+                                @if($credit_cards)
+                                @foreach($user_credit_cards as $card)
+                                    <option value="{{ $card->id }}">{{ $card->card_type }} - {{ $card->card_number }}</option>
+                                @endforeach
+                                @else
+                                    <option value="0">Please Add Credit Card</option>
+                                @endif
+                            </select>
+                            <button class="mt-3" type="submit">Set Primary</button>
                         </form>
                         <form id="form3" method="POST" action="{{ route('card_detail_submitted') }}" style="display: none;">
                             @csrf
@@ -138,6 +138,18 @@
                                         name="name_on_card" value="" required>
                                 </div>
                             </div>
+                            <div class="form-group row mb-0">
+                                <label for="name_on_card" class="col-sm-3 col-form-label text-left">Type</label>
+                                <div class="col-sm-6 mt-2 credit_card_styling">
+                                    <select name="card_type" class="form-select" id="">
+                                        <option value="visa" selected >Visa</option>
+                                        <option value="master">Master</option>
+                                        <option value="amex">American Express</option>
+                                        <option value="discover">Discover</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <label for="card_expiry" class="col-sm-3 col-form-label text-left">Credit Card
                                     Expiry</label>

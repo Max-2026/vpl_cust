@@ -179,8 +179,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get(
         '/basic_info',
-        [ProfileController::class, 'basic_info']
+        [ProfileController::class, 'index']
     )->name('basic_info');
+
+    Route::post(
+        '/update_profile_details',
+        [ProfileController::class, 'update_profile_details']
+    )->name('update_profile_details');
 
     Route::get(
         '/contact_info',
@@ -196,6 +201,8 @@ Route::middleware('auth')->group(function () {
         '/card_detail_submitted',
         [UserCreditCardController::class, 'store']
     )->name('card_detail_submitted');
+
+    Route::post('/set_primary', [UserCreditCardController::class, 'primary_set'])->name('set_primary');
 
     Route::get(
         '/sms_setting',
@@ -247,9 +254,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/single_charge' , [subscribeController::class, 'single_charge'])->name('single_charge');
  
 
-
-
-    //did apis Rotes start
     Route::match(['get', 'post'], '/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
     Route::match(['get', 'post'], '/get-available-numbers', [ApiController::class, 'getAvailableNumbers']);
     Route::post('/number_reserved_api', [ApiController::class, 'number_reserved'])->name('number_reserved_api');

@@ -13,19 +13,20 @@
         </div>
         <div class="card-body text-center">
           <div class="col-md-8 mx-auto">
-         <form>
+         <form action="{{ route('update_profile_details') }}" method="post">
+          @csrf
           <div class="form-group row mb-0">
             <!-- Right-align labels by adding text-end class -->
             <label for="id" class="col-sm-3 col-form-label text-left">Id</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="1005729" readonly>
+              <input class="form-control col-md-8 mx-auto" type="text" id="id" value="{{ $current_user->id }}" readonly>
             </div>
           </div>
           <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="firstName" class="col-sm-3  col-form-label text-left">First Name</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" value="Ahmed">
+              <input class="form-control col-md-8 mx-auto" type="text" id="firstName" name="first_name" value="{{ $current_user->first_name }}">
             </div>
           </div>
           
@@ -33,28 +34,28 @@
             <!-- Right-align labels by adding  class -->
             <label for="lastName" class="col-sm-3 col-form-label text-left">Last Name</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" value="Raza">
+              <input class="form-control col-md-8 mx-auto" type="text" id="lastName" name="last_name" value="{{ $current_user->last_name }}">
             </div>
           </div>
           <div class="form-group row mb-0">
             <!-- Right-align labels by adding  class -->
             <label for="email" class="col-sm-3 col-form-label text-left">Email</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="text" id="email" value="Smi">
+              <input class="form-control col-md-8 mx-auto" type="text" id="email" name="email" value="{{ $current_user->email }}">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row mb-0">
             <label for="company" class="col-sm-3 col-form-label text-left">Company</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="----">
+              <input class="form-control col-md-8 mx-auto text-left" type="text" id="company" value="{{ $current_user->company_name ?? '-' }}">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->
           <div class="form-group row mb-0">
             <label for="password" class="col-sm-3 col-form-label text-left">Password</label>
             <div class="col-sm-9">
-              <input class="form-control col-md-8 mx-auto" type="password" id="password" value="**********">
+              <input class="form-control col-md-8 mx-auto" type="password" id="password" name="password" value="{{ $current_user->password }}">
             </div>
           </div>
           <!-- Right-align labels by adding  class -->

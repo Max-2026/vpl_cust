@@ -48,10 +48,13 @@ class CartController extends Controller
     
                 // Iterate through each phone number
                 foreach ($phoneNumbers as $phoneNumber) {
+                    // dd($phoneNumber);
                     
                     // Find the area match for the phone number
                     $areaName = $phoneNumber['area'];
+                    // dd($areaName);
                     $areaMatch = Area::where('name', $areaName)->first();
+                    //  dd($areaMatch);
     
                     // If area match found
                     if ($areaMatch) {
