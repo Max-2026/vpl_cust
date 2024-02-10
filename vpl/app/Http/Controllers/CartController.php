@@ -100,7 +100,6 @@ class CartController extends Controller
                     }
                 }
     
-                // Deduct the total amount from the user's balance
                 $user->balance -= $grandTotal;
                 $user->save();
     
