@@ -168,7 +168,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get(
         '/add_funds',
-        [BillingController::class, 'add_funds']
+        [SubscribeController::class, 'index']
     )->name('add_funds');
 
 
