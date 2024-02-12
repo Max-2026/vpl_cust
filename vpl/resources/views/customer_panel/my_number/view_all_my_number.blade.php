@@ -43,13 +43,21 @@
                         </tr>
                     </thead>
                     <tbody>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                         @php
                             $serial = 1;
                         @endphp
                         @foreach ($numbers as $number)
                             <tr>
                                 <td>{{ $serial++ }}</td>
+<<<<<<< Updated upstream
                                     <td><a href="{{ route('my_number', ['id' => $number->id ]) }}">{{ $number->number ?? 'no Number' }}</a></td>
+=======
+                                <td><a href="{{ route('my_number', ['id' => $number->id ]) }}">{{ $number->number ?? 'no Number' }}</a></td>
+>>>>>>> Stashed changes
                                 <td><a href="#">View</a></td>
                                 <td>{{ $number->country->name }} - {{ $number->area->name ?? 'no' }}</td>
                                 <td><a href="#">Please set your ringto address</a></td>

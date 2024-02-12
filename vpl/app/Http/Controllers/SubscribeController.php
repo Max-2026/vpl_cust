@@ -20,7 +20,7 @@ class SubscribeController extends Controller
         // Create a SetupIntent
         $intent = SetupIntent::create();
 
-        return view('customer_panel.billings.addfunds', compact('intent'));
+        return view('customer_panel.billings.addfunds', compact('intent' , 'user'));
     }
 
     public function single_charge(Request $request)

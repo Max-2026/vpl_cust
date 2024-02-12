@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $current_user = Auth::user();
         $user_credit_cards = UserCreditCard::where('user_id', $current_user->id)->get();
-         $credit_cards = UserCreditCard::where('user_id', $user_id)->first();
+         $credit_cards = UserCreditCard::where('user_id', $current_user->id)->first();
 
 
 
