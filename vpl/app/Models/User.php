@@ -41,7 +41,8 @@ class User extends Authenticatable
         'password',
         'provider_id',
         'balance',
-        'talktime'
+        'talktime',
+        'stripe_id',
     ];
 
     /**
@@ -76,11 +77,6 @@ class User extends Authenticatable
         return $this->hasOne(UserPreference::class);
     }
 
-    public function credit_card(): HasOne
-    {
-        return $this->hasOne(UserCreditCard::class);
-    }
-
     public function documents(): HasMany
     {
         return $this->hasMany(UserDocument::class);
@@ -111,9 +107,9 @@ class User extends Authenticatable
       return $this->hasMany(Subscription::class);
   }
 
-  public function userCreditCards(): HasMany
+  public function cardpayment(): HasMany
   {
-      return $this->hasMany(UserCreditCard::class , 'user_id' , 'id');
+      return $this->hasMany(CardMethod::class);
   }
 
 }

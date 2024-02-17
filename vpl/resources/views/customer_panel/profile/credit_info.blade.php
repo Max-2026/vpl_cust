@@ -5,29 +5,30 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#showForm1").click(function(e) {
-                e.preventDefault();
-                $("#form1").show();
-                $("#form2").hide();
-                $("#form3").hide();
-            });
-
-            $("#showForm2").click(function(e) {
-                e.preventDefault();
-                $("#form1").hide();
-                $("#form2").show();
-                $("#form3").hide();
-            });
-
-            $("#showForm3").click(function(e) {
-                e.preventDefault();
-                $("#form1").hide();
-                $("#form2").hide();
-                $("#form3").show();
-            });
+    $(document).ready(function() {
+        $(".showForm1").click(function(e) {
+            e.preventDefault();
+            $(".form1").show();
+            $(".form2").hide();
+            $(".form3").hide();
         });
-    </script>
+
+        $(".showForm2").click(function(e) {
+            e.preventDefault();
+            $(".form1").hide();
+            $(".form2").show();
+            $(".form3").hide();
+        });
+
+        $(".showForm3").click(function(e) {
+            e.preventDefault();
+            $(".form1").hide();
+            $(".form2").hide();
+            $(".form3").show();
+        });
+    });
+</script>
+
 
 
     <br>
@@ -41,11 +42,11 @@
                         <div class=" d-flex justify-content-between">
                             <p class="card-text mr-5"></p>
                             <!-- <h4 class="card-text ml-3 mt-3"></h4> -->
-                            <h6 class="card-text ml-3 mt-3"><a class="a_tag" href="#" id="showForm1">Credit Card
+                            <h6 class="card-text ml-3 mt-3"><a class="a_tag showForm1" href="#" >Credit Card
                                     Info</a></h6>
-                            <h6 class="card-text ml-3 mt-3"><a class="a_tag" href="#" id="showForm2">Set Primary
+                            <h6 class="card-text ml-3 mt-3"><a class="a_tag showForm2" href="#" >Set Primary
                                     Credit Card</a></h6>
-                            <h6 class="card-text ml-3 mt-3"><a class="a_tag " href="#" id="showForm3">Add Credit
+                            <h6 class="card-text ml-3 mt-3"><a class="a_tag showForm3" href="#" >Add Credit
                                     Card</a></h6>
                             <h3 class="card-text ml-3"></h3>
                         </div>
@@ -53,7 +54,7 @@
                 </div>
                 <div class="card text-center rounded">
                     <div class="col-md-8 mx-auto mt-4">
-                        <form id="form1">
+                        <form class="form1">
                             <div class="form-group row mb-0">
                                 <!-- Right-align labels by adding text-end class -->
                                 <label for="id" class="col-sm-3 col-form-label text-left">Name</label>
@@ -66,29 +67,23 @@
                                 <label for="firstName" class="col-sm-3  col-form-label text-left">Number</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="number" id="firstName"
-                                        value="{{ $credit_cards->card_number ?? '-'}}">
+                                        value="{{ $active_credit_card->card_last_four ?? '-'}}">
 
                                 </div>
                                 <!-- Right-align labels by adding  class -->
                                 <label for="lastName" class="col-sm-3 col-form-label text-left">Type</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="lastName"
-                                        value="{{ $credit_cards->card_type ?? '-'}}">
+                                        value="{{ $active_credit_card->card_type ?? '-'}}">
 
                                 </div>
-                                <!-- Right-align labels by adding  class -->
-                                <label for="email" class="col-sm-3 col-form-label text-left">Credit Card Verification</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="email"
-                                        value="{{ $credit_cards->cvv ?? '-' }}">
-                                </div>
+
                             </div>
-                            <!-- Right-align labels by adding  class -->
                             <div class="form-group row  mb-0">
                                 <label for="company" class="col-sm-3 col-form-label text-left">Expiry Month</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto text-left" type="text" id="company"
-                                        value="{{ $credit_cards->card_expiry ?? '-'}}">
+                                        value="{{ $active_credit_card->exp_month ?? '-'}}">
                                 </div>
                             </div>
 
@@ -96,7 +91,7 @@
                                 <label for="language" class="col-sm-3 col-form-label text-left">Expiry Year</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="language"
-                                        value="32423432">
+                                        value="{{ $active_credit_card->exp_year ?? '-'}}">
                                 </div>
                             </div>
                            
@@ -104,72 +99,36 @@
                                 <input class="btn btn-primary" type="submit" value="UPDATE">
                             </div>
                         </form>
-                        <form id="form2" style="display: none;" action="{{ route('set_primary') }}" method="POST">
-                            @csrf
-                            <label class="mb-3" for="selected_card">Select Primary Credit Card</label>
-                            <select class="form-select col-md-8 mx-auto" name="selected_card">
-                                @if($credit_cards)
-                                @foreach($user_credit_cards as $card)
-                                    <option value="{{ $card->id }}">{{ $card->card_type }} - {{ $card->card_number }}</option>
-                                @endforeach
-                                @else
-                                    <option value="0">Please Add Credit Card</option>
-                                @endif
-                            </select>
-                            <button class="mt-3 mb-4" type="submit">Set Primary</button>
-                        </form>
-                        <form id="form3" method="POST" action="{{ route('card_detail_submitted') }}" style="display: none;">
-                            @csrf
-                            <div class="form-group row mb-0">
-                                <label for="card_number" class="col-sm-3 col-form-label text-left">Number</label>
-                                <div class="col-sm-9 mt-2">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="card_number"
-                                        name="card_number" minlength="15" maxlength="16" required>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <label for="name_on_card" class="col-sm-3 col-form-label text-left">Name on
-                                    Card</label>
-                                <div class="col-sm-9 mt-2">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="name_on_card"
-                                        name="name_on_card" value="" required>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <label for="name_on_card" class="col-sm-3 col-form-label text-left">Type</label>
-                                <div class="col-sm-6 mt-2 credit_card_styling">
-                                    <select name="card_type" class="form-select" id="">
-                                        <option value="visa" selected >Visa</option>
-                                        <option value="master">Master</option>
-                                        <option value="amex">American Express</option>
-                                        <option value="discover">Discover</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <form class="form2" style="display: none;" action="{{ route('set_primary') }}" method="POST">
+                          @csrf
+                          <label class="mb-3" for="selected_card">Select Primary Credit Card</label>
+                          <select class="form-select col-md-8 mx-auto" name="selected_card">
+                          @if($user_credit_cards->count() > 0)
+                          @foreach($user_credit_cards as $card)
+                              <option value="{{ $card->id }}">{{ $card->card->brand }} - {{ $card->card->last4 }}</option>
+                          @endforeach
+                      @else
+                          <option value="0">Please Add Credit Card</option>
+                      @endif
 
-                            <div class="form-group row mb-0">
-                                <label for="card_expiry" class="col-sm-3 col-form-label text-left">Credit Card
-                                    Expiry</label>
-                                <div class="col-sm-9 mt-2">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="card_expiry"
-                                        name="card_expiry" placeholder="MM/YY" required>
-                                </div>
-                            </div>
+                          </select>
+                          <button class="mt-3 mb-4" type="submit">Set Primary</button>
+                      </form>
+                        <form id="payment-form" class="form3" method="post" action="{{ route('add_credit_card')}}"style="display: none;" >
+                    @csrf
 
-                            <div class="form-group row mb-0">
-                                <label for="cvv" class="col-sm-3 col-form-label text-left">Credit Card
-                                    Verification</label>
-                                <div class="col-sm-9 mt-2">
-                                    <input class="form-control col-md-8 mx-auto" type="text" id="cvv"
-                                        name="cvv" pattern="[0-9]{3,4}" required>
-                                </div>
-                            </div>
-
-
-                            <div class="text-center mb-0 mt-2 mb-4">
-                                <input class="btn btn-primary" type="submit" value="Submit">
-                            </div>
-                        </form>
+                    <div class="form-group row mb-0">
+                        <label for="card-element" class="col-sm-4 col-form-label text-right">Card Details</label>
+                        <div class="col-md-6">
+                            <div class="mt-2" id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    </div>
+                    <!-- Submit button -->
+                    <div class="text-center ml-5">
+                    <button class="mt-3 mb-4 " type="submit">Add Credit Card</button>
+                    </div>
+                </form>
  
                         </div>
                     </div>
@@ -178,7 +137,7 @@
         </div>
 
 
-        <div class="row mt-4 ">
+        <div class="row mt-4">
           <div class="col-md-11 mx-auto">
             <div class=" rounded mb-0">
               <div class="card-header">
@@ -385,22 +344,46 @@
         </div>
    
 
-        <script>
-        document.getElementById('card_expiry').addEventListener('input', function(e) {
-            var input = e.target.value;
-            input = input.replace(/\D/g, '').substring(0, 4);
-            var month = input.substring(0, 2);
-            var year = input.substring(2, 4);
-
-            if (input.length > 0) {
-                input = month;
-                if (input.length >= 2) {
-                    input += '/' + year;
-                }
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ config('services.stripe.key') }}');
+    var elements = stripe.elements();
+    var style = {
+        base: {
+            fontSize: '16px',
+            color: '#32325d',
+        }
+    };
+    var card = elements.create('card', {style: style});
+    card.mount('#card-element');
+    card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Insert the token into the form so it gets submitted to the server
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', result.token.id);
+                form.appendChild(hiddenInput);
+                // Submit the form
+                form.submit();
             }
-            e.target.value = input;
         });
-    </script>
+    });
+</script>
 
 
 @endsection

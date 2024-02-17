@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Auth\Events\Registered;
 
 use App\Models\User;
+use Stripe\Stripe;
+use Stripe\Customer;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,7 @@ class LoginController extends Controller
 
         if (User::where('email', $request->email)->count() === 0) {
             return redirect()->back()->withErrors([
-                'email' => 'Account does not exists on this email!'
+                'email' => 'Account does not exist with this email!'
             ])->withInput();
         }
 
@@ -66,7 +67,10 @@ class LoginController extends Controller
             'company_phone' => $request->company_phone,
             'password' => Hash::make($request->password)
         ]);
-         
+
+        // Create a Stripe customer and save the Stripe customer ID to the user's record
+        $this->createStripeCustomer($user);
+
         event(new Registered($user));
         Auth::login($user);
 
@@ -95,6 +99,10 @@ class LoginController extends Controller
                 'avatar' => $user_data->avatar,
             ]
         );
+
+        // Create a Stripe customer and save the Stripe customer ID to the user's record
+        $this->createStripeCustomer($user);
+
         Auth::login($user);
 
         return redirect()->intended();
@@ -107,5 +115,25 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+    protected function createStripeCustomer($user)
+    {
+        // Set up Stripe
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        // Check if the user already has a Stripe customer ID
+        if (!$user->stripe_id) {
+            // Create a new Stripe customer
+            $customer = Customer::create([
+                'email' => $user->email,
+                // Add any additional customer information as needed
+            ]);
+
+            // Save the Stripe customer ID to the user's record in the database
+            $user->update([
+                'stripe_id' => $customer->id,
+            ]);
+        }
     }
 }

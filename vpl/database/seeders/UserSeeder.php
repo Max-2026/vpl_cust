@@ -49,13 +49,7 @@ class UserSeeder extends Seeder
         ]);
         $user->preference()->save($preference);
 
-        $credit_card = new UserCreditCard([
-            'card_number' => '2423982342342342',
-            'name_on_card' => 'Syed Erdum Adnan',
-            'card_expiry' => '2026-01-01',
-            'cvv' => '543'
-        ]);
-        $user->credit_card()->save($credit_card);
+
 
         $document = new UserDocument([
             'url' => '/asdfasdfasd.pdf',

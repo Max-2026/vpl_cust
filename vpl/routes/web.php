@@ -16,6 +16,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\UserCreditCardController;
+use App\Http\Controllers\AddCreditController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Authentication Routes
+Route::get('/text', [SubscribeController::class, 'text'])->name('text');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
 Route::post(
     '/login',
     [LoginController::class, 'login_post']
@@ -202,7 +205,7 @@ Route::middleware('auth')->group(function () {
         [UserCreditCardController::class, 'store']
     )->name('card_detail_submitted');
 
-    Route::post('/set_primary', [UserCreditCardController::class, 'primary_set'])->name('set_primary');
+    Route::post('/set_primary', [ProfileController::class, 'primary_set'])->name('set_primary');
 
     Route::get(
         '/sms_setting',
@@ -252,6 +255,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/subscribe' , [subscribeController::class, 'index'])->name('subscribe');
     Route::post('/single_charge' , [subscribeController::class, 'single_charge'])->name('single_charge');
+    Route::post('/add_credit' , [ProfileController::class, 'addCard'])->name('add_credit_card');
  
 
     Route::match(['get', 'post'], '/get-did-area-data', [ApiController::class, 'getDIDAreaCodes']);
