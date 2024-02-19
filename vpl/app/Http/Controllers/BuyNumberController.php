@@ -16,13 +16,15 @@ class BuyNumberController extends Controller
 {
    public function buy_number()
     {
+        $user = Auth::user();
         $countries = Country::all();
         $apiData = '';
         $AreaCode = '';
         return view('customer_panel.Buy_Numbers.buy_number', [
             'countries' => $countries,
             'AreaCode' => $AreaCode,
-            'apiData' => $apiData
+            'apiData' => $apiData,
+            'user' => $user
 
         ]);
     }

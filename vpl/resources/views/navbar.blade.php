@@ -51,7 +51,7 @@
                     </a>
                     <!-- for mobile responsive -->
                     <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
-                        <img src="images/VPL_logomini.git " alt="logo" />
+                        <img src="images/VPL_logomini.png" alt="logo" />
                     </a>
                 </div>
             </div>
@@ -63,13 +63,13 @@
 
                     </li>
                 </ul>
-
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mt-1">
                         <a class="nav-link" href="{{ route('my_cart') }}">
                             <i style="color:#141414c9; font-size:32px;" class="mdi mdi-cart"></i>
                         </a>
                     </li>
+
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
