@@ -165,6 +165,11 @@ Route::middleware('auth')->group(function () {
         [BillingController::class, 'add_talktime']
     )->name('add_talktime');
 
+    Route::post(
+        '/add_talktime',
+        [BillingController::class, 'add_talktime_submit']
+    )->name('add_talktime_submit');
+
     Route::get(
         '/add_funds',
         [BillingController::class, 'index']
@@ -174,6 +179,21 @@ Route::middleware('auth')->group(function () {
         '/charge',
         [BillingController::class, 'charge']
     )->name('charge');
+
+    Route::get(
+        '/payment_Successful',
+        [BillingController::class, 'payment_Successful']
+    )->name('payment_Successful');
+
+    Route::get(
+        '/master_talktime_Successful',
+        [BillingController::class, 'master_talktime_Successful']
+    )->name('master_talktime_Successful');
+
+    Route::get(
+        '/individual_talktime_Successful',
+        [BillingController::class, 'individual_talktime_Successful']
+    )->name('individual_talktime_Successful');
 
 
     Route::get(

@@ -46,22 +46,14 @@ class CartController extends Controller
             // Check if phone numbers are valid and an array
             if ($phoneNumbers && is_array($phoneNumbers)) {
     
-                // Iterate through each phone number
-                foreach ($phoneNumbers as $phoneNumber) {
-<<<<<<< Updated upstream
-                    // dd($phoneNumber);
+                foreach ($phoneNumbers as $phoneNumber) {                    // dd($phoneNumber);
                     
                     // Find the area match for the phone number
                     $areaName = $phoneNumber['area'];
                     // dd($areaName);
                     $areaMatch = Area::where('name', $areaName)->first();
                     //  dd($areaMatch);
-=======
-                    
-                    // Find the area match for the phone number
-                    $areaName = $phoneNumber['area'];
-                    $areaMatch = Area::where('name', $areaName)->first();
->>>>>>> Stashed changes
+
     
                     // If area match found
                     if ($areaMatch) {
@@ -87,19 +79,12 @@ class CartController extends Controller
                             'DIDNumber' => $phoneNumber['number'],
                         ]);
 
-<<<<<<< Updated upstream
                         // $response = Http::get("http://newapi.didx.net/DidxApis/api/BuyDIDByNumber.php", [
                         //     'UserID' => $userId,
                         //     'Password' => $password,
                         //     'DIDNumber' => $phoneNumber['number'], 
                         // ]);
-=======
-                        $response = Http::get("http://newapi.didx.net/DidxApis/api/BuyDIDByNumber.php", [
-                            'UserID' => $userId,
-                            'Password' => $password,
-                            'DIDNumber' => $phoneNumber['number'], 
-                        ]);
->>>>>>> Stashed changes
+
     
                         // Saving number history
                         $numberHistory = new NumberHistory();
@@ -118,10 +103,6 @@ class CartController extends Controller
                     }
                 }
     
-<<<<<<< Updated upstream
-=======
-                // Deduct the total amount from the user's balance
->>>>>>> Stashed changes
                 $user->balance -= $grandTotal;
                 $user->save();
     

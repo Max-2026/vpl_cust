@@ -3,6 +3,18 @@
 @section('title', 'Dashboard')
 <br>
 <br>
+
+@if(session('paymentSuccess'))
+<script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'Payment succeeded! Funds added.',
+            icon: 'success'
+        });
+    </script>
+@endif
+
+
 <div class="container-fluid">
   <div class="row m-3">
     <div class="col-md-6">

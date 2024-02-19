@@ -48,7 +48,7 @@ class BillingController extends Controller
     public function add_talktime()
     {
         $user = Auth::user();
-        $numbers = Number::where('id', $user->id)->get();
+        $numbers = Number::where('user_id', $user->id)->get();
         return view('customer_panel.billings.addtalktime'
         ,[
             'user' => $user,
@@ -76,7 +76,7 @@ class BillingController extends Controller
     }
 
     public function charge(Request $request){
-        
+
         Stripe::setApiKey(config('services.stripe.secret'));
     
         $customerId = $request->stripe_id;
@@ -96,22 +96,82 @@ class BillingController extends Controller
                 'return_url' => 'http://127.0.0.1:8000/add_funds',
             ]);
     
-            // If payment is successful, you can retrieve the PaymentIntent status
             if ($paymentIntent->status == 'succeeded') {
-                // Payment succeeded
-                // You can perform further actions here if needed
-                return "Payment succeeded!";
+                $user = Auth::user();
+                $user->balance += $amount;
+                $user->save();
+            
+
+                return redirect()->route('payment_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
             } else {
-                // Payment failed
                 return "Payment failed!";
             }
         } catch (\Stripe\Exception\CardException $e) {
-            // Since it's a card error, you can retrieve the error message
             return $e->getError()->message;
         } catch (Exception $e) {
             // Other exceptions, like API errors, can be handled here
             return $e->getMessage();
         }
     }
+    public function payment_Successful()
+    {
+        return view('payment_Successful');
+    }
+
+    public function master_talktime_Successful()
+    {
+        return view('master_talktime_Successful');
+    }
+
+    public function individual_talktime_Successful()
+    {
+        return view('individual_talktime_Successful');
+    }
+
+    public function add_talktime_submit(Request $request)
+    {
+        $user = Auth::user();
+        $amountToAdd = $request->input('add_talk_time');
+        $talkTimeType = $request->input('talk_time_type');
+        $selectedNumberId = $request->input('number_id');
+    
+        // Fetch the selected number
+        $selectedNumber = Number::findOrFail($selectedNumberId);
+    
+        // Check if the selected talk time type is "Master Talk Time"
+        if ($talkTimeType === "Master Talk Time") {
+            // Check if the user has sufficient balance
+            if ($user->balance >= $amountToAdd) {
+                // Deduct the amount from the user's balance
+                $user->balance -= $amountToAdd;
+                // Add the amount to the user's talktime
+                $user->talktime += $amountToAdd;
+                $user->save();
+
+                return redirect()->route('master_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+
+            } else {
+                return redirect()->route('master_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+
+
+            }
+        } else {
+            if ($user->balance >= $amountToAdd) {
+                $user->balance -= $amountToAdd;
+                $user->save();
+    
+                $selectedNumber->talktime += $amountToAdd;
+                $selectedNumber->save();
+
+                return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+
+    
+            } else {
+                return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+
+            }
+        }
+    }
+    
     
 }
