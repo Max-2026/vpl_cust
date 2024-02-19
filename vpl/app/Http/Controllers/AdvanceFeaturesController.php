@@ -11,7 +11,11 @@ class AdvanceFeaturesController extends Controller
 {
     public function voice_messages()
     {
-        return view('customer_panel.advance_feature.voicemessages');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.voicemessages',
+        [
+            'user' => $user
+        ]);
     }
 
     public function voice_mail_setting()
@@ -27,28 +31,48 @@ class AdvanceFeaturesController extends Controller
 
     public function call_recordings()
     {
-        return view('customer_panel.advance_feature.callrecording');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.callrecording',
+        [
+            'user' => $user
+        ]);
     }
 
 
     public function ivr_setting()
     {
-        return view('customer_panel.advance_feature.IVR_manager');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.IVR_manager',
+        [
+            'user' => $user
+        ]);
     }
 
 
     public function virtual_pbx_setting()
     {
-        return view('customer_panel.advance_feature.virtualpbx');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.virtualpbx',
+        [
+            'user' => $user
+        ]);
     }
 
     public function pbx_setting()
     {
-        return view('customer_panel.advance_feature.PBXsetting');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.PBXsetting',
+        [
+            'user' => $user
+        ]);
     }
 
     public function upload_pbx()
     {
-        return view('customer_panel.advance_feature.UploadPBXIVR');
+        $user = Auth::user();
+        return view('customer_panel.advance_feature.UploadPBXIVR',
+        [
+            'user' => $user
+        ]);
     }
 }

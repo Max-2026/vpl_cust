@@ -20,10 +20,13 @@ class ProfileController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
         $current_user = Auth::user();
         return view('customer_panel.profile.basic_info',
         [
-            'current_user' => $current_user
+            'current_user' => $current_user,
+            'user' => $user
+
         ]);
     }
 
@@ -44,7 +47,11 @@ class ProfileController extends Controller
 
     public function contact_info()
     {
-        return view('customer_panel.profile.contact_info');
+        $user = Auth::user();
+        return view('customer_panel.profile.contact_info',
+        [
+            'user' => $user
+        ]);
     }
 
     public function credit_card_details()
@@ -73,17 +80,29 @@ class ProfileController extends Controller
 
     public function general_setting()
     {
-        return view('customer_panel.profile.general_setting');
+        $user = Auth::user();
+        return view('customer_panel.profile.general_setting',
+        [
+            'user' => $user
+        ]);
     }
 
     public function sms_setting()
     {
-        return view('customer_panel.profile.smssetting');
+        $user = Auth::user();
+        return view('customer_panel.profile.smssetting',
+        [
+            'user' => $user
+        ]);
     }
 
     public function verified_number()
     {
-        return view('customer_panel.profile.verifiednumber');
+        $user = Auth::user();
+        return view('customer_panel.profile.verifiednumber',
+        [
+            'user' => $user
+        ]);
     }
 
 

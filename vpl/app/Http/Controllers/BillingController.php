@@ -71,7 +71,8 @@ class BillingController extends Controller
         $numbers = Number::where('id', $user->id)->get();
         return view('customer_panel.billings.mastertalktime',
         [
-             'numbers' => $numbers
+             'numbers' => $numbers,
+                'user' => $user
         ]);
     }
 

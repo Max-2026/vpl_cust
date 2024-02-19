@@ -31,7 +31,12 @@ class BuyNumberController extends Controller
 
     public function buy_golden_number()
     {
-        return view('customer_panel.Buy_Numbers.golden_numbers');
+        $user = Auth::user();
+        return view('customer_panel.Buy_Numbers.golden_numbers',
+        [
+            'user' => $user
+        ]);
+
     }
 
 

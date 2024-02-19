@@ -15,7 +15,11 @@ class NumbersController extends Controller
 {
     public function faxes()
     {
-        return view('customer_panel.my_number.my_faxes');
+        $user = Auth::user();
+        return view('customer_panel.my_number.my_faxes',
+        [
+            'user' => $user
+        ]);
     }
 
     public function view_all_numbers()
@@ -25,16 +29,19 @@ class NumbersController extends Controller
         // dd($numbers);
 
         return view('customer_panel.my_number.view_all_my_number',[
-            'numbers' => $numbers
+            'numbers' => $numbers,
+            'user' => $user
         ]);
     }
 
     public function call_forwarding()
     {
 
+        $user = Auth::user();
         $countries = Country::all();
         return view('customer_panel.my_number.change_call_forwarding',[
-        'countries' => $countries
+        'countries' => $countries,
+        'user' => $user
     ]);
 
     }
