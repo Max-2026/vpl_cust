@@ -14,10 +14,6 @@ use App\Http\Controllers\SmsInboxController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\SubscribeController;
-use App\Http\Controllers\UserCreditCardController;
-use App\Http\Controllers\AddCreditController;
-
 
 use Illuminate\Support\Facades\Route;
 
@@ -171,8 +167,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get(
         '/add_funds',
-        [SubscribeController::class, 'index']
+        [BillingController::class, 'index']
     )->name('add_funds');
+
+    Route::post(
+        '/charge',
+        [BillingController::class, 'charge']
+    )->name('charge');
 
 
     Route::get(
@@ -199,11 +200,6 @@ Route::middleware('auth')->group(function () {
         '/credit_card_details',
         [ProfileController::class, 'credit_card_details']
     )->name('credit_card_details');
-
-    Route::post(
-        '/card_detail_submitted',
-        [UserCreditCardController::class, 'store']
-    )->name('card_detail_submitted');
 
     Route::post('/set_primary', [ProfileController::class, 'primary_set'])->name('set_primary');
 
@@ -253,8 +249,6 @@ Route::middleware('auth')->group(function () {
         [NumbersController::class, 'monthly_recurring_charges']
     )->name('monthly_recurring_charges');
 
-    Route::get('/subscribe' , [subscribeController::class, 'index'])->name('subscribe');
-    Route::post('/single_charge' , [subscribeController::class, 'single_charge'])->name('single_charge');
     Route::post('/add_credit' , [ProfileController::class, 'addCard'])->name('add_credit_card');
  
 

@@ -10,11 +10,14 @@
             <div class="card rounded">
                 <p class="p-3 mt-2 text-center text-muted">The funds that you are adding will pay for phone numbers,
                     setup and service charges.
+
                 </p>
+
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container">
     <div class="row m-3">
@@ -34,77 +37,65 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="row m-4">
         <div class="card rounded">
             <div class="col-md-8 offset-md-2">
-            <form id="payment-form" method="post" action="{{ route('single_charge')}}">
+                <form method="post" action="{{ route('charge') }}">
                     @csrf
-                    <!-- Displaying order details -->
-                    <input type="hidden" name="order_id" value="{{ $user->id }}">
-                    <!-- Stripe Elements for card details -->
+                    <br>
+                    <div class="form-group row mb-0">
+                        <label for="orderID" class="col-sm-4 col-form-label text-right mt-2">Order ID</label>
+                        <div class="col-md-6">
+                            <p class="pt-3">{{ $user->id }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <label for="customerName" class="col-sm-4 col-form-label text-right">Customer Name</label>
+                        <div class="col-md-6">
+                            <p class="pt-2">
+                                {{ $user->first_name }} {{ $user->last_name }}
+                            </p>
+                        </div>
+                    </div>
                     <div class="form-group row mb-0">
                         <label for="amount" class="col-sm-4 col-form-label text-right">Amount ($)</label>
                         <div class="col-md-6">
-                            <input type="number" name="amount" class="form-control" id="amount" placeholder="10" value="10" required>
+                            <input type="number" name="amount" class="form-control" id="amount" value="10" required>
+                            <input type="hidden" name="stripe_id" class="form-control" value="{{ $user->stripe_id }}" required>
+                            <input type="hidden" name="card_id" class="form-control" value="{{ $credit_card->card_id }}" required>
+
+
                         </div>
                     </div>
-                    <div class="form-group row mb-0">
-                        <label for="card-element" class="col-sm-4 col-form-label text-right">Card Details</label>
-                        <div class="col-md-6">
-                            <div id="card-element"></div>
-                            <div id="card-errors" role="alert"></div>
-                        </div>
+
+                    <div class="text-center">
+                        <p style="color: #0088cc;">We Accept:</p>
+                        <i style="color: #0088cc;" class="fab fa-bitcoin fa-3x"></i>
+                        <i style="color: #0088cc;" class="fab fa-cc-amex fa-3x"></i>
+                        <i style="color: #0088cc;" class="fab fa-cc-visa fa-3x"></i>
+                        <i style="color: #0088cc;" class="fab fa-cc-discover fa-3x"></i>
+                        <i style="color: #0088cc;" class="fab fa-cc-mastercard fa-3x"></i>
+                        <i style="color: #0088cc;" class="fab fa-cc-paypal fa-3x"></i>
                     </div>
-                    <!-- Submit button -->
+
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-default" style="background-color: #0088cc;color:white">Add Funds Using Credit Card</button>
+                        <button type="submit" class="btn btn-default" style="background-color: #0088cc;color:white">Add
+                            Funds Using Credit Card</button>
                     </div>
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-default"
+                            style="background-color: #0088cc;color:white">Checkout with PayPal</button>
+                    </div>
+
+                    <p class="text-center mt-5 mb-5">
+                        To avoid high bank charges, so we can offer you lower prices, a minimum of $10 will be charged.
+                    </p>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    var stripe = Stripe('{{ config('services.stripe.key') }}');
-    var elements = stripe.elements();
-    var style = {
-        base: {
-            fontSize: '16px',
-            color: '#32325d',
-        }
-    };
-    var card = elements.create('card', {style: style});
-    card.mount('#card-element');
-    card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
-        }
-    });
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        stripe.createToken(card).then(function(result) {
-            if (result.error) {
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-            } else {
-                // Insert the token into the form so it gets submitted to the server
-                var hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('value', result.token.id);
-                form.appendChild(hiddenInput);
-                // Submit the form
-                form.submit();
-            }
-        });
-    });
-</script>
 
 @endsection
