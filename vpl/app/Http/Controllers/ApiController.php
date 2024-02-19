@@ -38,6 +38,7 @@ class ApiController extends Controller
                 // Get the response data
                 $AreaCode = $response->json();
                 $apiData = '';
+                $user = Auth::user();
     
                 // Get countries data
                 $countries = Country::all();
@@ -47,6 +48,7 @@ class ApiController extends Controller
                     'AreaCode' => $AreaCode,
                     'countries' => $countries,
                     'apiData' => $apiData,
+                    'user' => $user
                 ]);
             } catch (\Exception $e) {
 
@@ -82,11 +84,13 @@ class ApiController extends Controller
                 $countries = Country::all();
             
                 $AreaCode = '';
+                $user = Auth::user();
             
                 return view('customer_panel.Buy_Numbers.buy_number', [
                     'countries' => $countries,
                     'apiData' => $apiData,
                     'AreaCode' => $AreaCode,
+                    'user' => $user
                 ]);
             } catch (\Exception $e) {
 

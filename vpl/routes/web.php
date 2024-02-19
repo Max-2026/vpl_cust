@@ -260,6 +260,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/my_cart', [CartController::class, 'index'])->name('my_cart');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('/number_purchased_successful', [CartController::class, 'number_purchased_successful'])->name('number_purchased_successful');
     
 
 

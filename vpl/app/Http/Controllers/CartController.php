@@ -109,16 +109,19 @@ class CartController extends Controller
                 // Clear the user's cart after checkout
                 Cart::where('user_id', $user->id)->delete();
     
-                // Redirect the user to the cart page with a success message
-                return redirect()->route('view_all_numbers')->with('success', 'Checkout successful.');
+                return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+
             } else {
-                // Redirect back to the cart with an error message if no phone numbers found
-                return redirect()->route('my_cart')->with('error', 'No phone numbers found.');
+                return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
             }
         } else {
-            // Redirect back to add funds page with an error message if balance is insufficient
             return redirect()->route('add_funds')->with('error', 'Insufficient funds for checkout.');
         }
+    }
+
+    public function number_purchased_successful()
+    {
+        return view('number_purchased_successful');
     }
     
 }
