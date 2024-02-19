@@ -63,33 +63,30 @@
 
                     </li>
                 </ul>
+
                 <ul class="navbar-nav ms-auto">
-
-
-
+                    <li class="nav-item mt-1">
+                        <a class="nav-link" href="{{ route('my_cart') }}">
+                            <i style="color:#141414c9; font-size:32px;" class="mdi mdi-cart"></i>
+                        </a>
+                    </li>
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
+                            <img class="img-xs rounded-circle" src="images/faces/profile.png" alt="Profile image"> </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                                <p class="mb-1 mt-3 font-weight-semibold">User</p>
-                                <p class="fw-light text-muted mb-0">user@gmail.com</p>
+                                <p class="mb-1 mt-3 font-weight-semibold">{{ $user->first_name }}
+                                    {{ $user->last_name }}</p>
+                                <p class="fw-light text-muted mb-0">{{ $user->email }}</p>
                             </div>
-                            <a class="dropdown-item" href="{{ route('basic_info') }}"><i
-                                    class="dropdown-item-icon mdi mdi-account me-2" style="color:#0088cc;"></i> My
-                                Profile</a>
-                            <a class="dropdown-item" href="{{ route('my_cart') }}"><i
-                                    class="dropdown-item-icon mdi mdi-shopping  me-2" style="color:#0088cc;"></i> My
-                                Cart</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="dropdown-item-icon mdi mdi-logout me-2" style="color:#0088cc;"></i> Log Out
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                </form>
+                            </form>
 
                         </div>
                     </li>

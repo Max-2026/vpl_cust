@@ -258,7 +258,6 @@ Route::middleware('auth')->group(function () {
         [SmsInboxController::class, 'sms_inbox']
     )->name('sms_inbox');
 
-    Route::post('/cart', [CartController::class, 'cart'])->name('cart');
     Route::get('/my_cart', [CartController::class, 'index'])->name('my_cart');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
     
