@@ -195,6 +195,11 @@ Route::middleware('auth')->group(function () {
         [BillingController::class, 'individual_talktime_Successful']
     )->name('individual_talktime_Successful');
 
+    Route::get(
+        '/addcreditcard',
+        [BillingController::class, 'addcreditcard']
+    )->name('addcreditcard');
+
 
     Route::get(
         '/talktime',

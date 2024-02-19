@@ -85,6 +85,12 @@ class BillingController extends Controller
         $newAmount = $amount * 100;
     
         try {
+            // Check if $cardId is null, then redirect to credit_card_details route
+            if ($cardId == null) {
+                return redirect()->route('addcreditcard')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+
+            }
+    
             $customer = Customer::retrieve($customerId);
     
             $paymentIntent = PaymentIntent::create([
@@ -101,7 +107,6 @@ class BillingController extends Controller
                 $user->balance += $amount;
                 $user->save();
             
-
                 return redirect()->route('payment_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
             } else {
                 return "Payment failed!";
@@ -113,6 +118,9 @@ class BillingController extends Controller
             return $e->getMessage();
         }
     }
+    
+
+    
     public function payment_Successful()
     {
         return view('payment_Successful');
@@ -128,17 +136,21 @@ class BillingController extends Controller
         return view('individual_talktime_Successful');
     }
 
+    public function addcreditcard()
+    {
+        return view('addcreditcard');
+    }
+
     public function add_talktime_submit(Request $request)
     {
+
         $user = Auth::user();
         $amountToAdd = $request->input('add_talk_time');
         $talkTimeType = $request->input('talk_time_type');
         $selectedNumberId = $request->input('number_id');
     
-        // Fetch the selected number
         $selectedNumber = Number::findOrFail($selectedNumberId);
     
-        // Check if the selected talk time type is "Master Talk Time"
         if ($talkTimeType === "Master Talk Time") {
             // Check if the user has sufficient balance
             if ($user->balance >= $amountToAdd) {

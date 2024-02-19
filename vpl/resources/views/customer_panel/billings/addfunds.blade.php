@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <input type="number" name="amount" class="form-control" id="amount" value="10" required>
                             <input type="hidden" name="stripe_id" class="form-control" value="{{ $user->stripe_id }}" required>
-                            <input type="hidden" name="card_id" class="form-control" value="{{ $credit_card->card_id }}" required>
+                            <input type="hidden" name="card_id" class="form-control" value="{{ $credit_card->card_id ?? ''}}" required>
 
 
                         </div>

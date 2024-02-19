@@ -51,7 +51,7 @@
                     </a>
                     <!-- for mobile responsive -->
                     <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
-                        <img src="images/VPL_logomini.png" alt="logo" />
+                        <img src="images/VPL_logomini.git " alt="logo" />
                     </a>
                 </div>
             </div>

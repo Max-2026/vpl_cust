@@ -54,8 +54,8 @@
                 </div>
                 <div class="card text-center rounded">
                     <div class="col-md-8 mx-auto mt-4">
-                        <form class="form1">
-                            <div class="form-group row mb-0">
+                        <form class="form1" style="display: none;">
+                            <div class="form-group row mb-3">
                                 <!-- Right-align labels by adding text-end class -->
                                 <label for="id" class="col-sm-3 col-form-label text-left">Name</label>
                                 <div class="col-sm-9">
@@ -87,17 +87,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row  mb-0">
+                            <div class="form-group row  mb-2">
                                 <label for="language" class="col-sm-3 col-form-label text-left">Expiry Year</label>
                                 <div class="col-sm-9">
                                     <input class="form-control col-md-8 mx-auto" type="text" id="language"
                                         value="{{ $active_credit_card->exp_year ?? '-'}}">
                                 </div>
                             </div>
-                           
-                            <div class="text-center mb-0 mt-2 mb-4">
-                                <input class="btn btn-primary" type="submit" value="UPDATE">
-                            </div>
+                          
                         </form>
                         <form class="form2" style="display: none;" action="{{ route('set_primary') }}" method="POST">
                           @csrf
@@ -114,7 +111,7 @@
                           </select>
                           <button class="mt-3 mb-4" type="submit">Set Primary</button>
                       </form>
-                        <form id="payment-form" class="form3" method="post" action="{{ route('add_credit_card')}}"style="display: none;" >
+                        <form id="payment-form" class="form3" method="post" action="{{ route('add_credit_card')}}" >
                     @csrf
 
                     <div class="form-group row mb-0">
