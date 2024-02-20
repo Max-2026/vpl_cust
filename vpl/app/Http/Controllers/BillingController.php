@@ -88,7 +88,7 @@ class BillingController extends Controller
         try {
             // Check if $cardId is null, then redirect to credit_card_details route
             if ($cardId == null) {
-                return redirect()->route('addcreditcard')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+                return view('notification.addcreditcard')->with('success', 'Payment successful!')->with('paymentSuccess', false);
 
             }
     
@@ -108,9 +108,10 @@ class BillingController extends Controller
                 $user->balance += $amount;
                 $user->save();
             
-                return redirect()->route('payment_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+                return view('notification.payment_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+
             } else {
-                return "Payment failed!";
+                return view('notification.payment_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
             }
         } catch (\Stripe\Exception\CardException $e) {
             return $e->getError()->message;
@@ -121,26 +122,6 @@ class BillingController extends Controller
     }
     
 
-    
-    public function payment_Successful()
-    {
-        return view('payment_Successful');
-    }
-
-    public function master_talktime_Successful()
-    {
-        return view('master_talktime_Successful');
-    }
-
-    public function individual_talktime_Successful()
-    {
-        return view('individual_talktime_Successful');
-    }
-
-    public function addcreditcard()
-    {
-        return view('addcreditcard');
-    }
 
     public function add_talktime_submit(Request $request)
     {
@@ -161,12 +142,10 @@ class BillingController extends Controller
                 $user->talktime += $amountToAdd;
                 $user->save();
 
-                return redirect()->route('master_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+                return view('notification.master_talktime_Successful')->with('paymentSuccess', true);
 
             } else {
-                return redirect()->route('master_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
-
-
+                return view('notification.master_talktime_Successful')->with('paymentSuccess', false);
             }
         } else {
             if ($user->balance >= $amountToAdd) {
@@ -176,11 +155,13 @@ class BillingController extends Controller
                 $selectedNumber->talktime += $amountToAdd;
                 $selectedNumber->save();
 
-                return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+                return view('notification.individual_talktime_Successful')->with('paymentSuccess', true);
+                // return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
 
     
             } else {
-                return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+                return view('notification.individual_talktime_Successful')->with('paymentSuccess', false);
+                // return redirect()->route('individual_talktime_Successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
 
             }
         }

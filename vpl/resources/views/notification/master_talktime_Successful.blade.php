@@ -9,7 +9,7 @@
 <body>
 
 <script>
-    @if(session('paymentSuccess'))
+    @if($paymentSuccess)
         swal({
             title: "Successful",
             text: "Master TalkTime Added!",
@@ -19,13 +19,13 @@
             window.location.href = "{{ route('dashboard') }}";
         });
     @else
-        swal({
+    swal({
             title: "Error",
-            text: "Master Talktime Not successful! please Add funds to your account!",
+            text: "Master Talktime Not successful! Please Add funds to your account!",
             icon: "error",
             closeOnClickOutside: false,
         }).then((value) => {
-            window.history.back();
+            window.location.href = "{{ route('add_funds') }}";
         });
     @endif
 </script>

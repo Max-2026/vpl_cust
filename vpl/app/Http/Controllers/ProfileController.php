@@ -160,18 +160,17 @@ class ProfileController extends Controller
             $paymentMethod->attach([
                 'customer' => $user->stripe_id,
             ]);
-    
-            // If you want to make this the default payment method, uncomment the following line
-            // $user->updateDefaultPaymentMethod($paymentMethod->id);
-    
-            // Card added successfully
+            
             return redirect('/credit_card_details');
         } catch (CardException $e) {
             // Handle card exception (e.g., declined card)
-            return response()->json(['error' => $e->getMessage()], 400);
+            return view('notification.addcarderror',
+            [
+                'error' => $e->getMessage()
+            ]);
         } catch (\Exception $e) {
             // Handle other exceptions
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['error 2' => $e->getMessage()], 500);
         }
     }
     

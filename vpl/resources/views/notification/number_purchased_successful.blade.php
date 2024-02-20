@@ -11,26 +11,32 @@
     <!-- Include SweetAlert JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.js"></script>
 
-    <!-- PHP block to check payment success -->
-    <?php
-    // Check if 'paymentSuccess' session variable is set
-    $paymentSuccess = session('paymentSuccess');
-    ?>
-
     <!-- Script to show SweetAlert on page load -->
     <script>
         // Check if payment was successful
-        var paymentSuccess = <?php echo json_encode($paymentSuccess); ?>;
+        var paymentSuccess = {!! json_encode($paymentSuccess) !!};
         if (paymentSuccess) {
-            // Show SweetAlert
+            // Show SweetAlert for success
             Swal.fire({
-                title: 'Payment Successful!',
+                title: 'Number Purchased Successful!',
                 icon: 'success',
                 confirmButtonText: 'OK'
             }).then((result) => {
-                // Redirect to dashboard route when the user clicks OK
+                // Redirect to view_all_numbers route when the user clicks OK
                 if (result.isConfirmed || result.isDismissed) {
-                    window.location.href = '{{ route("dashboard") }}';
+                    window.location.href = '{{ route("view_all_numbers") }}';
+                }
+            });
+        } else {
+            // Show SweetAlert for error
+            Swal.fire({
+                title: 'Please Add Funds to your account!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                // Redirect to previous page when the user clicks OK
+                if (result.isConfirmed || result.isDismissed) {
+                    window.location.href = "{{ route('add_funds') }}";
                 }
             });
         }

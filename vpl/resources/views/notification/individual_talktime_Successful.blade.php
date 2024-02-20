@@ -9,7 +9,7 @@
 <body>
 
 <script>
-    @if(session('paymentSuccess'))
+    @if($paymentSuccess)
         swal({
             title: "Successful",
             text: "TalkTime Individual Number Added!",
@@ -21,11 +21,11 @@
     @else
         swal({
             title: "Error",
-            text: "Not successful!",
+            text: "Not successful Please Add funds to your account!",
             icon: "error",
             closeOnClickOutside: false,
         }).then((value) => {
-            window.history.back();
+            window.location.href = "{{ route('add_funds') }}";
         });
     @endif
 </script>

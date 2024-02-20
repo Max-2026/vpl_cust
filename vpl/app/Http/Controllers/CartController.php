@@ -109,13 +109,15 @@ class CartController extends Controller
                 // Clear the user's cart after checkout
                 Cart::where('user_id', $user->id)->delete();
     
-                return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+                return view('notification.number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
+                // return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', true);
 
             } else {
-                return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+                return view('notification.number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
+                // return redirect()->route('number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
             }
         } else {
-            return redirect()->route('add_funds')->with('error', 'Insufficient funds for checkout.');
+            return view('notification.number_purchased_successful')->with('success', 'Payment successful!')->with('paymentSuccess', false);
         }
     }
 
