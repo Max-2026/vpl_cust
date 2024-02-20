@@ -64,12 +64,15 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+<<<<<<< Updated upstream
                     <li class="nav-item mt-1">
                         <a class="nav-link" href="{{ route('my_cart') }}">
                             <i style="color:#141414c9; font-size:32px;" class="mdi mdi-cart"></i>
                         </a>
                     </li>
 
+=======
+>>>>>>> Stashed changes
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
