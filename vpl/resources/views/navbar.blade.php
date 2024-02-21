@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <div class="container-scroller">
+    <div class="container-scroller col-lg-">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -69,8 +69,11 @@
                             <i style="color:#141414c9; font-size:32px;" class="mdi mdi-cart"></i>
                         </a>
                     </li>
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
