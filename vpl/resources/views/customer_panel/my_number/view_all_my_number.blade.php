@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{ $serial++ }}</td>
                                     <td><a href="{{ route('my_number', ['id' => $number->id ]) }}">{{ $number->number ?? 'no Number' }}</a></td>                                <td><a href="#">View</a></td>
-                                <td>{{ $number->country->name }} - {{ $number->area->name ?? 'no' }}</td>
+                                <td>{{ $number->country->description ?? '' }} - {{ $number->area->description ?? 'no' }}</td>
                                 <td><a href="#">Please set your ringto address</a></td>
                                 <td><i class="fas fa-phone-square-alt"></i></td>
                                 <td>$0.01</td>

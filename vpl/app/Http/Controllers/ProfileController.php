@@ -107,17 +107,25 @@ class ProfileController extends Controller
 
 
     public function primary_set(Request $request){
-
         $selectedCardId = $request->input('selected_card');
         $currentUser = Auth::user();
-
+    
         $currentUser->cardpayment()->where('user_id', $currentUser->id)->update([
             'is_primary' => 0 ]);
         $currentUser->cardpayment()->where('card_id', $selectedCardId)->update([
             'is_primary' => 1 ]);
-
+    
+        if ($request->isMethod('post')) {
+            return view('notification.setprimarycardsuccessful', [
+                'success' => 'Set Primary successfully!',
+                'successful' => true
+            ]);
+        } else {
+            // If the request is direct (e.g., back button), redirect to the 'credit_card_details' route
             return redirect('/credit_card_details');
+        }
     }
+    
 
 
     public function addCard(Request $request)
@@ -160,8 +168,11 @@ class ProfileController extends Controller
             $paymentMethod->attach([
                 'customer' => $user->stripe_id,
             ]);
-            
-            return redirect('/credit_card_details');
+
+            return view('notification.addcreditsuccess', [
+                'success' => 'Credit Card added successfully! Please set this card as the primary card.',
+                'successful' => true
+            ]);          // return redirect('/credit_card_details');
         } catch (CardException $e) {
             // Handle card exception (e.g., declined card)
             return view('notification.addcarderror',

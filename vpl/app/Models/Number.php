@@ -7,20 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-use \App\Models\User;
-use \App\Models\Area;
-use \App\Models\Country;
-use \App\Models\NumberHistory;
+
+use App\Models\User;
+use App\Models\DidAreas;
+use App\Models\Number;
+use App\Models\didcountries;
+use App\Models\NumberHistory;
 
 class Number extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'area_id',
         'user_id',
@@ -47,7 +44,7 @@ class Number extends Model
 
     public function area(): BelongsTo
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(DidAreas::class, 'area_id');
     }
 
     public function user(): BelongsTo
@@ -65,10 +62,9 @@ class Number extends Model
         return $this->hasMany(NumberHistory::class);
     }
 
-
     protected function getCountryAttribute()
     {
-        return $this->area->country;
+        return $this->area->country ?? null;
     }
 
     protected function getFullNumberAttribute()

@@ -45,8 +45,8 @@
                                 <select class="form-select" id="countrySelect" name="countrySelect">
                                     <option value="" selected>Select Country</option>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->code }}" data-show-form="{{ $country->code }}">
-                                            {{ $country->code }} - {{ $country->name }}
+                                        <option value="{{ $country->countrycode }}" data-show-form="{{ $country->countrycode }}">
+                                            {{ $country->countrycode }} - {{ $country->description }}
                                         </option>
                                     @endforeach
                                 </select>

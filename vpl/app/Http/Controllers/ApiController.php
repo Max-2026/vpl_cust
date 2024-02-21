@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 
-use App\Models\Country;
+use App\Models\didcountries;
 use App\Models\Area;
 use App\Models\Number;
 use App\Models\Cart;
@@ -41,7 +41,7 @@ class ApiController extends Controller
                 $user = Auth::user();
     
                 // Get countries data
-                $countries = Country::all();
+                $countries = didcountries::all();
                 
                 // Return the view with the retrieved data
                 return view('customer_panel.Buy_Numbers.buy_number', [
@@ -81,7 +81,7 @@ class ApiController extends Controller
                 ]);
             
                 $apiData = $response->json();
-                $countries = Country::all();
+                $countries = didcountries::all();
             
                 $AreaCode = '';
                 $user = Auth::user();

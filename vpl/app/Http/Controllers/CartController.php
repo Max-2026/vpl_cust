@@ -11,7 +11,8 @@ use App\Models\NumberHistory;
 use App\Models\Number;
 use App\Models\User;
 use App\Models\Country;
-use App\Models\Area;
+// use App\Models\Area;
+use App\Models\DidAreas;
 
 
 class CartController extends Controller
@@ -51,7 +52,7 @@ class CartController extends Controller
                     // Find the area match for the phone number
                     $areaName = $phoneNumber['area'];
                     // dd($areaName);
-                    $areaMatch = Area::where('name', $areaName)->first();
+                    $areaMatch = DidAreas::where('description', $areaName)->first();
                     //  dd($areaMatch);
 
     

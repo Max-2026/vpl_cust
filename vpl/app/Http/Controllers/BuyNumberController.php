@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Country;
 use App\Models\Number;
 use App\Models\Area;
+use App\Models\didcountries;
 
 
 
@@ -17,7 +18,7 @@ class BuyNumberController extends Controller
    public function buy_number()
     {
         $user = Auth::user();
-        $countries = Country::all();
+        $countries = didcountries::all();
         $apiData = '';
         $AreaCode = '';
         return view('customer_panel.Buy_Numbers.buy_number', [
