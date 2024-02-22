@@ -33,20 +33,8 @@
                             <td>{{ $item->country }}</td>
                             <td>{{ $item->billing_type }}</td>
                             <td>{{ $item->setup_cost }}</td>
-                            <td>
-                                @if ($item->billing_type == 'Monthly')
-                                    {{ $item->monthly_charges }}
-                                @else
-                                    0
-                                @endif
-                            </td>
-                            <td>
-                                @if ($item->billing_type == 'Monthly')
-                                    0
-                                @else
-                                    {{ $item->monthly_charges * 12 }}
-                                @endif
-                            </td>
+                            <td>{{ $item->monthly_charges }}</td>
+                            <td>{{ $item->annual_charges }}</td>
                             <td>{{ $item->talk_time }}</td>
                             <td>Pending</td>
                             <td>
@@ -63,12 +51,12 @@
                         <td></td>
                         <td></td>
                         <td>{{ $data->sum('setup_cost') }}</td>
-                        <td>{{ $data->where('billing_type', 'Monthly')->sum('monthly_charges') }}</td>
-                        <td>{{ $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 }}</td>
+                        <td>{{ $data->sum('monthly_charges') }}</td>
+                        <td>{{ $data->sum('annual_charges') }}</td>
                         <td>{{ $data->sum('talk_time') }}</td>
                         <td></td>
                         <td></td>
-                 <input type="hidden" name="phone_numbers" value="{{ json_encode($data) }}">
+                        <input type="hidden" name="phone_numbers" value="{{ json_encode($data) }}">
                     </tr>
                 </tbody>
             </table>
@@ -90,7 +78,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @php
-                            $grandTotal = $data->sum('setup_cost') + $data->where('billing_type', 'Monthly')->sum('monthly_charges') + $data->where('billing_type', 'Annually')->sum('monthly_charges') * 12 + $data->sum('talk_time');
+                            $grandTotal = $data->sum('setup_cost') + $data->sum('monthly_charges') + $data->sum('annual_charges') + $data->sum('talk_time');
                             $amountToPay = $grandTotal - $user->balance;
                             $amountToPay = $amountToPay > 0 ? $amountToPay : 0;
                         @endphp

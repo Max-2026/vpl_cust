@@ -15,16 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('area_id')->nullable();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('vendor_id')
-                ->nullable()
-                ->references('id')
-                ->on('users');
+            $table->foreignId('vendor_id')->nullable()->references('id')->on('users');
             $table->string('rate_center')->nullable();
             $table->string('number', 20)->unique();
             $table->boolean('is_active')->default(true);
             $table->boolean('is_reserved')->default(false);
             $table->integer('setup_charges');
-            $table->integer('monthly_charges');
+            $table->integer('monthly_charges')->default(0);
+            $table->integer('annual_charges')->default(0);
             $table->integer('per_mintue_charges');
             $table->integer('per_sms_charges');
             $table->string('forwarding_url');

@@ -65,6 +65,7 @@ class CartController extends Controller
                         $number->number = $phoneNumber['number'];
                         $number->setup_charges = $phoneNumber['setup_cost'];
                         $number->monthly_charges = $phoneNumber['monthly_charges'];
+                        $number->annual_charges = $phoneNumber['annual_charges'];
                         $number->per_mintue_charges = 0;
                         $number->per_sms_charges = 0;
                         $number->forwarding_url = '';

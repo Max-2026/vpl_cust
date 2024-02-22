@@ -62,9 +62,12 @@
                     <div class="form-group row mb-0">
                         <label for="amount" class="col-sm-4 col-form-label text-right">Amount ($)</label>
                         <div class="col-md-6">
-                        <input type="number" name="amount" class="form-control" id="amount" value="10" min="10" required>
-                            <input type="hidden" name="stripe_id" class="form-control" value="{{ $user->stripe_id }}" required>
-                            <input type="hidden" name="card_id" class="form-control" value="{{ $credit_card->card_id ?? ''}}" required>
+                            <input type="number" name="amount" class="form-control" id="amount" value="10"
+                                min="10" required>
+                            <input type="hidden" name="stripe_id" class="form-control" value="{{ $user->stripe_id }}"
+                                required>
+                            <input type="hidden" name="card_id" class="form-control"
+                                value="{{ $credit_card->card_id ?? '' }}" required>
 
 
                         </div>
@@ -72,7 +75,6 @@
 
                     <div class="text-center">
                         <p style="color: #0088cc;">We Accept:</p>
-                        <i style="color: #0088cc;" class="fab fa-bitcoin fa-3x"></i>
                         <i style="color: #0088cc;" class="fab fa-cc-amex fa-3x"></i>
                         <i style="color: #0088cc;" class="fab fa-cc-visa fa-3x"></i>
                         <i style="color: #0088cc;" class="fab fa-cc-discover fa-3x"></i>
@@ -94,9 +96,9 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var amountInput = document.getElementById('amount');
-        amountInput.addEventListener('blur', function () {
+        amountInput.addEventListener('blur', function() {
             var min = 10;
             if (amountInput.value < min) {
                 swal({

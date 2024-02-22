@@ -28,6 +28,7 @@ class Number extends Model
         'is_reserved',
         'setup_charges',
         'monthly_charges',
+        'annual_charges',
         'per_mintue_charges',
         'per_sms_charges',
         'forwarding_url',

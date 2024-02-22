@@ -68,12 +68,7 @@
                         <a class="nav-link" href="{{ route('my_cart') }}">
                             <i style="color:#141414c9; font-size:32px;" class="mdi mdi-cart"></i>
                         </a>
-                    </li>
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
+                    </li>    
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
