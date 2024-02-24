@@ -108,6 +108,7 @@ class ProfileController extends Controller
 
     public function primary_set(Request $request){
         $selectedCardId = $request->input('selected_card');
+        dd($selectedCardId);
         $currentUser = Auth::user();
     
         $currentUser->cardpayment()->where('user_id', $currentUser->id)->update([

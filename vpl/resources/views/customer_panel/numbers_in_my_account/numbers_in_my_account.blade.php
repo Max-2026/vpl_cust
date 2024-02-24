@@ -22,7 +22,7 @@
 <div class="form-group row div-line">
 <label for="fromInput"  style="padding-left:5%;" class="col-sm-2 col-form-label">Number is from City:</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="fromInput" value="{{ $number_details->country->name ?? 'N/A' }} {{ $number_details->area->name ?? 'N/A' }}">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="fromInput" value="{{ $number_details->country->description ?? 'N/A' }} {{ $number_details->area->description ?? 'N/A' }}">
 </div>
 </div>
 
@@ -30,7 +30,7 @@
 <div class="form-group row div-line">
 <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Number is from City:</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="{{ $number_details->area->name ?? 'N/A' }}">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="{{ $number_details->area->description ?? 'N/A' }}">
 </div>
 </div>
 
@@ -40,7 +40,7 @@
 <div class="form-group row div-line">
 <label for="ticketNumber" style="padding-left:5%;" class="col-sm-2 col-form-label">Number is from Country:</label>
 <div class="col-sm-10">
-<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="{{ $number_details->country->name ?? 'N/A' }}">
+<input type="text" style="margin-left:40%;" readonly class="form-control-plaintext" id="ticketNumber" value="{{ $number_details->country->description ?? 'N/A' }}">
 </div>
 </div>
 
@@ -195,5 +195,6 @@
 
 
 </div>
+
 
 @endsection

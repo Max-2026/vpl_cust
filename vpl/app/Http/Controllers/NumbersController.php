@@ -48,11 +48,13 @@ class NumbersController extends Controller
     
     public function my_numbers($id)
     {
+        $user = Auth::user();
         $number_details = Number::where('id' , $id)->first();
         return view(
             'customer_panel.numbers_in_my_account.numbers_in_my_account',
             [
-                'number_details' => $number_details
+                'number_details' => $number_details,
+                'user' => $user
             ]
         );
     }
