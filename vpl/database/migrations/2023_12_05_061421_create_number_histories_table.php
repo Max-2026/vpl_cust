@@ -13,18 +13,20 @@ return new class extends Migration
     {
         Schema::create('number_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('number_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->boolean('is_purchased');
-            $table->boolean('is_released');
-            $table->boolean('is_reserved');
+            $table->foreignId('number_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('activity', [
+                'reserved',
+                'purchased',
+                'released'
+            ]);
             $table->integer('setup_charges');
             $table->integer('monthly_charges');
+            $table->integer('annual_charges');
             $table->integer('per_mintue_charges');
             $table->integer('per_sms_charges');
-            $table->integer('minutes_consumed')->default(0);
-            $table->boolean('prorated_billing')->default(true);
-            $table->unique(['number_id']);
+            $table->enum('billing_type', ['prorated', 'non_prorated']);
+            $table->unique(['number_id', 'user_id', 'created_at']);
             $table->timestamps();
             $table->softDeletes();
         });

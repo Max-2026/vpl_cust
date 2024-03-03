@@ -13,25 +13,6 @@ class NumberHistory extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'number_id',
-        'user_id',
-        'is_purchased',
-        'is_released',
-        'is_reserved',
-        'setup_charges',
-        'monthly_charges',
-        'per_mintue_charges',
-        'per_sms_charges',
-        'minutes_consumed',
-        'prorated_billing'
-    ];
-
     public function number(): BelongsTo
     {
         return $this->belongsTo(Number::class);

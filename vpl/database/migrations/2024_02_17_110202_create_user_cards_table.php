@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_addresses', function (Blueprint $table) {
+        Schema::create('user_cards', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('address');
-            $table->string('country', 30);
-            $table->string('city', 30);
-            $table->string('state', 30);
-            $table->string('postal_code', 10);
+            $table->string('stripe_card_id')->unique();
+            $table->string('provider');
+            $table->string('expiry_month', 2);
+            $table->string('expiry_year', 4);
+            $table->string('last_digits', 4);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_addresses');
+        Schema::dropIfExists('user_cards');
     }
 };

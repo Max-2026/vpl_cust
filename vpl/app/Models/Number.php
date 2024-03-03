@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
 use App\Models\User;
-use App\Models\DidAreas;
-use App\Models\Number;
-use App\Models\didcountries;
 use App\Models\NumberHistory;
 
 class Number extends Model
@@ -43,11 +39,6 @@ class Number extends Model
         'sms_outgoing_capablity'
     ];
 
-    public function area(): BelongsTo
-    {
-        return $this->belongsTo(DidAreas::class, 'area_id');
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -61,15 +52,5 @@ class Number extends Model
     public function history(): HasMany
     {
         return $this->hasMany(NumberHistory::class);
-    }
-
-    protected function getCountryAttribute()
-    {
-        return $this->area->country ?? null;
-    }
-
-    protected function getFullNumberAttribute()
-    {
-        return "{$this->area->country->code}-{$this->area->code}-{$this->number}";
     }
 }

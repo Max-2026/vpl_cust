@@ -13,17 +13,8 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->String('number')->unique();
-            $table->String('area')->nullable();
-            $table->String('country')->nullable();
-            $table->String('billing_type');
-            $table->integer('setup_cost')->default('0');
-            $table->integer('monthly_charges')->default('0');
-            $table->integer('annual_charges')->default('0');
-            $table->integer('talk_time')->default('0');
-            $table->integer('monthly_plan')->default('0');
-            $table->integer('plan_setup')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('number_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

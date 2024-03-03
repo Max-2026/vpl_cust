@@ -14,21 +14,6 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id',
-        'invoice_type_id',
-        'number_id',
-        'summary',
-        'amount',
-        'payment_id',
-        'reference_id',
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
