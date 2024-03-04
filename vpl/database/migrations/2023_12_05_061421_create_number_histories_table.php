@@ -29,6 +29,8 @@ return new class extends Migration
             $table->unique(['number_id', 'user_id', 'created_at']);
             $table->timestamps();
             $table->softDeletes();
+            $table->index('number_id');
+            $table->index('user_id');
         });
     }
 

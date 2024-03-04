@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('code_a2', 2);
             $table->string('dialing_code', 4);
             $table->timestamps();
+            $table->index('name');
+            $table->index('code_a2');
             $table->index('dialing_code');
         });
     }

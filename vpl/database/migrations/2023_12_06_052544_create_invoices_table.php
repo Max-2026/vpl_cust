@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('payment_reference_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->index('user_id');
+            $table->index('number_id');
+            $table->index('invoice_type_id');
         });
     }
 

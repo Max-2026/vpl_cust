@@ -30,6 +30,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            $table->index('first_name');
+            $table->index('email');
+            $table->index('company_name');
+            $table->index('company_email');
         });
     }
 

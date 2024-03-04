@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('expiry_year', 4);
             $table->string('last_digits', 4);
             $table->timestamps();
+            $table->index('user_id');
+            $table->index('stripe_card_id');
         });
     }
 

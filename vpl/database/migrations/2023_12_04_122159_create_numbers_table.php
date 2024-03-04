@@ -32,6 +32,9 @@ return new class extends Migration
             $table->boolean('sms_inbound_capable')->default(false);
             $table->timestamps();
             $table->softDeletes();
+            $table->index('country_id');
+            $table->index('current_user_id');
+            $table->index('number');
         });
     }
 
