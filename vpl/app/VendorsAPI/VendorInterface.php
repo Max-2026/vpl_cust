@@ -1,5 +1,7 @@
 <?php
 
+namespace App\VendorsAPI;
+
 interface VendorInterface
 {
 	public function fetch_numbers($country_dial_code, $prefix = null);

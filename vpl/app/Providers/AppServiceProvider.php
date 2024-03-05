@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Cashier\Cashier;
+use App\Services\VendorsAPIService;
+use App\VendorsAPI\DIDX;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(VendorsAPIService::class, function ($app) {
+            $vendors = [
+                $app->make(DIDX::class),
+            ];
+
+            return new VendorsAPIService($vendors);
+        });
     }
 
     /**
@@ -20,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
-        Cashier::calculateTaxes();
+        //
     }
 }
