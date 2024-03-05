@@ -2,9 +2,10 @@
 
 namespace App\VendorsAPI;
 
+use App\Contracts\VendorAPI
 use Illuminate\Support\Facades\Http;
 
-class DIDX implements VendorInterface
+class DIDX implements VendorAPI
 {
 	private $base_url = 'https://newapi.didx.net';
 

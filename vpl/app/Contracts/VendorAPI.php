@@ -1,8 +1,8 @@
 <?php
 
-namespace App\VendorsAPI;
+namespace App\Contracts;
 
-interface VendorInterface
+interface VendorAPI
 {
 	public function fetch_numbers($country_dial_code, $prefix = null);
 	public function reserve($number);
