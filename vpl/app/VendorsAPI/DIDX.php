@@ -2,7 +2,7 @@
 
 namespace App\VendorsAPI;
 
-use App\Contracts\VendorAPI
+use App\Contracts\VendorAPI;
 use Illuminate\Support\Facades\Http;
 
 class DIDX implements VendorAPI
@@ -21,6 +21,7 @@ class DIDX implements VendorAPI
 	        ]
 	    );
 	    $areas = $response->json();
+	    array_shift($areas);
 	    $area_code = $areas[0][0];
 	    $area_name = $areas[0][1];
 
@@ -34,7 +35,8 @@ class DIDX implements VendorAPI
                 'AreaCode' => $area_code,
             ]
 	    );
-	    $numbers = array_column($response->json(), 0);
+	    $numbers = $response->json();
+	    array_shift($numbers);
 
 	    return $numbers;
 	}
