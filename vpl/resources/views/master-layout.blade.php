@@ -11,7 +11,7 @@
 <body class="h-full">
   <div class="min-h-full">
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-    <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+    <div id="sidebar-wrapper" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
       <!--
       Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
@@ -22,7 +22,7 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-      <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+      <div id="sidebar-overlay" class="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity ease-linear duration-300" aria-hidden="true"></div>
       <!--
       Off-canvas menu, show/hide based on off-canvas menu state.
 
@@ -33,7 +33,7 @@
         From: "translate-x-0"
         To: "-translate-x-full"
     -->
-      <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-700">
+      <div id="sidebar" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-700 transition ease-in-out duration-300 transform">
         <!--
         Close button, show/hide based on off-canvas menu state.
 
@@ -44,7 +44,7 @@
           From: "opacity-100"
           To: "opacity-0"
       -->
-        <div class="absolute top-0 right-0 -mr-12 pt-2">
+        <div id="sidebar-close-btn" onclick="closeSidebar(this)" class="absolute top-0 right-0 -mr-12 pt-2 ease-in-out duration-300">
           <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
             <span class="sr-only">Close sidebar</span>
             <!-- Heroicon name: outline/x -->
@@ -54,7 +54,6 @@
           </button>
         </div>
         <div class="flex-shrink-0 flex items-center px-4">
-          <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg" alt="Easywire logo"> -->
           <img class="h-16 w-auto object-cover" src="{{ asset('images/logo_new.svg') }}" alt="Easywire logo">
         </div>
         <nav class="mt-5 flex-shrink-0 h-full divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
@@ -67,7 +66,7 @@
               </svg>
               Home
             </a>
-            <a href="#" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+            <a href="{{ route('voice_numbers') }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
               <svg class="mr-4 flex-shrink-0 h-5 w-5 text-cyan-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
               Voice Numbers
             </a>
@@ -135,7 +134,7 @@
               </svg>
               Home
             </a>
-            <a href="#" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
+            <a href="{{ route('voice_numbers') }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
               <svg class="mr-4 flex-shrink-0 h-5 w-5 text-cyan-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
               Voice Numbers
             </a>
@@ -184,7 +183,7 @@
     </div>
     <div class="lg:pl-64 flex flex-col flex-1">
       <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
-        <button type="button" class="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden">
+        <button onclick="openSidebar(this)" type="button" class="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden">
           <span class="sr-only">Open sidebar</span>
           <!-- Heroicon name: outline/menu-alt-1 -->
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -285,81 +284,7 @@
           </div>
         </div>
         <div class="mt-8">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-lg leading-6 font-medium text-gray-900">Overview</h2>
-            <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              <!-- Card -->
-              <div class="bg-white overflow-hidden shadow rounded-lg">
-                <div class="p-5">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                      <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">API usage (last 7 days)</dt>
-                        <dd>
-                          <div class="text-lg font-medium text-gray-900">134</div>
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-gray-50 px-5 py-3">
-                  <div class="text-sm">
-                    <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900">View history</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white overflow-hidden shadow rounded-lg">
-                <div class="p-5">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <svg class="h-5 w-5 text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                      <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">Calls (last 7 days)</dt>
-                        <dd>
-                          <div class="text-lg font-medium text-gray-900">11</div>
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-gray-50 px-5 py-3">
-                  <div class="text-sm">
-                    <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900">View history</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white overflow-hidden shadow rounded-lg">
-                <div class="p-5">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 0C110.3 0 96 14.3 96 32V224h96V192c0-35.3 28.7-64 64-64H480V32c0-17.7-14.3-32-32-32H128zM256 160c-17.7 0-32 14.3-32 32v32h96c35.3 0 64 28.7 64 64V416H576c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32H256zm240 64h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H496c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zM64 256c-17.7 0-32 14.3-32 32v13L187.1 415.9c1.4 1 3.1 1.6 4.9 1.6s3.5-.6 4.9-1.6L352 301V288c0-17.7-14.3-32-32-32H64zm288 84.8L216 441.6c-6.9 5.1-15.3 7.9-24 7.9s-17-2.8-24-7.9L32 340.8V480c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V340.8z"/></svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                      <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">SMS (last 7 days)</dt>
-                        <dd>
-                          <div class="text-lg font-medium text-gray-900">47</div>
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-gray-50 px-5 py-3">
-                  <div class="text-sm">
-                    <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900">View history</a>
-                  </div>
-                </div>
-              </div>
-              <!-- More items... -->
-            </div>
-          </div>
+          
           <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8">Recent activity</h2>
           <!-- Activity list (smallest breakpoint only) -->
           <div class="shadow sm:hidden">
@@ -461,6 +386,51 @@
       </main>
     </div>
   </div>
+
+  <script type="text/javascript">
+    
+    function openSidebar() {
+      const sidebarWrapper = document.getElementById('sidebar-wrapper');
+      const sidebarOverlay = document.getElementById('sidebar-overlay');
+      const sidebar = document.getElementById('sidebar');
+      const button = document.getElementById('sidebar-close-btn');
+
+      sidebarWrapper.classList.remove('hidden');
+      sidebarWrapper.classList.add('block');
+
+      setTimeout(() => {
+        button.classList.remove('opacity-0');
+        button.classList.add('opacity-100');
+
+        sidebarOverlay.classList.remove('opacity-0');
+        sidebarOverlay.classList.add('opacity-100');
+
+        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.add('translate-x-0');
+      }, 0);
+    };
+
+    function closeSidebar(button) {
+      const sidebarWrapper = document.getElementById('sidebar-wrapper');
+      const sidebarOverlay = document.getElementById('sidebar-overlay');
+      const sidebar = document.getElementById('sidebar');
+
+      sidebarOverlay.classList.remove('opacity-100');
+      sidebarOverlay.classList.add('opacity-0');
+
+      sidebar.classList.remove('translate-x-0');
+      sidebar.classList.add('-translate-x-full');
+
+      button.classList.remove('opacity-100');
+      button.classList.add('opacity-0');
+
+      setTimeout(() => {
+        sidebarWrapper.classList.remove('block');
+        sidebarWrapper.classList.add('hidden');
+      }, 300);
+    };
+
+  </script>
 </body>
 
 </html>
