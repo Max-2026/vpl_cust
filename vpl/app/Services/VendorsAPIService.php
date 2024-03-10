@@ -11,11 +11,11 @@ class VendorsAPIService
         $this->vendors = $vendors;
     }
 
-    public function vendor($vendorName)
+    public function vendor($vendor_name)
     {
         foreach ($this->vendors as $vendor) {
 
-            if (get_class($vendor) === "App\VendorsAPI\\{$vendorName}") {
+            if (get_class($vendor) === "App\VendorsAPI\\{$vendor_name}") {
                 return $vendor;
             }
         }
