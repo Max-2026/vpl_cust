@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
 export default {
-  content: ['./resources/views/master.blade.php'],
+  content: ['./resources/views/*.blade.php'],
   theme: {
     extend: {
       colors: {
