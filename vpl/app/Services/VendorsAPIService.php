@@ -36,7 +36,9 @@ class VendorsAPIService
     )
     {
         $cache_key = 'vendor_api_' . $country_dial_code . '_' . $prefix;
-        $cache_duration = now()->addMinutes(1);
+        $cache_duration = now()->addMinutes(
+            config('vendors_api.config.cache_duration')
+        );
 
         $response = Cache::remember(
             $cache_key,
