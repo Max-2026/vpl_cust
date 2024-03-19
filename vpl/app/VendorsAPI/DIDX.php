@@ -9,6 +9,15 @@ class DIDX implements VendorAPI
 {
 	private $base_url = 'https://newapi.didx.net';
 
+	const MAPPING = [
+		'number' => 0,
+		'per_minute_charges' => 3,
+		'monthly_charges' => 2,
+		'setup_charges' => 1,
+		'country' => 5,
+		'city' => 6
+	];
+
 	public function fetch_numbers($country_dial_code, $prefix = null)
 	{
 		// Get Area ID by providing Country ID

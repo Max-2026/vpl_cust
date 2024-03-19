@@ -112,6 +112,7 @@
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capabilities</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate ($ / minute)</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Price (fixed)</th>
@@ -128,22 +129,25 @@
                 <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                +92 332 7951445
+                {{ $number['number'] }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{  }}
+                {{ $number['country'] }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ $number['city'] }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 Voice, SMS
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                $0.02
+                ${{ $number['per_minute_charges'] }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                $10
+                ${{ $number['monthly_charges'] }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                $2
+                ${{ $number['setup_charges'] }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 No
