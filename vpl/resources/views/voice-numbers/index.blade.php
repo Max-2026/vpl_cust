@@ -114,7 +114,7 @@
           <thead class="bg-white">
             <tr>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              	<!-- <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded"> -->
+              	<input onchange="selectAllRows(event)" type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Number</th>
               <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Country</th> -->
@@ -127,10 +127,10 @@
               <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Legal Requirements</th> -->
             </tr>
           </thead>
-          <tbody>
+          <tbody onclick="handleRowClick(event)">
 
             @foreach ($numbers as $number)
-            <tr class="even:bg-white odd:bg-gray-50">
+            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}">
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </td>
@@ -186,6 +186,25 @@ window.onload = changePrefixValue(document.getElementById('country'));
 function changePrefixValue(field) {
   document.getElementById('country-prefix')
     .innerText = field.options[field.selectedIndex].dataset.dial;
+}
+
+function handleRowClick(event) {
+
+  if (event.target.tagName == 'INPUT') return;
+
+  const row = event.target.closest('tr');
+  const checkbox = row.querySelector('[type=checkbox]');
+  const number = row.dataset.number;
+  checkbox.checked = !checkbox.checked;
+}
+
+function selectAllRows(event) {
+  const checkBoxes = event.currentTarget.closest('table')
+    .querySelectorAll('tbody input');
+
+  Array.from(checkBoxes).forEach(checkbox => {
+    checkbox.checked = event.currentTarget.checked;
+  });
 }
 
 </script>
