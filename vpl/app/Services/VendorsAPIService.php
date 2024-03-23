@@ -104,6 +104,6 @@ class VendorsAPIService
             $page
         );
 
-        return $paginator->withPath(request()->url());
+        return $paginator->withPath(request()->fullUrl());
     }
 }
