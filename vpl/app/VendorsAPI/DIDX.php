@@ -30,9 +30,11 @@ class DIDX implements VendorAPI
 	        ]
 	    );
 	    $areas = $response->json();
-	    array_shift($areas);
-	    $area_code = $areas[0][0];
-	    $area_name = $areas[0][1];
+
+	    if (count($areas) > 1) {
+		    array_shift($areas);
+	    }
+	    $area_code = array_shift($areas)[0];
 
 	    // Get avialable numbers in a specific area
 	    $response = Http::get(
