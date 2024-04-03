@@ -21,6 +21,9 @@ jobs:
       - name: Move to project directory
         run: cd ./vpl
 
+      - name: Debug via SSH
+        uses: mxschmitt/action-tmate@v3
+
       - name: Install from composer.lock
         run: composer install --no-scripts --no-interaction
 
