@@ -27,12 +27,3 @@ mv $DEPLOY_SCRIPT $DEPLOY_DIRECTORY
 
 # Build Zip
 tar --exclude='.deploy/' -czf $DEPLOY_DIRECTORY/project.tar.gz ./*
-
-# Install lftp package
-apt-get install lftp
-
-# FTP Deploy
-lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER; mirror -R $DEPLOY_DIRECTORY $SERVER_DIR"
-
-# Make HTTP Request to deploy.php
-curl $DEPLOY_URL/deploy/$DEPLOY_SCRIPT
