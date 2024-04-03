@@ -22,4 +22,7 @@ jobs:
         run: pwd
 
       - name: Debugging
+        run: cd ./vpl
+
+      - name: Debugging
         run: ls
