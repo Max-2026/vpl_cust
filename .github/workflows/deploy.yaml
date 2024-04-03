@@ -19,10 +19,4 @@ jobs:
           php-version: '8.1' # Change this to your PHP version
 
       - name: Debugging
-        run: pwd
-
-      - name: Debugging
-        run: cd ./vpl
-
-      - name: Debugging
-        run: ls
+        run: ./vpl/deploy.sh
