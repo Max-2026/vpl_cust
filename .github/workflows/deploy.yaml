@@ -19,7 +19,7 @@ jobs:
           php-version: '8.1' # Change this to your PHP version
 
       - name: Move to project directory
-        run:  cd vpl
+        run: cd ./vpl
 
       - name: Install from composer.lock
         run: composer install --no-scripts --no-interaction
