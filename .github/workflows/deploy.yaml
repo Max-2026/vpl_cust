@@ -18,36 +18,8 @@ jobs:
         with:
           php-version: '8.1' # Change this to your PHP version
 
-      - name: Move to project directory
-        run: cd ./vpl
+      - name: Debugging
+        run: pwd
 
-      - name: Debug via SSH
-        uses: mxschmitt/action-tmate@v3
-
-      - name: Install from composer.lock
-        run: composer install --no-scripts --no-interaction
-
-      - name: Run Database Migrations
-        run: php artisan migrate --force --seed
-
-      - name: Create Deploy Directory
-        run: mkdir deploy
-
-      - name: Move deployment script to deploy dir
-        run: mv ./deploy.php ./deploy/
-
-      - name: Build Zip
-        run: tar --exclude='.deploy/' -czf deploy/project.tar.gz ./*
-
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: ./deploy/
-          server-dir: /deploy/
-
-      - name: Make HTTP Request to deploy.php
-        run: curl "${{ secrets.DEPLOY_URL }}/deploy/deploy.php"
+      - name: Debugging
+        run: ls
