@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Services\VendorsAPIService;
 use App\Models\Country;
 
@@ -30,9 +31,22 @@ class VoiceNumbersController extends Controller
         );
         // $numbers = $vendors->vendor('DIDX')->get_numbers('7');
 
+        $test = (object) [
+            'payment_methods' => [
+                (object) [
+                    'brand' => 'visa',
+                    'last_digits' => '4242',
+                    'expiry_month' => '12',
+                    'expiry_year' => '2025',
+                    'updated_at' => now()
+                ],
+            ]
+        ];
+
         return view('voice-numbers.index', [
             'countries' => $countries,
-            'numbers' => $numbers
+            'numbers' => $numbers,
+            'user' => $test
         ]);
     }
 }
