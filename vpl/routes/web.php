@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\VoiceNumbersController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,17 @@ use App\Http\Controllers\VoiceNumbersController;
 // Protected Routes
 // Route::middleware('auth')->group(function () {
 
-    Route::get('/voice-numbers', [VoiceNumbersController::class, 'index'])
-        ->name('voice_numbers');
+    // Voice numbers listing page
+    Route::get(
+        '/voice-numbers',
+        [VoiceNumbersController::class, 'index']
+    )->name('voice_numbers');
+
+    // Confirm purchase form
+    Route::post(
+        '/voice-numbers',
+        [VoiceNumbersController::class, 'handle_purchase']
+    )->name('handle_purchase');
 
     // Route::post('/logout', [LoginController::class, 'logout'])
     //     ->name('logout');
@@ -26,6 +37,7 @@ use App\Http\Controllers\VoiceNumbersController;
 // });
 
 // Public Routes
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 // Route::get('/login', [LoginController::class, 'login'])
 //     ->name('login');
 

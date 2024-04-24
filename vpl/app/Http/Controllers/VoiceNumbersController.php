@@ -49,4 +49,9 @@ class VoiceNumbersController extends Controller
             'user' => $test
         ]);
     }
+
+    public function handle_purchase(Request $request)
+    {
+        dd($request->all());
+    }
 }
