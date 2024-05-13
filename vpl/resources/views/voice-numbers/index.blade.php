@@ -129,7 +129,7 @@
           </thead>
           <tbody onclick="handleRowClick(event)">
             @foreach ($numbers as $number)
-            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}">
+            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}" data-country="{{ $number['country'] }}">
               <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </td> -->
@@ -412,7 +412,16 @@
   }
 
   function handlePurchaseModal(row) {
-    console.log(row);
+    const fields = row.querySelectorAll('td');
+    const country = row.dataset.country;
+    showConfirmModal(
+      country,
+      fields[0].innerText,
+      fields[3].innerText,
+      fields[4].innerText,
+      fields[1].innerText,
+      fields[2].innerText,
+    );
   }
 
   function showAddPaymentMethodForm() {
