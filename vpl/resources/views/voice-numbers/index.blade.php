@@ -169,11 +169,11 @@
   </div>
 </div>
 
-<div class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div id="confirm-modal-wrapper" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  <div id="confirm-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in" aria-hidden="true"></div>
 
-  <div class="absolute my-8 bg-white rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl">
+  <div id="confirm-modal" class="absolute my-8 bg-white transition ease-in rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl">
 
     <h2 id="payment-details-heading" class="w-full px-3 text-2xl my-2 leading-6 font-medium text-gray-900">Confirm Purchase</h2>
 
@@ -446,6 +446,44 @@
     if (cardNumber && cardExpiration && securityCode && cardholderName) {
       console.log([cardNumber, cardExpiration, securityCode, cardholderName]);
     }
+  }
+
+  function showConfirmModal(
+    country,
+    number,
+    pricing,
+    setupCharges,
+    type,
+    capabilites
+  ) {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    console.log(country,
+    number,
+    pricing,
+    setupCharges,
+    type,
+    capabilites);
+
+    modalWrapper.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('scale-0');
+      modalOverlay.classList.remove('bg-opacity-0');
+    }, 100);
+  }
+
+  function hideConfirmModal() {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    modal.classList.add('scale-0');
+    modalOverlay.classList.add('bg-opacity-0');
+    setTimeout(() => {
+      modalWrapper.classList.add('hidden');
+    }, 200);
   }
 
 </script>
