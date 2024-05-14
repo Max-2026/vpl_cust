@@ -416,6 +416,7 @@
   function handlePurchaseModal(row) {
     const fields = row.querySelectorAll('td');
     const country = row.dataset.country;
+    window.phone_number = fields[0].innerText;
     showConfirmModal(
       country,
       fields[0].innerText,
@@ -444,9 +445,22 @@
     const cardExpiration = form.elements['card_expiration'].value;
     const securityCode = form.elements['security_code'].value;
     const cardholderName = form.elements['cardholder_name'].value;
+    const paymentMethod = form.elements['pricing_plan'].value;
 
     if (cardNumber && cardExpiration && securityCode && cardholderName) {
       console.log([cardNumber, cardExpiration, securityCode, cardholderName]);
+      const payload = new FormData();
+      payload.append('card_number', cardNumber);
+      payload.append('card_expiration', cardExpiration);
+      payload.append('security_code', securityCode);
+      payload.append('cardholder_name', cardholderName);
+      payload.append('phone_number', window.phone_number);
+      console.log(payload);
+    } else if (paymentMethod) {
+      const payload = new FormData();
+      payload.append('payment_method_id', paymentMethod);
+      payload.append('phone_number', window.phone_number);
+      console.log(payload);
     }
   }
 
