@@ -419,8 +419,8 @@
     showConfirmModal(
       country,
       fields[0].innerText,
-      fields[3].innerText,
       fields[4].innerText,
+      fields[5].innerText,
       fields[1].innerText,
       fields[2].innerText,
     );
