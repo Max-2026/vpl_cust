@@ -471,12 +471,13 @@
     const modalOverlay = document.getElementById('confirm-modal-overlay');
     const modal = document.getElementById('confirm-modal');
 
-    console.log(country,
-    number,
-    pricing,
-    setupCharges,
-    type,
-    capabilites);
+    const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
+    placeholders[0].innerText = country;
+    placeholders[1].innerText = number;
+    placeholders[2].innerText = `${pricing} / Month`;
+    placeholders[3].innerText = setupCharges;
+    placeholders[4].innerText = type;
+    placeholders[5].innerText = capabilites;
 
     modalWrapper.classList.remove('hidden');
     setTimeout(() => {
