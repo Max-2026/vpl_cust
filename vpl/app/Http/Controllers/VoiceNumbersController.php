@@ -34,6 +34,7 @@ class VoiceNumbersController extends Controller
         $test = (object) [
             'payment_methods' => [
                 (object) [
+                    'id' => 'adfwqewredt4',
                     'brand' => 'visa',
                     'last_digits' => '4242',
                     'expiry_month' => '12',

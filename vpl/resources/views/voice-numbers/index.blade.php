@@ -282,7 +282,7 @@
 
             <!-- Checked: "bg-cyan-50 border-cyan-200 z-10", Not Checked: "border-gray-200" -->
             <label class="relative p-4 flex items-center justify-between flex-wrap gap-y-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none">
-              <input type="radio" name="pricing_plan" value="{{ $method->last_digits }}" class=" h-4 w-4 text-cyan-500 border-gray-300 focus:ring-gray-900" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+              <input type="radio" name="pricing_plan" value="{{ $method->id }}" class=" h-4 w-4 text-cyan-500 border-gray-300 focus:ring-gray-900" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
               <div class="flex items-center gap-x-1 sm:gap-x-4 px-1 sm:p-0">
                 <svg class="h-6 w-auto" viewBox="0 0 36 24" aria-hidden="true">
                   <rect width="36" height="24" fill="#224DBA" rx="4" />
