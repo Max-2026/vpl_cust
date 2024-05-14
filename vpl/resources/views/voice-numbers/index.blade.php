@@ -109,6 +109,7 @@
 <div class="flex flex-col overflow-x-auto overflow-y-clip lg:overflow-clip">
   <div class="-my-2 sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      @if ($numbers->count() > 0)
       <div class="shadow rounded-md overflow-hidden border-b border-gray-200">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-white">
@@ -165,15 +166,16 @@
           </tbody>
         </table>
       </div>
+      @endif
     </div>
   </div>
 </div>
 
-<div id="confirm-modal-wrapper" onclick="handleModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div id="confirm-modal-wrapper" onclick="handleModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-  <div id="confirm-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in" aria-hidden="true"></div>
+  <div id="confirm-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in bg-opacity-0" aria-hidden="true"></div>
 
-  <div id="confirm-modal" class="absolute my-8 bg-white transition ease-in rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl">
+  <div id="confirm-modal" class="absolute my-8 bg-white transition ease-in rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl scale-0">
 
     <h2 id="payment-details-heading" class="w-full px-3 text-2xl my-2 leading-6 font-medium text-gray-900">Confirm Purchase</h2>
 
