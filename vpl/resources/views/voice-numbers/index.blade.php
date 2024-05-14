@@ -169,7 +169,7 @@
   </div>
 </div>
 
-<div id="confirm-modal-wrapper" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div id="confirm-modal-wrapper" onclick="handleModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
   <div id="confirm-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in" aria-hidden="true"></div>
 
@@ -445,6 +445,17 @@
 
     if (cardNumber && cardExpiration && securityCode && cardholderName) {
       console.log([cardNumber, cardExpiration, securityCode, cardholderName]);
+    }
+  }
+
+  function handleModalBlur(event) {
+    const modal = document.getElementById('confirm-modal');
+    const isModalClicked = Boolean(event.composedPath().filter(
+      (elem) => elem.id == 'confirm-modal'
+    ).length);
+
+    if (!isModalClicked && !modal.classList.contains('scale-0')) {
+      hideConfirmModal();
     }
   }
 
