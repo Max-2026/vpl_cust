@@ -19,17 +19,23 @@ use App\Http\Controllers\HomepageController;
 // Protected Routes
 // Route::middleware('auth')->group(function () {
 
-    // Voice numbers listing page
+    // Numbers listing & purchase page
     Route::get(
-        '/voice-numbers',
+        '/purchase-numbers',
         [VoiceNumbersController::class, 'index']
-    )->name('voice_numbers');
+    )->name('purchase-numbers');
 
     // Confirm purchase form
     Route::post(
         '/voice-numbers',
         [VoiceNumbersController::class, 'handle_purchase']
-    )->name('handle_purchase');
+    )->name('handle-purchase');
+
+    // Settings page
+    Route::get('/settings', function () {})->name('settings');
+
+    // Help page
+    Route::get('/help', function () {})->name('help');
 
     // Route::post('/logout', [LoginController::class, 'logout'])
     //     ->name('logout');
@@ -37,7 +43,7 @@ use App\Http\Controllers\HomepageController;
 // });
 
 // Public Routes
-Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/', [HomepageController::class, 'index'])->name('home');
 // Route::get('/login', [LoginController::class, 'login'])
 //     ->name('login');
 
