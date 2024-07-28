@@ -1,5 +1,175 @@
 @extends('master-layout')
-@section('title', 'Voice Numbers')
+@section('title', 'Purchase Numbers')
+
+@section('scripts')
+<script defer src="https://js.stripe.com/v3/"></script>
+
+<script type="text/javascript">
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const stripe = Stripe("{{ config('services.stripe.public_key') }}");
+    window.stripe = stripe;
+    const elements = stripe.elements();
+
+    const cardNumber = elements.create('cardNumber');
+    cardNumber.mount('#card-number-element');
+    window.cardNumber = cardNumber;
+
+    const cardExpiry = elements.create('cardExpiry');
+    cardExpiry.mount('#card-expiration-element');
+    window.cardExpiry = cardExpiry;
+
+    const cardCvc = elements.create('cardCvc');
+    cardCvc.mount('#card-cvc-element');
+    window.cardCvc = cardCvc;
+  });
+
+  // Set data on initial load
+  window.onload = changePrefixValue(document.getElementById('country'));
+
+  function changePrefixValue(field) {
+    document.getElementById('country-prefix')
+      .innerText = field.options[field.selectedIndex].dataset.dial;
+  }
+
+  function handleRowClick(event) {
+    const row = event.target.closest('tr');
+
+    if (event.target.tagName == 'BUTTON') {
+      handlePurchaseModal(row);
+    }
+
+    if (event.target.tagName == 'INPUT') return;
+
+    const checkbox = row.querySelector('[type=checkbox]');
+    const number = row.dataset.number;
+    checkbox.checked = !checkbox.checked;
+  }
+
+  function selectAllRows(event) {
+    const checkBoxes = event.currentTarget.closest('table')
+      .querySelectorAll('tbody input');
+
+    Array.from(checkBoxes).forEach(checkbox => {
+      checkbox.checked = event.currentTarget.checked;
+    });
+  }
+
+  function handlePurchaseModal(row) {
+    const fields = row.querySelectorAll('td');
+    const country = row.dataset.country;
+    window.phone_number = fields[0].innerText;
+    showConfirmModal(
+      country,
+      fields[0].innerText,
+      fields[4].innerText,
+      fields[5].innerText,
+      fields[1].innerText,
+      fields[2].innerText,
+    );
+  }
+
+  function showAddPaymentMethodForm() {
+    document.getElementById('cards-list').classList.add('hidden');
+    document.getElementById('add-paymet-method-form')
+      .classList.remove('hidden');
+  }
+
+  function hideAddPaymentMethodForm() {
+    document.getElementById('cards-list').classList.remove('hidden');
+    document.getElementById('add-paymet-method-form')
+      .classList.add('hidden');
+  }
+
+  async function handlePurchase() {
+    const form = document.getElementById('payment-form');
+    let paymentMethod = form.elements['pricing_plan'].value;
+    let cardHolderName = document.querySelector('#cardholder-name');
+
+    if (cardHolderName.value) {
+      const result = await window.stripe.createPaymentMethod(
+        'card',
+        window.cardNumber,
+        {
+          billing_details: { name: cardHolderName.value }
+        }
+      );
+      window.cardNumber.clear();
+      window.cardExpiry.clear();
+      window.cardCvc.clear();
+      cardHolderName.value = '';
+
+      paymentMethod = result.paymentMethod.id ?? paymentMethod;
+    }
+
+    const payload = new FormData();
+    payload.append('payment_method_id', paymentMethod);
+    payload.append('phone_number', window.phone_number);
+    purchaseRequest(payload);
+  }
+
+  async function purchaseRequest(formData) {
+    formData.append('_token', "{{ csrf_token() }}");
+    const req = await fetch("{{ route('handle-purchase') }}", {
+      method: 'POST',
+      body: formData
+    });
+    console.log(req);
+  }
+
+  function handleModalBlur(event) {
+    const modal = document.getElementById('confirm-modal');
+    const isModalClicked = Boolean(event.composedPath().filter(
+      (elem) => elem.id == 'confirm-modal'
+    ).length);
+
+    if (!isModalClicked && !modal.classList.contains('scale-0')) {
+      hideConfirmModal();
+    }
+  }
+
+  function showConfirmModal(
+    country,
+    number,
+    pricing,
+    setupCharges,
+    type,
+    capabilites
+  ) {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
+    placeholders[0].innerText = country;
+    placeholders[1].innerText = number;
+    placeholders[2].innerText = `${pricing} / Month`;
+    placeholders[3].innerText = setupCharges;
+    placeholders[4].innerText = type;
+    placeholders[5].innerText = capabilites;
+
+    modalWrapper.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('scale-0');
+      modalOverlay.classList.remove('bg-opacity-0');
+    }, 100);
+  }
+
+  function hideConfirmModal() {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    modal.classList.add('scale-0');
+    modalOverlay.classList.add('bg-opacity-0');
+    setTimeout(() => {
+      modalWrapper.classList.add('hidden');
+    }, 200);
+  }
+
+</script>
+@endsection
+
 @section('content')
 <div class="w-full my-8 p-6 rounded-md shadow bg-white">
   <div>
@@ -47,7 +217,7 @@
             </label>
           </div>
           <div class="flex items-center">
-            <input id="usage-fixed" name="billing-type" type="radio" class="focus:ring-cyan-600 h-4 w-4 text-cyan-600 border-gray-300">
+            <input checked id="usage-fixed" name="billing-type" type="radio" class="focus:ring-cyan-600 h-4 w-4 text-cyan-600 border-gray-300">
             <label for="usage-fixed" class="ml-3 block text-sm font-medium text-gray-600">
               Fixed (monthly)
             </label>
@@ -66,7 +236,7 @@
             </label>
           </div>
           <div class="flex items-center">
-            <input id="sms" name="capability" type="radio" class="focus:ring-cyan-600 h-4 w-4 text-cyan-600 border-gray-300">
+            <input checked id="sms" name="capability" type="radio" class="focus:ring-cyan-600 h-4 w-4 text-cyan-600 border-gray-300">
             <label for="sms" class="ml-3 block text-sm font-medium text-gray-600">
               SMS
             </label>
@@ -106,11 +276,11 @@
   </form>
 </div>
 
-<div class="flex flex-col overflow-x-auto overflow-y-clip lg:overflow-clip">
+<div class="flex flex-col shadow rounded-md overflow-x-auto overflow-y-clip lg:overflow-clip">
   <div class="-my-2 sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       @if ($numbers->count() > 0)
-      <div class="shadow rounded-md overflow-hidden border-b border-gray-200">
+      <div class="rounded-md overflow-hidden border-b border-gray-200">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-white">
             <tr>
@@ -326,12 +496,14 @@
             <div class="mt-6 grid grid-cols-4 gap-6">
               <div class="col-span-4 sm:col-span-2">
                 <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
-                <input type="text" name="card_number" id="card-number" autocomplete="cc-family-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm">
+                <!-- <input type="text" name="card_number" id="card-number" autocomplete="cc-family-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
+                <div id="card-number-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
               </div>
 
               <div class="col-span-4 sm:col-span-1">
                 <label for="card-expiration" class="block text-sm font-medium text-gray-700">Expration date</label>
-                <input type="text" name="card_expiration" id="card-expiration" autocomplete="cc-exp" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" placeholder="MM / YY">
+                <!-- <input type="text" name="card_expiration" id="card-expiration" autocomplete="cc-exp" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" placeholder="MM / YY"> -->
+                <div id="card-expiration-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
               </div>
 
               <div class="col-span-4 sm:col-span-1">
@@ -342,12 +514,14 @@
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
                   </svg>
                 </label>
-                <input type="text" name="security_code" id="security-code" autocomplete="cc-csc" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm">
+                <!-- <input type="text" name="security_code" id="security-code" autocomplete="cc-csc" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
+                <div id="card-cvc-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
               </div>
 
               <div class="col-span-4 sm:col-span-2">
                 <label for="cardholder-name" class="block text-sm font-medium text-gray-700">Cardholder name</label>
-                <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm">
+                <!-- <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
+                <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 text-gray-500 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-none sm:text-sm">
               </div>
 
             </div>
@@ -378,141 +552,4 @@
   ['rows' => $numbers]
 )
 
-@endsection
-
-@section('scripts')
-<script type="text/javascript">
-  // Set data on initial load
-  window.onload = changePrefixValue(document.getElementById('country'));
-
-  function changePrefixValue(field) {
-    document.getElementById('country-prefix')
-      .innerText = field.options[field.selectedIndex].dataset.dial;
-  }
-
-  function handleRowClick(event) {
-    const row = event.target.closest('tr');
-
-    if (event.target.tagName == 'BUTTON') {
-      handlePurchaseModal(row);
-    }
-
-    if (event.target.tagName == 'INPUT') return;
-
-    const checkbox = row.querySelector('[type=checkbox]');
-    const number = row.dataset.number;
-    checkbox.checked = !checkbox.checked;
-  }
-
-  function selectAllRows(event) {
-    const checkBoxes = event.currentTarget.closest('table')
-      .querySelectorAll('tbody input');
-
-    Array.from(checkBoxes).forEach(checkbox => {
-      checkbox.checked = event.currentTarget.checked;
-    });
-  }
-
-  function handlePurchaseModal(row) {
-    const fields = row.querySelectorAll('td');
-    const country = row.dataset.country;
-    window.phone_number = fields[0].innerText;
-    showConfirmModal(
-      country,
-      fields[0].innerText,
-      fields[4].innerText,
-      fields[5].innerText,
-      fields[1].innerText,
-      fields[2].innerText,
-    );
-  }
-
-  function showAddPaymentMethodForm() {
-    document.getElementById('cards-list').classList.add('hidden');
-    document.getElementById('add-paymet-method-form')
-      .classList.remove('hidden');
-  }
-
-  function hideAddPaymentMethodForm() {
-    document.getElementById('cards-list').classList.remove('hidden');
-    document.getElementById('add-paymet-method-form')
-      .classList.add('hidden');
-  }
-
-  function handlePurchase() {
-    const form = document.getElementById('payment-form');
-    const cardNumber = form.elements['card_number'].value;
-    const cardExpiration = form.elements['card_expiration'].value;
-    const securityCode = form.elements['security_code'].value;
-    const cardholderName = form.elements['cardholder_name'].value;
-    const paymentMethod = form.elements['pricing_plan'].value;
-
-    if (cardNumber && cardExpiration && securityCode && cardholderName) {
-      console.log([cardNumber, cardExpiration, securityCode, cardholderName]);
-      const payload = new FormData();
-      payload.append('card_number', cardNumber);
-      payload.append('card_expiration', cardExpiration);
-      payload.append('security_code', securityCode);
-      payload.append('cardholder_name', cardholderName);
-      payload.append('phone_number', window.phone_number);
-      console.log(payload);
-    } else if (paymentMethod) {
-      const payload = new FormData();
-      payload.append('payment_method_id', paymentMethod);
-      payload.append('phone_number', window.phone_number);
-      console.log(payload);
-    }
-  }
-
-  function handleModalBlur(event) {
-    const modal = document.getElementById('confirm-modal');
-    const isModalClicked = Boolean(event.composedPath().filter(
-      (elem) => elem.id == 'confirm-modal'
-    ).length);
-
-    if (!isModalClicked && !modal.classList.contains('scale-0')) {
-      hideConfirmModal();
-    }
-  }
-
-  function showConfirmModal(
-    country,
-    number,
-    pricing,
-    setupCharges,
-    type,
-    capabilites
-  ) {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
-
-    const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
-    placeholders[0].innerText = country;
-    placeholders[1].innerText = number;
-    placeholders[2].innerText = `${pricing} / Month`;
-    placeholders[3].innerText = setupCharges;
-    placeholders[4].innerText = type;
-    placeholders[5].innerText = capabilites;
-
-    modalWrapper.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.remove('scale-0');
-      modalOverlay.classList.remove('bg-opacity-0');
-    }, 100);
-  }
-
-  function hideConfirmModal() {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
-
-    modal.classList.add('scale-0');
-    modalOverlay.classList.add('bg-opacity-0');
-    setTimeout(() => {
-      modalWrapper.classList.add('hidden');
-    }, 200);
-  }
-
-</script>
 @endsection
