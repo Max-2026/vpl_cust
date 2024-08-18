@@ -55,4 +55,8 @@ class VoiceNumbersController extends Controller
     {
         dd($request->all());
     }
+
+    public function my_numbers(){
+        return view('my-numbers.index');
+    }
 }

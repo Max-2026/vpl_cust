@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VoiceNumbersController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\HomepageController;
 
 /*
@@ -24,6 +25,16 @@ use App\Http\Controllers\HomepageController;
         '/purchase-numbers',
         [VoiceNumbersController::class, 'index']
     )->name('purchase-numbers');
+
+    Route::get(
+        '/my-numbers',
+        [VoiceNumbersController::class, 'my_numbers']
+    )->name('my-numbers');
+
+    Route::get(
+        '/billing',
+        [BillingController::class, 'billing']
+    )->name('billing');
 
     // Confirm purchase form
     Route::post(
