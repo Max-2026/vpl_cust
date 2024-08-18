@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VoiceNumbersController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\HomepageController;
 
 /*
@@ -34,7 +35,17 @@ use App\Http\Controllers\HomepageController;
     Route::get(
         '/billing',
         [BillingController::class, 'billing']
-    )->name('billing');
+    )->name('billing');  
+
+    Route::get(
+        '/sms-services',
+        [SmsController::class, 'index']
+    )->name('sms-services');
+
+    Route::get(
+        '/send-sms',
+        [SmsController::class, 'send_sms']
+    )->name('send-sms');
 
     // Confirm purchase form
     Route::post(
