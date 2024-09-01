@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Services\VendorsAPIService;
+use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\Number;
 
 class VoiceNumbersController extends Controller
 {
@@ -57,6 +58,12 @@ class VoiceNumbersController extends Controller
     }
 
     public function my_numbers(){
-        return view('my-numbers.index');
+
+        $user = Auth::user();
+        $numbers = Number::where('current_user_id', $user->id)->get();
+        return view('my-numbers.index',[
+            'numbers' => $numbers,
+            'user' => $user
+        ]);
     }
 }

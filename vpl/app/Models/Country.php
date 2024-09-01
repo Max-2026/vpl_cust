@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    public function numbers(): HasMany
+    {
+        return $this->hasMany(Number::class);
+    }
 }

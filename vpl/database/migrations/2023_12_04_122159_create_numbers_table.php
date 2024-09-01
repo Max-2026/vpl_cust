@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->foreignId('current_user_id')->nullable()
                 ->references('id')->on('users');
-            $table->foreignId('vendor_id')->nullable()->constrained()
-                ->onDelete('cascade');
+            // $table->foreignId('vendor_id')->nullable()->constrained()
+            //     ->onDelete('cascade');
             $table->string('number', 20)->unique();
             $table->boolean('is_active')->default(true);
             $table->integer('setup_charges');

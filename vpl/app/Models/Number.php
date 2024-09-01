@@ -44,6 +44,11 @@ class Number extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function vendor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'vendor_id');
