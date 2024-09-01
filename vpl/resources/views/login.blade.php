@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html class="h-full bg-white">
 
 <head>
@@ -119,7 +119,7 @@
                 </div>
 
                 <div class="text-sm">
-                  <a href="{{ route('forget-password') }}" class="font-medium text-stone-600 hover:text-stone-500"> Forgot your password? </a>
+                  <a href="#" class="font-medium text-stone-600 hover:text-stone-500"> Forgot your password? </a>
                 </div>
               </div>
 
@@ -132,7 +132,7 @@
       </div>
     </div>
     <div class="hidden lg:block relative w-0 flex-1">
-      <img class="transition-opacity duration-1000 ease-in-out absolute inset-0 h-full w-full object-cover animate-pulse" src="{{ asset('images/fm-2-small.jpg') }}" alt="">
+      <img class="transition-opacity duration-1000 ease-in-out absolute inset-0 h-full w-full object-cover animate-pulse" src="{{ asset('images/bridge.jpg') }}" alt="">
       <img id="wallpaper" class="transition-opacity duration-1000 ease-in-out opacity-0 absolute inset-0 h-full w-full object-cover" src="{{ asset('images/fm-2.jpg') }}" loading="lazy" alt="">
     </div>
   </div>

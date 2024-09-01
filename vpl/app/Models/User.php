@@ -25,6 +25,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone_number',
+        'company_name',
+        'company_email',
+        'company_phone',
+        'password',
+        'stripe_customer_id',
+     ];
+
     protected $hidden = [
         'password',
         'provider_id',

@@ -35,7 +35,8 @@ class LoginController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
 
-            return redirect()->intended();
+            // return redirect()->intended();
+            return redirect('/purchase-numbers');
         }
 
         return redirect()->back()->withErrors([
@@ -44,27 +45,27 @@ class LoginController extends Controller
     }
 
     public function signup()
-    {
+    {   
         return view('signup');
     }
 
     public function signup_post(Request $request)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'email' => 'required|unique:users|email',
-            'password' => 'required'
+            'password' => 'required',
+            'gender' => 'required',
         ]);
 
         $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'first_name' => $request->name,
+            'last_name' => $request->last_name ?? null,
             'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'company_name' => $request->company_name,
-            'company_email' => $request->company_email,
-            'company_phone' => $request->company_phone,
+            'phone_number' => $request->phone_number ?? null,
+            'company_name' => $request->company_name ?? null,
+            'company_email' => $request->company_email ?? null,
+            'company_phone' => $request->company_phone ?? null,
             'password' => Hash::make($request->password)
         ]);
 
@@ -74,7 +75,8 @@ class LoginController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        return redirect()->intended();
+        // return redirect()->intended();
+        return redirect('/purchase-numbers');
     }
 
     public function redirect($provider_name)
@@ -132,7 +134,7 @@ class LoginController extends Controller
 
             // Save the Stripe customer ID to the user's record in the database
             $user->update([
-                'stripe_id' => $customer->id,
+                'stripe_customer_id' => $customer->id,
             ]);
         }
     }

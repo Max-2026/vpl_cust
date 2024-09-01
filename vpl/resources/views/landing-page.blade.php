@@ -17,7 +17,7 @@
       <a href="#" class="">Features</a>
       <a href="#" class="">Pricing</a>
       <a href="#" class="">Product</a>
-      <a href="#" class="ml-auto">Log in</a>
+      <a href="{{ url('/login') }}" class="ml-auto">Log in</a>
       <a href="#" class="px-2.5 py-2 rounded-md bg-black text-white shadow-sm">Use for free</a>
     </nav>
     <nav class="w-full flex items-center justify-between md:hidden">

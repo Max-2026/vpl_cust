@@ -6,6 +6,7 @@ use App\Http\Controllers\VoiceNumbersController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\HomepageController;
 */
 
 // Protected Routes
-// Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
 
     // Numbers listing & purchase page
     Route::get(
@@ -59,22 +60,26 @@ use App\Http\Controllers\HomepageController;
     // Help page
     Route::get('/help', function () {})->name('help');
 
-    // Route::post('/logout', [LoginController::class, 'logout'])
-    //     ->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
 
-// });
+});
 
 // Public Routes
-Route::get('/', [HomepageController::class, 'index'])->name('home');
-// Route::get('/login', [LoginController::class, 'login'])
-//     ->name('login');
+    Route::get('/', [HomepageController::class, 'index'])->name('home');
 
-// Route::post('/login', [LoginController::class, 'login_post'])
-//     ->name('login-post');
+    Route::get('/login', [LoginController::class, 'login'])
+    ->name('login');
 
-// Route::get(
-//     '/login/redirect/{provider_name}',
-//     [LoginController::class, 'redirect']
-// )->name('third-party-login');
+    Route::post('/login', [LoginController::class, 'login_post'])
+    ->name('handle-login');
 
-// Route::get('/login/callback', [LoginController::class, 'callback']);
+    Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
+
+    Route::post('/signup',[LoginController::class, 'signup_post'])
+    ->name('handle-signup');
+
+    Route::get('/login/redirect/{provider_name}',
+    [LoginController::class, 'redirect'])->name('third-party-login');
+
+    Route::get('/login/callback', [LoginController::class, 'callback']);
