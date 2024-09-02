@@ -61,6 +61,7 @@ class VoiceNumbersController extends Controller
 
         $user = Auth::user();
         $numbers = Number::where('current_user_id', $user->id)->get();
+        
         return view('my-numbers.index',[
             'numbers' => $numbers,
             'user' => $user

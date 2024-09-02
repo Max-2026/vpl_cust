@@ -54,11 +54,11 @@ function showAddPaymentMethodForm() {
       <div class="sm:col-span-4">
         <label for="bill-type-2" class="block text-sm font-medium text-gray-700">Numbers</label>
         <div class="mt-1">
-          <select id="bill-type-2" name="bill-type-2" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
-            <option selected value="1234">All Numbers</option>
-            <option value="1">1636723238238</option>
-            <option value="1">4456655335344</option>
-            <option value="1">1636723245454</option>
+          <select id="bill-type-2" name="bills" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
+          <option selected value="all">All Numbers</option>
+            @foreach($numbers as $number)
+            <option value="{{ $number->number }}">{{ $number->number }}</option>
+            @endforeach
           </select>
         </div>
       </div>
@@ -93,7 +93,7 @@ function showAddPaymentMethodForm() {
           Card Details
         </h3>
 
-        @if (count($user->payment_methods ?? []) > 0)
+        @if (count($test_Card->payment_methods ?? []) > 0)
         <button onclick="showAddPaymentMethodForm()" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 sm:text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
           Add
         </button>
@@ -108,7 +108,7 @@ function showAddPaymentMethodForm() {
           <legend class="sr-only">Payment methods</legend>
           <div class="relative bg-white rounded-md divide-y -space-y-px">
 
-            @foreach ($user->payment_methods ?? [] as $method)
+            @foreach ($test_Card->payment_methods ?? [] as $method)
 
             <!-- Checked: "bg-cyan-50 border-cyan-200 z-10", Not Checked: "border-gray-200" -->
             <label class="relative p-4 flex items-center justify-between flex-wrap gap-y-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none">
@@ -181,33 +181,17 @@ function showAddPaymentMethodForm() {
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                          @foreach($user->invoices as $invoices)
                             <tr>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100560044</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm  text-gray-500">21-May-2024</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">Decline: Due not cleared. VPLC100560044</td>
+                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $invoices->id }}</td>
+                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{{ $invoices->created_at->format('d-m-Y') }}</td>
+                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{{ $invoices->summary }}</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$0.00</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$0.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$40.00</td>
+                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">${{ $invoices->running_balance ?? 0}}</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
                             </tr>
-                            <tr>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100560044</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm  text-gray-500">22-May-2024	</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">Payment Received - Thank you.</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$10.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$40.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100560044</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm  text-gray-500">29-May-2024</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">Decline: Due not cleared. VPLC100560044</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$0.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$0.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$40.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr style="border-bottom: 1px solid #e5e7eb;">

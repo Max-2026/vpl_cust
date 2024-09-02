@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Services\VendorsAPIService;
-use App\Models\Country;
+use App\Models\Number;
+use App\Models\User;
+use App\Models\Invoice;
+
 
 class BillingController extends Controller
 {
-    public function billing(Request $request, VendorsAPIService $vendors){
-        $countries = Country::all();
+    public function billing(){
 
-        if ($request->billing_type) {
-        }
-
-        if ($request->capability) {
-        }
-
-        if ($request->no_legal) {
-        }
-
-        if ($request->toll_free) {
-        }
-
-        $numbers = $vendors->vendor('DIDX')->get_numbers(
-            $request->country,
-            $request->prefix
-        );
-        // $numbers = $vendors->vendor('DIDX')->get_numbers('7');
+        $user = Auth::user();
+        $numbers = Number::where('current_user_id', $user->id)->get();
+        $invoice = Invoice::where('user_id', $user->id)->get();
 
         $test = (object) [
             'payment_methods' => [
@@ -42,10 +30,11 @@ class BillingController extends Controller
             ]
         ];
 
+        // dd($user->invoices);
         return view('billings.index',[
-            'countries' => $countries,
+            'test_Card' => $test,
             'numbers' => $numbers,
-            'user' => $test
+            'user' =>$user,
         ]);
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('summary');
             $table->integer('amount');
             $table->string('payment_reference_id')->nullable();
+            $table->string('running_balance')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->index('user_id');

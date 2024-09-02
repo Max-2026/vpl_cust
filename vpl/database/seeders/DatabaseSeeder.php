@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CountrySeeder::class,
             NumberSeeder::class,
+            InvoiceTypeSeeder::class,
+            InvoiceSeeder::class,
         ]);
     }
 }
