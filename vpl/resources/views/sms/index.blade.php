@@ -31,6 +31,7 @@
   </form>
 </div>
 
+
 <div class="w-full my-8 p-6 rounded-md shadow bg-white">
     <div>
         <h3 class="text-lg leading-6 font-medium text-gray-900 ml-2 mb-1.25">SMS Inbox</h3>
@@ -50,36 +51,22 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                        <?php
+                          $serial_number = 0;
+                          ?>
+                          @foreach($messages as $message)
+                          <?php $serial_number ++; ?>
                             <tr>
-                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">164554434334</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">14534332332</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tesing Message</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">21-May-2024</td>
+                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{{ $serial_number }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->number}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->received_number}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->content}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->date_time}}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <button class="bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700">Delete</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">445665533534</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">14534332332</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tesing Message</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">21-May-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button class="bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">164554434338</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">14534332332</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tesing Message</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">21-May-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button class="bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700">Delete</button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -87,5 +74,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

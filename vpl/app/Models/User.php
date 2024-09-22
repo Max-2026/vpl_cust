@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(NumberHistory::class);
     }
 
+    public function send_message(): HasMany
+    {
+        return $this->hasMany(SendMessage::class);
+    }
+
     public function numbers(): HasMany
     {
         return $this->hasMany(Number::class);

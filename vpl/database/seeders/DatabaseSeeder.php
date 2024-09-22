@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             NumberSeeder::class,
             InvoiceTypeSeeder::class,
             InvoiceSeeder::class,
+            MessageInboxSeeder::class,
+            SendMessageSeeder::class,
         ]);
     }
 }

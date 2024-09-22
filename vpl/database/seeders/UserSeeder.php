@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'last_name' => 'naeem',
             'email' => 'erdumadnan@gmail.com',
             'password' => Hash::make('123'),
+            'balance' => 50,
         ]);
     }
 }

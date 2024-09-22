@@ -2,15 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Message;
+use App\Models\SendMessage;
+use App\Models\Number;
 
 class SmsController extends Controller
 {
-    public function index(){
-        return view('sms.index');
+    public function index()
+    {
+        $user = Auth::user();
+        $messages = Message::where('user_id', $user->id)->get();
+
+        return view('sms.index',[
+            'messages' => $messages,
+            'user' => $user,
+        ]);
     }
 
-    public function send_sms(){
-        return view('sms.send-sms');
+    public function send_sms()
+    {
+        $user = Auth::user();
+        $messages = SendMessage::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')->get();
+        $numbers = Number::where('current_user_id', $user->id)->get();
+
+        return view('sms.send-sms',[
+            'numbers' => $numbers,
+            'messages' => $messages,
+            'user' => $user,
+        ]);
     }
+
+    public function send_message(Request $request)
+    {
+        $user = Auth::user();
+        $charges = 5;
+    
+        // Check if user balance is sufficient
+        if ($user->balance < $charges) {
+            return back()->with('error', 'Your balance is too low. Please add funds before sending the message.');
+        }
+    
+        $message = new SendMessage();
+        $message->user_id = $user->id;
+        $message->number = $request->number;
+        $message->received_number = $request->send_number;
+        $message->date_time = now();
+        $message->content = $request->message;
+        $message->charges = $charges;
+        $message->save();
+    
+        $user->balance -= $charges;
+        $user->save();
+    
+        return redirect()->back()->with('success', 'Message sent successfully.');
+    }
+    
 }
