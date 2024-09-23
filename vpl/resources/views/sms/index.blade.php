@@ -7,16 +7,17 @@
   <div class="flex justify-between items-center">
     <h3 class="px-1 text-lg leading-6 font-medium text-gray-900">SMS Service</h3>
   </div>
-  <form action="" method="GET">
+  <form action="{{ url('/search_message') }}" method="post">
+    @csrf
     <div class="mt-4 flex flex-wrap gap-4">
       <div style="width: 250px;">
         <label for="bill-type-2" class="block text-sm font-medium text-gray-700">Numbers</label>
         <div class="mt-1">
-          <select id="bill-type-2" name="bill-type-2" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
-            <option selected value="1234">All Numbers</option>
-            <option value="1">1636723238238</option>
-            <option value="1">4456655335344</option>
-            <option value="1">1636723245454</option>
+          <select id="bill-type-2" name="search_number" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
+            <option selected value="all">All Numbers</option>
+            @foreach($number as $numbers)
+              <option value="{{ $numbers->number }}">{{ $numbers->number }}</option>
+            @endforeach
           </select>
         </div>
       </div>
@@ -51,15 +52,11 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        <?php
-                          $serial_number = 0;
-                          ?>
                           @foreach($messages as $message)
-                          <?php $serial_number ++; ?>
                             <tr>
-                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{{ $serial_number }}</td>
+                                <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->number}}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->received_number}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Dialify</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->content}}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->date_time}}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

@@ -13,13 +13,23 @@ class SmsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $messages = Message::where('user_id', $user->id)->get();
-
-        return view('sms.index',[
+        $number = Number::where('current_user_id', $user->id)->get();
+        $numbers = Number::where('current_user_id', $user->id)->pluck('number');
+        $messages = collect();
+    
+        if ($numbers->isNotEmpty()) 
+        {
+            $messages = SendMessage::whereIn('received_number', $numbers)
+            ->orderBy('created_at', 'desc')->paginate(10);
+        }
+    
+        return view('sms.index', [
             'messages' => $messages,
             'user' => $user,
+            'number' => $number,
         ]);
     }
+    
 
     public function send_sms()
     {
@@ -58,6 +68,5 @@ class SmsController extends Controller
         $user->save();
     
         return redirect()->back()->with('success', 'Message sent successfully.');
-    }
-    
+    }    
 }

@@ -64,8 +64,7 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::post('/send-message', [SmsController::class, 'send_message'])
-    ->name('send-message');    
-
+    ->name('send-message');
 });
 
 // Public Routes
