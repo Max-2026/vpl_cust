@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/search-message', [SmsController::class, 'searchMessage']);
 
-    Route::get('/search_message', [SmsController::class, 'index']);
+    Route::get('/search-message', [SmsController::class, 'index']);
 
 });
 

@@ -113,12 +113,10 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <?php
-                          $serial_number = 0;
                           $total_charges = 0;
                           ?>
                             @foreach($messages as $message)
                             <?php 
-                          $serial_number ++;
                           $total_charges += $message->charges; 
                            ?>
                             <tr>
