@@ -7,7 +7,7 @@
   <div class="flex justify-between items-center">
     <h3 class="px-1 text-lg leading-6 font-medium text-gray-900">SMS Service</h3>
   </div>
-  <form action="{{ url('/search_message') }}" method="post">
+  <form action="{{ url('/search-message') }}" method="post">
     @csrf
     <div class="mt-4 flex flex-wrap gap-4">
       <div style="width: 250px;">

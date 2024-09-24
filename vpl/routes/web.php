@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get(
         '/send-sms',
-        [SmsController::class, 'send_sms']
+        [SmsController::class, 'view_send_sms']
     )->name('send-sms');
 
     // Confirm purchase form
@@ -65,6 +65,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/send-message', [SmsController::class, 'send_message'])
     ->name('send-message');
+
+    Route::post('/search-message', [SmsController::class, 'searchMessage']);
+
+    Route::get('/search_message', [SmsController::class, 'index']);
+
+
 });
 
 // Public Routes
