@@ -64,24 +64,27 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::post('/send-message', [SmsController::class, 'send_message'])
-    ->name('send-message');
+        ->name('send-message');
 });
 
 // Public Routes
     Route::get('/', [HomepageController::class, 'index'])->name('home');
 
     Route::get('/login', [LoginController::class, 'login'])
-    ->name('login');
+        ->name('login');
 
     Route::post('/login', [LoginController::class, 'login_post'])
-    ->name('handle-login');
+        ->name('handle-login');
 
-    Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
+    Route::get('/register', [LoginController::class, 'signup'])
+        ->name('register');
 
-    Route::post('/signup',[LoginController::class, 'signup_post'])
-    ->name('handle-signup');
+    Route::post('/register',[LoginController::class, 'signup_post'])
+        ->name('handle-register');
 
-    Route::get('/login/redirect/{provider_name}',
-    [LoginController::class, 'redirect'])->name('third-party-login');
+    Route::get(
+        '/login/redirect/{provider_name}',
+        [LoginController::class, 'redirect']
+    )->name('third-party-login');
 
     Route::get('/login/callback', [LoginController::class, 'callback']);
