@@ -30,7 +30,6 @@ class BillingController extends Controller
             ]
         ];
 
-        // dd($user->invoices);
         return view('billings.index',[
             'test_Card' => $test,
             'numbers' => $numbers,
