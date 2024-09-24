@@ -9,16 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Laravel\Cashier\Billable;
-
-use App\Models\UserAddress;
-use App\Models\UserDocument;
-use App\Models\NumberHistory;
-use App\Models\Invoice;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , Billable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -27,20 +21,15 @@ class User extends Authenticatable
      */
 
      protected $fillable = [
-        'first_name',
-        'last_name',
+        'name',
         'email',
         'phone_number',
-        'company_name',
-        'company_email',
-        'company_phone',
         'password',
         'stripe_customer_id',
      ];
 
     protected $hidden = [
         'password',
-        'provider_id',
         'remember_token',
     ];
 
@@ -59,9 +48,9 @@ class User extends Authenticatable
         return $this->hasMany(NumberHistory::class);
     }
 
-    public function send_message(): HasMany
+    public function messages(): HasMany
     {
-        return $this->hasMany(SendMessage::class);
+        return $this->hasMany(Message::class);
     }
 
     public function numbers(): HasMany

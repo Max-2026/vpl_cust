@@ -15,73 +15,73 @@ class InvoiceTypeSeeder extends Seeder
         \App\Models\InvoiceType::insert([
             [
                 'name' => 'Balance Added',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Balance Refunded',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Talktime Added',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Talktime Refunded',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Purchased',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Bought',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Monthly Subscription Charges',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Annually Subscription Charges',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Monthly Subscription Payment',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Annually Subscription Payment',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Monthly SMS Usage Bill',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Annually SMS Usage Bill',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Monthly SMS Usage Payment',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'Number Annually SMS Usage Payment',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ]);
     }

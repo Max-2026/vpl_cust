@@ -11,15 +11,20 @@ class SendMessage extends Model
 
     protected $fillable = [
         'user_id',
-        'number',
-        'received_number',
+        'number_id',
+        'from_number',
         'content',
-        'date_time',
+        'received_at',
         'charges',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function number(): BelongsTo
+    {
+        return $this->belongsTo(Number::class);
     }
 }

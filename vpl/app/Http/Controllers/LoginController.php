@@ -54,18 +54,14 @@ class LoginController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users|email',
+            'phone' => 'required|size:13'
             'password' => 'required',
-            'gender' => 'required',
         ]);
 
         $user = User::create([
-            'first_name' => $request->name,
-            'last_name' => $request->last_name ?? null,
+            'name' => $request->name,
             'email' => $request->email,
-            'phone_number' => $request->phone_number ?? null,
-            'company_name' => $request->company_name ?? null,
-            'company_email' => $request->company_email ?? null,
-            'company_phone' => $request->company_phone ?? null,
+            'phone_number' => $request->phone,
             'password' => Hash::make($request->password)
         ]);
 
@@ -75,7 +71,6 @@ class LoginController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        // return redirect()->intended();
         return redirect('/purchase-numbers');
     }
 
@@ -83,31 +78,6 @@ class LoginController extends Controller
     {
         session(['provider_name' => $provider_name]);
         return Socialite::driver($provider_name)->redirect();
-    }
-
-    public function callback()
-    {
-        $provider_name = session('provider_name');
-        $user_data = Socialite::driver($provider_name)->user();
-
-        $user = User::updateOrCreate(
-            [
-                'email' => $user_data->email,
-                'provider_id' => $user_data->id
-            ],
-            [
-                'first_name' => explode(' ', $user_data->name)[0],
-                'last_name' => explode(' ', $user_data->name)[1],
-                'avatar' => $user_data->avatar,
-            ]
-        );
-
-        // Create a Stripe customer and save the Stripe customer ID to the user's record
-        $this->createStripeCustomer($user);
-
-        Auth::login($user);
-
-        return redirect()->intended();
     }
 
     public function logout(Request $request)

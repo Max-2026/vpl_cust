@@ -13,16 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name')->nullable();
+            $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_number', 20)->unique()->nullable();
-            $table->string('company_name')->nullable();
-            $table->string('company_email')->nullable();
-            $table->string('company_phone', 20)->nullable();
+            $table->string('phone_number', 13)->unique();
             $table->string('avatar')->nullable();
-            $table->string('password')->nullable();
-            $table->string('provider_id')->nullable();
+            $table->string('password');
             $table->string('stripe_customer_id')->nullable();
             $table->integer('balance')->default(0);
             $table->timestamp('email_verified_at')->nullable();
@@ -30,10 +25,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->index('first_name');
             $table->index('email');
-            $table->index('company_name');
-            $table->index('company_email');
         });
     }
 

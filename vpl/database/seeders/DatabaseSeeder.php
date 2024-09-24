@@ -12,12 +12,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = \App\Models\User::factory(6)->create();
+        $users[] = \App\Models\User::factory()->create([
+            'name' => 'Erdum Adnan',
+            'email' => 'erdumadnan@gmail.com',
+        ]);
+        $users->each(function ($user) {
+            \App\Models\UserAddress::factory()->create(
+                ['user_id' => $user->id]
+            );
+            \App\Models\UserDocument::factory()->create(
+                ['user_id' => $user->id]
+            );
+        });
+
         $this->call([
-            UserSeeder::class,
             CountrySeeder::class,
-            NumberSeeder::class,
             InvoiceTypeSeeder::class,
-            InvoiceSeeder::class,
+            NumberSeeder::class,
         ]);
     }
 }
