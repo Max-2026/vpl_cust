@@ -125,7 +125,7 @@
                                 <td class="px-5 py-4 whitespace-nowrap text-sm  text-gray-500">{{ $message->number}}
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $message->received_number}}</td>
+                                    {{ $message->from_number}}</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->date_time}}
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{{ $message->content}}

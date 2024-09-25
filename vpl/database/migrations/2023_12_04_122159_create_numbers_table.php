@@ -34,7 +34,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->index('country_id');
             $table->index('current_user_id');
-            $table->index('number');
         });
     }
 

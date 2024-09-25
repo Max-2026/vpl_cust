@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('number_id')->nullable()->constrained();
-            $table->foreignId('invoice_type_id')->constrained();
             $table->string('summary');
             $table->integer('amount');
             $table->string('payment_reference_id')->nullable();
-            $table->string('running_balance')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

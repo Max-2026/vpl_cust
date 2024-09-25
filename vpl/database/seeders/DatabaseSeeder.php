@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            CountrySeeder::class,
+        ]);
+
         $users = \App\Models\User::factory(6)->create();
         $users[] = \App\Models\User::factory()->create([
             'name' => 'Erdum Adnan',
@@ -26,10 +30,6 @@ class DatabaseSeeder extends Seeder
             );
         });
 
-        $this->call([
-            CountrySeeder::class,
-            InvoiceTypeSeeder::class,
-            NumberSeeder::class,
-        ]);
+        $numbers = \App\Models\Number::factory(7)->create();
     }
 }

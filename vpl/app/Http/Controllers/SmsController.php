@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\SendMessage;
+use App\Models\Message;
 use App\Models\Number;
 
 class SmsController extends Controller
@@ -18,7 +18,7 @@ class SmsController extends Controller
     
         if ($numbers->isNotEmpty()) 
         {
-            $messages = SendMessage::whereIn('received_number', $numbers)
+            $messages = Message::whereIn('from_number', $numbers)
             ->orderBy('created_at', 'desc')->paginate(10);
         }
     
@@ -33,7 +33,7 @@ class SmsController extends Controller
     public function view_send_sms()
     {
         $user = Auth::user();
-        $messages = SendMessage::where('user_id', $user->id)
+        $messages = Message::where('user_id', $user->id)
         ->orderBy('created_at', 'desc')->get();
         $numbers = Number::where('current_user_id', $user->id)->get();
 
@@ -54,11 +54,11 @@ class SmsController extends Controller
             return back()->with('error', 'Your balance is too low. Please add funds before sending the message.');
         }
     
-        $message = new SendMessage();
+        $message = new Message();
         $message->user_id = $user->id;
         $message->number = $request->number;
-        $message->received_number = $request->send_number;
-        $message->date_time = now();
+        $message->from_number = $request->send_number;
+        $message->received_at = now();
         $message->content = $request->message;
         $message->charges = $charges;
         $message->save();
@@ -78,10 +78,10 @@ class SmsController extends Controller
 
         if ($request->search_number && $request->search_number !== 'all') 
         {
-            $messages = SendMessage::where('number',$request->search_number)->paginate(10);
+            $messages = Message::where('number',$request->search_number)->paginate(10);
         } else 
         {
-            $messages = SendMessage::whereIn('number',$numbers)->paginate(10);
+            $messages = Message::whereIn('number',$numbers)->paginate(10);
         }
 
         return view('sms.index', [
