@@ -12,33 +12,25 @@ class Number extends Model
     use HasFactory;
 
     protected $fillable = [
-        'area_id',
-        'user_id',
-        'vendor_id',
-        'rate_center',
+        'country_id',
+        'current_user_id',
         'number',
         'is_active',
-        'is_reserved',
         'setup_charges',
         'monthly_charges',
         'annual_charges',
         'per_mintue_charges',
         'per_sms_charges',
-        'forwarding_url',
-        'channels',
-        'talktime',
-        'minutes_consumed',
-        'free_incoming_minutes',
-        'free_incoming_sms',
-        'legal_requirement',
-        'voice_capablity',
-        'sms_inbound_capablity',
-        'sms_outgoing_capablity',
+        'talktime_quota',
+        'sms_quota',
+        'legal_requirements',
+        'voice_inbound_capable',
+        'sms_inbound_capable',
     ];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'current_user_id');
     }
 
     public function country(): BelongsTo
@@ -46,10 +38,10 @@ class Number extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function vendor(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'vendor_id');
-    }
+    // public function vendor(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class, 'vendor_id');
+    // }
 
     public function history(): HasMany
     {

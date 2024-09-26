@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function numbers(): HasMany
     {
-        return $this->hasMany(Number::class);
+        return $this->hasMany(Number::class, 'current_user_id');
     }
 
     public function invoices(): HasMany

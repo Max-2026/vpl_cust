@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use App\Models\Number;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class VoiceNumbersController extends Controller
 {
@@ -59,9 +57,11 @@ class VoiceNumbersController extends Controller
 
     public function my_numbers()
     {
-
-        $user = Auth::user();
-        $numbers = Number::where('current_user_id', $user->id)->get();
+        $user = auth()->user();
+        $numbers = $user->numbers()->with(['history' => function ($query) use ($user) {
+            $query->where('activity', 'purchased')->where('user_id', 7)
+                ->latest('created_at');
+        }])->get();
 
         return view('my-numbers.index', [
             'numbers' => $numbers,

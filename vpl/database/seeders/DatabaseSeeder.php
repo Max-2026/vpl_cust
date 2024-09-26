@@ -31,5 +31,17 @@ class DatabaseSeeder extends Seeder
         });
 
         $numbers = \App\Models\Number::factory(7)->create();
+        $numbers->each(function ($num) {
+            $history = new \App\Models\NumberHistory;
+            $history->number_id = $num->id;
+            $history->user_id = 7;
+            $history->activity = 'purchased';
+            $history->setup_charges = $num->setup_charges;
+            $history->monthly_charges = $num->monthly_charges;
+            $history->billing_type = 'prorated';
+            $num->history()->save($history);
+            $num->current_user_id = 7;
+            $num->save();
+        });
     }
 }

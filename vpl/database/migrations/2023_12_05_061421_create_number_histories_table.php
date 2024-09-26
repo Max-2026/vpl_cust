@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('forwarding_url')->nullable();
             $table->enum('activity', [
                 'reserved',
                 'purchased',
@@ -22,9 +23,9 @@ return new class extends Migration
             ]);
             $table->integer('setup_charges');
             $table->integer('monthly_charges');
-            $table->integer('annual_charges');
-            $table->integer('per_mintue_charges');
-            $table->integer('per_sms_charges');
+            $table->integer('annual_charges')->nullable();
+            $table->integer('per_mintue_charges')->nullable();
+            $table->integer('per_sms_charges')->nullable();
             $table->enum('billing_type', ['prorated', 'non_prorated']);
             $table->unique(['number_id', 'user_id', 'created_at']);
             $table->timestamps();

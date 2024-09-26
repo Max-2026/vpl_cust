@@ -25,8 +25,8 @@ return new class extends Migration
             $table->integer('annual_charges')->nullable();
             $table->integer('per_mintue_charges')->nullable();
             $table->integer('per_sms_charges')->nullable();
-            $table->integer('talktime_qouta');
-            $table->integer('sms_qouta');
+            $table->integer('talktime_quota');
+            $table->integer('sms_quota');
             $table->text('legal_requirements')->nullable();
             $table->boolean('voice_inbound_capable')->default(true);
             $table->boolean('sms_inbound_capable')->default(false);
