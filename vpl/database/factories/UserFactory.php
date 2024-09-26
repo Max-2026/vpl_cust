@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class UserFactory extends Factory
 {
@@ -16,7 +17,7 @@ class UserFactory extends Factory
             'phone_number_verified_at' => fake()->dateTimeBetween(
                 '-1 month', 'now'
             ),
-            'password' => hash('sha256', '123456'),
+            'password' => Hash::make('123456'),
         ];
     }
 }
