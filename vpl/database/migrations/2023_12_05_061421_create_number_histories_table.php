@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('activity', [
                 'reserved',
                 'purchased',
-                'released'
+                'released',
             ]);
             $table->integer('setup_charges');
             $table->integer('monthly_charges');

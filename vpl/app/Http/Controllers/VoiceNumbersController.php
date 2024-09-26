@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Services\VendorsAPIService;
-use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Number;
+use App\Services\VendorsAPIService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoiceNumbersController extends Controller
 {
@@ -40,15 +40,15 @@ class VoiceNumbersController extends Controller
                     'last_digits' => '4242',
                     'expiry_month' => '12',
                     'expiry_year' => '2025',
-                    'updated_at' => now()
+                    'updated_at' => now(),
                 ],
-            ]
+            ],
         ];
 
         return view('voice-numbers.index', [
             'countries' => $countries,
             'numbers' => $numbers,
-            'user' => $test
+            'user' => $test,
         ]);
     }
 
@@ -57,14 +57,15 @@ class VoiceNumbersController extends Controller
         dd($request->all());
     }
 
-    public function my_numbers(){
+    public function my_numbers()
+    {
 
         $user = Auth::user();
         $numbers = Number::where('current_user_id', $user->id)->get();
-        
-        return view('my-numbers.index',[
+
+        return view('my-numbers.index', [
             'numbers' => $numbers,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }

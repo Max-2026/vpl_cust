@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +30,3 @@ Route::get(
     '/areas/{country_name}',
     [ApiController::class, 'search_areas_by_country']
 );
-
-
-
-

@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Auth\Events\Registered;
-
-use App\Models\User;
-use Stripe\Stripe;
 use Stripe\Customer;
+use Stripe\Stripe;
 
 class LoginController extends Controller
 {
@@ -23,12 +22,12 @@ class LoginController extends Controller
     {
         $validated = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if (User::where('email', $request->email)->count() === 0) {
             return redirect()->back()->withErrors([
-                'email' => 'Account does not exist with this email!'
+                'email' => 'Account does not exist with this email!',
             ])->withInput();
         }
 
@@ -40,12 +39,12 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->withErrors([
-            'password' => 'Invalid password!'
+            'password' => 'Invalid password!',
         ])->withInput();
     }
 
     public function signup()
-    {   
+    {
         return view('signup');
     }
 
@@ -62,7 +61,7 @@ class LoginController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
         // Create a Stripe customer and save the Stripe customer ID to the user's record
@@ -77,6 +76,7 @@ class LoginController extends Controller
     public function redirect($provider_name)
     {
         session(['provider_name' => $provider_name]);
+
         return Socialite::driver($provider_name)->redirect();
     }
 
@@ -95,7 +95,7 @@ class LoginController extends Controller
         Stripe::setApiKey(config('services.stripe.secret'));
 
         // Check if the user already has a Stripe customer ID
-        if (!$user->stripe_id) {
+        if (! $user->stripe_id) {
             // Create a new Stripe customer
             $customer = Customer::create([
                 'email' => $user->email,

@@ -60,6 +60,5 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'public_key' => env('STRIPE_PUBLISHABLE_KEY'),
     ],
-    
 
 ];

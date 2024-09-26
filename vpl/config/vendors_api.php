@@ -6,6 +6,6 @@ return [
         'api_secret' => env('VENDOR_DIDX_API_SECRET'),
     ],
     'config' => [
-        'cache_duration' => env('VENDORS_API_CACHE_DURATION', 5)
+        'cache_duration' => env('VENDORS_API_CACHE_DURATION', 5),
     ],
 ];

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 class VendorsAPIService
 {
     protected $vendors;
+
     protected $vendor = null;
 
     public function __construct(array $vendors)
@@ -33,9 +34,8 @@ class VendorsAPIService
         $country_dial_code,
         $prefix = null,
         $per_page = 10
-    )
-    {
-        $cache_key = 'vendor_api_' . $country_dial_code . '_' . $prefix;
+    ) {
+        $cache_key = 'vendor_api_'.$country_dial_code.'_'.$prefix;
         $cache_duration = now()->addMinutes(
             config('vendors_api.config.cache_duration')
         );

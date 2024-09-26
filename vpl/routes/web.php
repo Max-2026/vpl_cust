@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\VoiceNumbersController;
 use App\Http\Controllers\BillingController;
-use App\Http\Controllers\SmsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SmsController;
+use App\Http\Controllers\VoiceNumbersController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get(
         '/billing',
         [BillingController::class, 'billing']
-    )->name('billing');  
+    )->name('billing');
 
     Route::get(
         '/sms-services',
@@ -55,16 +54,18 @@ Route::middleware('auth')->group(function () {
     )->name('handle-purchase');
 
     // Settings page
-    Route::get('/settings', function () {})->name('settings');
+    Route::get('/settings', function () {
+    })->name('settings');
 
     // Help page
-    Route::get('/help', function () {})->name('help');
+    Route::get('/help', function () {
+    })->name('help');
 
     Route::get('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 
     Route::post('/send-message', [SmsController::class, 'send_message'])
-    ->name('send-message');
+        ->name('send-message');
 
     Route::post('/search-message', [SmsController::class, 'searchMessage']);
 
@@ -73,23 +74,23 @@ Route::middleware('auth')->group(function () {
 });
 
 // Public Routes
-    Route::get('/', [HomepageController::class, 'index'])->name('home');
+Route::get('/', [HomepageController::class, 'index'])->name('home');
 
-    Route::get('/login', [LoginController::class, 'login'])
-        ->name('login');
+Route::get('/login', [LoginController::class, 'login'])
+    ->name('login');
 
-    Route::post('/login', [LoginController::class, 'login_post'])
-        ->name('handle-login');
+Route::post('/login', [LoginController::class, 'login_post'])
+    ->name('handle-login');
 
-    Route::get('/register', [LoginController::class, 'signup'])
-        ->name('register');
+Route::get('/register', [LoginController::class, 'signup'])
+    ->name('register');
 
-    Route::post('/register',[LoginController::class, 'signup_post'])
-        ->name('handle-register');
+Route::post('/register', [LoginController::class, 'signup_post'])
+    ->name('handle-register');
 
-    Route::get(
-        '/login/redirect/{provider_name}',
-        [LoginController::class, 'redirect']
-    )->name('third-party-login');
+Route::get(
+    '/login/redirect/{provider_name}',
+    [LoginController::class, 'redirect']
+)->name('third-party-login');
 
-    Route::get('/login/callback', [LoginController::class, 'callback']);
+Route::get('/login/callback', [LoginController::class, 'callback']);

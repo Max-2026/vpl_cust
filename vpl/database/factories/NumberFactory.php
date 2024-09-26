@@ -18,7 +18,7 @@ class NumberFactory extends Factory
             'monthly_charges' => fake()->numberBetween(0.05, 5),
             'talktime_qouta' => fake()->numberBetween(0, 100),
             'sms_qouta' => fake()->numberBetween(0, 100),
-            'legal_requirements' => "Legal text"
+            'legal_requirements' => 'Legal text',
         ];
     }
 }

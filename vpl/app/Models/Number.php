@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-use App\Models\User;
-use App\Models\NumberHistory;
-
 class Number extends Model
 {
     use HasFactory;
@@ -36,7 +33,7 @@ class Number extends Model
         'legal_requirement',
         'voice_capablity',
         'sms_inbound_capablity',
-        'sms_outgoing_capablity'
+        'sms_outgoing_capablity',
     ];
 
     public function user(): BelongsTo

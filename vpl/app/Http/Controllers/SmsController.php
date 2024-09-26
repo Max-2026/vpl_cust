@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\Number;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SmsController extends Controller
 {
@@ -15,29 +15,27 @@ class SmsController extends Controller
         $number = Number::where('current_user_id', $user->id)->get();
         $numbers = Number::where('current_user_id', $user->id)->pluck('number');
         $messages = collect();
-    
-        if ($numbers->isNotEmpty()) 
-        {
+
+        if ($numbers->isNotEmpty()) {
             $messages = Message::whereIn('from_number', $numbers)
-            ->orderBy('created_at', 'desc')->paginate(10);
+                ->orderBy('created_at', 'desc')->paginate(10);
         }
-    
+
         return view('sms.index', [
             'messages' => $messages,
             'user' => $user,
             'number' => $number,
         ]);
     }
-    
 
     public function view_send_sms()
     {
         $user = Auth::user();
         $messages = Message::where('user_id', $user->id)
-        ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')->get();
         $numbers = Number::where('current_user_id', $user->id)->get();
 
-        return view('sms.send-sms',[
+        return view('sms.send-sms', [
             'numbers' => $numbers,
             'messages' => $messages,
             'user' => $user,
@@ -48,12 +46,11 @@ class SmsController extends Controller
     {
         $user = Auth::user();
         $charges = 5;
-    
-        if ($user->balance < $charges) 
-        {
+
+        if ($user->balance < $charges) {
             return back()->with('error', 'Your balance is too low. Please add funds before sending the message.');
         }
-    
+
         $message = new Message();
         $message->user_id = $user->id;
         $message->number = $request->number;
@@ -62,33 +59,29 @@ class SmsController extends Controller
         $message->content = $request->message;
         $message->charges = $charges;
         $message->save();
-    
+
         $user->balance -= $charges;
         $user->save();
-    
+
         return redirect()->back()->with('success', 'Message sent successfully.');
-    }    
-    
+    }
 
     public function searchMessage(Request $request)
     {
         $user = Auth::user();
         $number = Number::where('current_user_id', $user->id)->get();
-        $numbers = Number::where('current_user_id',$user->id)->pluck('number');
+        $numbers = Number::where('current_user_id', $user->id)->pluck('number');
 
-        if ($request->search_number && $request->search_number !== 'all') 
-        {
-            $messages = Message::where('number',$request->search_number)->paginate(10);
-        } else 
-        {
-            $messages = Message::whereIn('number',$numbers)->paginate(10);
+        if ($request->search_number && $request->search_number !== 'all') {
+            $messages = Message::where('number', $request->search_number)->paginate(10);
+        } else {
+            $messages = Message::whereIn('number', $numbers)->paginate(10);
         }
 
         return view('sms.index', [
             'messages' => $messages,
             'user' => $user,
-            'number' => $number
+            'number' => $number,
         ]);
     }
-
 }
