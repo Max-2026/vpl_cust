@@ -68,4 +68,9 @@ class VoiceNumbersController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function logs($number_id)
+    {
+        $logs = 
+    }
 }
