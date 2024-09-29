@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get(
         '/logs/{number_id}',
         [VoiceNumbersController::class, 'logs']
-    );
+    )->name('number-logs');
 
     Route::get(
         '/billing',

@@ -47,4 +47,9 @@ class Number extends Model
     {
         return $this->hasMany(NumberHistory::class);
     }
+
+    public function logs(): HasMany
+    {
+        return $this->hasMany(NumberCallLog::class);
+    }
 }

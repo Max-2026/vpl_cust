@@ -71,6 +71,16 @@ class VoiceNumbersController extends Controller
 
     public function logs($number_id)
     {
-        $logs = 
+        $user = auth()->user();
+        $number = Number::first($number_id);
+
+        if (!$number) abort(404);
+
+        $logs = $number->logs()->where('user_id', $user->id)->get();
+
+        return view('my-numbers.logs', [
+            'user' => $user,
+            'logs' => $logs,
+        ]);
     }
 }

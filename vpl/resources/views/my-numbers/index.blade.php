@@ -66,7 +66,7 @@
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->talktime_quota }}</td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->sms_quota }}</td>
                   <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</button>
+                    <a href="{{ route('number-logs', ['number_id' => $number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
                   </td>
                 </tr>
               @endforeach
