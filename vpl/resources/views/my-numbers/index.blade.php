@@ -23,7 +23,8 @@
                   'Purchased Date',
                   'TalkTime Remaining',
                   'SMS Remaining',
-                  'Call Logs'
+                  'Call Logs',
+                  ''
                 ] as $header)
                   <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                     {{ $header }}
@@ -67,6 +68,9 @@
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->sms_quota }}</td>
                   <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <a href="{{ route('number-logs', ['number_id' => $number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="{{ route('release-number', ['number_id' => $number->id]) }}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Deactivate</a>
                   </td>
                 </tr>
               @endforeach

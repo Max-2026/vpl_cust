@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function () {
     )->name('number-logs');
 
     Route::get(
+        '/release/{number_id}',
+        [VoiceNumbersController::class, 'release']
+    )->name('release-number');
+
+    Route::get(
         '/billing',
         [BillingController::class, 'billing']
     )->name('billing');

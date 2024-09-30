@@ -52,4 +52,11 @@ class Number extends Model
     {
         return $this->hasMany(NumberCallLog::class);
     }
+
+    public function get_recent_purchase($user_id)
+    {
+        return $this->history()->where('user_id', $user_id)
+            ->where('activity', 'purchased')->orderBy('created_at', 'desc')
+            ->first();
+    }
 }

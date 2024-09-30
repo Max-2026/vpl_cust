@@ -20,6 +20,7 @@ return new class extends Migration
                 'reserved',
                 'purchased',
                 'released',
+                'release_requested',
             ]);
             $table->integer('setup_charges');
             $table->integer('monthly_charges');

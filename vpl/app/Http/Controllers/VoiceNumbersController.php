@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\Number;
+use App\Models\NumberHistory;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
 
@@ -59,12 +60,12 @@ class VoiceNumbersController extends Controller
     public function my_numbers()
     {
         $user = auth()->user();
-        $numbers = $user->numbers()->with(
-            ['history' => function ($query) use ($user) {
-                $query->where('activity', 'purchased')->where('user_id', 7)
-                    ->latest('created_at');
-            }]
-        )->paginate();
+
+        $numbers = NumberHistory::where('user_id', $user->id)
+            ->whereIn('activity', ['purchased', 'release_requested'])
+            ->with(['number'])
+            ->orderBy('created_at', 'desc')
+            ->paginate();
 
         return view('my-numbers.index', [
             'numbers' => $numbers,
@@ -85,5 +86,35 @@ class VoiceNumbersController extends Controller
             'user' => $user,
             'logs' => $logs,
         ]);
+    }
+
+    public function release($number_id)
+    {
+        $user = auth()->user();
+        $number = Number::find($number_id);
+        $purchase_record = $number->get_recent_purchase($user->id);
+
+        if (!$number) abort(404);
+
+        if (
+            $number->current_user_id !== $user->id
+            || !$purchase_record
+        ) abort(403);
+
+        $history = new NumberHistory;
+        $history->number_id = $number->id;
+        $history->user_id = $user->id;
+        $history->forwarding_url = $number->forwarding_url;
+        $history->activity = 'release_requested';
+        $history->setup_charges = $number->setup_charges;
+        $history->monthly_charges = $number->monthly_charges;
+        $history->annual_charges = $number->annual_charges;
+        $history->per_mintue_charges = $number->per_mintue_charges;
+        $history->per_sms_charges = $number->per_sms_charges;
+        $history->billing_type = $purchase_record->billing_type;
+
+        $number->history()->save($history);
+
+        return redirect()->back();
     }
 }
