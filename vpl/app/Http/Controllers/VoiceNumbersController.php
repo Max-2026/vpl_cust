@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Number;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class VoiceNumbersController extends Controller
         $numbers = $user->numbers()->with(['history' => function ($query) use ($user) {
             $query->where('activity', 'purchased')->where('user_id', 7)
                 ->latest('created_at');
-        }])->get();
+        }])->paginate();
 
         return view('my-numbers.index', [
             'numbers' => $numbers,
@@ -76,7 +77,7 @@ class VoiceNumbersController extends Controller
 
         if (!$number) abort(404);
 
-        $logs = $number->logs()->where('user_id', $user->id)->get();
+        $logs = $number->logs()->where('user_id', $user->id)->paginate();
 
         return view('my-numbers.logs', [
             'user' => $user,
