@@ -73,7 +73,7 @@ class VoiceNumbersController extends Controller
     public function logs($number_id)
     {
         $user = auth()->user();
-        $number = Number::first($number_id);
+        $number = Number::find($number_id);
 
         if (!$number) abort(404);
 
