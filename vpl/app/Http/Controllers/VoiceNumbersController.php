@@ -59,10 +59,12 @@ class VoiceNumbersController extends Controller
     public function my_numbers()
     {
         $user = auth()->user();
-        $numbers = $user->numbers()->with(['history' => function ($query) use ($user) {
-            $query->where('activity', 'purchased')->where('user_id', 7)
-                ->latest('created_at');
-        }])->paginate();
+        $numbers = $user->numbers()->with(
+            ['history' => function ($query) use ($user) {
+                $query->where('activity', 'purchased')->where('user_id', 7)
+                    ->latest('created_at');
+            }]
+        )->paginate();
 
         return view('my-numbers.index', [
             'numbers' => $numbers,

@@ -42,6 +42,13 @@ class DatabaseSeeder extends Seeder
             $num->history()->save($history);
             $num->current_user_id = 7;
             $num->save();
+
+            $log = new \App\Models\NumberCallLog;
+            $log->number_id = $num->id;
+            $log->user_id = 7;
+            $log->from_number = '1234';
+            $log->minutes_consumed = 2;
+            $num->logs()->save($log);
         });
     }
 }
