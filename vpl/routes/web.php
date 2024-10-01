@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VoiceNumbersController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,16 @@ Route::middleware('auth')->group(function () {
         '/voice-numbers',
         [VoiceNumbersController::class, 'handle_purchase']
     )->name('handle-purchase');
+
+    Route::get(
+        '/profile',
+        [ProfileController::class, 'profile']
+    )->name('profile');
+
+    Route::post(
+        '/update/profile/{id}',
+        [ProfileController::class, 'update_profile']
+    )->name('update_profile');
 
     // Settings page
     Route::get('/settings', function () {
