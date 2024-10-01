@@ -61,14 +61,15 @@ class VoiceNumbersController extends Controller
     {
         $user = auth()->user();
 
-        $numbers = NumberHistory::where('user_id', $user->id)
-            ->whereIn('activity', ['purchased', 'release_requested'])
+        $history = NumberHistory::where('user_id', $user->id)
+            ->whereIn('activity', ['release_requested', 'purchased'])
             ->with(['number'])
             ->orderBy('created_at', 'desc')
+            ->groupBy('number_id')
             ->paginate();
 
         return view('my-numbers.index', [
-            'numbers' => $numbers,
+            'history' => $history,
             'user' => $user,
         ]);
     }

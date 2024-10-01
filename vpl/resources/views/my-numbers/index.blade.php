@@ -21,6 +21,10 @@
                   'Number Status',
                   'Paid Till Date',
                   'Purchased Date',
+                  'Monthly Charges',
+                  'Annual Charges',
+                  'Per Minute Charges',
+                  'Per SMS Charges',
                   'TalkTime Remaining',
                   'SMS Remaining',
                   'Call Logs',
@@ -33,46 +37,94 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              @foreach ($numbers as $number)
-                <tr>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $number->number }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->history[0]->forwarding_url ?? '' }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->country->name }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                    @if ($number->is_active == 1)
-                      <span>Active</span>
-                    @else
-                      <span>Deactive</span>
-                    @endif
-                  </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                    @if ($number->history[0]->created_at == "prorated")
+              @foreach ($history as $row)
+
+                @if ($row->activity == 'release_requested')
+                  <tr class="bg-gray-200" title="This number will be released">
+                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->country->name }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                      @if ($row->number->is_active)
+                        <span>Active</span>
+                      @else
+                        <span>Deactive</span>
+                      @endif
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                      @if ($row->billing_type == "prorated")
+                        {{
+                          Carbon\Carbon::parse($row->created_at)
+                            ->format("Y-m-t");
+                        }}
+                      @else
+                        {{
+                          Carbon\Carbon::parse($row->created_at)->addMonth()
+                            ->format("Y-m-d");
+                        }}
+                      @endif
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       {{
-                        Carbon\Carbon::parse($number->history[0]->created_at)
-                          ->format("Y-m-t");
+                        Carbon\Carbon::parse($row->created_at)->format("Y-m-d");
                       }}
-                    @else
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->monthly_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->annual_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->per_minute_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->per_sms_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->talktime_quota }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->sms_quota }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <a href="{{ route('number-logs', ['number_id' => $row->number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <p class="bg-gray-500 text-white text-center px-3 py-1 rounded">Deactive</p>
+                    </td>
+                  </tr>
+                @else
+                  <tr>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->country->name }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                      @if ($row->number->is_active)
+                        <span>Active</span>
+                      @else
+                        <span>Deactive</span>
+                      @endif
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                      @if ($row->billing_type == "prorated")
+                        {{
+                          Carbon\Carbon::parse($row->created_at)->format("Y-m-t");
+                        }}
+                      @else
+                        {{
+                          Carbon\Carbon::parse($row->created_at)->addMonth()
+                            ->format("Y-m-d");
+                        }}
+                      @endif
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       {{
-                        Carbon\Carbon::parse($number->history[0]->created_at)
-                          ->addMonth()->format("Y-m-d");
+                        Carbon\Carbon::parse($row->created_at)->format("Y-m-d");
                       }}
-                    @endif
-                  </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{
-                      Carbon\Carbon::parse($number->history[0]->created_at)
-                        ->format("Y-m-d");
-                    }}
-                  </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->talktime_quota }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $number->sms_quota }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{ route('number-logs', ['number_id' => $number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
-                  </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{ route('release-number', ['number_id' => $number->id]) }}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Deactivate</a>
-                  </td>
-                </tr>
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->monthly_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->annual_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->per_minute_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->per_sms_charges }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->talktime_quota }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->sms_quota }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <a href="{{ route('number-logs', ['number_id' => $row->number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <a href="{{ route('release-number', ['number_id' => $row->number->id]) }}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Deactivate</a>
+                    </td>
+                  </tr>
+                @endif
               @endforeach
             </tbody>
           </table>
@@ -83,9 +135,9 @@
 </div>
 
 @includeWhen(
-  $numbers->count() > 0,
+  $history->count() > 0,
   'table-pagination-bar',
-  ['rows' => $numbers]
+  ['rows' => $history]
 )
 
 @endsection
