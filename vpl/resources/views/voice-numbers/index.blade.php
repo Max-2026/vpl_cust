@@ -486,9 +486,11 @@
             <div>
               <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-700 flex justify-between">
                 Payment details
+                @if (count($user->payment_methods ?? []) > 0)
                 <svg onclick="hideAddPaymentMethodForm()" class="h-6 w-6 cursor-pointer" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
                 </svg>
+                @endif
               </h2>
               <p class="mt-1 text-sm text-gray-500">Add a new payment and billing option.</p>
             </div>
