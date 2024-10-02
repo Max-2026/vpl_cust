@@ -61,11 +61,20 @@ class VoiceNumbersController extends Controller
     {
         $user = auth()->user();
 
-        $history = NumberHistory::where('user_id', $user->id)
-            ->whereIn('activity', ['release_requested', 'purchased'])
-            ->with(['number'])
-            ->orderBy('created_at', 'desc')
-            ->groupBy('number_id')
+        $history = NumberHistory::select(
+            'number_id',
+            'activity',
+            \DB::raw('MAX(created_at) as latest_activity')
+        )->where('user_id', $user->id)
+            ->whereIn('activity', ['purchased', 'release_requested'])
+            ->with('number')
+            ->groupBy('number_id', 'activity')
+            ->orderByRaw("
+                CASE 
+                    WHEN activity = 'release_requested' THEN 1 
+                    ELSE 2 
+                END, latest_activity DESC
+            ")
             ->paginate();
 
         return view('my-numbers.index', [
