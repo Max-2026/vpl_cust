@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(UserDocument::class);
     }
 
+    public function payment_methods(): HasMany
+    {
+        return $this->hasMany(UserPaymentMethod::class);
+    }
+
     public function numbers_history(): HasMany
     {
         return $this->hasMany(NumberHistory::class);
