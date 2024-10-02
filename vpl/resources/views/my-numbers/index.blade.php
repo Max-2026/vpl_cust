@@ -36,7 +36,7 @@
                 @endforeach
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-white divide-y divide-gray-300">
               @foreach ($history as $row)
 
                 @if ($row->activity == 'release_requested')
