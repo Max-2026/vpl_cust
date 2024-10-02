@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Number;
 use App\Models\NumberHistory;
+use App\Models\UserPaymentMethod;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
 
@@ -32,29 +33,62 @@ class VoiceNumbersController extends Controller
         );
         // $numbers = $vendors->vendor('DIDX')->get_numbers('7');
 
-        $test = (object) [
-            'payment_methods' => [
-                (object) [
-                    'id' => 'adfwqewredt4',
-                    'brand' => 'visa',
-                    'last_digits' => '4242',
-                    'expiry_month' => '12',
-                    'expiry_year' => '2025',
-                    'updated_at' => now(),
-                ],
-            ],
-        ];
-
         return view('voice-numbers.index', [
             'countries' => $countries,
             'numbers' => $numbers,
-            'user' => $test,
+            'user' => auth()->user(),
         ]);
     }
 
     public function handle_purchase(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'phone_number' => 'required',
+            'new_payment_method' => 'nullable|required_without:payment_method_id|json',
+            'payment_method_id' => 'nullable|required_without:new_payment_method',
+        ]);
+        $user = auth()->user();
+        // Store third party numbers in your DB or in cache when user searches and get try them from DB then cache
+        // And create an entry in DB if does not exists otherwise we can't record history
+        $number = Number::where(
+            'number',
+            'like',
+            "%$request->phone_number%"
+        )->first();
+        $card_data = json_decode($request->new_payment_method);
+        dd($number);
+
+        if ($card_data !== null) {
+            $card = new UserPaymentMethod;
+            $card->id = $card_data->id;
+            $card->last_digits = $card_data->last_digits;
+            $card->expiry_month = $card_data->expiry_month;
+            $card->expiry_year = $card_data->expiry_year;
+            $card->card_holder_name = $card_data->card_holder_name;
+            $card->brand = $card_data->brand;
+
+            $user->payment_methods()->save($card);
+
+            // Process payment with payment_method_id
+        } else {
+            // Process payment with payment_method_id
+        }
+
+        $history = new NumberHistory;
+        $history->number_id = $number->id;
+        $history->user_id = $user->id;
+        $history->forwarding_url = null;
+        $history->activity = 'purchased';
+        $history->setup_charges = $number->setup_charges;
+        $history->monthly_charges = $number->monthly_charges;
+        $history->annual_charges = $number->annual_charges;
+        $history->per_mintue_charges = $number->per_mintue_charges;
+        $history->per_sms_charges = $number->per_sms_charges;
+        $history->billing_type = 'prorated';
+
+        $number->history()->save($history);
+
+        // Create invoice
     }
 
     public function my_numbers()

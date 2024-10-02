@@ -83,8 +83,9 @@
 
   async function handlePurchase() {
     const form = document.getElementById('payment-form');
-    let paymentMethod = form.elements['pricing_plan'].value;
+    let paymentMethod = form.elements['pricing_plan']?.value ?? null;
     let cardHolderName = document.querySelector('#cardholder-name');
+    let newPaymentMethod = null;
 
     if (cardHolderName.value) {
       const result = await window.stripe.createPaymentMethod(
@@ -99,12 +100,18 @@
       window.cardCvc.clear();
       cardHolderName.value = '';
 
-      paymentMethod = result.paymentMethod.id ?? paymentMethod;
+      newPaymentMethod.id = result.paymentMethod.id;
+      newPaymentMethod.last_digits = result.paymentMethod.card.last4;
+      newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
+      newPaymentMethod.expiry_year = result.paymentMethod.card.exp_year;
+      newPaymentMethod.brand = result.paymentMethod.card.display_brand;
+      newPaymentMethod.card_holder_name = result.paymentMethod.billing_details.name;
     }
 
     const payload = new FormData();
     payload.append('payment_method_id', paymentMethod);
     payload.append('phone_number', window.phone_number);
+    payload.append('new_payment_method', JSON.stringify(newPaymentMethod));
     purchaseRequest(payload);
   }
 
