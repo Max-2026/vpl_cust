@@ -68,7 +68,7 @@ class VoiceNumbersController extends Controller
         )->where('user_id', $user->id)
             ->whereIn('activity', ['purchased', 'release_requested'])
             ->with('number')
-            ->groupBy('number_id', 'activity')
+            ->groupBy('number_id')
             ->orderByRaw("
                 CASE 
                     WHEN activity = 'release_requested' THEN 1 
