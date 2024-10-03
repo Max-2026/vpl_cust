@@ -100,6 +100,7 @@
       window.cardCvc.clear();
       cardHolderName.value = '';
 
+      newPaymentMethod = {};
       newPaymentMethod.id = result.paymentMethod.id;
       newPaymentMethod.last_digits = result.paymentMethod.card.last4;
       newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
