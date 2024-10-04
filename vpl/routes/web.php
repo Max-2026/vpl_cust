@@ -3,6 +3,7 @@
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VoiceNumbersController;
 use App\Http\Controllers\ProfileController;
@@ -99,6 +100,36 @@ Route::get('/', [HomepageController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'login'])
     ->name('login');
+
+Route::get(
+    '/forgot-password', 
+    [ForgotPasswordController::class, 'index']
+);
+
+Route::post(
+    '/send-otp', 
+    [ForgotPasswordController::class, 'send_otp']
+);
+
+Route::get(
+    '/otp/verify', 
+    [ForgotPasswordController::class, 'view_verify_otp']
+    );
+
+Route::post(
+    '/verify-otp', 
+    [ForgotPasswordController::class, 'verify_otp']
+    );
+
+Route::get(
+    'reset-password/{token}', 
+    [ForgotPasswordController::class, 'show_reset_form']
+    )->name('reset-password');
+
+Route::post(
+    '/update-password',
+    [ForgotPasswordController::class, 'update_password']
+);
 
 Route::post('/login', [LoginController::class, 'login_post'])
     ->name('handle-login');

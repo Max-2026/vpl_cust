@@ -76,4 +76,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(NumberCallLog::class);
     }
+
+    public function otps()
+    {
+        return $this->hasMany(Otp::class);
+    }
 }

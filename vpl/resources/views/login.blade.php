@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="text-sm">
-                  <a href="#" class="font-medium text-cyan-700 hover:text-cyan-500"> Forgot your password? </a>
+                  <a href="{{ url('/forgot-password')}}" class="font-medium text-cyan-700 hover:text-cyan-500"> Forgot your password? </a>
                 </div>
               </div>
 
