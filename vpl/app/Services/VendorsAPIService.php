@@ -91,19 +91,20 @@ class VendorsAPIService
             $data[] = $extracted_field;
         }
 
-        $page = LengthAwarePaginator::resolveCurrentPage();
-        $paginated_data = array_slice(
-            $data,
-            ($page - 1) * $per_page,
-            $per_page
-        );
-        $paginator = new LengthAwarePaginator(
-            $paginated_data,
-            count($data),
-            $per_page,
-            $page
-        );
+        return $data;
+        // $page = LengthAwarePaginator::resolveCurrentPage();
+        // $paginated_data = array_slice(
+        //     $data,
+        //     ($page - 1) * $per_page,
+        //     $per_page
+        // );
+        // $paginator = new LengthAwarePaginator(
+        //     $paginated_data,
+        //     count($data),
+        //     $per_page,
+        //     $page
+        // );
 
-        return $paginator->withPath(request()->fullUrl());
+        // return $paginator->withPath(request()->fullUrl());
     }
 }

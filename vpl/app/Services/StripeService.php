@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Exceptions\StripeApiException;
 use App\Models\User;
-use App\Models\UserCard;
 use Stripe\StripeClient;
 use Throwable;
 
@@ -23,13 +21,9 @@ class StripeService
             return $user->stripe_customer_id;
         }
 
-        try {
-            $result = $this->client->customers->search([
-                'query' => "email:'{$user->email}'",
-            ]);
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        $result = $this->client->customers->search([
+            'query' => "email:'{$user->email}'",
+        ]);
 
         if (count($result->data) > 0) {
             $user->stripe_customer_id = $result->data[0]->id;
@@ -38,53 +32,32 @@ class StripeService
             return $user->stripe_customer_id;
         }
 
-        try {
-            $stripe_customer = $this->client->customers->create([
-                'name' => $user->name,
-                'email' => $user->email,
-            ]);
+        $stripe_customer = $this->client->customers->create([
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
 
-            $user->stripe_customer_id = $stripe_customer->id;
-            $user->save();
+        $user->stripe_customer_id = $stripe_customer->id;
+        $user->save();
 
-            return $stripe_customer->id;
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        return $stripe_customer->id;
     }
 
     public function add_card(
         string $payment_method_id,
         string $stripe_customer_id
     ) {
-        try {
-            $payment_method = $this->client->paymentMethods->attach(
-                $payment_method_id,
-                ['customer' => $stripe_customer_id]
-            );
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        $payment_method = $this->client->paymentMethods->attach(
+            $payment_method_id,
+            ['customer' => $stripe_customer_id]
+        );
 
-        $user = User::where('stripe_customer_id', $stripe_customer_id)->first();
-        $card = new UserCard();
-        $card->stripe_payment_id = $payment_method->id;
-        $card->brand = $payment_method->card->brand;
-        $card->expiry_month = $payment_method->card->exp_month;
-        $card->expiry_year = $payment_method->card->exp_year;
-        $card->last_digits = $payment_method->card->last4;
-        $user->cards()->save($card);
-
-        return $card;
+        return true;
     }
 
     public function detach_card(string $payment_method_id)
     {
-        try {
-            $this->client->paymentMethods->detach($payment_method_id);
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        $this->client->paymentMethods->detach($payment_method_id);
     }
 
     public function charge_card(
@@ -92,34 +65,22 @@ class StripeService
         string $stripe_customer_id,
         float $amount
     ) {
-        try {
-            $payment = $this->client->paymentIntents->create([
-                'amount' => $amount * 100,
-                'currency' => 'usd',
-                'customer' => $stripe_customer_id,
-                'payment_method' => $payment_method_id,
-                'confirm' => true,
-                'automatic_payment_methods' => [
-                    'enabled' => true,
-                    'allow_redirects' => 'never',
-                ],
-                // 'shipping' => []
-            ]);
+        $payment = $this->client->paymentIntents->create([
+            'amount' => $amount * 100,
+            'currency' => 'usd',
+            'customer' => $stripe_customer_id,
+            'payment_method' => $payment_method_id,
+            'off_session' => true,
+            'confirm' => true,
+        ]);
 
-            return $payment;
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        return $payment;
     }
 
     public function refund_charge(string $charge_id)
     {
-        try {
-            $charge = $this->client->refunds->create(['charge' => $charge_id]);
+        $charge = $this->client->refunds->create(['charge' => $charge_id]);
 
-            return $charge->id;
-        } catch (Throwable $e) {
-            throw new StripeApiException();
-        }
+        return $charge->id;
     }
 }

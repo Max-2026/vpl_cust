@@ -7,13 +7,30 @@ use App\Models\Number;
 use App\Models\NumberHistory;
 use App\Models\UserPaymentMethod;
 use App\Services\VendorsAPIService;
+use App\Services\StripeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class VoiceNumbersController extends Controller
 {
     public function index(Request $request, VendorsAPIService $vendors)
     {
-        $countries = Country::all();
+        $countries = Cache::remember(
+            'all_countries',
+            now()->addDay(),
+            function () {
+                return Country::all();
+            }
+        );
+        $searched_country = Cache::remember(
+            'search_country_'.$request->country,
+            now()->addDay(),
+            function () use ($request) {
+                return Country::where('code_a2', $request->country)->first();
+            }
+        );
+        Cache::put('searched_country', $searched_country->toArray());
 
         if ($request->billing_type) {
         }
@@ -27,20 +44,57 @@ class VoiceNumbersController extends Controller
         if ($request->toll_free) {
         }
 
-        $numbers = $vendors->vendor('DIDX')->get_numbers(
-            $request->country,
+        $db_numbers = Number::select(
+            'number',
+            'per_mintue_charges',
+            'monthly_charges',
+            'setup_charges',
+            'country_id'
+        )
+        ->with(['country' => function ($query) use ($request) {
+            $query->where('code_a2', $request->country);
+        }])
+        ->when($request->prefix, function ($query, $prefix) {
+            $query->where('prefix', 'like', "%$prefix%");
+        })
+        ->get()
+        ->toArray();
+
+        $vendor_numbers = collect($vendors->vendor('DIDX')->get_numbers(
+            $searched_country->dialing_code,
             $request->prefix
+        ));
+
+        $merged_numbers = $vendor_numbers->merge($db_numbers)->toArray();
+        Cache::put('searched_data', $merged_numbers);
+
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $per_page = 10;
+        $paginated_data = array_slice(
+            $merged_numbers,
+            ($page - 1) * $per_page,
+            $per_page
         );
-        // $numbers = $vendors->vendor('DIDX')->get_numbers('7');
+        $paginator = new LengthAwarePaginator(
+            $paginated_data,
+            count($merged_numbers),
+            $per_page,
+            $page
+        );
+        $numbers = $paginator->withPath(request()->fullUrl());
 
         return view('voice-numbers.index', [
             'countries' => $countries,
             'numbers' => $numbers,
             'user' => auth()->user(),
+            'searched_country' => $searched_country,
         ]);
     }
 
-    public function handle_purchase(Request $request)
+    public function handle_purchase(
+        Request $request,
+        StripeService $stripe_service
+    )
     {
         $request->validate([
             'phone_number' => 'required',
@@ -48,15 +102,38 @@ class VoiceNumbersController extends Controller
             'payment_method_id' => 'nullable|required_without:new_payment_method',
         ]);
         $user = auth()->user();
-        // Store third party numbers in your DB or in cache when user searches and get try them from DB then cache
-        // And create an entry in DB if does not exists otherwise we can't record history
-        $number = Number::where(
-            'number',
-            'like',
-            "%$request->phone_number%"
-        )->first();
         $card_data = json_decode($request->new_payment_method);
-        dd($number);
+        $searched_country = Cache::get('searched_country');
+        $number = Number::where('number', $request->phone_number)->first();
+        $stripe_service->create_customer($user);
+
+        if (!$number) {
+            $searched_data = Cache::get('searched_data');
+
+            $number = array_filter(
+                $searched_data,
+                function ($row) use ($request) {
+                    return $row['number'] == $request->phone_number;
+                }
+            )[0];
+            $number['number'] = preg_replace(
+                '/^(?!\+)(.*)/',
+                '+$1',
+                $number['number']
+            );
+
+            $number = Number::updateOrCreate(
+                ['number' => $number['number']],
+                [
+                    'country_id' => $searched_country['id'],
+                    'setup_charges' => $number['setup_charges'],
+                    'monthly_charges' => $number['monthly_charges'],
+                    'per_minute_charges' => $number['per_minute_charges'],
+                    'talktime_quota' => 10,
+                    'sms_quota' => 10,
+                ]
+            );
+        }
 
         if ($card_data !== null) {
             $card = new UserPaymentMethod;
@@ -69,9 +146,25 @@ class VoiceNumbersController extends Controller
 
             $user->payment_methods()->save($card);
 
-            // Process payment with payment_method_id
+            $stripe_service->add_card(
+                $card->id,
+                $user->stripe_customer_id
+            );
+
+            $payment_intent = $stripe_service->charge_card(
+                $card->id,
+                $user->stripe_customer_id,
+                $number->setup_charges + $number->monthly_charges
+            );
+
+            dd($payment_intent);
         } else {
-            // Process payment with payment_method_id
+            $payment_intent = $stripe_service->charge_card(
+                $request->payment_method_id,
+                $user->stripe_customer_id,
+                $number->setup_charges + $number->monthly_charges
+            );
+            dd($payment_intent);
         }
 
         $history = new NumberHistory;
@@ -87,6 +180,8 @@ class VoiceNumbersController extends Controller
         $history->billing_type = 'prorated';
 
         $number->history()->save($history);
+        $number->current_user_id = $user->id;
+        $number->save();
 
         // Create invoice
     }

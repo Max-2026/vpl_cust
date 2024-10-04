@@ -87,6 +87,23 @@
     let cardHolderName = document.querySelector('#cardholder-name');
     let newPaymentMethod = null;
 
+     // Validate card fields
+    const cardNumberError = window.cardNumber._complete;
+    const cardExpiryError = window.cardExpiry._complete;
+    const cardCvcError = window.cardCvc._complete;
+
+    // Check if the fields are complete
+    if (!cardNumberError || !cardExpiryError || !cardCvcError) {
+      alert("Please complete all required fields");
+      return;
+    }
+
+    // Check if the cardholder name is filled
+    if (!cardHolderName.value) {
+      alert("Cardholder name is required");
+      return;
+    }
+
     if (cardHolderName.value) {
       const result = await window.stripe.createPaymentMethod(
         'card',
@@ -149,7 +166,7 @@
     const modal = document.getElementById('confirm-modal');
 
     const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
-    placeholders[0].innerText = country;
+    placeholders[0].innerText = country.toUpperCase();
     placeholders[1].innerText = number;
     placeholders[2].innerText = `${pricing} / Month`;
     placeholders[3].innerText = setupCharges;
@@ -191,10 +208,10 @@
         <div class="mt-1">
           <select onchange="changePrefixValue(this)" id="country" name="country" autocomplete="country-name" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
             @foreach ($countries as $country)
-            @if (request()->input('country') == $country->dialing_code)
-            <option selected value="{{ $country->dialing_code }}" data-dial="+{{ $country->dialing_code }}">
+            @if (request()->input('country') == $country->code_a2)
+            <option selected value="{{ $country->code_a2 }}" data-dial="+{{ $country->dialing_code }}">
               @else
-            <option value="{{ $country->dialing_code }}" data-dial="+{{ $country->dialing_code }}">
+            <option value="{{ $country->code_a2 }}" data-dial="+{{ $country->dialing_code }}">
               @endif
               {{ ucfirst($country->name) }} (+{{ $country->dialing_code }})
             </option>
@@ -296,9 +313,7 @@
                 <input onchange="selectAllRows(event)" type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </th> -->
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Number</th>
-              <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Country</th> -->
-              <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">City</th> -->
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Type</th>
+              <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Type</th> -->
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Capabilities</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Rate ($ / minute)</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Monthly Price (fixed)</th>
@@ -308,33 +323,27 @@
           </thead>
           <tbody onclick="handleRowClick(event)">
             @foreach ($numbers as $number)
-            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}" data-country="{{ $number['country'] }}">
+            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}" data-country="{{ $searched_country['name'] }}">
               <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </td> -->
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{ $number['number'] }}
+                {{ preg_replace('/^(?!\+)(.*)/', '+$1', $number['number']); }}
               </td>
               <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ $number['country'] }}
-              </td> -->
-              <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ $number['city'] }}
-              </td> -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 Local
-              </td>
+              </td> -->
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 Voice, SMS
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ${{ $number['per_minute_charges'] }}
+                ${{ $number['per_minute_charges'] ?? '0' }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ${{ $number['monthly_charges'] }}
+                ${{ $number['monthly_charges'] ?? '0' }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ${{ $number['setup_charges'] }}
+                ${{ $number['setup_charges'] ?? '0' }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">Buy</button>
