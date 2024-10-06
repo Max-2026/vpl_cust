@@ -27,7 +27,10 @@ class VoiceNumbersController extends Controller
             'search_country_'.$request->country,
             now()->addDay(),
             function () use ($request) {
-                return Country::where('code_a2', $request->country)->first();
+                return Country::where(
+                    'code_a2',
+                    $request->country ?? 'US'
+                )->first();
             }
         );
         Cache::put('searched_country', $searched_country->toArray());
