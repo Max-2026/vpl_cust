@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Number;
 use App\Models\NumberHistory;
 use App\Models\UserPaymentMethod;
+use App\Models\Invoice;
 use App\Services\VendorsAPIService;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
@@ -125,6 +126,8 @@ class VoiceNumbersController extends Controller
                 $number['number']
             );
 
+            // Call vendor API to purchase the number
+
             $number = Number::updateOrCreate(
                 ['number' => $number['number']],
                 [
@@ -137,6 +140,7 @@ class VoiceNumbersController extends Controller
                 ]
             );
         }
+        $payment_intent = null;
 
         if ($card_data !== null) {
             $card = new UserPaymentMethod;
@@ -159,16 +163,21 @@ class VoiceNumbersController extends Controller
                 $user->stripe_customer_id,
                 $number->setup_charges + $number->monthly_charges
             );
-
-            dd($payment_intent);
         } else {
             $payment_intent = $stripe_service->charge_card(
                 $request->payment_method_id,
                 $user->stripe_customer_id,
                 $number->setup_charges + $number->monthly_charges
             );
-            dd($payment_intent);
         }
+
+        $invoice = new Invoice;
+        $invoice->number_id = $number->id;
+        $invoice->summary = "Number Purchased\nSetup charges: {$number->setup_charges}\nMonthly charges: {$number->monthly_charges}";
+        $invoice->amount = $number->setup_charges + $number->monthly_charges;
+        $invoice->payment_reference_id = $payment_intent->id;
+
+        $user->invoices()->save($invoice);
 
         $history = new NumberHistory;
         $history->number_id = $number->id;
@@ -185,8 +194,6 @@ class VoiceNumbersController extends Controller
         $number->history()->save($history);
         $number->current_user_id = $user->id;
         $number->save();
-
-        // Create invoice
     }
 
     public function my_numbers()

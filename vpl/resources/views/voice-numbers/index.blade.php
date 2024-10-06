@@ -93,13 +93,16 @@
     const cardCvcError = window.cardCvc._complete;
 
     // Check if the fields are complete
-    if (!cardNumberError || !cardExpiryError || !cardCvcError) {
+    if (
+      paymentMethod === null
+      && (!cardNumberError || !cardExpiryError || !cardCvcError)
+    ) {
       alert("Please complete all required fields");
       return;
     }
 
     // Check if the cardholder name is filled
-    if (!cardHolderName.value) {
+    if (paymentMethod === null && !cardHolderName.value) {
       alert("Cardholder name is required");
       return;
     }
@@ -208,7 +211,7 @@
         <div class="mt-1">
           <select onchange="changePrefixValue(this)" id="country" name="country" autocomplete="country-name" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
             @foreach ($countries as $country)
-            @if (request()->input('country') == $country->code_a2)
+            @if ($searched_country->code_a2 == $country->code_a2)
             <option selected value="{{ $country->code_a2 }}" data-dial="+{{ $country->dialing_code }}">
               @else
             <option value="{{ $country->code_a2 }}" data-dial="+{{ $country->dialing_code }}">
@@ -323,7 +326,7 @@
           </thead>
           <tbody onclick="handleRowClick(event)">
             @foreach ($numbers as $number)
-            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}" data-country="{{ $searched_country['name'] }}">
+            <tr class="even:bg-white odd:bg-gray-50" data-number="{{ $number['number'] }}" data-country="{{ $searched_country->name }}">
               <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 <input type="checkbox" class="focus:ring-cyan-600 h-4 w-4 text-cyan-700 border-gray-300 rounded">
               </td> -->
