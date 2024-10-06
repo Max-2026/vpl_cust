@@ -43,7 +43,7 @@
                   <tr class="bg-gray-200" title="This number will be released">
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->country->name }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       @if ($row->number->is_active)
                         <span>Active</span>
@@ -86,7 +86,7 @@
                   <tr>
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->country->name }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       @if ($row->number->is_active)
                         <span>Active</span>
