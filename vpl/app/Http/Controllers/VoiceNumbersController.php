@@ -34,7 +34,7 @@ class VoiceNumbersController extends Controller
                 )->first();
             }
         );
-        Cache::put('searched_country', $searched_country->toArray());
+        session(['searched_country' => $searched_country->toArray()]);
 
         if ($request->billing_type) {
         }
@@ -70,7 +70,7 @@ class VoiceNumbersController extends Controller
         ));
 
         $merged_numbers = $vendor_numbers->merge($db_numbers)->toArray();
-        Cache::put('searched_data', $merged_numbers);
+        session(['searched_data' => $merged_numbers]);
 
         $page = LengthAwarePaginator::resolveCurrentPage();
         $per_page = 10;
@@ -107,12 +107,12 @@ class VoiceNumbersController extends Controller
         ]);
         $user = auth()->user();
         $card_data = json_decode($request->new_payment_method);
-        $searched_country = Cache::get('searched_country');
+        $searched_country = session('searched_country');
         $number = Number::where('number', $request->phone_number)->first();
         $stripe_service->create_customer($user);
 
         if (!$number) {
-            $searched_data = Cache::get('searched_data');
+            $searched_data = session('searched_data');
 
             $number = array_filter(
                 $searched_data,
