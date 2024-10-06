@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use Stripe\StripeClient;
-use Throwable;
+use Stripe\Exception\CardException;
+use Exception;
 
 class StripeService
 {
@@ -65,14 +66,29 @@ class StripeService
         string $stripe_customer_id,
         float $amount
     ) {
-        $payment = $this->client->paymentIntents->create([
-            'amount' => $amount * 100,
-            'currency' => 'usd',
-            'customer' => $stripe_customer_id,
-            'payment_method' => $payment_method_id,
-            'off_session' => true,
-            'confirm' => true,
-        ]);
+        try {
+            $payment = $this->client->paymentIntents->create([
+                'amount' => $amount * 100,
+                'currency' => 'usd',
+                'customer' => $stripe_customer_id,
+                'payment_method' => $payment_method_id,
+                'off_session' => true,
+                'confirm' => true,
+            ]);
+        } catch (CardException $e) {
+            $error = $e->getError();
+
+            return response()->json(['error' => [
+                'message' => 'Transaction failed',
+                'type' => $error->code
+            ]], 500);
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return response()->json(['error' => [
+                'message' => 'Transaction failed',
+                'type' => $error
+            ]], 500);
+        }
 
         return $payment;
     }
