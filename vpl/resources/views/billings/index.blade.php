@@ -143,7 +143,7 @@ $(document).ready(function() {
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                @foreach(['Invoice', 'Date', 'Description', 'Debit','Credit', 'Running Balance', 'Paid']
+                                @foreach(['Invoice', 'Date', 'Description', 'Debit', 'Paid']
                                 as $header)
                                 <th scope="col"
                                     class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
@@ -161,32 +161,29 @@ $(document).ready(function() {
                              $total_amount += $invoices->amount; 
                             ?>
                             <tr>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="px-5 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
                                     {{ $invoices->id }}</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $invoices->created_at->format('d-m-Y') }}</td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{{ $invoices->summary }}
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">${{ $invoices->amount ?? 0}}.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">$0.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    ${{ $user->balance ?? 0}}.00</td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500">Paid</td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                            <!-- <tr style="border-bottom: 1px solid #e5e7eb;">
                                 <td colspan="3" class="px-5 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500"><b>${{$total_amount }}.00</b></td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500"><b>$0.00</b></td>
-                            </tr>
+                            </tr> -->
                             <tr style="border-bottom: 1px solid #e5e7eb;">
                                 <td colspan="3" class="px-5 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
                                     <b>Overall Total</b></td>
                                 <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500"><b>${{$total_amount }}.00</b></td>
-                                <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500"><b>$0.00</b></td>
+                                <!-- <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-500"><b>$0.00</b></td> -->
                             </tr>
                             <!-- <tr style="border-bottom: 1px solid #e5e7eb;">
                                 <td colspan="5" class="px-7 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-right"><b>Balance: $50</b></td>
