@@ -55,9 +55,10 @@ class VoiceNumbersController extends Controller
             'setup_charges',
             'country_id'
         )
-        ->with(['country' => function ($query) use ($request) {
-            $query->where('code_a2', $request->country);
-        }])
+        ->whereNull('current_user_id')
+        ->withWhereHas('country', function ($query) use ($searched_country) {
+            $query->where('code_a2', $searched_country->code_a2);
+        })
         ->when($request->prefix, function ($query, $prefix) {
             $query->where('prefix', 'like', "%$prefix%");
         })
