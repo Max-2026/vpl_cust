@@ -115,12 +115,18 @@ class VoiceNumbersController extends Controller
         if (!$number) {
             $searched_data = session('searched_data');
 
-            $number = array_filter(
+            $number = current(array_filter(
                 $searched_data,
                 function ($row) use ($request) {
+                    $row['number'] = preg_replace(
+                        '/^(?!\+)(.*)/',
+                        '+$1',
+                        $row['number']
+                    );
+
                     return $row['number'] == $request->phone_number;
                 }
-            )[0];
+            ));
             $number['number'] = preg_replace(
                 '/^(?!\+)(.*)/',
                 '+$1',
