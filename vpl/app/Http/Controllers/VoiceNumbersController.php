@@ -210,6 +210,7 @@ class VoiceNumbersController extends Controller
         $history = NumberHistory::select(
             'number_id',
             'activity',
+            'forwarding_url',
             \DB::raw('MAX(created_at) as latest_activity')
         )->where('user_id', $user->id)
             ->whereIn('activity', ['purchased', 'release_requested'])

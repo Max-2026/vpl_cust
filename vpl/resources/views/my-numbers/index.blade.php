@@ -42,7 +42,15 @@
                 @if ($row->activity == 'release_requested')
                   <tr class="bg-gray-200" title="This number will be released">
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
+
+                    @if ($row->forwarding_url)
+                      <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
+                    @else
+                      <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
+                        <a class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500">Configure</a>
+                      </td>
+                    @endif
+
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       @if ($row->number->is_active)
@@ -85,7 +93,14 @@
                 @else
                   <tr>
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->forwarding_url ?? '' }}</td>
+
+                    @if ($row->forwarding_url)
+                      <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
+                    @else
+                      <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
+                        <a class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500">Configure</a>
+                      </td>
+                    @endif
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       @if ($row->number->is_active)
