@@ -4,7 +4,7 @@
 @section('scripts')
 <script defer src="https://js.stripe.com/v3/"></script>
 
-<script type="text/javascript">
+<script defer type="text/javascript">
 
   document.addEventListener('DOMContentLoaded', function() {
     const stripe = Stripe("{{ config('services.stripe.public_key') }}");
@@ -136,21 +136,30 @@
       btn.classList.add('hidden');
       spinner.classList.remove('hidden');
 
-      await purchaseRequest(payload);
+      const res = await purchaseRequest(payload);
 
-      window.cardNumber.clear();
-      window.cardExpiry.clear();
-      window.cardCvc.clear();
-      cardHolderName.value = '';
+      if (res.status === 200) {
+        window.cardNumber.clear();
+        window.cardExpiry.clear();
+        window.cardCvc.clear();
+        cardHolderName.value = '';
 
-      btn.classList.remove('hidden');
-      spinner.classList.add('hidden');
-      hideConfirmModal();
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideConfirmModal();
+
+        showToast('Purchase successful!', 'success');
+      } else {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Purchase failed!', 'error');
+      }
     } catch (error) {
       btn.classList.remove('hidden');
       spinner.classList.add('hidden');
 
-      console.log(error);
+      showToast('Purchase failed!', 'error');
     }
   }
 
@@ -212,6 +221,34 @@
     setTimeout(() => {
       modalWrapper.classList.add('hidden');
     }, 200);
+  }
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    toastMessage.textContent = message;
+
+    toast.className = `fixed hidden scale-0 transition bottom-6 right-6 py-4 px-8 rounded shadow-md text-white font-semibold z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+
+
+    setTimeout(() => {
+      toast.classList.remove('hidden');
+
+      setTimeout(() => {
+        toast.classList.remove('scale-0');
+        toast.classList.add('scale-100');
+      }, 10);
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('scale-100');
+      toast.classList.add('scale-0');
+
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 250);
+    }, 3000);
   }
 
 </script>
@@ -590,6 +627,10 @@
 
     </div>
   </div>
+</div>
+
+<div id="toast" class="hidden">
+  <span id="toast-message">Success message</span>
 </div>
 
 @includeWhen(
