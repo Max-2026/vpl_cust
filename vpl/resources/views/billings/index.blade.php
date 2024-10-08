@@ -35,7 +35,7 @@
         <button onclick="showBalanceModal()" type="button" class="ml-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">
           Add Balance
         </button>
-        <button onclick="showConfirmModal()" type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">
+        <button onclick="showPaymentMethodsModal()" type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">
           View / Edit Payment Methods
         </button>
       </div>
@@ -101,9 +101,9 @@
   </div>
 </div>
 
-<div id="confirm-modal-wrapper" onclick="handleConfirmModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-  <div id="confirm-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in bg-opacity-0" aria-hidden="true"></div>
-  <div id="confirm-modal" class="absolute my-8 bg-white transition ease-in rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl scale-0">
+<div id="payment-methods-modal-wrapper" onclick="handlePaymentMethodsModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div id="payment-methods-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in bg-opacity-0" aria-hidden="true"></div>
+  <div id="payment-methods-modal" class="absolute my-8 bg-white transition ease-in rounded-md p-4 z-10 w-11/12 max-w-lg sm:max-w-2xl lg:max-w-3xl scale-0">
     <h2 id="payment-details-heading" class="w-full px-3 text-2xl my-2 leading-6 font-medium text-gray-900">Your Payment Methods</h2>
     <div class="w-full mt-2 px-2">
       <div class="flex justify-end items-center">
@@ -114,7 +114,7 @@
         </button>
         @endif
       </div>
-      <form id="payment-form" class="my-5 border rounded-md sm:overflow-y-auto sm:max-h-56 2xl:max-h-80 flex flex-col gap-y-4">
+      <div class="my-5 border rounded-md sm:overflow-y-auto sm:max-h-56 2xl:max-h-80 flex flex-col gap-y-4">
         @csrf
         <fieldset id="cards-list">
           <legend class="sr-only">Payment methods</legend>
@@ -207,25 +207,18 @@
               <div class="col-span-4 sm:col-span-2">
                 <label for="cardholder-name" class="block text-sm font-medium text-gray-700">Cardholder name</label>
                 <!-- <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 text-gray-500 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-none sm:text-sm">
+                <input type="text" name="cardholder_name" id="pm-modal-cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 text-gray-500 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-none sm:text-sm">
               </div>
               <div class="col-span-4 sm:col-span-2 flex items-end sm:justify-end">
-                <button class="py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">Add</button>
+                <button id="pm-modal-btn" onclick="handleAddPaymentMethod()" class="py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">Add</button>
+                <button id="pm-modal-spinner" class="hidden py-1.5 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0"><svg class="text-white w-6 h-6 animate-spin" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
+                </svg></button>
               </div>
             </div>
           </div>
         </div>
-      </form>
-      <!-- <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col gap-y-6 sm:flex-row items-stretch sm:items-center gap-x-4 sm:px-6">
-        <button id="purchase-modal-btn" onclick="handlePurchase()" class="bg-gray-800 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
-          Purchase
-        </button>
-        <button id="purchase-modal-spinner" class="hidden rounded-md shadow-sm py-2 px-8 bg-gray-900 flex items-center justify-center">
-          <svg class="text-white w-6 h-6 animate-spin" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
-          </svg>
-        </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
@@ -400,14 +393,14 @@
     window.cardCvc = cardCvc;
   });
 
-  function handleConfirmModalBlur(event) {
-    const modal = document.getElementById('confirm-modal');
+  function handlePaymentMethodsModalBlur(event) {
+    const modal = document.getElementById('payment-methods-modal');
     const isModalClicked = Boolean(event.composedPath().filter(
-      (elem) => elem.id == 'confirm-modal'
+      (elem) => elem.id == 'payment-methods-modal'
     ).length);
 
     if (!isModalClicked && !modal.classList.contains('scale-0')) {
-      hideConfirmModal();
+      hidePaymentMethodsModal();
     }
   }
 
@@ -446,10 +439,10 @@
     }, 200);
   }
 
-  function showConfirmModal() {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
+  function showPaymentMethodsModal() {
+    const modalWrapper = document.getElementById('payment-methods-modal-wrapper');
+    const modalOverlay = document.getElementById('payment-methods-modal-overlay');
+    const modal = document.getElementById('payment-methods-modal');
 
     modalWrapper.classList.remove('hidden');
     setTimeout(() => {
@@ -458,10 +451,10 @@
     }, 100);
   }
 
-  function hideConfirmModal() {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
+  function hidePaymentMethodsModal() {
+    const modalWrapper = document.getElementById('payment-methods-modal-wrapper');
+    const modalOverlay = document.getElementById('payment-methods-modal-overlay');
+    const modal = document.getElementById('payment-methods-modal');
 
     modal.classList.add('scale-0');
     modalOverlay.classList.add('bg-opacity-0');
@@ -472,7 +465,6 @@
 
   function showAddPaymentMethodForm(elem) {
     elem.classList.add('hidden');
-    // document.getElementById('cards-list').classList.add('hidden');
     document.getElementById('add-paymet-method-form')
       .classList.remove('hidden');
   }
@@ -480,10 +472,173 @@
   function hideAddPaymentMethodForm() {
     const btn = document.getElementById('add-paymet-method-btn');
     btn.classList.remove('hidden');
-    // document.getElementById('cards-list').classList.remove('hidden');
     document.getElementById('add-paymet-method-form')
       .classList.add('hidden');
   }
+
+  async function handlePurchase() {
+    const form = document.getElementById('payment-form');
+    let paymentMethod = form.elements['pricing_plan']?.value ?? null;
+    let cardHolderName = document.querySelector('#cardholder-name');
+    let newPaymentMethod = null;
+
+     // Validate card fields
+    const cardNumberError = window.cardNumber._complete;
+    const cardExpiryError = window.cardExpiry._complete;
+    const cardCvcError = window.cardCvc._complete;
+
+    // Check if the fields are complete
+    if (
+      paymentMethod === null
+      && (!cardNumberError || !cardExpiryError || !cardCvcError)
+    ) {
+      alert("Please complete all required fields");
+      return;
+    }
+
+    // Check if the cardholder name is filled
+    if (paymentMethod === null && !cardHolderName.value) {
+      alert("Cardholder name is required");
+      return;
+    }
+
+    if (cardHolderName.value) {
+      const result = await window.stripe.createPaymentMethod(
+        'card',
+        window.cardNumber,
+        {
+          billing_details: { name: cardHolderName.value }
+        }
+      );
+
+      newPaymentMethod = {};
+      newPaymentMethod.id = result.paymentMethod.id;
+      newPaymentMethod.last_digits = result.paymentMethod.card.last4;
+      newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
+      newPaymentMethod.expiry_year = result.paymentMethod.card.exp_year;
+      newPaymentMethod.brand = result.paymentMethod.card.display_brand;
+      newPaymentMethod.card_holder_name = result.paymentMethod.billing_details.name;
+    }
+
+    const payload = new FormData();
+    payload.append('payment_method_id', paymentMethod);
+    payload.append('phone_number', window.phone_number);
+    payload.append('new_payment_method', JSON.stringify(newPaymentMethod));
+
+    try {
+      const btn = document.getElementById('purchase-modal-btn');
+      const spinner = document.getElementById('purchase-modal-spinner');
+      btn.classList.add('hidden');
+      spinner.classList.remove('hidden');
+
+      const res = await balanceRequest(payload);
+
+      if (res.status === 200) {
+        window.cardNumber.clear();
+        window.cardExpiry.clear();
+        window.cardCvc.clear();
+        cardHolderName.value = '';
+
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideConfirmModal();
+
+        showToast('Purchase successful!', 'success');
+      } else {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Purchase failed!', 'error');
+      }
+    } catch (error) {
+      btn.classList.remove('hidden');
+      spinner.classList.add('hidden');
+
+      showToast('Purchase failed!', 'error');
+    }
+  }
+
+  async function balanceRequest() {
+    console.log("Balance API Called");
+  }
+
+  async function handleAddPaymentMethod() {
+    let cardHolderName = document.getElementById('pm-modal-cardholder-name');
+    let newPaymentMethod = null;
+
+     // Validate card fields
+    const cardNumberError = window.cardNumber._complete;
+    const cardExpiryError = window.cardExpiry._complete;
+    const cardCvcError = window.cardCvc._complete;
+
+    // Check if the fields are complete
+    if (!cardNumberError || !cardExpiryError || !cardCvcError) {
+      alert("Please complete all required fields");
+      return;
+    }
+
+    // Check if the cardholder name is filled
+    if (!cardHolderName.value) {
+      alert("Cardholder name is required");
+      return;
+    }
+
+    try {
+      const btn = document.getElementById('pm-modal-btn');
+      const spinner = document.getElementById('pm-modal-spinner');
+      btn.classList.add('hidden');
+      spinner.classList.remove('hidden');
+
+      if (cardHolderName.value) {
+        const result = await window.stripe.createPaymentMethod(
+          'card',
+          window.cardNumber,
+          {
+            billing_details: { name: cardHolderName.value }
+          }
+        );
+
+        newPaymentMethod = {};
+        newPaymentMethod.id = result.paymentMethod.id;
+        newPaymentMethod.last_digits = result.paymentMethod.card.last4;
+        newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
+        newPaymentMethod.expiry_year = result.paymentMethod.card.exp_year;
+        newPaymentMethod.brand = result.paymentMethod.card.display_brand;
+        newPaymentMethod.card_holder_name = result.paymentMethod.billing_details.name;
+      }
+
+      const payload = new FormData();
+      payload.append('new_payment_method', JSON.stringify(newPaymentMethod));
+
+      const res = await addPaymentMethodReqeust(payload);
+
+      if (res.status === 200) {
+        window.cardNumber.clear();
+        window.cardExpiry.clear();
+        window.cardCvc.clear();
+        cardHolderName.value = '';
+
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideConfirmModal();
+
+        showToast('Payment method successfully added!', 'success');
+      } else {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Failed to add payment method!', 'error');
+      }
+    } catch (error) {
+      btn.classList.remove('hidden');
+      spinner.classList.add('hidden');
+
+      showToast('Failed to add payment method!', 'error');
+    }
+  }
+
+  async function addPaymentMethodReqeust()
+  {}
 
 </script>
 
