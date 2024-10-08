@@ -180,7 +180,7 @@ class VoiceNumbersController extends Controller
 
         $invoice = new Invoice;
         $invoice->number_id = $number->id;
-        $invoice->summary = "Number Purchased\nSetup charges: {$number->setup_charges}\nMonthly charges: {$number->monthly_charges}";
+        $invoice->summary = "Number Purchased\nSetup charges: $" . number_format($number->setup_charges, 2) . "\nMonthly charges: $" . number_format($number->monthly_charges, 2);
         $invoice->amount = $number->setup_charges + $number->monthly_charges;
         $invoice->payment_reference_id = $payment_intent->id;
 
