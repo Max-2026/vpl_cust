@@ -1,259 +1,6 @@
 @extends('master-layout')
 @section('title', 'Purchase Numbers')
 
-@section('scripts')
-<script defer src="https://js.stripe.com/v3/"></script>
-
-<script defer type="text/javascript">
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const stripe = Stripe("{{ config('services.stripe.public_key') }}");
-    window.stripe = stripe;
-    const elements = stripe.elements();
-
-    const cardNumber = elements.create('cardNumber');
-    cardNumber.mount('#card-number-element');
-    window.cardNumber = cardNumber;
-
-    const cardExpiry = elements.create('cardExpiry');
-    cardExpiry.mount('#card-expiration-element');
-    window.cardExpiry = cardExpiry;
-
-    const cardCvc = elements.create('cardCvc');
-    cardCvc.mount('#card-cvc-element');
-    window.cardCvc = cardCvc;
-  });
-
-  // Set data on initial load
-  window.onload = changePrefixValue(document.getElementById('country'));
-
-  function changePrefixValue(field) {
-    document.getElementById('country-prefix')
-      .innerText = field.options[field.selectedIndex].dataset.dial;
-  }
-
-  function handleRowClick(event) {
-    const row = event.target.closest('tr');
-
-    if (event.target.tagName == 'BUTTON') {
-      handlePurchaseModal(row);
-    }
-
-    if (event.target.tagName == 'INPUT') return;
-
-    const checkbox = row.querySelector('[type=checkbox]');
-    const number = row.dataset.number;
-    checkbox.checked = !checkbox.checked;
-  }
-
-  function selectAllRows(event) {
-    const checkBoxes = event.currentTarget.closest('table')
-      .querySelectorAll('tbody input');
-
-    Array.from(checkBoxes).forEach(checkbox => {
-      checkbox.checked = event.currentTarget.checked;
-    });
-  }
-
-  function handlePurchaseModal(row) {
-    const fields = row.querySelectorAll('td');
-    const country = row.dataset.country;
-    window.phone_number = fields[0].innerText;
-    showConfirmModal(
-      country,
-      fields[0].innerText,
-      fields[3].innerText,
-      fields[4].innerText,
-      'local',
-      fields[1].innerText,
-    );
-  }
-
-  function showAddPaymentMethodForm() {
-    document.getElementById('cards-list').classList.add('hidden');
-    document.getElementById('add-paymet-method-form')
-      .classList.remove('hidden');
-  }
-
-  function hideAddPaymentMethodForm() {
-    document.getElementById('cards-list').classList.remove('hidden');
-    document.getElementById('add-paymet-method-form')
-      .classList.add('hidden');
-  }
-
-  async function handlePurchase() {
-    const form = document.getElementById('payment-form');
-    let paymentMethod = form.elements['pricing_plan']?.value ?? null;
-    let cardHolderName = document.querySelector('#cardholder-name');
-    let newPaymentMethod = null;
-
-     // Validate card fields
-    const cardNumberError = window.cardNumber._complete;
-    const cardExpiryError = window.cardExpiry._complete;
-    const cardCvcError = window.cardCvc._complete;
-
-    // Check if the fields are complete
-    if (
-      paymentMethod === null
-      && (!cardNumberError || !cardExpiryError || !cardCvcError)
-    ) {
-      alert("Please complete all required fields");
-      return;
-    }
-
-    // Check if the cardholder name is filled
-    if (paymentMethod === null && !cardHolderName.value) {
-      alert("Cardholder name is required");
-      return;
-    }
-
-    if (cardHolderName.value) {
-      const result = await window.stripe.createPaymentMethod(
-        'card',
-        window.cardNumber,
-        {
-          billing_details: { name: cardHolderName.value }
-        }
-      );
-
-      newPaymentMethod = {};
-      newPaymentMethod.id = result.paymentMethod.id;
-      newPaymentMethod.last_digits = result.paymentMethod.card.last4;
-      newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
-      newPaymentMethod.expiry_year = result.paymentMethod.card.exp_year;
-      newPaymentMethod.brand = result.paymentMethod.card.display_brand;
-      newPaymentMethod.card_holder_name = result.paymentMethod.billing_details.name;
-    }
-
-    const payload = new FormData();
-    payload.append('payment_method_id', paymentMethod);
-    payload.append('phone_number', window.phone_number);
-    payload.append('new_payment_method', JSON.stringify(newPaymentMethod));
-
-    try {
-      const btn = document.getElementById('purchase-modal-btn');
-      const spinner = document.getElementById('purchase-modal-spinner');
-      btn.classList.add('hidden');
-      spinner.classList.remove('hidden');
-
-      const res = await purchaseRequest(payload);
-
-      if (res.status === 200) {
-        window.cardNumber.clear();
-        window.cardExpiry.clear();
-        window.cardCvc.clear();
-        cardHolderName.value = '';
-
-        btn.classList.remove('hidden');
-        spinner.classList.add('hidden');
-        hideConfirmModal();
-
-        showToast('Purchase successful!', 'success');
-      } else {
-        btn.classList.remove('hidden');
-        spinner.classList.add('hidden');
-
-        showToast('Purchase failed!', 'error');
-      }
-    } catch (error) {
-      btn.classList.remove('hidden');
-      spinner.classList.add('hidden');
-
-      showToast('Purchase failed!', 'error');
-    }
-  }
-
-  async function purchaseRequest(formData) {
-    formData.append('_token', "{{ csrf_token() }}");
-    const req = await fetch("{{ route('handle-purchase') }}", {
-      method: 'POST',
-      body: formData
-    });
-
-    return req;
-  }
-
-  function handleModalBlur(event) {
-    const modal = document.getElementById('confirm-modal');
-    const isModalClicked = Boolean(event.composedPath().filter(
-      (elem) => elem.id == 'confirm-modal'
-    ).length);
-
-    if (!isModalClicked && !modal.classList.contains('scale-0')) {
-      hideConfirmModal();
-    }
-  }
-
-  function showConfirmModal(
-    country,
-    number,
-    pricing,
-    setupCharges,
-    type,
-    capabilites
-  ) {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
-
-    const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
-    placeholders[0].innerText = country.toUpperCase();
-    placeholders[1].innerText = number;
-    placeholders[2].innerText = `${pricing} / Month`;
-    placeholders[3].innerText = setupCharges;
-    placeholders[4].innerText = type;
-    placeholders[5].innerText = capabilites;
-
-    modalWrapper.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.remove('scale-0');
-      modalOverlay.classList.remove('bg-opacity-0');
-    }, 100);
-  }
-
-  function hideConfirmModal() {
-    const modalWrapper = document.getElementById('confirm-modal-wrapper');
-    const modalOverlay = document.getElementById('confirm-modal-overlay');
-    const modal = document.getElementById('confirm-modal');
-
-    modal.classList.add('scale-0');
-    modalOverlay.classList.add('bg-opacity-0');
-    setTimeout(() => {
-      modalWrapper.classList.add('hidden');
-    }, 200);
-  }
-
-  function showToast(message, type = 'success') {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toast-message');
-
-    toastMessage.textContent = message;
-
-    toast.className = `fixed hidden scale-0 transition bottom-6 right-6 py-4 px-8 rounded shadow-md text-white font-semibold z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
-
-
-    setTimeout(() => {
-      toast.classList.remove('hidden');
-
-      setTimeout(() => {
-        toast.classList.remove('scale-0');
-        toast.classList.add('scale-100');
-      }, 10);
-    }, 10);
-
-    setTimeout(() => {
-      toast.classList.remove('scale-100');
-      toast.classList.add('scale-0');
-
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 250);
-    }, 3000);
-  }
-
-</script>
-@endsection
-
 @section('content')
 <div class="w-full my-8 p-6 rounded-md shadow bg-white">
   <div>
@@ -505,131 +252,7 @@
     </div>
 
     <div class="w-full mt-2 px-2">
-      <div class="flex justify-between items-center">
-        <h3 class="text-lg ml-1 leading-6 font-medium text-gray-700 text-left">
-          Payment Method
-        </h3>
-
-        @if (count($user->payment_methods ?? []) > 0)
-        <button onclick="showAddPaymentMethodForm()" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 sm:text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-          Add
-        </button>
-        @endif
-
-      </div>
-      <form id="payment-form" class="my-5 border rounded-md sm:overflow-y-auto sm:max-h-56 2xl:max-h-80 flex flex-col gap-y-4">
-        @csrf
-        
-        <fieldset id="cards-list">
-          <legend class="sr-only">Payment methods</legend>
-          <div class="relative bg-white rounded-md divide-y -space-y-px">
-
-            @foreach ($user->payment_methods ?? [] as $method)
-
-            <!-- Checked: "bg-cyan-50 border-cyan-200 z-10", Not Checked: "border-gray-200" -->
-            <label class="relative p-4 flex items-center justify-between flex-wrap gap-y-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none">
-              <input type="radio" name="pricing_plan" value="{{ $method->id }}" class=" h-4 w-4 text-cyan-500 border-gray-300 focus:ring-gray-900" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
-              <div class="flex items-center gap-x-1 sm:gap-x-4 px-1 sm:p-0">
-
-                @if ($method->brand == 'visa')
-                <svg class="h-6 w-auto" viewBox="0 0 36 24" aria-hidden="true">
-                  <rect width="36" height="24" fill="#224DBA" rx="4" />
-                  <path fill="#fff" d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z" />
-                </svg>
-
-                @elseif ($method->brand == 'mastercard')
-                <svg class="h-6 w-auto" xmlns="http://www.w3.org/2000/svg" width="2.11676in" height="1.5in" viewBox="0 0 152.407 108">
-                  <g>
-                    <rect width="152.407" height="108" style="fill: none"/>
-                    <g>
-                      <rect x="60.4117" y="25.6968" width="31.5" height="56.6064" style="fill: #ff5f00"/>
-                      <path d="M382.20839,306a35.9375,35.9375,0,0,1,13.7499-28.3032,36,36,0,1,0,0,56.6064A35.938,35.938,0,0,1,382.20839,306Z" transform="translate(-319.79649 -252)" style="fill: #eb001b"/>
-                      <path d="M454.20349,306a35.99867,35.99867,0,0,1-58.2452,28.3032,36.00518,36.00518,0,0,0,0-56.6064A35.99867,35.99867,0,0,1,454.20349,306Z" transform="translate(-319.79649 -252)" style="fill: #f79e1b"/>
-                      <path d="M450.76889,328.3077v-1.1589h.4673v-.2361h-1.1901v.2361h.4675v1.1589Zm2.3105,0v-1.3973h-.3648l-.41959.9611-.41971-.9611h-.365v1.3973h.2576v-1.054l.3935.9087h.2671l.39351-.911v1.0563Z" transform="translate(-319.79649 -252)" style="fill: #f79e1b"/>
-                    </g>
-                  </g>
-                </svg>
-
-                @else
-                <svg class="h-8 w-auto" data-slot="icon" aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                @endif
-
-                <p id="pricing-plans-0-description-0" class="ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-center">
-                  <!-- Checked: "text-cyan-900", Not Checked: "text-gray-900" -->
-                  <span class="font-medium">**** {{ $method->last_digits }}</span>
-                </p>
-                <!-- Checked: "text-cyan-700", Not Checked: "text-gray-500" -->
-                <p id="pricing-plans-0-description-1" class="ml-2 sm:ml-6 sm:pl-1 text-sm md:ml-0 md:pl-0 md:text-right">
-                  Expires {{ $method->expiry_month }} / {{ substr($method->expiry_year, 2) }}
-                </p>
-              </div>
-              <p class="text-xs ml-auto sm:ml-0 sm:text-sm">
-                Last updated on {{ $method->updated_at->format('d M Y') }}
-              </p>
-            </label>
-
-            @endforeach
-
-          </div>
-        </fieldset>
-
-        @if (count($user->payment_methods ?? []) > 0)
-        <div id="add-paymet-method-form" class="rounded-md hidden">
-        @else
-        <div id="add-paymet-method-form" class="rounded-md">
-        @endif
-          <div class="bg-white py-6 px-4 sm:p-6">
-            <div>
-              <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-700 flex justify-between">
-                Payment details
-                @if (count($user->payment_methods ?? []) > 0)
-                <svg onclick="hideAddPaymentMethodForm()" class="h-6 w-6 cursor-pointer" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
-                </svg>
-                @endif
-              </h2>
-              <p class="mt-1 text-sm text-gray-500">Add a new payment and billing option.</p>
-            </div>
-
-            <div class="mt-6 grid grid-cols-4 gap-6">
-              <div class="col-span-4 sm:col-span-2">
-                <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
-                <!-- <input type="text" name="card_number" id="card-number" autocomplete="cc-family-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <div id="card-number-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-1">
-                <label for="card-expiration" class="block text-sm font-medium text-gray-700">Expration date</label>
-                <!-- <input type="text" name="card_expiration" id="card-expiration" autocomplete="cc-exp" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" placeholder="MM / YY"> -->
-                <div id="card-expiration-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-1">
-                <label for="security-code" class="flex items-center text-sm font-medium text-gray-700">
-                  <span>CVC</span>
-                  <!-- Heroicon name: solid/question-mark-circle -->
-                  <svg class="ml-1 flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                  </svg>
-                </label>
-                <!-- <input type="text" name="security_code" id="security-code" autocomplete="cc-csc" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <div id="card-cvc-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-2">
-                <label for="cardholder-name" class="block text-sm font-medium text-gray-700">Cardholder name</label>
-                <!-- <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 text-gray-500 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-none sm:text-sm">
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col gap-y-6 sm:flex-row items-stretch sm:items-center gap-x-4 sm:px-6">
+      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col gap-y-6 sm:flex-row items-stretch sm:items-center gap-x-4">
         <button id="purchase-modal-btn" onclick="handlePurchase()" class="bg-gray-800 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
           Purchase
         </button>
@@ -638,15 +261,7 @@
             <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
           </svg>
         </button>
-        <!-- <p class="mx-2 sm:mx-auto text-gray-700">Or Pay With</p>
-        <button type="submit" class="bg-gray-800 py-0.5 border border-transparent rounded-md shadow-sm inline-flex justify-center text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
-          <svg class="h-8 w-24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M105.7 215v41.3h57.1a49.7 49.7 0 0 1 -21.1 32.6c-9.5 6.6-21.7 10.3-36 10.3-27.6 0-50.9-18.9-59.3-44.2a65.6 65.6 0 0 1 0-41l0 0c8.4-25.5 31.7-44.4 59.3-44.4a56.4 56.4 0 0 1 40.5 16.1L176.5 155a101.2 101.2 0 0 0 -70.8-27.8 105.6 105.6 0 0 0 -94.4 59.1 107.6 107.6 0 0 0 0 96.2v.2a105.4 105.4 0 0 0 94.4 59c28.5 0 52.6-9.5 70-25.9 20-18.6 31.4-46.2 31.4-78.9A133.8 133.8 0 0 0 205.4 215zm389.4-4c-10.1-9.4-23.9-14.1-41.4-14.1-22.5 0-39.3 8.3-50.5 24.9l20.9 13.3q11.5-17 31.3-17a34.1 34.1 0 0 1 22.8 8.8A28.1 28.1 0 0 1 487.8 248v5.5c-9.1-5.1-20.6-7.8-34.6-7.8-16.4 0-29.7 3.9-39.5 11.8s-14.8 18.3-14.8 31.6a39.7 39.7 0 0 0 13.9 31.3c9.3 8.3 21 12.5 34.8 12.5 16.3 0 29.2-7.3 39-21.9h1v17.7h22.6V250C510.3 233.5 505.3 220.3 495.1 211zM475.9 300.3a37.3 37.3 0 0 1 -26.6 11.2A28.6 28.6 0 0 1 431 305.2a19.4 19.4 0 0 1 -7.8-15.6c0-7 3.2-12.8 9.5-17.4s14.5-7 24.1-7C470 265 480.3 268 487.6 273.9 487.6 284.1 483.7 292.9 475.9 300.3zm-93.7-142A55.7 55.7 0 0 0 341.7 142H279.1V328.7H302.7V253.1h39c16 0 29.5-5.4 40.5-15.9 .9-.9 1.8-1.8 2.7-2.7A54.5 54.5 0 0 0 382.3 158.3zm-16.6 62.2a30.7 30.7 0 0 1 -23.3 9.7H302.7V165h39.6a32 32 0 0 1 22.6 9.2A33.2 33.2 0 0 1 365.7 220.5zM614.3 201 577.8 292.7h-.5L539.9 201H514.2L566 320.6l-29.4 64.3H561L640 201z"/></svg>
-        </button>
-        <button type="submit" class="bg-gray-800 py-0.5 border border-transparent rounded-md shadow-sm inline-flex justify-center text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
-          <svg class="h-8 w-24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M116.9 158.5c-7.5 8.9-19.5 15.9-31.5 14.9-1.5-12 4.4-24.8 11.3-32.6 7.5-9.1 20.6-15.6 31.3-16.1 1.2 12.4-3.7 24.7-11.1 33.8m10.9 17.2c-17.4-1-32.3 9.9-40.5 9.9-8.4 0-21-9.4-34.8-9.1-17.9 .3-34.5 10.4-43.6 26.5-18.8 32.3-4.9 80 13.3 106.3 8.9 13 19.5 27.3 33.5 26.8 13.3-.5 18.5-8.6 34.5-8.6 16.1 0 20.8 8.6 34.8 8.4 14.5-.3 23.6-13 32.5-26 10.1-14.8 14.3-29.1 14.5-29.9-.3-.3-28-10.9-28.3-42.9-.3-26.8 21.9-39.5 22.9-40.3-12.5-18.6-32-20.6-38.8-21.1m100.4-36.2v194.9h30.3v-66.6h41.9c38.3 0 65.1-26.3 65.1-64.3s-26.4-64-64.1-64h-73.2zm30.3 25.5h34.9c26.3 0 41.3 14 41.3 38.6s-15 38.8-41.4 38.8h-34.8V165zm162.2 170.9c19 0 36.6-9.6 44.6-24.9h.6v23.4h28v-97c0-28.1-22.5-46.3-57.1-46.3-32.1 0-55.9 18.4-56.8 43.6h27.3c2.3-12 13.4-19.9 28.6-19.9 18.5 0 28.9 8.6 28.9 24.5v10.8l-37.8 2.3c-35.1 2.1-54.1 16.5-54.1 41.5 .1 25.2 19.7 42 47.8 42zm8.2-23.1c-16.1 0-26.4-7.8-26.4-19.6 0-12.3 9.9-19.4 28.8-20.5l33.6-2.1v11c0 18.2-15.5 31.2-36 31.2zm102.5 74.6c29.5 0 43.4-11.3 55.5-45.4L640 193h-30.8l-35.6 115.1h-.6L537.4 193h-31.6L557 334.9l-2.8 8.6c-4.6 14.6-12.1 20.3-25.5 20.3-2.4 0-7-.3-8.9-.5v23.4c1.8 .4 9.3 .7 11.6 .7z"/></svg>
-        </button> -->
       </div>
-
     </div>
   </div>
 </div>
@@ -660,5 +275,178 @@
   'table-pagination-bar',
   ['rows' => $numbers]
 )
+
+@endsection
+
+@section('scripts')
+
+<script defer type="text/javascript">
+
+  // Set data on initial load
+  window.onload = changePrefixValue(document.getElementById('country'));
+
+  function changePrefixValue(field) {
+    document.getElementById('country-prefix')
+      .innerText = field.options[field.selectedIndex].dataset.dial;
+  }
+
+  function handleRowClick(event) {
+    const row = event.target.closest('tr');
+
+    if (event.target.tagName == 'BUTTON') {
+      handlePurchaseModal(row);
+    }
+
+    if (event.target.tagName == 'INPUT') return;
+
+    const checkbox = row.querySelector('[type=checkbox]');
+    const number = row.dataset.number;
+    checkbox.checked = !checkbox.checked;
+  }
+
+  function selectAllRows(event) {
+    const checkBoxes = event.currentTarget.closest('table')
+      .querySelectorAll('tbody input');
+
+    Array.from(checkBoxes).forEach(checkbox => {
+      checkbox.checked = event.currentTarget.checked;
+    });
+  }
+
+  function handlePurchaseModal(row) {
+    const fields = row.querySelectorAll('td');
+    const country = row.dataset.country;
+    window.phone_number = fields[0].innerText;
+    showConfirmModal(
+      country,
+      fields[0].innerText,
+      fields[3].innerText,
+      fields[4].innerText,
+      'local',
+      fields[1].innerText,
+    );
+  }
+
+  async function handlePurchase() {
+    const payload = new FormData();
+    payload.append('phone_number', window.phone_number);
+
+    try {
+      const btn = document.getElementById('purchase-modal-btn');
+      const spinner = document.getElementById('purchase-modal-spinner');
+      btn.classList.add('hidden');
+      spinner.classList.remove('hidden');
+
+      const res = await purchaseRequest(payload);
+
+      if (res.status === 200) {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideConfirmModal();
+
+        showToast('Purchase successful!', 'success');
+      } else {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Purchase failed!', 'error');
+      }
+    } catch (error) {
+      btn.classList.remove('hidden');
+      spinner.classList.add('hidden');
+
+      showToast('Purchase failed!', 'error');
+    }
+  }
+
+  async function purchaseRequest(formData) {
+    formData.append('_token', "{{ csrf_token() }}");
+    const req = await fetch("{{ route('handle-purchase') }}", {
+      method: 'POST',
+      body: formData
+    });
+
+    return req;
+  }
+
+  function handleModalBlur(event) {
+    const modal = document.getElementById('confirm-modal');
+    const isModalClicked = Boolean(event.composedPath().filter(
+      (elem) => elem.id == 'confirm-modal'
+    ).length);
+
+    if (!isModalClicked && !modal.classList.contains('scale-0')) {
+      hideConfirmModal();
+    }
+  }
+
+  function showConfirmModal(
+    country,
+    number,
+    pricing,
+    setupCharges,
+    type,
+    capabilites
+  ) {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    const placeholders = modal.querySelectorAll('a p:nth-of-type(2)');
+    placeholders[0].innerText = country.toUpperCase();
+    placeholders[1].innerText = number;
+    placeholders[2].innerText = `${pricing} / Month`;
+    placeholders[3].innerText = setupCharges;
+    placeholders[4].innerText = type;
+    placeholders[5].innerText = capabilites;
+
+    modalWrapper.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('scale-0');
+      modalOverlay.classList.remove('bg-opacity-0');
+    }, 100);
+  }
+
+  function hideConfirmModal() {
+    const modalWrapper = document.getElementById('confirm-modal-wrapper');
+    const modalOverlay = document.getElementById('confirm-modal-overlay');
+    const modal = document.getElementById('confirm-modal');
+
+    modal.classList.add('scale-0');
+    modalOverlay.classList.add('bg-opacity-0');
+    setTimeout(() => {
+      modalWrapper.classList.add('hidden');
+    }, 200);
+  }
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    toastMessage.textContent = message;
+
+    toast.className = `fixed hidden scale-0 transition bottom-6 right-6 py-4 px-8 rounded shadow-md text-white font-semibold z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+
+
+    setTimeout(() => {
+      toast.classList.remove('hidden');
+
+      setTimeout(() => {
+        toast.classList.remove('scale-0');
+        toast.classList.add('scale-100');
+      }, 10);
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('scale-100');
+      toast.classList.add('scale-0');
+
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 250);
+    }, 3000);
+  }
+
+</script>
 
 @endsection
