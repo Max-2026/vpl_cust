@@ -28,7 +28,7 @@
           <input type="date" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md" name="" id="">
         </div>
       </div>
-      <div class="flex sm:col-span-12 gap-4 font-semibold">
+      <div class="flex flex-col sm:flex-row sm:col-span-12 gap-4 font-semibold">
         <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">
           Search Invoices
         </button>
@@ -240,14 +240,16 @@
         @endif
 
       </div>
-      <form id="payment-form" class="my-5 border rounded-md sm:overflow-y-auto sm:max-h-56 2xl:max-h-80 flex flex-col gap-y-4">
+
+      @if (count($user->payment_methods ?? []) > 0)
+      <form id="balance-form" class="my-5 border rounded-md sm:overflow-y-auto sm:max-h-56 2xl:max-h-80 flex flex-col gap-y-4">
         @csrf
         
         <fieldset id="cards-list">
           <legend class="sr-only">Payment methods</legend>
           <div class="relative bg-white rounded-md divide-y -space-y-px">
 
-            @foreach ($user->payment_methods ?? [] as $method)
+            @foreach ($user->payment_methods as $method)
 
             <!-- Checked: "bg-cyan-50 border-cyan-200 z-10", Not Checked: "border-gray-200" -->
             <label class="relative p-4 flex items-center justify-between flex-wrap gap-y-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none">
@@ -294,70 +296,21 @@
             </label>
 
             @endforeach
-
           </div>
         </fieldset>
-
-        @if (count($user->payment_methods ?? []) > 0)
-        <div id="add-paymet-method-form" class="rounded-md hidden">
-        @else
-        <div id="add-paymet-method-form" class="rounded-md">
-        @endif
-          <div class="bg-white py-6 px-4 sm:p-6">
-            <div>
-              <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-700 flex justify-between">
-                Payment details
-                @if (count($user->payment_methods ?? []) > 0)
-                <svg onclick="hideAddPaymentMethodForm()" class="h-6 w-6 cursor-pointer" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
-                </svg>
-                @endif
-              </h2>
-              <p class="mt-1 text-sm text-gray-500">Add a new payment and billing option.</p>
-            </div>
-
-            <div class="mt-6 grid grid-cols-4 gap-6">
-              <div class="col-span-4 sm:col-span-2">
-                <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
-                <!-- <input type="text" name="card_number" id="card-number" autocomplete="cc-family-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <div id="card-number-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-1">
-                <label for="card-expiration" class="block text-sm font-medium text-gray-700">Expration date</label>
-                <!-- <input type="text" name="card_expiration" id="card-expiration" autocomplete="cc-exp" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" placeholder="MM / YY"> -->
-                <div id="card-expiration-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-1">
-                <label for="security-code" class="flex items-center text-sm font-medium text-gray-700">
-                  <span>CVC</span>
-                  <!-- Heroicon name: solid/question-mark-circle -->
-                  <svg class="ml-1 flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                  </svg>
-                </label>
-                <!-- <input type="text" name="security_code" id="security-code" autocomplete="cc-csc" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <div id="card-cvc-element" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"></div>
-              </div>
-
-              <div class="col-span-4 sm:col-span-2">
-                <label for="cardholder-name" class="block text-sm font-medium text-gray-700">Cardholder name</label>
-                <!-- <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"> -->
-                <input type="text" name="cardholder_name" id="cardholder-name" autocomplete="cc-given-name" class="mt-1 block w-full border border-gray-300 text-gray-500 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-none sm:text-sm">
-              </div>
-
-            </div>
-          </div>
-        </div>
       </form>
+      @else
+      <h2 class="px-2 my-8 text-gray-700">
+        No payment methods were added!
+      </h2>
+      @endif
 
-      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex gap-y-6 items-center justify-between gap-x-4 sm:px-6">
-        <input placeholder="Enter amount" type="number" name="balance-amount" class="w-1/2 rounded-md focus:outline-none focus:ring-0 focus:border-gray-900">
-        <button id="purchase-modal-btn" onclick="handlePurchase()" class="bg-gray-800 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col sm:flex-row gap-y-6 items-center justify-between gap-x-4 sm:px-6">
+        <input placeholder="Enter amount" type="number" name="balance_amount" class="sm:w-1/2 rounded-md focus:outline-none focus:ring-0 focus:border-gray-900">
+        <button id="balance-modal-btn" onclick="handleAddBalance()" class=" border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white @if (count($user->payment_methods ?? []) > 0) bg-gray-800 hover:bg-gray-900 @else bg-gray-500 @endif focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" @if (count($user->payment_methods ?? []) == 0) disabled @endif>
           Add Balance
         </button>
-        <button id="purchase-modal-spinner" class="hidden rounded-md shadow-sm py-2 px-8 bg-gray-900 flex items-center justify-center">
+        <button id="balance-modal-spinner" class="hidden rounded-md shadow-sm py-2 px-8 bg-gray-900 flex items-center justify-center">
           <svg class="text-white w-6 h-6 animate-spin" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
           </svg>
@@ -365,6 +318,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id="toast" class="hidden">
+  <span id="toast-message">Success message</span>
 </div>
 
 @endsection
@@ -392,6 +349,34 @@
     cardCvc.mount('#card-cvc-element');
     window.cardCvc = cardCvc;
   });
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    toastMessage.textContent = message;
+
+    toast.className = `fixed hidden scale-0 transition bottom-6 right-6 py-4 px-8 rounded shadow-md text-white font-semibold z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+
+
+    setTimeout(() => {
+      toast.classList.remove('hidden');
+
+      setTimeout(() => {
+        toast.classList.remove('scale-0');
+        toast.classList.add('scale-100');
+      }, 10);
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('scale-100');
+      toast.classList.add('scale-0');
+
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 250);
+    }, 3000);
+  }
 
   function handlePaymentMethodsModalBlur(event) {
     const modal = document.getElementById('payment-methods-modal');
@@ -476,90 +461,53 @@
       .classList.add('hidden');
   }
 
-  async function handlePurchase() {
-    const form = document.getElementById('payment-form');
-    let paymentMethod = form.elements['pricing_plan']?.value ?? null;
-    let cardHolderName = document.querySelector('#cardholder-name');
-    let newPaymentMethod = null;
+  async function handleAddBalance() {
+    const form = document.getElementById('balance-form');
+    const paymentMethod = form.elements['pricing_plan']?.value ?? null;
+    const balanceAmount = form.elements['balance_amount']?.value ?? null;
 
-     // Validate card fields
-    const cardNumberError = window.cardNumber._complete;
-    const cardExpiryError = window.cardExpiry._complete;
-    const cardCvcError = window.cardCvc._complete;
-
-    // Check if the fields are complete
-    if (
-      paymentMethod === null
-      && (!cardNumberError || !cardExpiryError || !cardCvcError)
-    ) {
-      alert("Please complete all required fields");
-      return;
-    }
-
-    // Check if the cardholder name is filled
-    if (paymentMethod === null && !cardHolderName.value) {
-      alert("Cardholder name is required");
-      return;
-    }
-
-    if (cardHolderName.value) {
-      const result = await window.stripe.createPaymentMethod(
-        'card',
-        window.cardNumber,
-        {
-          billing_details: { name: cardHolderName.value }
-        }
-      );
-
-      newPaymentMethod = {};
-      newPaymentMethod.id = result.paymentMethod.id;
-      newPaymentMethod.last_digits = result.paymentMethod.card.last4;
-      newPaymentMethod.expiry_month = result.paymentMethod.card.exp_month;
-      newPaymentMethod.expiry_year = result.paymentMethod.card.exp_year;
-      newPaymentMethod.brand = result.paymentMethod.card.display_brand;
-      newPaymentMethod.card_holder_name = result.paymentMethod.billing_details.name;
-    }
-
-    const payload = new FormData();
-    payload.append('payment_method_id', paymentMethod);
-    payload.append('phone_number', window.phone_number);
-    payload.append('new_payment_method', JSON.stringify(newPaymentMethod));
+    const btn = document.getElementById('balance-modal-btn');
+    const spinner = document.getElementById('balance-modal-spinner');
 
     try {
-      const btn = document.getElementById('purchase-modal-btn');
-      const spinner = document.getElementById('purchase-modal-spinner');
       btn.classList.add('hidden');
       spinner.classList.remove('hidden');
+
+      const payload = new FormData();
+      payload.append('payment_method_id', paymentMethod);
+      payload.append('balance_amount', balanceAmount);
 
       const res = await balanceRequest(payload);
 
       if (res.status === 200) {
-        window.cardNumber.clear();
-        window.cardExpiry.clear();
-        window.cardCvc.clear();
-        cardHolderName.value = '';
-
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
-        hideConfirmModal();
+        hideBalanceModal();
 
-        showToast('Purchase successful!', 'success');
+        showToast('Balance successfully added!', 'success');
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
 
-        showToast('Purchase failed!', 'error');
+        showToast('Failed to add balance!', 'error');
       }
     } catch (error) {
+      console.log(error);
       btn.classList.remove('hidden');
       spinner.classList.add('hidden');
 
-      showToast('Purchase failed!', 'error');
+      showToast('Failed to add balance!', 'error');
     }
   }
 
-  async function balanceRequest() {
-    console.log("Balance API Called");
+  async function balanceRequest(formData) {
+    formData.append('_token', "{{ csrf_token() }}");
+    const req = await fetch("{{ route('add-balance') }}", {
+      method: 'POST',
+      body: formData
+    });
+
+    return req;
   }
 
   async function handleAddPaymentMethod() {
@@ -583,9 +531,10 @@
       return;
     }
 
+    const btn = document.getElementById('pm-modal-btn');
+    const spinner = document.getElementById('pm-modal-spinner');
+
     try {
-      const btn = document.getElementById('pm-modal-btn');
-      const spinner = document.getElementById('pm-modal-spinner');
       btn.classList.add('hidden');
       spinner.classList.remove('hidden');
 
@@ -623,6 +572,7 @@
         hideConfirmModal();
 
         showToast('Payment method successfully added!', 'success');
+        setTimeout(() => window.location.reload(), 3000);
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
@@ -630,6 +580,7 @@
         showToast('Failed to add payment method!', 'error');
       }
     } catch (error) {
+      console.log(error);
       btn.classList.remove('hidden');
       spinner.classList.add('hidden');
 
@@ -637,8 +588,16 @@
     }
   }
 
-  async function addPaymentMethodReqeust()
-  {}
+  async function addPaymentMethodReqeust(formData)
+  {
+    formData.append('_token', "{{ csrf_token() }}");
+    const req = await fetch("{{ route('add-payment-method') }}", {
+      method: 'POST',
+      body: formData
+    });
+
+    return req;
+  }
 
 </script>
 

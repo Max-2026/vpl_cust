@@ -65,6 +65,16 @@ Route::middleware('auth')->group(function () {
         [VoiceNumbersController::class, 'handle_purchase']
     )->name('handle-purchase');
 
+    Route::post(
+        '/add-payment-method',
+        [BillingController::class, 'add_payment_methods']
+    )->name('add-payment-method');
+
+    Route::post(
+        '/add-balance',
+        [BillingController::class, 'add_balance']
+    )->name('add-balance');
+
     Route::get(
         '/profile',
         [ProfileController::class, 'profile']
