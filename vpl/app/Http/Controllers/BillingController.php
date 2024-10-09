@@ -34,4 +34,10 @@ class BillingController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function add_payment_methods(Request $request)
+    {}
+
+    public function add_balance(Request $request)
+    {}
 }
