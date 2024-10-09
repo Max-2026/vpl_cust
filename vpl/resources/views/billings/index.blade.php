@@ -232,13 +232,6 @@
         <h3 class="text-lg ml-1 leading-6 font-medium text-gray-700 text-left">
           Select Payment Method
         </h3>
-
-        @if (count($user->payment_methods ?? []) > 0)
-        <button onclick="showAddPaymentMethodForm()" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 sm:text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-          Add
-        </button>
-        @endif
-
       </div>
 
       @if (count($user->payment_methods ?? []) > 0)
