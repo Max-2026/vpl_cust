@@ -569,10 +569,10 @@
 
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
-        hideConfirmModal();
+        hidePaymentMethodsModal();
 
         showToast('Payment method successfully added!', 'success');
-        setTimeout(() => window.location.reload(), 3000);
+        setTimeout(() => window.location.reload(), 2000);
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
