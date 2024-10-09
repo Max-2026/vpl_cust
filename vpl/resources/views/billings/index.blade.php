@@ -299,7 +299,7 @@
       @endif
 
       <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col sm:flex-row gap-y-6 items-center justify-between gap-x-4 sm:px-6">
-        <input placeholder="Enter amount" type="number" name="balance_amount" class="sm:w-1/2 rounded-md focus:outline-none focus:ring-0 focus:border-gray-900">
+        <input placeholder="Enter amount" type="number" id="balance_amount" class="sm:w-1/2 rounded-md focus:outline-none focus:ring-0 focus:border-gray-900">
         <button id="balance-modal-btn" onclick="handleAddBalance()" class=" border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white @if (count($user->payment_methods ?? []) > 0) bg-gray-800 hover:bg-gray-900 @else bg-gray-500 @endif focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" @if (count($user->payment_methods ?? []) == 0) disabled @endif>
           Add Balance
         </button>
@@ -457,7 +457,8 @@
   async function handleAddBalance() {
     const form = document.getElementById('balance-form');
     const paymentMethod = form.elements['pricing_plan']?.value ?? null;
-    const balanceAmount = form.elements['balance_amount']?.value ?? null;
+    const balanceAmount = document.getElementById('balance_amount')?.value
+      ?? null;
 
     const btn = document.getElementById('balance-modal-btn');
     const spinner = document.getElementById('balance-modal-spinner');
@@ -478,6 +479,7 @@
         hideBalanceModal();
 
         showToast('Balance successfully added!', 'success');
+        setTimeout(() => window.location.reload(), 1500);
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
@@ -565,7 +567,7 @@
         hidePaymentMethodsModal();
 
         showToast('Payment method successfully added!', 'success');
-        setTimeout(() => window.location.reload(), 2000);
+        setTimeout(() => window.location.reload(), 1500);
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');

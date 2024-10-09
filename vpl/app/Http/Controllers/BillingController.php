@@ -75,6 +75,35 @@ class BillingController extends Controller
         ], 400);
     }
 
-    public function add_balance(Request $request)
-    {}
+    public function add_balance(Request $request, StripeService $stripe_service)
+    {
+        $request->validate([
+            'payment_method_id' => 'required|exists:user_payment_methods,id',
+            'balance_amount' => 'required'
+        ]);
+
+        $user = $request->user();
+        $card = UserPaymentMethod::find($request->payment_method_id);
+
+        if ($card->user_id != $user->id) abort(403);
+
+        $payment_intent = $stripe_service->charge_card(
+            $card->id,
+            $user->stripe_customer_id,
+            (float) $request->balance_amount
+        );
+
+        $invoice = new Invoice;
+        $invoice->summary = 'Balance added';
+        $invoice->amount = (float) $request->balance_amount;
+        $invoice->payment_reference_id = $payment_intent->id;
+        $user->invoices()->save($invoice);
+
+        $user->balance += $request->balance_amount;
+        $user->save();
+
+        return response()->json([
+            'message' => 'The request amount has been successfully added to user account'
+        ]);
+    }
 }
