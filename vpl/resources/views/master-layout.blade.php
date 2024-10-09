@@ -146,7 +146,7 @@
         </button>
         <!-- Search bar -->
         <div class="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
-          <div class="flex-1 flex">
+          <div class="flex-1 hidden sm:flex">
             <form class="w-full flex md:ml-0" action="#" method="GET">
               <label for="search-field" class="sr-only">Search</label>
               <div class="relative w-full text-gray-400 focus-within:text-gray-600">
@@ -160,7 +160,8 @@
               </div>
             </form>
           </div>
-          <div class="ml-4 flex items-center md:ml-6">
+          <div class="ml-auto sm:ml-4 flex items-center md:ml-6">
+            <p>${{ number_format($user->balance, 2) }}</p>
             <!-- <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
               <span class="sr-only">View notifications</span>
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -171,8 +172,8 @@
             <div class="ml-3 relative">
               <div>
                 <a href="{{ route('profile') }}" class="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-100" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                  <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                  <span class="hidden ml-3 text-gray-700 text-sm font-medium lg:block">{{ auth()->user()->name }}</span>
+                  <img class="h-8 w-8 rounded-full hidden lg:block" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <span class="ml-3 text-gray-700 text-sm font-medium lg:block">{{ auth()->user()->name }}</span>
                   <!-- <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"> -->
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
