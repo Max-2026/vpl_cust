@@ -29,57 +29,61 @@ Route::middleware('auth')->group(function () {
         [VoiceNumbersController::class, 'index']
     )->name('purchase-numbers');
 
-    Route::get(
-        '/my-numbers',
-        [VoiceNumbersController::class, 'my_numbers']
-    )->name('my-numbers');
-
-    Route::get(
-        '/logs/{number_id}',
-        [VoiceNumbersController::class, 'logs']
-    )->name('number-logs');
-
-    Route::get(
-        '/release/{number_id}',
-        [VoiceNumbersController::class, 'release']
-    )->name('release-number');
-
-    Route::get(
-        '/billing',
-        [BillingController::class, 'billing']
-    )->name('billing');
-
-    Route::get(
-        '/sms-services',
-        [SmsController::class, 'index']
-    )->name('sms-services');
-
-    Route::get(
-        '/send-sms',
-        [SmsController::class, 'view_send_sms']
-    )->name('send-sms');
-
-    // Confirm purchase form
+    // Number purchase form
     Route::post(
         '/voice-numbers',
         [VoiceNumbersController::class, 'handle_purchase']
     )->name('handle-purchase');
 
+    // Purchase numbers page
+    Route::get(
+        '/my-numbers',
+        [VoiceNumbersController::class, 'my_numbers']
+    )->name('my-numbers');
+
+    // User purchased number logs
+    Route::get(
+        '/logs/{number_id}',
+        [VoiceNumbersController::class, 'logs']
+    )->name('number-logs');
+
+    // Release user purchased number
+    Route::get(
+        '/release/{number_id}',
+        [VoiceNumbersController::class, 'release']
+    )->name('release-number');
+
+    // Billing page
+    Route::get(
+        '/billing',
+        [BillingController::class, 'billing']
+    )->name('billing');
+
+    // Add payment method API route
     Route::post(
         '/add-payment-method',
         [BillingController::class, 'add_payment_methods']
     )->name('add-payment-method');
 
+    // Add balance API route
     Route::post(
         '/add-balance',
         [BillingController::class, 'add_balance']
     )->name('add-balance');
 
+    // SMS page
+    Route::get(
+        '/sms-services',
+        [SmsController::class, 'index']
+    )->name('sms-services');
+
+    // Profile page
     Route::get(
         '/profile',
         [ProfileController::class, 'profile']
     )->name('profile');
 
+    // Update profile form
     Route::post(
         '/update/profile/{id}',
         [ProfileController::class, 'update_profile']
@@ -93,8 +97,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/help', function () {
     })->name('help');
 
-    Route::get('/logout', [LoginController::class, 'logout'])
-        ->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::post('/send-message', [SmsController::class, 'send_message'])
         ->name('send-message');
@@ -108,8 +111,7 @@ Route::middleware('auth')->group(function () {
 // Public Routes
 Route::get('/', [HomepageController::class, 'index'])->name('home');
 
-Route::get('/login', [LoginController::class, 'login'])
-    ->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get(
     '/forgot-password', 
@@ -124,17 +126,17 @@ Route::post(
 Route::get(
     '/otp/verify', 
     [ForgotPasswordController::class, 'view_verify_otp']
-    );
+);
 
 Route::post(
     '/verify-otp', 
     [ForgotPasswordController::class, 'verify_otp']
-    );
+);
 
 Route::get(
     'reset-password/{token}', 
     [ForgotPasswordController::class, 'show_reset_form']
-    )->name('reset-password');
+)->name('reset-password');
 
 Route::post(
     '/update-password',
@@ -144,8 +146,7 @@ Route::post(
 Route::post('/login', [LoginController::class, 'login_post'])
     ->name('handle-login');
 
-Route::get('/register', [LoginController::class, 'signup'])
-    ->name('register');
+Route::get('/register', [LoginController::class, 'signup'])->name('register');
 
 Route::post('/register', [LoginController::class, 'signup_post'])
     ->name('handle-register');
