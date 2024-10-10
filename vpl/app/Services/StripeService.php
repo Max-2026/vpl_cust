@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\User;
-use Stripe\StripeClient;
-use Stripe\Exception\CardException;
 use Exception;
+use Stripe\Exception\CardException;
+use Stripe\StripeClient;
 
 class StripeService
 {
@@ -80,13 +80,14 @@ class StripeService
 
             return response()->json(['error' => [
                 'message' => 'Transaction failed',
-                'type' => $error->code
+                'type' => $error->code,
             ]], 500);
         } catch (Exception $e) {
             $error = $e->getMessage();
+
             return response()->json(['error' => [
                 'message' => 'Transaction failed',
-                'type' => $error
+                'type' => $error,
             ]], 500);
         }
 

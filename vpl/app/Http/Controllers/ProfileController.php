@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserAddress;
-
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -26,7 +25,7 @@ class ProfileController extends Controller
         $user->name = $request->name ?? $user->name;
         $user->email = $request->email ?? $user->email;
         $user->phone_number = $request->phone ?? $user->phone_number;
-        if($request->avatar){
+        if ($request->avatar) {
             $user->avatar = $request->avatar ?? $user->avatar;
         }
         $user->save();
@@ -43,14 +42,3 @@ class ProfileController extends Controller
         return redirect('/profile');
     }
 }
-
-
-
-
-
-
-
-
-
-
-

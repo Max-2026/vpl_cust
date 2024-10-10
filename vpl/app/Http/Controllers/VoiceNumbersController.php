@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Invoice;
 use App\Models\Number;
 use App\Models\NumberHistory;
-use App\Models\UserPaymentMethod;
-use App\Models\Invoice;
-use App\Services\VendorsAPIService;
 use App\Services\StripeService;
+use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 
 class VoiceNumbersController extends Controller
 {
@@ -55,15 +54,15 @@ class VoiceNumbersController extends Controller
             'setup_charges',
             'country_id'
         )
-        ->whereNull('current_user_id')
-        ->withWhereHas('country', function ($query) use ($searched_country) {
-            $query->where('code_a2', $searched_country->code_a2);
-        })
-        ->when($request->prefix, function ($query, $prefix) {
-            $query->where('prefix', 'like', "%$prefix%");
-        })
-        ->get()
-        ->toArray();
+            ->whereNull('current_user_id')
+            ->withWhereHas('country', function ($query) use ($searched_country) {
+                $query->where('code_a2', $searched_country->code_a2);
+            })
+            ->when($request->prefix, function ($query, $prefix) {
+                $query->where('prefix', 'like', "%$prefix%");
+            })
+            ->get()
+            ->toArray();
 
         $vendor_numbers = collect($vendors->vendor('DIDX')->get_numbers(
             $searched_country->dialing_code,
@@ -99,8 +98,7 @@ class VoiceNumbersController extends Controller
     public function handle_purchase(
         Request $request,
         StripeService $stripe_service
-    )
-    {
+    ) {
         $request->validate([
             'phone_number' => 'required',
         ]);
@@ -108,7 +106,7 @@ class VoiceNumbersController extends Controller
         $searched_country = session('searched_country');
         $number = Number::where('number', $request->phone_number)->first();
 
-        if (!$number) {
+        if (! $number) {
             $searched_data = session('searched_data');
 
             $number = current(array_filter(
@@ -148,7 +146,7 @@ class VoiceNumbersController extends Controller
             $user->balance < ($number->setup_charges + $number->monthly_charges)
         ) {
             return response()->json([
-                'message' => 'User account has insufficient funds'
+                'message' => 'User account has insufficient funds',
             ], 402);
         }
 
@@ -157,7 +155,7 @@ class VoiceNumbersController extends Controller
 
         $invoice = new Invoice;
         $invoice->number_id = $number->id;
-        $invoice->summary = "Number Purchased\nSetup charges: $" . number_format($number->setup_charges, 2) . "\nMonthly charges: $" . number_format($number->monthly_charges, 2);
+        $invoice->summary = "Number Purchased\nSetup charges: $".number_format($number->setup_charges, 2)."\nMonthly charges: $".number_format($number->monthly_charges, 2);
         $invoice->amount = $number->setup_charges + $number->monthly_charges;
         $user->invoices()->save($invoice);
 
@@ -178,7 +176,7 @@ class VoiceNumbersController extends Controller
         $number->save();
 
         return response()->json([
-            'message' => 'Purchase successful'
+            'message' => 'Purchase successful',
         ]);
     }
 
@@ -214,7 +212,9 @@ class VoiceNumbersController extends Controller
         $user = auth()->user();
         $number = Number::find($number_id);
 
-        if (!$number) abort(404);
+        if (! $number) {
+            abort(404);
+        }
 
         $logs = $number->logs()->where('user_id', $user->id)->paginate();
 
@@ -230,12 +230,16 @@ class VoiceNumbersController extends Controller
         $number = Number::find($number_id);
         $purchase_record = $number->get_recent_purchase($user->id);
 
-        if (!$number) abort(404);
+        if (! $number) {
+            abort(404);
+        }
 
         if (
             $number->current_user_id !== $user->id
-            || !$purchase_record
-        ) abort(403);
+            || ! $purchase_record
+        ) {
+            abort(403);
+        }
 
         $history = new NumberHistory;
         $history->number_id = $number->id;

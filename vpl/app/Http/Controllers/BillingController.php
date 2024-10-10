@@ -41,8 +41,7 @@ class BillingController extends Controller
     public function add_payment_methods(
         Request $request,
         StripeService $stripe_service
-    )
-    {
+    ) {
         $request->validate([
             'new_payment_method' => 'required|json',
         ]);
@@ -66,12 +65,12 @@ class BillingController extends Controller
             );
 
             return response()->json([
-                'message' => 'Payment method has been successfully added'
+                'message' => 'Payment method has been successfully added',
             ]);
         }
 
         return response()->json([
-            'message' => 'Field new_payment_method is null'
+            'message' => 'Field new_payment_method is null',
         ], 400);
     }
 
@@ -79,13 +78,15 @@ class BillingController extends Controller
     {
         $request->validate([
             'payment_method_id' => 'required|exists:user_payment_methods,id',
-            'balance_amount' => 'required'
+            'balance_amount' => 'required',
         ]);
 
         $user = $request->user();
         $card = UserPaymentMethod::find($request->payment_method_id);
 
-        if ($card->user_id != $user->id) abort(403);
+        if ($card->user_id != $user->id) {
+            abort(403);
+        }
 
         $payment_intent = $stripe_service->charge_card(
             $card->id,
@@ -103,7 +104,7 @@ class BillingController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'The request amount has been successfully added to user account'
+            'message' => 'The request amount has been successfully added to user account',
         ]);
     }
 }
