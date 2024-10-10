@@ -347,6 +347,11 @@
         hideConfirmModal();
 
         showToast('Purchase successful!', 'success');
+      } else if (res.status === 402) {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Your account has insufficient funds!', 'error');
       } else {
         btn.classList.remove('hidden');
         spinner.classList.add('hidden');
