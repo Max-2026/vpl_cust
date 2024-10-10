@@ -36,17 +36,17 @@ class VoiceNumbersController extends Controller
         );
         session(['searched_country' => $searched_country->toArray()]);
 
-        if ($request->billing_type) {
-        }
+        // if ($request->billing_type) {
+        // }
 
-        if ($request->capability) {
-        }
+        // if ($request->capability) {
+        // }
 
-        if ($request->no_legal) {
-        }
+        // if ($request->no_legal) {
+        // }
 
-        if ($request->toll_free) {
-        }
+        // if ($request->toll_free) {
+        // }
 
         $db_numbers = Number::select(
             'number',
@@ -103,14 +103,10 @@ class VoiceNumbersController extends Controller
     {
         $request->validate([
             'phone_number' => 'required',
-            'new_payment_method' => 'nullable|required_without:payment_method_id|json',
-            'payment_method_id' => 'nullable|required_without:new_payment_method',
         ]);
         $user = auth()->user();
-        $card_data = json_decode($request->new_payment_method);
         $searched_country = session('searched_country');
         $number = Number::where('number', $request->phone_number)->first();
-        $stripe_service->create_customer($user);
 
         if (!$number) {
             $searched_data = session('searched_data');
@@ -147,43 +143,22 @@ class VoiceNumbersController extends Controller
                 ]
             );
         }
-        $payment_intent = null;
 
-        if ($card_data !== null) {
-            $card = new UserPaymentMethod;
-            $card->id = $card_data->id;
-            $card->last_digits = $card_data->last_digits;
-            $card->expiry_month = $card_data->expiry_month;
-            $card->expiry_year = $card_data->expiry_year;
-            $card->card_holder_name = $card_data->card_holder_name;
-            $card->brand = $card_data->brand;
-
-            $user->payment_methods()->save($card);
-
-            $stripe_service->add_card(
-                $card->id,
-                $user->stripe_customer_id
-            );
-
-            $payment_intent = $stripe_service->charge_card(
-                $card->id,
-                $user->stripe_customer_id,
-                $number->setup_charges + $number->monthly_charges
-            );
-        } else {
-            $payment_intent = $stripe_service->charge_card(
-                $request->payment_method_id,
-                $user->stripe_customer_id,
-                $number->setup_charges + $number->monthly_charges
-            );
+        if (
+            $user->balance < ($number->setup_charges + $number->monthly_charges)
+        ) {
+            return response()->json([
+                'message' => 'User account has insufficient funds'
+            ], 402);
         }
+
+        $user->balance -= $number->setup_charges + $number->monthly_charges;
+        $user->save();
 
         $invoice = new Invoice;
         $invoice->number_id = $number->id;
         $invoice->summary = "Number Purchased\nSetup charges: $" . number_format($number->setup_charges, 2) . "\nMonthly charges: $" . number_format($number->monthly_charges, 2);
         $invoice->amount = $number->setup_charges + $number->monthly_charges;
-        $invoice->payment_reference_id = $payment_intent->id;
-
         $user->invoices()->save($invoice);
 
         $history = new NumberHistory;
@@ -197,10 +172,14 @@ class VoiceNumbersController extends Controller
         $history->per_mintue_charges = $number->per_mintue_charges;
         $history->per_sms_charges = $number->per_sms_charges;
         $history->billing_type = 'prorated';
-
         $number->history()->save($history);
+
         $number->current_user_id = $user->id;
         $number->save();
+
+        return response()->json([
+            'message' => 'Purchase successful'
+        ]);
     }
 
     public function my_numbers()

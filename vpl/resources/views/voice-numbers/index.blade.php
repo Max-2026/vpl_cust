@@ -36,7 +36,7 @@
           <input type="tel" pattern="[0-9]{1,4}" name="prefix" id="prefix" autocomplete="prefix" placeholder="8333****" class="flex-1 focus:ring-cyan-600 focus:border-cyan-600 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" value="{{ request()->input('prefix') }}">
         </div>
       </div>
-      <fieldset class="sm:col-span-12">
+      <!-- <fieldset class="sm:col-span-12">
         <p class="block text-sm mb-2 font-medium text-gray-700">
           Billing Type
         </p>
@@ -99,7 +99,7 @@
             Toll Free
           </label>
         </div>
-      </div>
+      </div> -->
       <div class="flex justify-end sm:col-span-12">
         <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">Search</button>
       </div>
@@ -252,7 +252,7 @@
     </div>
 
     <div class="w-full mt-2 px-2">
-      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col gap-y-6 sm:flex-row items-stretch sm:items-center gap-x-4">
+      <div class="mb-2 px-4 py-6 sm:py-3 bg-gray-50 flex flex-col gap-y-6 sm:flex-row items-stretch sm:justify-between sm:items-center gap-x-4">
         <button id="purchase-modal-btn" onclick="handlePurchase()" class="bg-gray-800 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
           Purchase
         </button>
@@ -261,6 +261,7 @@
             <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
           </svg>
         </button>
+        <p>Total: <b id="total"></b></p>
       </div>
     </div>
   </div>
@@ -331,9 +332,10 @@
     const payload = new FormData();
     payload.append('phone_number', window.phone_number);
 
+    const btn = document.getElementById('purchase-modal-btn');
+    const spinner = document.getElementById('purchase-modal-spinner');
+
     try {
-      const btn = document.getElementById('purchase-modal-btn');
-      const spinner = document.getElementById('purchase-modal-spinner');
       btn.classList.add('hidden');
       spinner.classList.remove('hidden');
 
@@ -399,6 +401,7 @@
     placeholders[3].innerText = setupCharges;
     placeholders[4].innerText = type;
     placeholders[5].innerText = capabilites;
+    document.getElementById('total').innerText = '$' + (Number(pricing.slice(1)) + Number(setupCharges.slice(1)));
 
     modalWrapper.classList.remove('hidden');
     setTimeout(() => {
