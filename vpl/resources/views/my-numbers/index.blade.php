@@ -7,6 +7,8 @@
       My Numbers
     </h3>
   </div>
+
+  @if (count($history ?? []) > 0)
   <div class="mt-4 flex flex-col">
     <div class="-my-2 overflow-x-auto scroll-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -147,6 +149,9 @@
       </div>
     </div>
   </div>
+  @else
+  <h2 class="w-full text-center mt-4 text-xl">No Data</h2>
+  @endif
 </div>
 
 @includeWhen(

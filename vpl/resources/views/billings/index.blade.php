@@ -49,6 +49,8 @@
   </div>
   <div class="mt-4 flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+
+      @if ($invoices->count() > 0)
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200">
@@ -69,7 +71,7 @@
             <tbody class="bg-white divide-y divide-gray-200 font-medium text-gray-600">
               <?php $total_amount = 0; ?>
 
-              @foreach($user->invoices as $invoice)
+              @foreach($invoices as $invoice)
               <?php $total_amount += $invoice->amount; ?>
               <tr>
                 <td class="px-5 py-4 whitespace-nowrap">
@@ -97,9 +99,19 @@
           </table>
         </div>
       </div>
+      @else
+      <h2 class="w-full text-center text-xl">No Data</h2>
+      @endif
+
     </div>
   </div>
 </div>
+
+@includeWhen(
+  $invoices->count() > 0,
+  'table-pagination-bar',
+  ['rows' => $invoices]
+)
 
 <div id="payment-methods-modal-wrapper" onclick="handlePaymentMethodsModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div id="payment-methods-modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-1000 ease-in bg-opacity-0" aria-hidden="true"></div>

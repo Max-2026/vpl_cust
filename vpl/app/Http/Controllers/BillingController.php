@@ -16,7 +16,7 @@ class BillingController extends Controller
 
         $user = Auth::user();
         $numbers = Number::where('current_user_id', $user->id)->get();
-        $invoice = Invoice::where('user_id', $user->id)->get();
+        $invoices = Invoice::where('user_id', $user->id)->paginate();
 
         $test = (object) [
             'payment_methods' => [
@@ -35,6 +35,7 @@ class BillingController extends Controller
             'test_Card' => $test,
             'numbers' => $numbers,
             'user' => $user,
+            'invoices' => $invoices,
         ]);
     }
 

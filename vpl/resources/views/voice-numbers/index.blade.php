@@ -107,10 +107,10 @@
   </form>
 </div>
 
+@if ($numbers->count() > 0)
 <div class="flex flex-col shadow rounded-md overflow-x-auto overflow-y-clip lg:overflow-clip">
   <div class="-my-2 sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      @if ($numbers->count() > 0)
       <div class="rounded-md overflow-hidden border-b border-gray-200">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-white">
@@ -159,10 +159,14 @@
           </tbody>
         </table>
       </div>
-      @endif
     </div>
   </div>
 </div>
+@else
+<div class="bg-white rounded-md shadow w-full h-16 flex flex-col justify-center">
+  <h2 class="w-full text-center text-xl">No Data</h2>
+</div>
+@endif
 
 <div id="confirm-modal-wrapper" onclick="handleModalBlur(event)" class="fixed overflow-y-auto overflow-x-hidden sm:overflow-hidden z-10 inset-0 flex justify-center sm:items-center hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
