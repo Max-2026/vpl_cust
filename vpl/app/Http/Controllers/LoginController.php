@@ -64,9 +64,6 @@ class LoginController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Create a Stripe customer and save the Stripe customer ID to the user's record
-        $this->createStripeCustomer($user);
-
         event(new Registered($user));
         Auth::login($user);
 
