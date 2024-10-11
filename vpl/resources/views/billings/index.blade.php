@@ -12,10 +12,10 @@
   <form action="" method="GET">
     <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-12">
       <div class="sm:col-span-4">
-        <label for="bill-type-2" class="block text-sm font-medium text-gray-700">Numbers</label>
+        <label for="bill_number" class="block text-sm font-medium text-gray-700">Numbers</label>
         <div class="mt-1">
-          <select id="bill-type-2" name="bills" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
-            <option selected value="all">All Numbers</option>
+          <select id="bill_number" name="bill_number" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
+            <option selected value="">All Numbers</option>
             @foreach($numbers as $number)
             <option value="{{ $number->number }}">{{ $number->number }}</option>
             @endforeach
@@ -23,9 +23,9 @@
         </div>
       </div>
       <div class="sm:col-span-4">
-        <label for="bill-type-3" class="block text-sm font-medium text-gray-700">Date</label>
+        <label for="bill_date" class="block text-sm font-medium text-gray-700">Date</label>
         <div class="mt-1">
-          <input type="date" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md" name="" id="">
+          <input type="date" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md" name="bill_date" id="bill_date">
         </div>
       </div>
       <div class="flex flex-col sm:flex-row sm:col-span-12 gap-4 font-semibold">

@@ -7,32 +7,32 @@ use App\Models\Number;
 use App\Models\UserPaymentMethod;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class BillingController extends Controller
 {
-    public function billing()
+    public function billing(Request $request)
     {
-
-        $user = Auth::user();
+        $user = $request->user();
         $numbers = Number::where('current_user_id', $user->id)->get();
-        $invoices = Invoice::where('user_id', $user->id)->paginate();
 
-        $test = (object) [
-            'payment_methods' => [
-                (object) [
-                    'id' => 'adfwqewredt4',
-                    'brand' => 'visa',
-                    'last_digits' => '4242',
-                    'expiry_month' => '12',
-                    'expiry_year' => '2025',
-                    'updated_at' => now(),
-                ],
-            ],
-        ];
+        $invoices = Invoice::when(
+            $request->bill_number,
+            function ($query) use ($request) {
+                $query->withWhereHas('number', function ($q) use ($request) {
+                    $q->where('number', $request->bill_number);
+                });
+            }
+        )
+        ->when(
+            $request->bill_date,
+            function ($query) use ($request) {
+                $query->whereDate('created_at', $request->bill_date);
+            }
+        )
+        ->where('user_id', $user->id)
+        ->paginate();
 
         return view('billings.index', [
-            'test_Card' => $test,
             'numbers' => $numbers,
             'user' => $user,
             'invoices' => $invoices,
