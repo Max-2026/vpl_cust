@@ -24,26 +24,12 @@ class SmsController extends Controller
                     }
                 );
             }
-        )->get();
+        )->paginate();
 
         return view('sms.index', [
             'messages' => $messages,
             'user' => $user,
             'numbers' => $numbers,
-        ]);
-    }
-
-    public function view_send_sms()
-    {
-        $user = Auth::user();
-        $messages = Message::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')->get();
-        $numbers = Number::where('current_user_id', $user->id)->get();
-
-        return view('sms.send-sms', [
-            'numbers' => $numbers,
-            'messages' => $messages,
-            'user' => $user,
         ]);
     }
 }

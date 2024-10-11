@@ -67,4 +67,11 @@
     </div>
   </div>
 </div>
+
+@includeWhen(
+  $messages->count() > 0,
+  'table-pagination-bar',
+  ['rows' => $messages]
+)
+
 @endsection
