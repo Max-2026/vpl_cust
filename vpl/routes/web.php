@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
 
     // Update profile form
     Route::post(
-        '/update/profile/{id}',
+        '/update/profile',
         [ProfileController::class, 'update_profile']
     )->name('update_profile');
 

@@ -17,20 +17,20 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function update_profile(Request $request, $id)
+    public function update_profile(Request $request)
     {
-        // dd($request->all());
-        $user = User::find($id);
+        $user = $request->user();
 
         $user->name = $request->name ?? $user->name;
         $user->email = $request->email ?? $user->email;
         $user->phone_number = $request->phone ?? $user->phone_number;
+
         if ($request->avatar) {
-            $user->avatar = $request->avatar ?? $user->avatar;
+            $user->avatar = $request->file('avatar')->store('avatars');
         }
         $user->save();
 
-        $user_details = UserAddress::where('user_id', $id)->first();
+        $user_details = UserAddress::where('user_id', $user->id)->first();
 
         $user_details->address = $request->address ?? $user_details->address;
         $user_details->city = $request->city ?? $user_details->city;
