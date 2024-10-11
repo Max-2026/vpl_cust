@@ -19,6 +19,7 @@
                 @foreach([
                   'Number',
                   'Forwarded To',
+                  '',
                   'Country',
                   'Number Status',
                   'Paid Till Date',
@@ -45,19 +46,17 @@
                   <tr class="bg-gray-200" title="This number will be released">
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
 
-                    @if ($row->forwarding_url)
-                      <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
-                    @else
-                      <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
-                        <a
-                          data-number="{{ $row->number->number }}"
-                          data-forwarding-url="{{ $row->forwarding_url }}"
-                          class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                        >
-                          Configure
-                        </a>
-                      </td>
-                    @endif
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
+
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
+                      <a
+                        data-number="{{ $row->number->number }}"
+                        data-forwarding-url="{{ $row->forwarding_url }}"
+                        class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
+                      >
+                        Configure
+                      </a>
+                    </td>
 
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -102,19 +101,17 @@
                   <tr>
                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row->number->number }}</td>
 
-                    @if ($row->forwarding_url)
-                      <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
-                    @else
-                      <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
-                        <a
-                          data-number="{{ $row->number->number }}"
-                          data-forwarding-url="{{ $row->forwarding_url }}"
-                          class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                        >
-                        Configure
-                        </a>
-                      </td>
-                    @endif
+                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
+                      <a
+                        data-number="{{ $row->number->number }}"
+                        data-forwarding-url="{{ $row->forwarding_url }}"
+                        class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
+                      >
+                      Configure
+                      </a>
+                    </td>
+
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($row->number->country->name) }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                       @if ($row->number->is_active)
@@ -173,20 +170,21 @@
     <div class="w-full mt-2 px-2">
       <div class="flex justify-between items-center mb-6">
         <h3 id="configure-number-placeholder" class="text-lg mt-2 ml-1 leading-6 font-medium text-gray-700 text-left">
+          Update your number forwarding settings
         </h3>
       </div>
 
-      <div class="w-full grid grid-cols-12 gap-4">
+      <form onsubmit="handleConfigure(event)" class="w-full grid grid-cols-12 gap-4">
         <div class="col-span-12 sm:col-span-2">
-          <label for="forwarding-type" class="block text-sm font-medium text-gray-700">Type</label>
+          <label for="forwarding_type" class="block text-sm font-medium text-gray-700">Type</label>
           <div class="mt-1">
-            <select id="forwarding-type" name="forwarding-type" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
+            <select id="forwarding_type" name="forwarding_type" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
               <option value="pstn">PSTN</option>
               <option value="sip">SIP</option>
             </select>
           </div>
         </div>
-        <div class="col-span-12 sm:col-span-10">
+        <div class="col-span-12 sm:col-span-8">
           <label for="forwarding_url" class="block text-sm font-medium text-gray-700">
             Forwarding
           </label>
@@ -201,7 +199,13 @@
             <input type="text" name="forwarding_url" id="forwarding_url" autocomplete="forwarding_url" class="flex-1 focus:ring-cyan-600 focus:border-cyan-600 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
           </div>
         </div>
-      </div>
+        <div class="col-span-12 sm:col-span-2 flex items-end justify-end">
+          <button id="configure-modal-btn" class="py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0">Update</button>
+          <button id="configure-modal-spinner" class="hidden py-1.5 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-0"><svg class="text-white w-6 h-6 animate-spin" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" fill-rule="evenodd"></path>
+          </svg></button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -265,14 +269,10 @@
     const modalWrapper = document.getElementById('configure-modal-wrapper');
     const modalOverlay = document.getElementById('configure-modal-overlay');
     const modal = document.getElementById('configure-modal');
-    const placeholder = document.getElementById('configure-number-placeholder');
     const placeholder2 = document.getElementById(
       'configure-number-placeholder-2'
     );
-    const fwdUrlPlaceholder = document.getElementById('forwarding_url');
-    placeholder.innerText = number;
     placeholder2.innerText = number;
-    fwdUrlPlaceholder.innerText = 
 
     modalWrapper.classList.remove('hidden');
     setTimeout(() => {
@@ -300,6 +300,62 @@
       const number = event.target.dataset.number;
       showConfigureModal(number);
     }
+  }
+
+  async function handleConfigure(event) {
+    event.preventDefault();
+    const form = event.target;
+    const forwardingType = form.elements['forwarding_type'].value;
+    const forwardingUrl = form.elements['forwarding_url'].value;
+    const number = document.getElementById('configure-number-placeholder-2')
+      .innerText;
+
+    if (!forwardingUrl) return alert('Please fill the forwarding field');
+
+    const btn = document.getElementById('configure-modal-btn');
+    const spinner = document.getElementById('configure-modal-spinner');
+
+    try {
+      btn.classList.add('hidden');
+      spinner.classList.remove('hidden');
+
+      const payload = new FormData();
+      payload.append('number', number);
+      payload.append('forwarding_type', forwardingType);
+      payload.append('forwarding_url', forwardingUrl);
+
+      const res = await configureRequest(payload);
+
+      if (res.status === 200) {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideConfigureModal();
+
+        showToast('Configuration successfully changed!', 'success');
+        setTimeout(() => window.location.reload(), 1500);
+      } else {
+        btn.classList.remove('hidden');
+        spinner.classList.add('hidden');
+
+        showToast('Operation failed!', 'error');
+      }
+    } catch (error) {
+      console.log(error);
+      btn.classList.remove('hidden');
+      spinner.classList.add('hidden');
+
+      showToast('Operation failed!', 'error');
+    }
+  }
+
+  async function configureRequest(formData) {
+    formData.append('_token', "{{ csrf_token() }}");
+    const req = await fetch("{{ route('change-forwarding') }}", {
+      method: 'POST',
+      body: formData
+    });
+
+    return req;
   }
 
 </script>
