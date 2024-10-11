@@ -59,4 +59,9 @@ class Number extends Model
             ->where('activity', 'purchased')->orderBy('created_at', 'desc')
             ->first();
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

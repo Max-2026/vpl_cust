@@ -105,12 +105,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::post('/send-message', [SmsController::class, 'send_message'])
-        ->name('send-message');
-
-    Route::post('/search-message', [SmsController::class, 'searchMessage']);
-
-    Route::get('/search-message', [SmsController::class, 'index']);
+    Route::get('/sms', [SmsController::class, 'index'])->name('sms');
 
 });
 

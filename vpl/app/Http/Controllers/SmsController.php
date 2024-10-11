@@ -9,22 +9,27 @@ use Illuminate\Support\Facades\Auth;
 
 class SmsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user();
-        $number = Number::where('current_user_id', $user->id)->get();
-        $numbers = Number::where('current_user_id', $user->id)->pluck('number');
-        $messages = collect();
-
-        if ($numbers->isNotEmpty()) {
-            $messages = Message::whereIn('from_number', $numbers)
-                ->orderBy('created_at', 'desc')->paginate(10);
-        }
+        $user = $request->user();
+        $numbers = Number::where('current_user_id', $user->id)->get();
+        $messages = Message::withWhereHas(
+            'number',
+            function ($query) use ($user, $request) {
+                $query->where('current_user_id', $user->id)
+                ->when(
+                    $request->search_number,
+                    function ($q) use ($request) {
+                        $q->where('number', $request->search_number);
+                    }
+                );
+            }
+        )->get();
 
         return view('sms.index', [
             'messages' => $messages,
             'user' => $user,
-            'number' => $number,
+            'numbers' => $numbers,
         ]);
     }
 
@@ -39,49 +44,6 @@ class SmsController extends Controller
             'numbers' => $numbers,
             'messages' => $messages,
             'user' => $user,
-        ]);
-    }
-
-    public function send_message(Request $request)
-    {
-        $user = Auth::user();
-        $charges = 5;
-
-        if ($user->balance < $charges) {
-            return back()->with('error', 'Your balance is too low. Please add funds before sending the message.');
-        }
-
-        $message = new Message();
-        $message->user_id = $user->id;
-        $message->number = $request->number;
-        $message->from_number = $request->send_number;
-        $message->received_at = now();
-        $message->content = $request->message;
-        $message->charges = $charges;
-        $message->save();
-
-        $user->balance -= $charges;
-        $user->save();
-
-        return redirect()->back()->with('success', 'Message sent successfully.');
-    }
-
-    public function searchMessage(Request $request)
-    {
-        $user = Auth::user();
-        $number = Number::where('current_user_id', $user->id)->get();
-        $numbers = Number::where('current_user_id', $user->id)->pluck('number');
-
-        if ($request->search_number && $request->search_number !== 'all') {
-            $messages = Message::where('number', $request->search_number)->paginate(10);
-        } else {
-            $messages = Message::whereIn('number', $numbers)->paginate(10);
-        }
-
-        return view('sms.index', [
-            'messages' => $messages,
-            'user' => $user,
-            'number' => $number,
         ]);
     }
 }
