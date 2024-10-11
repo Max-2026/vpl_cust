@@ -257,4 +257,24 @@ class VoiceNumbersController extends Controller
 
         return redirect()->back();
     }
+
+    public function change_forwarding(Request $request)
+    {
+        $request->validate([
+            'number' => 'required',
+            'forwarding_type' => 'required',
+            'forwarding_url' => 'required',
+        ]);
+
+        $user = $request->user();
+        $number = Number::where('number', $request->number)->first();
+        $history = $number->get_recent_purchase($user->id);
+        $history->forwarding_url = $request->forwarding_type . ':'
+            . $request->forwarding_url;
+        $history->save();
+
+        return response()->json([
+            'message' => 'Configuration successfully changed'
+        ]);
+    }
 }

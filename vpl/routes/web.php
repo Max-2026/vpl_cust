@@ -53,6 +53,12 @@ Route::middleware('auth')->group(function () {
         [VoiceNumbersController::class, 'release']
     )->name('release-number');
 
+    // Change number forwarding url
+    Route::post(
+        '/number/forwarding',
+        [VoiceNumbersController::class, 'change_forwarding']
+    )->name('change-forwarding');
+
     // Billing page
     Route::get(
         '/billing',
