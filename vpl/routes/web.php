@@ -110,7 +110,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Public Routes
-Route::get('/', [HomepageController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect('purchase-numbers');
+})->name('home');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 

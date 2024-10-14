@@ -53,9 +53,9 @@
             </svg>
           </button>
         </div>
-        <div class="flex-shrink-0 flex items-center px-4">
+        <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center px-4">
           <img class="h-16 w-auto object-cover" src="{{ asset('images/logo_new.svg') }}" alt="Easywire logo">
-        </div>
+        </a>
         <nav class="mt-5 flex-shrink-0 h-full divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
           <div class="px-2 space-y-1">
             @foreach (config('app.menu_items') as $item)
@@ -97,10 +97,10 @@
     <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex flex-col flex-grow bg-cyan-700 pt-5 pb-4 overflow-y-auto">
-        <div class="flex items-center flex-shrink-0 px-4">
+        <a href="{{ route('home') }}" class="flex items-center flex-shrink-0 px-4">
           <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg" alt="Easywire logo"> -->
           <img class="h-16 w-auto object-cover" src="{{ asset('images/logo_new.svg') }}" alt="Easywire logo">
-        </div>
+        </a>
         <nav class="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
           <div class="px-2 space-y-1">
             @foreach (config('app.menu_items') as $item)
