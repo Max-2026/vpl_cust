@@ -53,16 +53,16 @@
             </svg>
           </button>
         </div>
-        <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center px-4">
+        <a href="{{ url(route('home')) }}" class="flex-shrink-0 flex items-center px-4">
           <img class="h-16 w-auto object-cover" src="{{ asset('images/logo_new.svg') }}" alt="Easywire logo">
         </a>
         <nav class="mt-5 flex-shrink-0 h-full divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
           <div class="px-2 space-y-1">
             @foreach (config('app.menu_items') as $item)
               @if (preg_match('/.*' . $item['name'] . '.*/', url()->current()))
-                <a href="{{ $item['name'] }}" class="bg-cyan-800 text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
+                <a href="{{ url($item['name']) }}" class="bg-cyan-800 text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
               @else
-                <a href="{{ $item['name'] }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
+                <a href="{{ url($item['name']) }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
               @endif
                 {!! $item['icon'] !!}
                 {{ $item['title'] }}
@@ -78,7 +78,7 @@
                 </svg>
                 Settings
               </a> -->
-              <a href="{{ route('help') }}" class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+              <a href="{{ url(route('help')) }}" class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
                 <!-- Heroicon name: outline/question-mark-circle -->
                 <svg class="mr-4 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -105,9 +105,9 @@
           <div class="px-2 space-y-1">
             @foreach (config('app.menu_items') as $item)
               @if (preg_match('/.*' . $item['name'] . '.*/', url()->current()))
-                <a href="{{ $item['name'] }}" class="bg-cyan-800 text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
+                <a href="{{ url($item['name']) }}" class="bg-cyan-800 text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
               @else
-                <a href="{{ $item['name'] }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
+                <a href="{{ url($item['name']) }}" class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md" aria-current="page">
               @endif
                 {!! $item['icon'] !!}
                 {{ $item['title'] }}
@@ -123,7 +123,7 @@
                 </svg>
                 Settings
               </a> -->
-              <a href="{{ route('help') }}" class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+              <a href="{{ url(route('help')) }}" class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
                 <!-- Heroicon name: outline/question-mark-circle -->
                 <svg class="mr-4 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -171,7 +171,7 @@
             <!-- Profile dropdown -->
             <div class="ml-3 relative">
               <div>
-                <a href="{{ route('profile') }}" class="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-100" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <a href="{{ url(route('profile')) }}" class="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-100" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   @if ($user->avatar)
                   <img class="h-8 w-8 rounded-full hidden lg:block" src="{{ asset($user->avatar) }}" alt="">
                   @else

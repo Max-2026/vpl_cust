@@ -145,10 +145,10 @@
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->talktime_quota }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->number->sms_quota }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="{{ route('number-logs', ['number_id' => $row->number->id]) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
+                      <a href="{{ url(route('number-logs', ['number_id' => $row->number->id])) }}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">View</a>
                     </td>
                     <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="{{ route('release-number', ['number_id' => $row->number->id]) }}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Deactivate</a>
+                      <a href="{{ url(route('release-number', ['number_id' => $row->number->id])) }}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Deactivate</a>
                     </td>
                   </tr>
                 @endif
@@ -354,7 +354,7 @@
 
   async function configureRequest(formData) {
     formData.append('_token', "{{ csrf_token() }}");
-    const req = await fetch("{{ route('change-forwarding') }}", {
+    const req = await fetch("{{ url(route('change-forwarding')) }}", {
       method: 'POST',
       body: formData
     });
