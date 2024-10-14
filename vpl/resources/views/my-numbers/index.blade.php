@@ -104,6 +104,7 @@
                     <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->forwarding_url }}</td>
                     <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
                       <a
+                        data-btn-id="configure-btn"
                         data-number="{{ $row->number->number }}"
                         data-forwarding-url="{{ $row->forwarding_url }}"
                         class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
@@ -296,7 +297,10 @@
   function handleRowClick(event) {
     const row = event.target.closest('tr');
 
-    if (event.target.tagName == 'A') {
+    if (
+      event.target.tagName == 'A'
+      && event.target.dataset.btnId == 'configure-btn'
+    ) {
       const number = event.target.dataset.number;
       showConfigureModal(number);
     }
