@@ -95,18 +95,19 @@ Route::middleware('auth')->group(function () {
         [ProfileController::class, 'update_profile']
     )->name('update_profile');
 
-    // Settings page
-    Route::get('/settings', function () {
-    })->name('settings');
-
     // Help page
     Route::get('/help', function () {
+        return view('help.index');
     })->name('help');
 
+    // Api integration page
+    Route::get('/api-integration', function () {
+        return view('api-integration.index', [
+            'webhooks' => [],
+        ]);
+    });
+
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
-    Route::get('/sms', [SmsController::class, 'index'])->name('sms');
-
 });
 
 // Public Routes
