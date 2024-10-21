@@ -1,0 +1,44 @@
+[transport-udp]
+type=transport
+protocol=udp
+bind=0.0.0.0:5060
+
+[6001]
+type=endpoint
+context=from-internal
+disallow=all
+allow=ulaw
+auth=6001
+aors=6001
+rewrite_contact=yes       ; Adjust contact based on the actual source IP:port
+rtp_symmetric=yes         ; Enable RTP symmetry
+force_rport=yes           ; Force rport to handle NAT traversal
+direct_media=no           ; Relay media through Asterisk to handle NAT
+
+[6001]
+type=auth
+auth_type=userpass
+password=password
+username=6001
+
+[6001]
+type=aor
+max_contacts=1
+contact=sip:119.155.193.182:5060
+
+[didx]
+type=endpoint
+transport=transport-udp
+context=from-didx
+disallow=all
+allow=ulaw
+aors=vendor
+
+[didx]
+type=aor
+contact=sip:46.101.80.13:5060
+
+[didx]
+type=identify
+endpoint=didx
+match=46.101.80.13

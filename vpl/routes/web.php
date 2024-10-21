@@ -156,8 +156,13 @@ Route::post('/register', [LoginController::class, 'signup_post'])
     ->name('handle-register');
 
 Route::get(
-    '/login/redirect/{provider_name}',
-    [LoginController::class, 'redirect']
-)->name('third-party-login');
+    '/forwarding/{number}/{secret}',
+    [VoiceNumbersController::class, 'forwarding']
+);
 
-Route::get('/login/callback', [LoginController::class, 'callback']);
+// Route::get(
+//     '/login/redirect/{provider_name}',
+//     [LoginController::class, 'redirect']
+// )->name('third-party-login');
+
+// Route::get('/login/callback', [LoginController::class, 'callback']);

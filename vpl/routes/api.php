@@ -16,17 +16,3 @@ use Illuminate\Support\Facades\Route;
 
 // Route::middleware('auth:sanctum')->group(function () {
 // });
-
-Route::get(
-    '/numbers/area/{area_name}',
-    [ApiController::class, 'search_numbers_by_area']
-);
-Route::get(
-    '/numbers/country/{country_name}',
-    [ApiController::class, 'search_numbers_by_country']
-);
-
-Route::get(
-    '/areas/{country_name}',
-    [ApiController::class, 'search_areas_by_country']
-);

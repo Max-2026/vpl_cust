@@ -8,7 +8,9 @@ $agi = new AGI();
 
 $caller_number = $agi->request['agi_callerid'];
 
-$url = 'http://your-laravel-app.com/api/forwarding-address/' . $caller_number;
+$base_url = 'http://dialify.dgtlid.com';
+$url = $base_url . "/forwarding/{$caller_number}";
+
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 
