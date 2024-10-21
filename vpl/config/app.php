@@ -232,4 +232,6 @@ return [
         ],
     ],
 
+    'sip_secret' => env('SIP_SECRET'),
+
 ];

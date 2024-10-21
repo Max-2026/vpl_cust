@@ -277,4 +277,18 @@ class VoiceNumbersController extends Controller
             'message' => 'Configuration successfully changed'
         ]);
     }
+
+    public function forwarding(string $number, string $secret)
+    {
+        if ($secret != config('app.sip_secret')) abort(401);
+
+        $num = Number::where('number', $number)->first();
+        $history = $num->get_recent_purchase($num->current_user_id);
+
+        if ($history && $history->forwarding_url) {
+            return response()->json(['sip_url' => $history->forwarding_url]);
+        }
+
+        return response()->json(['error' => 'Forwarding URI not found'], 404);
+    }
 }
