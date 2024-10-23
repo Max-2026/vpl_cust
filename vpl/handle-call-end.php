@@ -2,7 +2,7 @@
 
 <?php
 
-require('phpagi.php');
+require(__DIR__ . '/vendor/autoload.php');
 
 $agi = new AGI();
 
