@@ -10,10 +10,10 @@ disallow=all
 allow=ulaw
 auth=6001
 aors=6001
-rewrite_contact=yes       ; Adjust contact based on the actual source IP:port
-rtp_symmetric=yes         ; Enable RTP symmetry
-force_rport=yes           ; Force rport to handle NAT traversal
-direct_media=no           ; Relay media through Asterisk to handle NAT
+rewrite_contact=yes
+rtp_symmetric=yes
+force_rport=yes
+direct_media=no
 
 [6001]
 type=auth

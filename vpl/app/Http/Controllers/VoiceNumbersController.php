@@ -278,17 +278,73 @@ class VoiceNumbersController extends Controller
         ]);
     }
 
-    public function forwarding(string $number, string $secret)
+    public function handle_call_start(
+        string $number,
+        string $secret,
+        Request $request
+    )
     {
+        $timestamp = $request->timestamp;
+        $caller_ip = $request->ip;
+        $caller = $request->caller;
+        $call_id = $request->call_id;
+
         if ($secret != config('app.sip_secret')) abort(401);
 
-        $num = Number::where('number', $number)->first();
+        $num = Cache::remember(
+            $number,
+            now()->addDay(),
+            function () use ($number) {
+                return Number::where('number', $number)->first();
+            }
+        );
+
+        if (!$num) {
+            return response()->json(
+                ['error' => 'Invalid number'],
+                404
+            );
+        }
+
         $history = $num->get_recent_purchase($num->current_user_id);
 
-        if ($history && $history->forwarding_url) {
+        if ($history->forwarding_url) {
+            $cdr = new NumberCallLog;
+            $cdr->id = $call_id;
+            $cdr->number_id = $num->id;
+            $cdr->user_id = $num->current_user_id;
+            $cdr->from_number = $caller;
+            $cdr->start_time = $timestamp;
+            $num->logs()->save($cdr);
+
             return response()->json(['sip_url' => $history->forwarding_url]);
         }
 
-        return response()->json(['error' => 'Forwarding URI not found'], 404);
+        return response()->json(
+            ['error' => 'Forwarding URI not found'],
+            404
+        );
+    }
+
+    public function handle_call_end(
+        string $call_id,
+        string $secret
+    )
+    {
+        $timestamp = $request->timestamp;
+
+        if ($secret != config('app.sip_secret')) abort(401);
+
+        $cdr = NumberCallLog::find($call_id);
+
+        if (!$cdr) {
+            return response()->json(
+                ['error' => 'Record not found'],
+                404
+            );
+        }
+
+        $cdr->end_time = $timestamp;
+        $cdr->save();
     }
 }

@@ -156,8 +156,13 @@ Route::post('/register', [LoginController::class, 'signup_post'])
     ->name('handle-register');
 
 Route::get(
-    '/forwarding/{number}/{secret}',
-    [VoiceNumbersController::class, 'forwarding']
+    '/call-start/{number}/{secret}',
+    [VoiceNumbersController::class, 'handle_call_start']
+);
+
+Route::get(
+    '/call-end/{call_id}/{secret}',
+    [VoiceNumbersController::class, 'handle_call_end']
 );
 
 // Route::get(

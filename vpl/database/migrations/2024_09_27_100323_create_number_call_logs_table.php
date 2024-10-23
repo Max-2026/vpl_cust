@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('number_call_logs', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('from_number');
-            $table->integer('minutes_consumed');
+            $table->integer('minutes_consumed')->default(0);
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->timestamps();
         });
     }

@@ -9,6 +9,12 @@ exten => didx,1,NoOp(Incoming call from DIDX)
 same => n,Set(dest_tn=${CALLERID(num)})
 same => n,Dial(PJSIP/6001)
 same => n,Hangup()
+
+;exten => _X.,1,Answer()
+;same => n,AGI(/var/lib/asterisk/agi-bin/handle-call-start.php)
+;same => n,AGI(/var/lib/asterisk/agi-bin/handle-call-end.php)
+;same => n,Hangup()
+
 ;exten = didx,1,Answer()
 ;same = n,Wait(1)
 ;same = n,Playback(national-anthem-mono)
