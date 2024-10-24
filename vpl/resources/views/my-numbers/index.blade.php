@@ -198,7 +198,7 @@
                 <path clip-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" fill-rule="evenodd"></path>
               </svg>
             </span>
-            <input type="text" name="forwarding_url" id="forwarding_url" autocomplete="forwarding_url" class="flex-1 focus:ring-cyan-600 focus:border-cyan-600 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+            <input oninput="validateForwardingUrl(event)" type="text" name="forwarding_url" id="forwarding_url" autocomplete="forwarding_url" class="flex-1 focus:ring-0 focus:outline-none focus:border-gray-300 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
           </div>
         </div>
         <div class="col-span-12 sm:col-span-2 flex items-end justify-end">
@@ -361,6 +361,22 @@
     });
 
     return req;
+  }
+
+  function validateForwardingUrl({ target: { value } }) {
+    if (!isValidSIPUrl(value)) {
+      const field = document.getElementById('forwarding_url');
+      field.classList.add('border-red-600', 'focus:border-red-600');
+    } else {
+      const field = document.getElementById('forwarding_url');
+      field.classList.remove('border-red-600', 'focus:border-red-600');
+    }
+  }
+
+  function isValidSIPUrl(url) {
+    const sipRegex = /^[a-zA-Z0-9._%+-]+@[0-9]{1,3}(\.[0-9]{1,3}){3}(:[0-9]{4,5})?$/;
+
+    return sipRegex.test(url);
   }
 
 </script>
