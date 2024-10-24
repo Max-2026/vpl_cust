@@ -33,5 +33,5 @@ if (isset($data['sip_url'])) {
     $url = $base_url . "/call-end/{$call_id}/{$sip_secret}?timestamp={$call_end_timestamp}";
     $response = file_get_contents($url);
 } else {
-    $agi->exec("Playback", "number-not-answering");
+    $agi->exec("Playback", "number-destination-found-mono");
 }
