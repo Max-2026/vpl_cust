@@ -50,6 +50,7 @@
 
                     <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium hover:cursor-pointer">
                       <a
+                        data-btn-id="configure-btn"
                         data-number="{{ $row->number->number }}"
                         data-forwarding-url="{{ $row->forwarding_url }}"
                         class="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
@@ -180,7 +181,7 @@
           <label for="forwarding_type" class="block text-sm font-medium text-gray-700">Type</label>
           <div class="mt-1">
             <select id="forwarding_type" name="forwarding_type" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
-              <option value="pstn">PSTN</option>
+              <!-- <option value="pstn">PSTN</option> -->
               <option value="sip">SIP</option>
             </select>
           </div>
