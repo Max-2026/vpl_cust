@@ -10,6 +10,11 @@ class NumberCallLog extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
+
     public function number(): BelongsTo
     {
         return $this->belongsTo(Number::class);
