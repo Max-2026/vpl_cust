@@ -30,6 +30,11 @@ class VendorsAPIService
         return $this;
     }
 
+    public function purchase($number)
+    {
+        $response = $this->vendor->purchase($number);
+    }
+
     public function get_numbers(
         $country_dial_code,
         $prefix = null,

@@ -52,33 +52,33 @@ class DIDX implements VendorAPI
         return $numbers;
     }
 
-    public function reserve($number)
-    {
-        $response = Http::get(
-            "{$this->base_url}/DidxApis/api/ReserveDIDByNumber.php",
-            [
-                'UserID' => config('vendors_api.didx.api_key'),
-                'Password' => config('vendors_api.didx.api_secret'),
-                'DIDNumber' => $number,
-            ]
-        );
+    // public function reserve($number)
+    // {
+    //     $response = Http::get(
+    //         "{$this->base_url}/DidxApis/api/ReserveDIDByNumber.php",
+    //         [
+    //             'UserID' => config('vendors_api.didx.api_key'),
+    //             'Password' => config('vendors_api.didx.api_secret'),
+    //             'DIDNumber' => $number,
+    //         ]
+    //     );
 
-        return $response->successful();
-    }
+    //     return $response->successful();
+    // }
 
-    public function unreserve($number)
-    {
-        $response = Http::get(
-            "{$this->base_url}/DidxApis/api/UnreserveDIDByNumber.php",
-            [
-                'UserID' => config('vendors_api.didx.api_key'),
-                'Password' => config('vendors_api.didx.api_secret'),
-                'DIDNumber' => $number,
-            ]
-        );
+    // public function unreserve($number)
+    // {
+    //     $response = Http::get(
+    //         "{$this->base_url}/DidxApis/api/UnreserveDIDByNumber.php",
+    //         [
+    //             'UserID' => config('vendors_api.didx.api_key'),
+    //             'Password' => config('vendors_api.didx.api_secret'),
+    //             'DIDNumber' => $number,
+    //         ]
+    //     );
 
-        return $response->successful();
-    }
+    //     return $response->successful();
+    // }
 
     public function purchase($number)
     {
