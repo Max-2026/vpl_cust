@@ -1,4 +1,4 @@
-#!/usr/bin/php -q
+#!/usr/bin/env php
 
 <?php
 
@@ -27,7 +27,11 @@ $data = json_decode($response, true);
 
 if (isset($data['sip_url'])) {
     $agi->exec("Dial", "SIP/" . $data['sip_url']);
+
+    // Reporting call end
+    $call_end_timestamp = date('Y-m-d H:i:s');
+    $url = $base_url . "/call-end/{$call_id}/{$sip_secret}?timestamp={$call_end_timestamp}";
+    $response = file_get_contents($url);
 } else {
-    $agi->exec("Playback", "sorry-no-service");
-    $agi->hangup();
+    $agi->exec("Playback", "number-not-answering");
 }
