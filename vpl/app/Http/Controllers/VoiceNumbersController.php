@@ -268,7 +268,9 @@ class VoiceNumbersController extends Controller
 
         $user = $request->user();
         $number = Number::where('number', $request->number)->first();
-        $history = $number->get_recent_purchase($user->id);
+        $history = $number->history()->where('user_id', $request->user()->id)
+            ->whereIn('activity', ['purchased', 'released'])
+            ->orderBy('created_at', 'desc')->first();
         $history->forwarding_url = $request->forwarding_type . ':'
             . $request->forwarding_url;
         $history->save();
