@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
-            $table->enum('http_method', ['get', 'post']);
+            $table->string('secret')->nullable();
             $table->string('url');
             $table->timestamps();
+            $table->unique(['number_id', 'url']);
         });
     }
 

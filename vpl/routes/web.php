@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VoiceNumbersController;
+use App\Http\Controllers\ApiIntegrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -101,11 +101,13 @@ Route::middleware('auth')->group(function () {
     })->name('help');
 
     // Api integration page
-    Route::get('/api-integration', function () {
-        return view('api-integration.index', [
-            'webhooks' => [],
-        ]);
-    });
+    Route::get('/api-integration', [ApiIntegrationController::class, 'index']);
+
+    // SMS Webhook form
+    Route::post(
+        '/api-integration',
+        [ApiIntegrationController::class, 'sms_form']
+    );
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

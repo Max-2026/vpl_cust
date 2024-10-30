@@ -60,8 +60,13 @@ class Number extends Model
             ->first();
     }
 
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function webhooks(): HasMany
+    {
+        return $this->hasMany(UserWebhook::class);
     }
 }
