@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./vpl/deploy/
-          server-dir: /deploy/
+          server-dir: /portal/deploy/
 
       - name: Make HTTP Request to deploy.php
         run: curl "${{ secrets.DEPLOY_URL }}/deploy/deploy.php"
