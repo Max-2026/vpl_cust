@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <audio id="remoteAudio" autoplay></audio>
+
+  <script src="https://jssip.net/download/releases/jssip-3.10.0.min.js"></script>
+
+  <script type="text/javascript">
+
+  const socket = new JsSIP.WebSocketInterface('ws://159.65.227.23:8088/ws');
+
+  const configuration = {
+    sockets: [socket],
+    uri: 'sip:webrtc_client@159.65.227.23',
+    password: 'webrtc_client'
+  };
+
+  const client = new JsSIP.UA(configuration);
+
+  client.start();
+
+  client.on('disconnected', function() {
+    console.log('Disconnected');
+  });
+
+  client.on('connected', function() {
+    console.log('Connected to WebSocket');
+  });
+
+  client.on('registrationFailed', function(e) {
+    console.error('Registration failed:', e);
+  });
+
+  client.on('registered', function() {
+    console.log('WebRTC client registered');
+
+    const options = {
+      'mediaConstraints': { 'audio': true, 'video': false }
+    };
+
+    client.call('sip:6002@159.65.227.23', options);
+  });
+
+  client.on('newRTCSession', function(data) {
+    console.log('New RTC Session');
+
+    const session = data.session;
+
+    session.on("confirmed",function(){
+      console.log('The call has connected, and audio is playing');
+    });
+
+    session.connection.addEventListener('track', function(event) {
+      console.log('Audio stream received');
+
+      // Ensure the remote audio track is set to the audio element
+      const remoteAudio = document.getElementById('remoteAudio');
+      if (event.track.kind === 'audio') {
+        // Attach the received audio stream to the audio element
+        const remoteStream = new MediaStream();
+        remoteStream.addTrack(event.track);
+        remoteAudio.srcObject = remoteStream;
+        remoteAudio.play();
+      }
+    });
+  });
+
+  </script>
+</body>
+
+</html>
