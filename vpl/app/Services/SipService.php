@@ -22,7 +22,7 @@ class SipController
     public function create_sip_endpoint(
         User $user,
         string $password,
-        boolean $is_webrtc = false
+        bool $is_webrtc = false
     )
     {
         $endpoint = new Endpoint;
