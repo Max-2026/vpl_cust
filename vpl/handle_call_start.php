@@ -25,8 +25,8 @@ $url = $base_url . "/call-start/{$called_number}/{$sip_secret}?timestamp={$call_
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 
-if (isset($data['sip_url'])) {
-    $agi->exec("Dial", "SIP/" . $data['sip_url']);
+if (isset($data['url'])) {
+    $agi->exec("Dial", "PJSIP/" . $data['url']);
 
     // Reporting call end
     $call_end_timestamp = date('Y-m-d H:i:s');

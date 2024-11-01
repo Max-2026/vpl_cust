@@ -330,7 +330,15 @@ class VoiceNumbersController extends Controller
             $cdr->start_time = $timestamp;
             $num->logs()->save($cdr);
 
-            return response()->json(['sip_url' => $history->forwarding_url]);
+            [$forwarding_type, $forwarding_url] = explode(
+                ':',
+                $history->forwarding_url
+            );
+
+            return response()->json([
+                'type' => $forwarding_type,
+                'url' => $forwarding_url,
+            ]);
         }
 
         return response()->json(
