@@ -35,6 +35,24 @@ return [
 
     'connections' => [
 
+        'sip' => [
+            'driver' => 'mysql',
+            'host' => env('SIP_DB_HOST'),
+            'port' => env('SIP_DB_PORT'),
+            'database' => env('SIP_DB_DATABASE'),
+            'username' => env('SIP_DB_USERNAME'),
+            'password' => env('SIP_DB_PASSWORD'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
