@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\Number;
 use App\Models\NumberHistory;
 use App\Services\StripeService;
+use App\Services\SipService;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -97,7 +98,8 @@ class VoiceNumbersController extends Controller
 
     public function handle_purchase(
         Request $request,
-        StripeService $stripe_service
+        StripeService $stripe_service,
+        SipService $sip_service
     ) {
         $request->validate([
             'phone_number' => 'required',
@@ -148,6 +150,10 @@ class VoiceNumbersController extends Controller
             return response()->json([
                 'message' => 'User account has insufficient funds',
             ], 402);
+        }
+
+        if (! $sip_service->get_endpoint($user)) {
+            $sip_service->create_sip_endpoint($user, str()->random(30), true);
         }
 
         $user->balance -= $number->setup_charges + $number->monthly_charges;

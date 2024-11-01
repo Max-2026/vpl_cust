@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SIP\Auth;
 use App\Models\SIP\Aor;
 use App\Models\SIP\Endpoint;
 
-class SipController extends Controller
+class SipController
 {
     public function get_sip_endpoints()
     {
