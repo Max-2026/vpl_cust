@@ -7,7 +7,7 @@ use App\Models\SIP\Auth;
 use App\Models\SIP\Aor;
 use App\Models\SIP\Endpoint;
 
-class SipController
+class SipService
 {
     public function get_sip_endpoints()
     {
