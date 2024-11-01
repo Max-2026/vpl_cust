@@ -162,7 +162,7 @@ class VoiceNumbersController extends Controller
         $history = new NumberHistory;
         $history->number_id = $number->id;
         $history->user_id = $user->id;
-        $history->forwarding_url = null;
+        $history->forwarding_url = 'portal:' . $user->id;
         $history->activity = 'purchased';
         $history->setup_charges = $number->setup_charges;
         $history->monthly_charges = $number->monthly_charges;
@@ -271,8 +271,13 @@ class VoiceNumbersController extends Controller
         $history = $number->history()->where('user_id', $request->user()->id)
             ->whereIn('activity', ['purchased', 'released'])
             ->orderBy('created_at', 'desc')->first();
-        $history->forwarding_url = $request->forwarding_type . ':'
-            . $request->forwarding_url;
+
+        if ($request->forwarding_type == 'portal') {
+            $history->forwarding_url = 'portal:' . $user->id;
+        } else {
+            $history->forwarding_url = $request->forwarding_type . ':'
+                . $request->forwarding_url;
+        }
         $history->save();
 
         return response()->json([
