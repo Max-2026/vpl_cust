@@ -30,23 +30,24 @@ class DatabaseSeeder extends Seeder
             );
         });
 
+        $admin_user = \App\Models\User::latest()->first();
         $numbers = \App\Models\Number::factory(7)->create();
-        $numbers->each(function ($num) {
+        $numbers->each(function ($num) use ($admin_user) {
             $history = new \App\Models\NumberHistory;
             $history->number_id = $num->id;
-            $history->user_id = 7;
+            $history->user_id = $admin_user->id;
             $history->activity = 'purchased';
             $history->setup_charges = $num->setup_charges;
             $history->monthly_charges = $num->monthly_charges;
             $history->billing_type = 'prorated';
             $num->history()->save($history);
-            $num->current_user_id = 7;
+            $num->current_user_id = $admin_user->id;
             $num->save();
 
             $log = new \App\Models\NumberCallLog;
             $log->id = 'asefqrgoiedkvcbaksdjfsn-' . $num->number;
             $log->number_id = $num->id;
-            $log->user_id = 7;
+            $log->user_id = $admin_user->id;
             $log->from_number = '1234';
             $log->start_time = now();
             $num->logs()->save($log);

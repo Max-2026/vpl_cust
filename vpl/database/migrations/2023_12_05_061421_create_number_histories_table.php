@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('number_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('forwarding_url')->nullable();
             $table->enum('activity', [
                 'purchased',

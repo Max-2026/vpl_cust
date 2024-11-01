@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
-            $table->foreignId('current_user_id')->nullable()
+            $table->foreignUuid('current_user_id')->nullable()
                 ->references('id')->on('users');
             // $table->foreignId('vendor_id')->nullable()->constrained()
             //     ->onDelete('cascade');

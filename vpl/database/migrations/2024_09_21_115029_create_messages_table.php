@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
             $table->string('from_number')->nullable();
             $table->timestamp('received_at')->nullable();

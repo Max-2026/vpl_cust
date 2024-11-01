@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('url')->unique();
             $table->timestamps();
             $table->softDeletes();

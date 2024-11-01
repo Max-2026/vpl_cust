@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->nullable()->onDelete('cascade');
             $table->integer('otp')->nullable();
             $table->timestamp('otp_expires_at')->nullable();
             $table->string('password_reset_token')->nullable();

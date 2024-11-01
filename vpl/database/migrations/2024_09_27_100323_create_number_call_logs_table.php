@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('number_call_logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('number_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('from_number');
             $table->integer('minutes_consumed')->default(0);
             $table->timestamp('start_time')->nullable();

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_payment_methods', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('last_digits', 4);
             $table->string('expiry_month', 2);
             $table->string('expiry_year', 4);

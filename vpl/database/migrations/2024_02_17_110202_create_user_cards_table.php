@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('stripe_card_id');
             $table->string('brand');
             $table->string('expiry_month', 2);
