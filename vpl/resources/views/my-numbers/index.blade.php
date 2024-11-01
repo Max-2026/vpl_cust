@@ -180,9 +180,10 @@
         <div class="col-span-12 sm:col-span-2">
           <label for="forwarding_type" class="block text-sm font-medium text-gray-700">Type</label>
           <div class="mt-1">
-            <select id="forwarding_type" name="forwarding_type" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
+            <select onchange="handleTypeChange(event)" id="forwarding_type" name="forwarding_type" class="shadow-sm focus:ring-cyan-600 focus:border-cyan-600 block w-full sm:text-sm border-gray-300 rounded-md">
               <!-- <option value="pstn">PSTN</option> -->
               <option value="sip">SIP</option>
+              <option selected value="portal">Portal</option>
             </select>
           </div>
         </div>
@@ -198,7 +199,7 @@
                 <path clip-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" fill-rule="evenodd"></path>
               </svg>
             </span>
-            <input oninput="validateForwardingUrl(event)" type="text" name="forwarding_url" id="forwarding_url" autocomplete="forwarding_url" class="flex-1 focus:ring-0 focus:outline-none focus:border-gray-300 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+            <input oninput="validateForwardingUrl(event)" type="text" name="forwarding_url" id="forwarding_url" autocomplete="forwarding_url" class="flex-1 focus:ring-0 focus:outline-none focus:border-gray-300 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 bg-gray-100 text-gray-700" disabled value="Receive calls on the portal">
           </div>
         </div>
         <div class="col-span-12 sm:col-span-2 flex items-end justify-end">
@@ -377,6 +378,21 @@
     const sipRegex = /^[a-zA-Z0-9._%+-]+@[0-9]{1,3}(\.[0-9]{1,3}){3}(:[0-9]{4,5})?$/;
 
     return sipRegex.test(url);
+  }
+
+  function handleTypeChange({ target: { value } })
+  {
+    const field = document.querySelector("[name='forwarding_url']");
+
+    if (value == 'portal') {
+      field.classList.add('bg-gray-100', 'text-gray-700');
+      field.setAttribute('disabled', true);
+      field.value = 'Receive calls on the portal';
+    } else {
+      field.classList.remove('bg-gray-100', 'text-gray-700');
+      field.removeAttribute('disabled');
+      field.value = '';
+    }
   }
 
 </script>
