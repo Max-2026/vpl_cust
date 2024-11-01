@@ -305,8 +305,11 @@
         </fieldset>
       </form>
       @else
-      <h2 class="px-2 my-8 text-gray-700">
+      <h2 class="px-2 my-8 text-gray-700 flex justify-between items-center">
         No payment methods were added!
+        <button onclick="add_card()" class="text-sm bg-cyan-600 text-white py-1 px-3 rounded hover:bg-cyan-700 cursor-pointer">
+          Add Card
+        </button>
       </h2>
       @endif
 
@@ -604,6 +607,12 @@
     });
 
     return req;
+  }
+
+  function add_card()
+  {
+    hideBalanceModal();
+    showPaymentMethodsModal();
   }
 
 </script>
