@@ -11,14 +11,14 @@
     <form action="{{ route('update_profile') }}" method="POST" enctype="multipart/form-data" id="profile-form">
       @csrf
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="flex items-center">
+        {{-- <div class="flex items-center">
           @if($user->avatar)
           <img src="{{ asset($user->avatar) }}" alt="User Avatar" class="h-16 w-16 rounded-full object-cover">
           @else
           <img src="{{ asset('images/user.png') }}" alt="Default Avatar" class="h-16 w-16 rounded-full object-cover">
           @endif
           <input type="file" name="avatar" class="ml-4 text-sm text-gray-500 hidden" id="avatar-input">
-        </div>
+        </div> --}}
         <div>
           <label class="block text-sm font-medium text-gray-700">Name</label>
           <input type="text" name="name" value="{{ $user->name }}" class="mt-1 p-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" disabled required>
