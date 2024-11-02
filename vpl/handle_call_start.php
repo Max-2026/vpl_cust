@@ -11,16 +11,15 @@ require(__DIR__ . '/vendor/autoload.php');
 
 $agi = new AGI();
 
-$call_id = $agi->get_variable("SIPCALLID");
 $caller_number = $agi->request['agi_callerid'];
-$call_timestamp = date('Y-m-d H:i:s');
-$remote_ip = $agi->request['agi_peer'];
-$called_number = $agi->request['agi_extension'];
+$call_timestamp = urlencode(date('Y-m-d H:i:s'));
+$called_number = $agi->request['agi_rdnis'];
+$call_id = $agi->request['agi_uniqueid'];
 
 $base_url = 'https://portal.dialifi.com';
 $sip_secret = 'abcdefghijklmnopqrstuvwxyz';
 
-$url = $base_url . "/call-start/{$called_number}/{$sip_secret}?timestamp={$call_timestamp}&ip={$remote_ip}&caller={$caller_number}&call_id={$call_id}";
+$url = $base_url . "/call-start/{$called_number}/{$sip_secret}?timestamp={$call_timestamp}&caller={$caller_number}&call_id={$call_id}";
 
 $response = file_get_contents($url);
 $data = json_decode($response, true);
