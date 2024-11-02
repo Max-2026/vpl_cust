@@ -27,7 +27,7 @@ class SipService
     {
         $endpoint = new Endpoint;
         $endpoint->id = $user->id;
-        $endpoint->auth = $user->id . '_auth';
+        $endpoint->auth = $user->id;
         $endpoint->aors = $user->id;
         $endpoint->disallow = 'all';
         $endpoint->context = 'user-dialplan';
@@ -53,7 +53,7 @@ class SipService
         $aor->save();
 
         $auth = new Auth;
-        $auth->id = $user->id . '_auth';
+        $auth->id = $user->id;
         $auth->auth_type = 'userpass';
         $auth->username = $user->id;
         $auth->password = $password;
@@ -64,6 +64,6 @@ class SipService
     {
         $endpoint = Endpoint::find($user->id)->delete();
         $aor = Aor::find($user->id)->delete();
-        $auth = Auth::find($user->id . '_auth')->delete();
+        $auth = Auth::find($user->id)->delete();
     }
 }

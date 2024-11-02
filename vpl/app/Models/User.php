@@ -87,4 +87,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserWebhook::class);
     }
+
+    public function sip_auth(): HasOne
+    {
+        return $this->hasOne(SIP\Auth::class, 'id', 'id');
+    }
 }

@@ -200,6 +200,18 @@
     </div>
   </div>
 
+  <div id="call-modal" class="fixed bottom-4 sm:right-4 w-full sm:w-96 bg-white shadow-lg border border-gray-200 rounded-lg p-4 flex items-center space-x-4 transition hidden opacity-0 scale-0">
+    <div class="flex-grow">
+      <h4 class="text-lg font-semibold text-gray-900">Incoming Call</h4>
+      <p id="call-modal-number" class="text-gray-700">+923327951445</p>
+    </div>
+    <div class="flex space-x-2">
+      <button id="call-modal-answer-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none">Answer</button>
+      <button id="call-modal-decline-btn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none">Decline</button>
+    </div>
+  </div>
+  <audio id="remoteAudio"></audio>
+
   <script type="text/javascript">
     
     function openSidebar() {
@@ -242,6 +254,106 @@
         sidebarWrapper.classList.add('hidden');
       }, 300);
     };
+
+    function openCallModal(caller, answerHandler, declineHandler) {
+      const modal = document.getElementById('call-modal');
+      const answerBtn = document.getElementById('call-modal-answer-btn');
+      const declineBtn = document.getElementById('call-modal-decline-btn');
+
+      answerBtn.addEventListener('click', answerHandler);
+      declineBtn.addEventListener('click', declineHandler);
+
+      modal.classList.remove('hidden');
+      document.getElementById('call-modal-number').innerText = caller;
+
+      setTimeout(() => {
+        modal.classList.add('opacity-100');
+        modal.classList.add('scale-100');
+      }, 300);
+    }
+
+    function closeCallModal() {
+      const modal = document.getElementById('call-modal');
+
+      modal.classList.remove('opacity-100');
+      modal.classList.remove('scale-100');
+
+      setTimeout(() => {
+        modal.classList.remove('hidden');
+      }, 300);
+    }
+
+  </script>
+
+  <script src="https://jssip.net/download/releases/jssip-3.10.0.min.js"></script>
+
+  <script defer type="text/javascript">
+
+    const socket = new JsSIP.WebSocketInterface('ws://{{ config('sip.web_socket_url') }}');
+    const configuration = {
+      sockets: [socket],
+      uri: 'sip:{{ auth()->user()->id . '@' . config('sip.host') }}',
+      password: '{{ auth()->user()->sip_auth?->password }}'
+    };
+
+    const client = new JsSIP.UA(configuration);
+    client.start();
+
+    client.on('registered', function() {
+      console.log('WebRTC client registered');
+
+      // const options = {
+      //   'mediaConstraints': { 'audio': true, 'video': false }
+      // };
+      // client.call('sip:6002@159.65.227.23', options);
+    });
+
+    client.on('disconnected', function() {
+      console.log('Disconnected');
+    });
+
+    client.on('newRTCSession', function(data) {
+      console.log('New RTC Session');
+
+      const session = data.session;
+
+      if (session.direction == 'incoming') {
+        const caller = session.remote_identity.display_name || 'Unknown';
+        openCallModal(
+          caller,
+          () => {
+            session.answer({
+              mediaConstraints: { audio: true, video: false },
+            });
+          },
+          () => {
+            session.terminate();
+            closeCallModal();
+          }
+        );
+
+        session.on('failed', function(e) {
+          closeCallModal();
+        });
+      }
+
+      session.on("confirmed",function(){
+
+        session.connection.addEventListener('track', function(event) {
+          console.log('Audio stream received');
+
+          const remoteAudio = document.getElementById('remoteAudio');
+
+          if (event.track.kind === 'audio') {
+            const remoteStream = new MediaStream();
+            remoteStream.addTrack(event.track);
+            remoteAudio.srcObject = remoteStream;
+            remoteAudio.play();
+          }
+        });
+      });
+
+    });
 
   </script>
 
