@@ -349,7 +349,8 @@ class VoiceNumbersController extends Controller
 
     public function handle_call_end(
         string $call_id,
-        string $secret
+        string $secret,
+        Request $request
     )
     {
         $timestamp = $request->timestamp;
