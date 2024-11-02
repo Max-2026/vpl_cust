@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
 
         $users = \App\Models\User::factory(6)->create();
         $users[] = \App\Models\User::factory()->create([
+            'id' => '9d647aaf-2685-49b9-acf7-9c397655dd3a',
             'name' => 'Erdum Adnan',
             'email' => 'erdumadnan@gmail.com',
+            'balance' => 1000,
         ]);
         $users->each(function ($user) {
             \App\Models\UserAddress::factory()->create(
@@ -30,8 +32,13 @@ class DatabaseSeeder extends Seeder
             );
         });
 
-        $admin_user = \App\Models\User::latest()->first();
+        $admin_user = $users->last();
         $numbers = \App\Models\Number::factory(7)->create();
+        $numbers[] = \App\Models\Number::factory()->create([
+            'number' => '+16282323929',
+            'current_user_id' => $admin_user->id,
+            'country_id' => 231,
+        ]);
         $numbers->each(function ($num) use ($admin_user) {
             $history = new \App\Models\NumberHistory;
             $history->number_id = $num->id;
