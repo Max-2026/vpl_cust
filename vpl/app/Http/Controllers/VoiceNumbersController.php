@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Invoice;
 use App\Models\Number;
 use App\Models\NumberHistory;
+use App\Models\NumberCallLog;
 use App\Services\StripeService;
 use App\Services\SipService;
 use App\Services\VendorsAPIService;
@@ -298,7 +299,6 @@ class VoiceNumbersController extends Controller
     )
     {
         $timestamp = $request->timestamp;
-        $caller_ip = $request->ip;
         $caller = $request->caller;
         $call_id = $request->call_id;
 
