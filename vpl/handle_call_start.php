@@ -28,7 +28,7 @@ if (isset($data['url'])) {
     $agi->exec("Dial", "PJSIP/" . $data['url']);
 
     // Reporting call end
-    $call_end_timestamp = date('Y-m-d H:i:s');
+    $call_end_timestamp = urlencode(date('Y-m-d H:i:s'));
     $url = $base_url . "/call-end/{$call_id}/{$sip_secret}?timestamp={$call_end_timestamp}";
     $response = file_get_contents($url);
 } else {
