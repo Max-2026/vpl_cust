@@ -69,4 +69,9 @@ class Number extends Model
     {
         return $this->hasMany(UserWebhook::class);
     }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
