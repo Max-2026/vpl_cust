@@ -13,6 +13,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        $billing_service = app(App\Services\BillingService::class);
+
+        $schedule->call(function () use ($billing_service) {
+            $billing_service->generate_daily_invoices();
+        })->daily();
     }
 
     /**
