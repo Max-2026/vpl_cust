@@ -255,13 +255,53 @@
       }, 300);
     };
 
-    function openCallModal(caller, answerHandler, declineHandler) {
+    let callAnswerHandler;
+    let callDeclineHandler;
+
+    function anserCall(session) {
+      session.answer({
+        mediaConstraints: { audio: true, video: false },
+      });
+
+      if (session.connection) {
+        session.connection.addEventListener('track', function(event) {
+          console.log('Audio stream received for incoming session');
+
+          const remoteAudio = document.getElementById('remoteAudio');
+
+          if (event.track.kind === 'audio') {
+            const remoteStream = new MediaStream();
+            remoteStream.addTrack(event.track);
+            remoteAudio.srcObject = remoteStream;
+            remoteAudio.play();
+          }
+        });
+      }
+    }
+
+    function declineCall(session) {
+      session.terminate();
+    }
+
+    function openCallModal(caller, session) {
       const modal = document.getElementById('call-modal');
       const answerBtn = document.getElementById('call-modal-answer-btn');
       const declineBtn = document.getElementById('call-modal-decline-btn');
 
-      answerBtn.addEventListener('click', answerHandler);
-      declineBtn.addEventListener('click', declineHandler);
+      callAnswerHandler = () => {
+        anserCall(session);
+        answerBtn.classList.add('bg-gray-300');
+        answerBtn.removeEventListener('click', callAnswerHandler);
+      };
+
+      callDeclineHandler = () => {
+        declineCall(session);
+        answerBtn.classList.remove('bg-gray-300');
+        closeCallModal();
+      }
+
+      answerBtn.addEventListener('click', callAnswerHandler);
+      declineBtn.addEventListener('click', callDeclineHandler);
 
       modal.classList.remove('hidden');
       document.getElementById('call-modal-number').innerText = caller;
@@ -274,6 +314,9 @@
 
     function closeCallModal() {
       const modal = document.getElementById('call-modal');
+
+      answerBtn.removeEventListener('click', callAnswerHandler);
+      declineBtn.removeEventListener('click', callDeclineHandler);
 
       modal.classList.remove('opacity-100');
       modal.classList.remove('scale-100');
@@ -289,7 +332,7 @@
 
   <script defer type="text/javascript">
 
-    const socket = new JsSIP.WebSocketInterface('ws://{{ config('sip.web_socket_url') }}');
+    const socket = new JsSIP.WebSocketInterface('wss://{{ config('sip.web_socket_url') }}');
     const configuration = {
       sockets: [socket],
       uri: 'sip:{{ auth()->user()->id . '@' . config('sip.host') }}',
@@ -319,54 +362,28 @@
 
       if (session.direction == 'incoming') {
         const caller = session.remote_identity.display_name || 'Unknown';
-        openCallModal(
-          caller,
-          () => {
-            session.answer({
-              mediaConstraints: { audio: true, video: false },
-            });
 
-            session.on("confirmed", function() {
-
-            session.connection.addEventListener('track', function(event) {
-              console.log('Audio stream received for incoming session');
-
-              const remoteAudio = document.getElementById('remoteAudio');
-
-              if (event.track.kind === 'audio') {
-                const remoteStream = new MediaStream();
-                remoteStream.addTrack(event.track);
-                remoteAudio.srcObject = remoteStream;
-                remoteAudio.play();
-              }
-            });
-          });
-          },
-          () => {
-            session.terminate();
-            closeCallModal();
-          }
-        );
+        openCallModal(caller, session);
 
         session.on('failed', function(e) {
           closeCallModal();
         });
       } else if (session.direction == 'outgoing') {
-      //   session.on("confirmed", function() {
 
-      //     session.connection.addEventListener('track', function(event) {
-      //       console.log('Audio stream received for outgoing session');
+        if (session.connection) {
+          session.connection.addEventListener('track', function(event) {
+            console.log('Audio stream received for outgoing session');
 
-      //       const remoteAudio = document.getElementById('remoteAudio');
+            const remoteAudio = document.getElementById('remoteAudio');
 
-      //       if (event.track.kind === 'audio') {
-      //         const remoteStream = new MediaStream();
-      //         remoteStream.addTrack(event.track);
-      //         remoteAudio.srcObject = remoteStream;
-      //         remoteAudio.play();
-      //       }
-      //     });
-      //   });
+            if (event.track.kind === 'audio') {
+              const remoteStream = new MediaStream();
+              remoteStream.addTrack(event.track);
+              remoteAudio.srcObject = remoteStream;
+              remoteAudio.play();
+            }
+          });
+        }
       }
 
     });
