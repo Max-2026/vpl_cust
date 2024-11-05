@@ -50,6 +50,7 @@ class SipService
         $aor = new Aor;
         $aor->id = $user->id;
         $aor->max_contacts = 1;
+        $aor->remove_existing = 'yes';
         $aor->save();
 
         $auth = new Auth;
