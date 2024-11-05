@@ -325,6 +325,22 @@
             session.answer({
               mediaConstraints: { audio: true, video: false },
             });
+
+            session.on("confirmed", function() {
+
+            session.connection.addEventListener('track', function(event) {
+              console.log('Audio stream received for incoming session');
+
+              const remoteAudio = document.getElementById('remoteAudio');
+
+              if (event.track.kind === 'audio') {
+                const remoteStream = new MediaStream();
+                remoteStream.addTrack(event.track);
+                remoteAudio.srcObject = remoteStream;
+                remoteAudio.play();
+              }
+            });
+          });
           },
           () => {
             session.terminate();
@@ -335,23 +351,23 @@
         session.on('failed', function(e) {
           closeCallModal();
         });
+      } else if (session.direction == 'outgoing') {
+      //   session.on("confirmed", function() {
+
+      //     session.connection.addEventListener('track', function(event) {
+      //       console.log('Audio stream received for outgoing session');
+
+      //       const remoteAudio = document.getElementById('remoteAudio');
+
+      //       if (event.track.kind === 'audio') {
+      //         const remoteStream = new MediaStream();
+      //         remoteStream.addTrack(event.track);
+      //         remoteAudio.srcObject = remoteStream;
+      //         remoteAudio.play();
+      //       }
+      //     });
+      //   });
       }
-
-      session.on("confirmed",function(){
-
-        session.connection.addEventListener('track', function(event) {
-          console.log('Audio stream received');
-
-          const remoteAudio = document.getElementById('remoteAudio');
-
-          if (event.track.kind === 'audio') {
-            const remoteStream = new MediaStream();
-            remoteStream.addTrack(event.track);
-            remoteAudio.srcObject = remoteStream;
-            remoteAudio.play();
-          }
-        });
-      });
 
     });
 
