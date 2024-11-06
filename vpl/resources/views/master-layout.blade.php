@@ -314,6 +314,8 @@
 
     function closeCallModal() {
       const modal = document.getElementById('call-modal');
+      const answerBtn = document.getElementById('call-modal-answer-btn');
+      const declineBtn = document.getElementById('call-modal-decline-btn');
 
       answerBtn.removeEventListener('click', callAnswerHandler);
       declineBtn.removeEventListener('click', callDeclineHandler);
