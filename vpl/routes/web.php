@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApiIntegrationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VoiceNumbersController;
-use App\Http\Controllers\ApiIntegrationController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Models\SIP\Auth;
 use App\Models\SIP\Aor;
+use App\Models\SIP\Auth;
 use App\Models\SIP\Endpoint;
+use App\Models\User;
 
 class SipService
 {
@@ -23,8 +23,7 @@ class SipService
         User $user,
         string $password,
         bool $is_webrtc = false
-    )
-    {
+    ) {
         $endpoint = new Endpoint;
         $endpoint->id = $user->id;
         $endpoint->auth = $user->id;

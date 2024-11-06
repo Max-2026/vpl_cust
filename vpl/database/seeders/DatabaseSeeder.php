@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             $num->save();
 
             $log = new \App\Models\NumberCallLog;
-            $log->id = 'asefqrgoiedkvcbaksdjfsn-' . $num->number;
+            $log->id = 'asefqrgoiedkvcbaksdjfsn-'.$num->number;
             $log->number_id = $num->id;
             $log->user_id = $admin_user->id;
             $log->from_number = '1234';

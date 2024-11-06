@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Invoice;
 use App\Models\Number;
-use App\Models\NumberHistory;
 use App\Models\NumberCallLog;
-use App\Services\StripeService;
+use App\Models\NumberHistory;
 use App\Services\SipService;
+use App\Services\StripeService;
 use App\Services\VendorsAPIService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -169,7 +169,7 @@ class VoiceNumbersController extends Controller
         $history = new NumberHistory;
         $history->number_id = $number->id;
         $history->user_id = $user->id;
-        $history->forwarding_url = 'portal:' . $user->id;
+        $history->forwarding_url = 'portal:'.$user->id;
         $history->activity = 'purchased';
         $history->setup_charges = $number->setup_charges;
         $history->monthly_charges = $number->monthly_charges;
@@ -280,15 +280,15 @@ class VoiceNumbersController extends Controller
             ->orderBy('created_at', 'desc')->first();
 
         if ($request->forwarding_type == 'portal') {
-            $history->forwarding_url = 'portal:' . $user->id;
+            $history->forwarding_url = 'portal:'.$user->id;
         } else {
-            $history->forwarding_url = $request->forwarding_type . ':'
-                . $request->forwarding_url;
+            $history->forwarding_url = $request->forwarding_type.':'
+                .$request->forwarding_url;
         }
         $history->save();
 
         return response()->json([
-            'message' => 'Configuration successfully changed'
+            'message' => 'Configuration successfully changed',
         ]);
     }
 
@@ -296,13 +296,14 @@ class VoiceNumbersController extends Controller
         string $number,
         string $secret,
         Request $request
-    )
-    {
+    ) {
         $timestamp = $request->timestamp;
         $caller = $request->caller;
         $call_id = $request->call_id;
 
-        if ($secret != config('app.sip_secret')) abort(401);
+        if ($secret != config('app.sip_secret')) {
+            abort(401);
+        }
 
         $num = Cache::remember(
             $number,
@@ -312,7 +313,7 @@ class VoiceNumbersController extends Controller
             }
         );
 
-        if (!$num) {
+        if (! $num) {
             return response()->json(
                 ['error' => 'Invalid number'],
                 404
@@ -351,15 +352,16 @@ class VoiceNumbersController extends Controller
         string $call_id,
         string $secret,
         Request $request
-    )
-    {
+    ) {
         $timestamp = $request->timestamp;
 
-        if ($secret != config('app.sip_secret')) abort(401);
+        if ($secret != config('app.sip_secret')) {
+            abort(401);
+        }
 
         $cdr = NumberCallLog::find($call_id);
 
-        if (!$cdr) {
+        if (! $cdr) {
             return response()->json(
                 ['error' => 'Record not found'],
                 404

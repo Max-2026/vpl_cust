@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Number;
-use App\Models\NumberHistory;
 
 class BillingService
 {

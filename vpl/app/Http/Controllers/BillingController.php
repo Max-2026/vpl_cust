@@ -23,14 +23,14 @@ class BillingController extends Controller
                 });
             }
         )
-        ->when(
-            $request->bill_date,
-            function ($query) use ($request) {
-                $query->whereDate('created_at', $request->bill_date);
-            }
-        )
-        ->where('user_id', $user->id)
-        ->paginate();
+            ->when(
+                $request->bill_date,
+                function ($query) use ($request) {
+                    $query->whereDate('created_at', $request->bill_date);
+                }
+            )
+            ->where('user_id', $user->id)
+            ->paginate();
 
         return view('billings.index', [
             'numbers' => $numbers,
