@@ -368,6 +368,9 @@
         session.on('failed', function(e) {
           closeCallModal();
         });
+        session.on('ended', function(e) {
+          closeCallModal();
+        });
       } else if (session.direction == 'outgoing') {
 
         if (session.connection) {
