@@ -195,6 +195,8 @@ class VoiceNumbersController extends Controller
             'number_id',
             'activity',
             'forwarding_url',
+            'billing_type',
+            'created_at',
             \DB::raw('MAX(created_at) as latest_activity')
         )->where('user_id', $user->id)
             ->whereIn('activity', ['purchased', 'release_requested'])
