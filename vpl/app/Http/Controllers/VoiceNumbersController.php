@@ -176,7 +176,7 @@ class VoiceNumbersController extends Controller
         $history->annual_charges = $number->annual_charges;
         $history->per_mintue_charges = $number->per_mintue_charges;
         $history->per_sms_charges = $number->per_sms_charges;
-        $history->billing_type = 'prorated';
+        $history->billing_type = 'non_prorated';
         $number->history()->save($history);
 
         $number->current_user_id = $user->id;

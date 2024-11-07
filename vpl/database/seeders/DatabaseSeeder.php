@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             $history->activity = 'purchased';
             $history->setup_charges = $num->setup_charges;
             $history->monthly_charges = $num->monthly_charges;
-            $history->billing_type = 'prorated';
+            $history->billing_type = 'non_prorated';
             $num->history()->save($history);
             $num->current_user_id = $admin_user->id;
             $num->save();
