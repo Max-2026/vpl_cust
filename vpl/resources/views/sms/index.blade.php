@@ -26,6 +26,7 @@
   </form>
 </div>
 <div class="w-full my-8 p-6 rounded-md shadow bg-white">
+  @if (count($messages ?? []) > 0)
   <div>
     <h3 class="text-lg leading-6 font-medium text-gray-900 ml-2 mb-1.25">SMS Inbox</h3>
   </div>
@@ -66,6 +67,10 @@
       </div>
     </div>
   </div>
+
+  @else
+    <h2 class="w-full text-center text-xl">No Messages</h2>
+  @endif
 </div>
 
 @includeWhen(
