@@ -27,7 +27,7 @@ Route::post('/contact-us', function (Request $request) {
     $content = "{$request->first_name} {$request->last_name}\nFrom: {$request->email}\nPhone: {$request->phone_number}\nMessage: {$request->message}";
 
     Mail::raw($content, function ($message) {
-        $message->to(['erdumadnan@gmail.com', 'support@dialifi.com'])
+        $message->to(explode(',', config('app.contact_us_emails')))
             ->subject('New Message | Dialifi.com');
     });
 

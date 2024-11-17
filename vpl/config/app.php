@@ -236,4 +236,6 @@ return [
 
     'contact_us_secret' => env('CONTACT_US_SECRET'),
 
+    'contact_us_emails' => env('CONTACT_US_EMAILS'),
+
 ];
