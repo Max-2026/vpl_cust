@@ -322,6 +322,7 @@
 
       modal.classList.remove('opacity-100');
       modal.classList.remove('scale-100');
+      answerBtn.classList.add('bg-gray-300');
 
       setTimeout(() => {
         modal.classList.remove('hidden');
