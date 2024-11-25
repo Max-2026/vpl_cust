@@ -11,7 +11,7 @@ class BillingService
 {
     public function generate_daily_invoices()
     {
-        $data = NumberHistory::withWhereHas('number', function ($query) {
+        NumberHistory::withWhereHas('number', function ($query) {
             $query->whereNotNull('current_user_id');
         })
         ->with('user')
