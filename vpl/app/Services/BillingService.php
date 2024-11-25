@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Number;
 use App\Models\NumberHistory;
 use App\Models\Invoice;
+use App\Models\User;
 
 class BillingService
 {
@@ -13,6 +14,7 @@ class BillingService
         $data = NumberHistory::withWhereHas('number', function ($query) {
             $query->whereNotNull('current_user_id');
         })
+        ->with('user')
         ->groupBy('number_id')
         ->latest()
         ->where('activity', 'purchased')
@@ -28,15 +30,21 @@ class BillingService
             $invoices = [];
 
             foreach ($histories as $history) {
-                $invoices[] = $this->create_invoice($history->number);
+                $invoices[] = $this->create_invoice(
+                    $history->number,
+                    $history->user
+                );
             }
 
             Invoice::insert($invoices);
         });
 }
 
-    private function create_invoice(Number $number)
+    private function create_invoice(Number $number, User $user)
     {
+        $user->balance -= $number->monthly_charges;
+        $user->save();
+
         if (
             date('j') == '1'
             && $number->history[0]->billing_type == 'prorated'
