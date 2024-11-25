@@ -14,7 +14,7 @@
 
   <script type="text/javascript">
 
-  const socket = new JsSIP.WebSocketInterface('ws://159.65.227.23:8088/ws');
+  const socket = new JsSIP.WebSocketInterface('wss://sip.dialifi.com:8089/ws');
 
   const configuration = {
     sockets: [socket],
@@ -45,7 +45,7 @@
       'mediaConstraints': { 'audio': true, 'video': false }
     };
 
-    client.call('sip:6002@159.65.227.23', options);
+    client.call('sip:100@159.65.227.23', options);
   });
 
   client.on('newRTCSession', function(data) {
