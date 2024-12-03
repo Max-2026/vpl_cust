@@ -15,9 +15,14 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $billing_service = app(App\Services\BillingService::class);
+        $number_service = app(App\Services\NumberService::class);
 
         $schedule->call(function () use ($billing_service) {
             $billing_service->generate_daily_invoices();
+        })->daily();
+
+        $schedule->call(function () use ($number_service) {
+            $number_service->release_numbers();
         })->daily();
     }
 
