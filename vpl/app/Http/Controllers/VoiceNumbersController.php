@@ -237,11 +237,11 @@ class VoiceNumbersController extends Controller
     {
         $user = auth()->user();
         $number = Number::find($number_id);
-        $purchase_record = $number->get_recent_purchase($user->id);
 
         if (! $number) {
             abort(404);
         }
+        $purchase_record = $number->get_recent_purchase($user->id);
 
         if (
             $number->current_user_id !== $user->id
