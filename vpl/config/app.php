@@ -159,6 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Mavinoo\Batch\BatchServiceProvider::class,
 
         /*
          * Application Service Providers...

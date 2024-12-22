@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
         })->daily();
 
         $schedule->call(function () use ($number_service) {
-            $number_service->release_numbers();
+            $number_service->release_upcoming_numbers();
         })->daily();
     }
 

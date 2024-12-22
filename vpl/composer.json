@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
+        "mavinoo/laravel-batch": "^2.4",
         "stripe/stripe-php": "^13.11"
     },
     "require-dev": {
